@@ -1,0 +1,20 @@
+<a href="_!homeServer.getURI("${doNameLower}/create.htm")" >新建</a>
+
+<table>
+ <tr>
+     #foreach($v in $doFieldList)
+         $v.cnName
+     #end
+     <td>操作</td>
+ </tr>
+_foreach($f in $${doNameLower}DOList)
+  <tr>
+      #foreach($v in $doFieldList)
+         <td> _!f.$v.name</td>
+      #end
+    <td><a href="_!homeServer.getURI("${doNameLower}/edit.htm").addQueryData('id',"_!f.id")" >编辑</a></td>
+    <td><a href="_!homeServer.getURI("${doNameLower}/detail.htm").addQueryData('id',"_!f.id")" >查看详情</a></td>
+      <td><a href="_!homeServer.getURI("${doNameLower}/doDelete.htm").addQueryData('id',"_!f.id")" onclick="return confirm('确定删除吗?')">删除</a></td>
+ </tr>
+_end
+</table>
