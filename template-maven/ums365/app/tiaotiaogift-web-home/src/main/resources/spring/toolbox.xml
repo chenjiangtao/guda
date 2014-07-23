@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<tools>
+	
+
+	
+	<toolbox scope="application">
+		<tool key="operationContext"
+			class="net.zoneland.mvc.runtime.core.security.OperationContextHolder" />
+	</toolbox>
+	
+	<toolbox scope="application">
+		<tool key="enum" class="com.tiaotiaogift.biz.common.EnumUtil" />
+	</toolbox>
+	
+	<toolbox scope="application">
+		<tool key="formTool" class="com.tiaotiaogift.web.mvc.FormTools" />
+	</toolbox>
+
+
+</tools>

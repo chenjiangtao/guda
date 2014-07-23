@@ -1,0 +1,41 @@
+.contain{
+  margin:0 auto;
+	width:1022px;
+	border: 1px solid #c5e6c7; 
+
+    overflow:hidden;
+}
+.contain-left{
+  width:20%;
+  float:left;
+  margin-top:5px;
+}
+.contain-right{
+width:79%;
+float:left;
+text-align:left;
+margin-left:10px;
+margin-top:5px;
+line-height:25px;
+text-indent:2em;
+}
+
+.banner-mid{
+background-color:#cbcbcb;
+    line-height:40px;
+   
+}
+.title-bar-img{
+ vertical-align:middle;
+ margin-left: 5px;
+  margin-right: 5px;
+}
+.title-bar-img-contain{
+ vertical-align:middle;
+ margin-left: -15px;
+  margin-right: 5px;
+}
+.banner-mid span{
+ float:right;
+ padding-right:20px;
+}

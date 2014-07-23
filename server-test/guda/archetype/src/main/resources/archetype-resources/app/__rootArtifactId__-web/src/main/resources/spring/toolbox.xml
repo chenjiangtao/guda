@@ -1,0 +1,16 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<tools>
+	
+
+	<toolbox scope="${parentArtifactId}lication">
+		<tool key="operationContext"
+			class="${groupId}.mvc.runtime.core.security.OperationContextHolder" />
+	</toolbox>
+	
+
+</tools>

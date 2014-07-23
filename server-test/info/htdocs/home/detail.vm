@@ -1,0 +1,72 @@
+#set($layout = "home/layout/detailLayout.vm")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/detail.css")">
+
+
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/imgView/jquery.galleryview-3.0-dev.css")">
+<script type="text/javascript" src="$homeServer.getURI("/static/js/imgView/jquery.galleryview-3.0-dev.js")"></script>
+<script type="text/javascript" src="$homeServer.getURI("/static/js/imgView/jquery.easing.1.3.js")"></script>
+<script type="text/javascript" src="$homeServer.getURI("/static/js/imgView/jquery.timers-1.2.js")"></script>
+<script type="text/javascript" src="$homeServer.getURI("/static/js/detail.js")"></script>
+<div class="container">
+<div class="grid doc">
+    <ul class="breadcrumb  font-size16">
+	    <li><a href="$homeServer.getURI("/")">首页</a></li>
+	    <li><a href="$homeServer.getURI("/list.htm")?id=$!classify.id">$!classify.name</a></li>
+	    <li><a href="$homeServer.getURI("/list.htm")?id=$!classify.id&subId=&!subClassify.id">$!subClassify.name</a></li>
+	    <li>物品详情</li>
+    </ul>
+</div>
+</div>
+
+<div class="container">
+	<div class="grid  mg-t-40">
+	<div class="col-1-1">
+	  <li><h4>$!detail.title</h4></li>
+		 <li class="pub-date"><label>发布时间:</label>$date.format('yyyy-MM-dd HH:mm:ss', $!detail.gmtCreated)</li>
+	</div>
+	#if($imgs.size() ==0)
+	  
+		<div class="col-1-1 line40 font-size16">
+		<ul>
+		 
+		 <li><label>价格:</label><b class="pub-red">$!detail.price</b>元 </li>
+		 <li><label>联系人:</label>$!detail.contactUser</li>
+		 <li><label>联系电话:</label><b class="pub-red">$!detail.contactInfo</b></li>
+		 <li><label>所在地区:</label>$!city.name</li>
+		 
+		 </ul>
+		</div>
+	#else
+	
+		<div class="col-1-3">
+		 <ul id="myImg">
+		   #foreach($img in $imgs)
+		     <li><img src="$img.path"/></li>
+		   #end
+		 </ul>
+		</div>
+		<div class="col-2-3 line40 font-size16">
+		<ul>
+		 
+		 <li><label>价格:</label><b class="pub-red">$!detail.price</b>元 </li>
+		 <li><label>联系人:</label>$!detail.contactUser</li>
+		 <li><label>联系电话:</label><b class="pub-red">$!detail.contactInfo</b></li>
+		 <li><label>所在地区:</label>$!city.name</li>
+		 
+		 </ul>
+		</div>
+	 #end
+		<div class="col-1-1 height300">
+		   <ul  class="grid" style="font-size:16px;border-bottom:1px solid #93d090;">
+            <li><span  class="pub-title">物品详情</span></li>
+            
+           
+            </ul>
+          <ul>
+		  <li class="block font-size14">$!detail.content</li>
+		  </ul>
+		</div>
+	</div>
+	
+	
+</div>

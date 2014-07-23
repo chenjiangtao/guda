@@ -1,0 +1,1378 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.zoneland.ums.common.dal.UmsMsgOutUcsMapper">
+	<resultMap id="BaseResultMap"
+		type="net.zoneland.ums.common.dal.dataobject.UmsMsgOut">
+		<id column="ID" property="id" jdbcType="CHAR" />
+		<result column="BATCH_NO" property="batchNo" jdbcType="VARCHAR" />
+		<result column="SERIAL_NO" property="serialNo" jdbcType="VARCHAR" />
+		<result column="SEND_ID" property="sendId" jdbcType="VARCHAR" />
+		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="RECV_ID" property="recvId" jdbcType="VARCHAR" />
+		<result column="CONTENT" property="content" jdbcType="VARCHAR" />
+		<result column="MSG_TYPE" property="msgType" jdbcType="INTEGER" />
+		<result column="STATUS" property="status" jdbcType="VARCHAR" />
+		<result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+		<result column="SUB_APP" property="subApp" jdbcType="VARCHAR" />
+		<result column="APP_SERIAL_NO" property="appSerialNo" jdbcType="VARCHAR" />
+		<result column="MEDIA_ID" property="mediaId" jdbcType="VARCHAR" />
+		<result column="RET_CODE" property="retCode" jdbcType="VARCHAR" />
+		<result column="ERROR_MSG" property="errorMsg" jdbcType="VARCHAR" />
+		<result column="ACK" property="ack" jdbcType="INTEGER" />
+		<result column="REPLY" property="reply" jdbcType="VARCHAR" />
+		<result column="RETRY" property="retry" jdbcType="INTEGER" />
+		<result column="PRIORITY" property="priority" jdbcType="INTEGER" />
+		<result column="BATCH_MODE" property="batchMode" jdbcType="CHAR" />
+		<result column="CONTENT_MODE" property="contentMode" jdbcType="INTEGER" />
+		<result column="TIME_SET_FLAG" property="timeSetFlag" jdbcType="CHAR" />
+		<result column="SET_TIME" property="setTime" jdbcType="TIMESTAMP" />
+		<result column="REPLY_DES" property="replyDes" jdbcType="VARCHAR" />
+		<result column="FEE" property="fee" jdbcType="INTEGER" />
+		<result column="FEE_TYPE" property="feeType" jdbcType="INTEGER" />
+		<result column="MSG_ID" property="msgId" jdbcType="VARCHAR" />
+		<result column="DOCOUNT" property="docount" jdbcType="INTEGER" />
+		<result column="SEND_TIME" property="sendTime" jdbcType="TIMESTAMP" />
+		<result column="VALID_TIME" property="validTime" jdbcType="TIMESTAMP" />
+		<result column="GROUP_SERIAL" property="groupSerial" jdbcType="VARCHAR" />
+		<result column="ORG_NO" property="orgNo" jdbcType="VARCHAR" />
+		<result column="FLOW_NO" property="flowNo" jdbcType="VARCHAR" />
+		<result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+		<result column="BIZ_TYPE" property="bizType" jdbcType="VARCHAR" />
+		<result column="BIZ_NAME" property="bizName" jdbcType="VARCHAR" />
+		<result column="IDENTITY" property="identity" jdbcType="CHAR" />
+		<result column="HOST" property="host" jdbcType="VARCHAR" />
+		<result column="MOBILE_STATUS" property="mobileStatus"
+			jdbcType="CHAR" />
+		<result column="TEMPLATE_ID" property="templateId" jdbcType="CHAR" />
+		<result column="GMT_CREATED" property="gmtCreated" jdbcType="TIMESTAMP" />
+		<result column="GMT_MODIFIED" property="gmtModified" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="BaseResultMapWithApp" type="net.zoneland.ums.common.dal.bo.UmsMsgOutDO">
+		<id column="ID" property="id" jdbcType="CHAR" />
+		<result column="BATCH_NO" property="batchNo" jdbcType="VARCHAR" />
+		<result column="SERIAL_NO" property="serialNo" jdbcType="VARCHAR" />
+		<result column="SEND_ID" property="sendId" jdbcType="VARCHAR" />
+		<result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+		<result column="RECV_ID" property="recvId" jdbcType="VARCHAR" />
+		<result column="CONTENT" property="content" jdbcType="VARCHAR" />
+		<result column="MSG_TYPE" property="msgType" jdbcType="INTEGER" />
+		<result column="STATUS" property="status" jdbcType="VARCHAR" />
+		<result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+		<result column="SUB_APP" property="subApp" jdbcType="VARCHAR" />
+		<result column="APP_SERIAL_NO" property="appSerialNo" jdbcType="VARCHAR" />
+		<result column="MEDIA_ID" property="mediaId" jdbcType="VARCHAR" />
+		<result column="RET_CODE" property="retCode" jdbcType="VARCHAR" />
+		<result column="ERROR_MSG" property="errorMsg" jdbcType="VARCHAR" />
+		<result column="ACK" property="ack" jdbcType="INTEGER" />
+		<result column="REPLY" property="reply" jdbcType="VARCHAR" />
+		<result column="RETRY" property="retry" jdbcType="INTEGER" />
+		<result column="PRIORITY" property="priority" jdbcType="INTEGER" />
+		<result column="BATCH_MODE" property="batchMode" jdbcType="CHAR" />
+		<result column="CONTENT_MODE" property="contentMode" jdbcType="INTEGER" />
+		<result column="TIME_SET_FLAG" property="timeSetFlag" jdbcType="CHAR" />
+		<result column="SET_TIME" property="setTime" jdbcType="TIMESTAMP" />
+		<result column="REPLY_DES" property="replyDes" jdbcType="VARCHAR" />
+		<result column="FEE" property="fee" jdbcType="INTEGER" />
+		<result column="FEE_TYPE" property="feeType" jdbcType="INTEGER" />
+		<result column="MSG_ID" property="msgId" jdbcType="VARCHAR" />
+		<result column="DOCOUNT" property="docount" jdbcType="INTEGER" />
+		<result column="SEND_TIME" property="sendTime" jdbcType="TIMESTAMP" />
+		<result column="VALID_TIME" property="validTime" jdbcType="TIMESTAMP" />
+		<result column="GROUP_SERIAL" property="groupSerial" jdbcType="VARCHAR" />
+		<result column="ORG_NO" property="orgNo" jdbcType="VARCHAR" />
+		<result column="FLOW_NO" property="flowNo" jdbcType="VARCHAR" />
+		<result column="CREATE_USER" property="createUser" jdbcType="VARCHAR" />
+		<result column="BIZ_TYPE" property="bizType" jdbcType="VARCHAR" />
+		<result column="BIZ_NAME" property="bizName" jdbcType="VARCHAR" />
+		<result column="TEMPLATE_ID" property="templateId" jdbcType="CHAR" />
+		<result column="GMT_CREATED" property="gmtCreated" jdbcType="TIMESTAMP" />
+		<result column="GMT_MODIFIED" property="gmtModified" jdbcType="TIMESTAMP" />
+		<result column="IDENTITY" jdbcType="CHAR" property="identity" />
+		<association property="app" column="APP_ID" select="getAppById"></association>
+	</resultMap>
+
+	<resultMap id="UmsMsgOutStatByGatewayAndAppIdBo" type="net.zoneland.ums.common.dal.bo.UmsMsgOutStatByGatewayAndAppIdBo">
+		<result column="MEDIA_ID" property="mediaId" jdbcType="VARCHAR" />
+		<result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+		<result column="sp" property="spNumber" jdbcType="VARCHAR" />
+		<result column="mediaType" property="mediaType" jdbcType="VARCHAR" />
+		<result column="count" property="count" jdbcType="INTEGER" />
+	</resultMap>
+
+	<sql id="Base_Column_List">
+		ID, BATCH_NO, SERIAL_NO, SEND_ID, USER_ID, RECV_ID,
+		CONTENT, MSG_TYPE,
+		STATUS, APP_ID,
+		SUB_APP, APP_SERIAL_NO, MEDIA_ID,
+		RET_CODE, ERROR_MSG, ACK, REPLY, RETRY,
+		PRIORITY,
+		BATCH_MODE,
+		CONTENT_MODE, TIME_SET_FLAG, SET_TIME, REPLY_DES, FEE, FEE_TYPE,
+		MSG_ID,
+		DOCOUNT, SEND_TIME, VALID_TIME, GROUP_SERIAL, ORG_NO, FLOW_NO,
+		CREATE_USER,
+		BIZ_TYPE,
+		BIZ_NAME, IDENTITY, MOBILE_STATUS, TEMPLATE_ID,
+		GMT_CREATED, GMT_MODIFIED
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from UMS_MSG_OUT_UCS
+		where ID = #{id,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		UMS_MSG_OUT_UCS
+		where ID = #{id,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="net.zoneland.ums.common.dal.dataobject.UmsMsgOut">
+		insert into UMS_MSG_OUT_UCS
+		(ID, BATCH_NO, SERIAL_NO,
+		SEND_ID, USER_ID, RECV_ID,
+		CONTENT, MSG_TYPE,
+		STATUS,
+		APP_ID, SUB_APP, APP_SERIAL_NO,
+		MEDIA_ID, RET_CODE, ERROR_MSG,
+		ACK, REPLY, RETRY,
+		PRIORITY, BATCH_MODE, CONTENT_MODE,
+		TIME_SET_FLAG,
+		SET_TIME, REPLY_DES,
+		FEE, FEE_TYPE, MSG_ID,
+		DOCOUNT, SEND_TIME,
+		VALID_TIME,
+		GROUP_SERIAL, ORG_NO, FLOW_NO,
+		CREATE_USER, BIZ_TYPE,
+		BIZ_NAME,
+		IDENTITY, MOBILE_STATUS, TEMPLATE_ID,
+		GMT_CREATED,
+		GMT_MODIFIED)
+		values (#{id,jdbcType=CHAR}, #{batchNo,jdbcType=VARCHAR},
+		#{serialNo,jdbcType=VARCHAR},
+		#{sendId,jdbcType=VARCHAR},
+		#{userId,jdbcType=VARCHAR}, #{recvId,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR}, #{msgType,jdbcType=INTEGER},
+		#{status,jdbcType=VARCHAR},
+		#{appId,jdbcType=VARCHAR},
+		#{subApp,jdbcType=VARCHAR}, #{appSerialNo,jdbcType=VARCHAR},
+		#{mediaId,jdbcType=VARCHAR}, #{retCode,jdbcType=VARCHAR},
+		#{errorMsg,jdbcType=VARCHAR},
+		#{ack,jdbcType=INTEGER},
+		#{reply,jdbcType=VARCHAR}, #{retry,jdbcType=INTEGER},
+		#{priority,jdbcType=INTEGER}, #{batchMode,jdbcType=CHAR},
+		#{contentMode,jdbcType=INTEGER},
+		#{timeSetFlag,jdbcType=CHAR},
+		#{setTime,jdbcType=TIMESTAMP}, #{replyDes,jdbcType=VARCHAR},
+		#{fee,jdbcType=INTEGER}, #{feeType,jdbcType=INTEGER},
+		#{msgId,jdbcType=VARCHAR},
+		#{docount,jdbcType=INTEGER},
+		#{sendTime,jdbcType=TIMESTAMP}, #{validTime,jdbcType=TIMESTAMP},
+		#{groupSerial,jdbcType=VARCHAR}, #{orgNo,jdbcType=VARCHAR},
+		#{flowNo,jdbcType=VARCHAR},
+		#{createUser,jdbcType=VARCHAR},
+		#{bizType,jdbcType=VARCHAR}, #{bizName,jdbcType=VARCHAR},
+		#{identity,jdbcType=CHAR}, #{mobileStatus,jdbcType=CHAR},
+		#{templateId,jdbcType=CHAR},
+		#{gmtCreated,jdbcType=TIMESTAMP},
+		#{gmtModified,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective" parameterType="net.zoneland.ums.common.dal.dataobject.UmsMsgOut">
+		insert into UMS_MSG_OUT_UCS
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="batchNo != null">
+				BATCH_NO,
+			</if>
+			<if test="serialNo != null">
+				SERIAL_NO,
+			</if>
+			<if test="sendId != null">
+				SEND_ID,
+			</if>
+			<if test="userId != null">
+				USER_ID,
+			</if>
+			<if test="recvId != null">
+				RECV_ID,
+			</if>
+			<if test="content != null">
+				CONTENT,
+			</if>
+			<if test="msgType != null">
+				MSG_TYPE,
+			</if>
+			<if test="status != null">
+				STATUS,
+			</if>
+			<if test="appId != null">
+				APP_ID,
+			</if>
+			<if test="subApp != null">
+				SUB_APP,
+			</if>
+			<if test="appSerialNo != null">
+				APP_SERIAL_NO,
+			</if>
+			<if test="mediaId != null">
+				MEDIA_ID,
+			</if>
+			<if test="retCode != null">
+				RET_CODE,
+			</if>
+			<if test="errorMsg != null">
+				ERROR_MSG,
+			</if>
+			<if test="ack != null">
+				ACK,
+			</if>
+			<if test="reply != null">
+				REPLY,
+			</if>
+			<if test="retry != null">
+				RETRY,
+			</if>
+			<if test="priority != null">
+				PRIORITY,
+			</if>
+			<if test="batchMode != null">
+				BATCH_MODE,
+			</if>
+			<if test="contentMode != null">
+				CONTENT_MODE,
+			</if>
+			<if test="timeSetFlag != null">
+				TIME_SET_FLAG,
+			</if>
+			<if test="setTime != null">
+				SET_TIME,
+			</if>
+			<if test="replyDes != null">
+				REPLY_DES,
+			</if>
+			<if test="fee != null">
+				FEE,
+			</if>
+			<if test="feeType != null">
+				FEE_TYPE,
+			</if>
+			<if test="msgId != null">
+				MSG_ID,
+			</if>
+			<if test="docount != null">
+				DOCOUNT,
+			</if>
+			<if test="sendTime != null">
+				SEND_TIME,
+			</if>
+			<if test="validTime != null">
+				VALID_TIME,
+			</if>
+			<if test="groupSerial != null">
+				GROUP_SERIAL,
+			</if>
+			<if test="orgNo != null">
+				ORG_NO,
+			</if>
+			<if test="flowNo != null">
+				FLOW_NO,
+			</if>
+			<if test="createUser != null">
+				CREATE_USER,
+			</if>
+			<if test="bizType != null">
+				BIZ_TYPE,
+			</if>
+			<if test="bizName != null">
+				BIZ_NAME,
+			</if>
+			<if test="identity != null">
+				IDENTITY,
+			</if>
+			<if test="mobileStatus != null">
+				MOBILE_STATUS,
+			</if>
+			<if test="templateId != null">
+				TEMPLATE_ID,
+			</if>
+			<if test="gmtCreated != null">
+				GMT_CREATED,
+			</if>
+			<if test="gmtModified != null">
+				GMT_MODIFIED,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=CHAR},
+			</if>
+			<if test="batchNo != null">
+				#{batchNo,jdbcType=VARCHAR},
+			</if>
+			<if test="serialNo != null">
+				#{serialNo,jdbcType=VARCHAR},
+			</if>
+			<if test="sendId != null">
+				#{sendId,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				#{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="recvId != null">
+				#{recvId,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				#{content,jdbcType=VARCHAR},
+			</if>
+			<if test="msgType != null">
+				#{msgType,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				#{status,jdbcType=VARCHAR},
+			</if>
+			<if test="appId != null">
+				#{appId,jdbcType=VARCHAR},
+			</if>
+			<if test="subApp != null">
+				#{subApp,jdbcType=VARCHAR},
+			</if>
+			<if test="appSerialNo != null">
+				#{appSerialNo,jdbcType=VARCHAR},
+			</if>
+			<if test="mediaId != null">
+				#{mediaId,jdbcType=VARCHAR},
+			</if>
+			<if test="retCode != null">
+				#{retCode,jdbcType=VARCHAR},
+			</if>
+			<if test="errorMsg != null">
+				#{errorMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="ack != null">
+				#{ack,jdbcType=INTEGER},
+			</if>
+			<if test="reply != null">
+				#{reply,jdbcType=VARCHAR},
+			</if>
+			<if test="retry != null">
+				#{retry,jdbcType=INTEGER},
+			</if>
+			<if test="priority != null">
+				#{priority,jdbcType=INTEGER},
+			</if>
+			<if test="batchMode != null">
+				#{batchMode,jdbcType=CHAR},
+			</if>
+			<if test="contentMode != null">
+				#{contentMode,jdbcType=INTEGER},
+			</if>
+			<if test="timeSetFlag != null">
+				#{timeSetFlag,jdbcType=CHAR},
+			</if>
+			<if test="setTime != null">
+				#{setTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="replyDes != null">
+				#{replyDes,jdbcType=VARCHAR},
+			</if>
+			<if test="fee != null">
+				#{fee,jdbcType=INTEGER},
+			</if>
+			<if test="feeType != null">
+				#{feeType,jdbcType=INTEGER},
+			</if>
+			<if test="msgId != null">
+				#{msgId,jdbcType=VARCHAR},
+			</if>
+			<if test="docount != null">
+				#{docount,jdbcType=INTEGER},
+			</if>
+			<if test="sendTime != null">
+				#{sendTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="validTime != null">
+				#{validTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="groupSerial != null">
+				#{groupSerial,jdbcType=VARCHAR},
+			</if>
+			<if test="orgNo != null">
+				#{orgNo,jdbcType=VARCHAR},
+			</if>
+			<if test="flowNo != null">
+				#{flowNo,jdbcType=VARCHAR},
+			</if>
+			<if test="createUser != null">
+				#{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="bizType != null">
+				#{bizType,jdbcType=VARCHAR},
+			</if>
+			<if test="bizName != null">
+				#{bizName,jdbcType=VARCHAR},
+			</if>
+			<if test="identity != null">
+				#{identity,jdbcType=CHAR},
+			</if>
+			<if test="mobileStatus != null">
+				#{mobileStatus,jdbcType=CHAR},
+			</if>
+			<if test="templateId != null">
+				#{templateId,jdbcType=CHAR},
+			</if>
+			<if test="gmtCreated != null">
+				#{gmtCreated,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<select id="selectDOByPrimaryKey" resultMap="BaseResultMapWithApp"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from UMS_MSG_OUT_UCS
+		where ID = #{id,jdbcType=CHAR}
+	</select>
+	<select id="getAppById" resultMap="appNameMap">
+		select
+		ID, APP_NAME,
+		APP_CODE,PRIORITY
+		from UMS_APP_INFO
+		where APP_ID = #{id}
+	</select>
+	<resultMap id="appNameMap"
+		type="net.zoneland.ums.common.dal.dataobject.UmsAppInfo">
+		<id column="ID" property="id" jdbcType="CHAR" />
+		<result column="APP_NAME" property="appName" jdbcType="VARCHAR" />
+		<result column="APP_CODE" property="appCode" jdbcType="VARCHAR" />
+		<result column="PRIORITY" property="priority" jdbcType="INTEGER" />
+	</resultMap>
+	<update id="updateByPrimaryKeySelective" parameterType="net.zoneland.ums.common.dal.dataobject.UmsMsgOut">
+		update UMS_MSG_OUT_UCS
+		<set>
+			<if test="batchNo != null">
+				BATCH_NO = #{batchNo,jdbcType=VARCHAR},
+			</if>
+			<if test="serialNo != null">
+				SERIAL_NO = #{serialNo,jdbcType=VARCHAR},
+			</if>
+			<if test="sendId != null">
+				SEND_ID = #{sendId,jdbcType=VARCHAR},
+			</if>
+			<if test="userId != null">
+				USER_ID = #{userId,jdbcType=VARCHAR},
+			</if>
+			<if test="recvId != null">
+				RECV_ID = #{recvId,jdbcType=VARCHAR},
+			</if>
+			<if test="content != null">
+				CONTENT = #{content,jdbcType=VARCHAR},
+			</if>
+			<if test="msgType != null">
+				MSG_TYPE = #{msgType,jdbcType=INTEGER},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=VARCHAR},
+			</if>
+			<if test="appId != null">
+				APP_ID = #{appId,jdbcType=VARCHAR},
+			</if>
+			<if test="subApp != null">
+				SUB_APP = #{subApp,jdbcType=VARCHAR},
+			</if>
+			<if test="appSerialNo != null">
+				APP_SERIAL_NO = #{appSerialNo,jdbcType=VARCHAR},
+			</if>
+			<if test="mediaId != null">
+				MEDIA_ID = #{mediaId,jdbcType=VARCHAR},
+			</if>
+			<if test="retCode != null">
+				RET_CODE = #{retCode,jdbcType=VARCHAR},
+			</if>
+			<if test="errorMsg != null">
+				ERROR_MSG = #{errorMsg,jdbcType=VARCHAR},
+			</if>
+			<if test="ack != null">
+				ACK = #{ack,jdbcType=INTEGER},
+			</if>
+			<if test="reply != null">
+				REPLY = #{reply,jdbcType=VARCHAR},
+			</if>
+			<if test="retry != null">
+				RETRY = #{retry,jdbcType=INTEGER},
+			</if>
+			<if test="priority != null">
+				PRIORITY = #{priority,jdbcType=INTEGER},
+			</if>
+			<if test="batchMode != null">
+				BATCH_MODE = #{batchMode,jdbcType=CHAR},
+			</if>
+			<if test="contentMode != null">
+				CONTENT_MODE = #{contentMode,jdbcType=INTEGER},
+			</if>
+			<if test="timeSetFlag != null">
+				TIME_SET_FLAG = #{timeSetFlag,jdbcType=CHAR},
+			</if>
+			<if test="setTime != null">
+				SET_TIME = #{setTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="replyDes != null">
+				REPLY_DES = #{replyDes,jdbcType=VARCHAR},
+			</if>
+			<if test="fee != null">
+				FEE = #{fee,jdbcType=INTEGER},
+			</if>
+			<if test="feeType != null">
+				FEE_TYPE = #{feeType,jdbcType=INTEGER},
+			</if>
+			<if test="msgId != null">
+				MSG_ID = #{msgId,jdbcType=VARCHAR},
+			</if>
+			<if test="docount != null">
+				DOCOUNT = #{docount,jdbcType=INTEGER},
+			</if>
+			<if test="sendTime != null">
+				SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="validTime != null">
+				VALID_TIME = #{validTime,jdbcType=TIMESTAMP},
+			</if>
+			<if test="groupSerial != null">
+				GROUP_SERIAL = #{groupSerial,jdbcType=VARCHAR},
+			</if>
+			<if test="orgNo != null">
+				ORG_NO = #{orgNo,jdbcType=VARCHAR},
+			</if>
+			<if test="flowNo != null">
+				FLOW_NO = #{flowNo,jdbcType=VARCHAR},
+			</if>
+			<if test="createUser != null">
+				CREATE_USER = #{createUser,jdbcType=VARCHAR},
+			</if>
+			<if test="bizType != null">
+				BIZ_TYPE = #{bizType,jdbcType=VARCHAR},
+			</if>
+			<if test="bizName != null">
+				BIZ_NAME = #{bizName,jdbcType=VARCHAR},
+			</if>
+			<if test="identity != null">
+				IDENTITY = #{identity,jdbcType=CHAR},
+			</if>
+			<if test="mobileStatus != null">
+				MOBILE_STATUS = #{mobileStatus,jdbcType=CHAR},
+			</if>
+			<if test="templateId != null">
+				TEMPLATE_ID = #{templateId,jdbcType=CHAR},
+			</if>
+			<if test="gmtCreated != null">
+				GMT_CREATED = #{gmtCreated,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="net.zoneland.ums.common.dal.dataobject.UmsMsgOut">
+		update
+		UMS_MSG_OUT_UCS
+		set BATCH_NO = #{batchNo,jdbcType=VARCHAR},
+		SERIAL_NO =
+		#{serialNo,jdbcType=VARCHAR},
+		SEND_ID = #{sendId,jdbcType=VARCHAR},
+		USER_ID = #{userId,jdbcType=VARCHAR},
+		RECV_ID =
+		#{recvId,jdbcType=VARCHAR},
+		CONTENT = #{content,jdbcType=VARCHAR},
+		MSG_TYPE = #{msgType,jdbcType=INTEGER},
+		STATUS =
+		#{status,jdbcType=VARCHAR},
+		APP_ID = #{appId,jdbcType=VARCHAR},
+		SUB_APP
+		= #{subApp,jdbcType=VARCHAR},
+		APP_SERIAL_NO =
+		#{appSerialNo,jdbcType=VARCHAR},
+		MEDIA_ID =
+		#{mediaId,jdbcType=VARCHAR},
+		RET_CODE = #{retCode,jdbcType=VARCHAR},
+		ERROR_MSG = #{errorMsg,jdbcType=VARCHAR},
+		ACK =
+		#{ack,jdbcType=INTEGER},
+		REPLY = #{reply,jdbcType=VARCHAR},
+		RETRY =
+		#{retry,jdbcType=INTEGER},
+		PRIORITY = #{priority,jdbcType=INTEGER},
+		BATCH_MODE = #{batchMode,jdbcType=CHAR},
+		CONTENT_MODE =
+		#{contentMode,jdbcType=INTEGER},
+		TIME_SET_FLAG =
+		#{timeSetFlag,jdbcType=CHAR},
+		SET_TIME = #{setTime,jdbcType=TIMESTAMP},
+		REPLY_DES = #{replyDes,jdbcType=VARCHAR},
+		FEE =
+		#{fee,jdbcType=INTEGER},
+		FEE_TYPE = #{feeType,jdbcType=INTEGER},
+		MSG_ID
+		= #{msgId,jdbcType=VARCHAR},
+		DOCOUNT = #{docount,jdbcType=INTEGER},
+		SEND_TIME = #{sendTime,jdbcType=TIMESTAMP},
+		VALID_TIME =
+		#{validTime,jdbcType=TIMESTAMP},
+		GROUP_SERIAL =
+		#{groupSerial,jdbcType=VARCHAR},
+		ORG_NO = #{orgNo,jdbcType=VARCHAR},
+		FLOW_NO = #{flowNo,jdbcType=VARCHAR},
+		CREATE_USER =
+		#{createUser,jdbcType=VARCHAR},
+		BIZ_TYPE = #{bizType,jdbcType=VARCHAR},
+		BIZ_NAME = #{bizName,jdbcType=VARCHAR},
+		IDENTITY =
+		#{identity,jdbcType=CHAR},
+		MOBILE_STATUS =
+		#{mobileStatus,jdbcType=CHAR},
+		TEMPLATE_ID =
+		#{templateId,jdbcType=CHAR},
+		GMT_CREATED =
+		#{gmtCreated,jdbcType=TIMESTAMP},
+		GMT_MODIFIED =
+		#{gmtModified,jdbcType=TIMESTAMP}
+		where ID = #{id,jdbcType=CHAR}
+	</update>
+
+	<update id="updateStatusByStauts" parameterType="java.util.Map">
+		update
+		UMS_MSG_OUT_UCS set STATUS = #{targetStatus},GMT_MODIFIED =
+		#{gmtModified}
+		where STATUS = #{status}
+	</update>
+
+	<select id="selectDelayLimit1000" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from UMS_MSG_OUT_UCS
+  	<![CDATA[
+  		where STATUS = #{status} and SEND_TIME <=  #{sendTime} order by SEND_TIME limit 3000 
+  	 ]]>
+	</select>
+
+	<select id="selectByStatusLimit2000" resultMap="BaseResultMap">
+
+		select
+		<include refid="Base_Column_List" />
+		from UMS_MSG_OUT_UCS
+    <![CDATA[
+  	where DOCOUNT < 10 and STATUS = #{status} limit 2000 
+  	 ]]>
+
+	</select>
+
+	<select id="queryMsgOutUcsNum" resultType="java.lang.Integer">
+		SELECT count(ID)
+		from UMS_MSG_OUT_UCS
+		WHERE 1=1
+		<if test="startTime != null">
+			<if test="endTime != null">
+			     		<![CDATA[
+				          AND GMT_MODIFIED>=#{startTime}
+			              AND GMT_MODIFIED<=#{endTime}
+				         ]]>
+			</if>
+			<if test="endTime == null">
+			     		<![CDATA[
+				          AND GMT_MODIFIED>=#{startTime}
+				         ]]>
+			</if>
+		</if>
+		<if test="startTime == null">
+			<if test="endTime != null">
+			     		<![CDATA[
+			              AND GMT_MODIFIED<=#{endTime}
+				         ]]>
+			</if>
+		</if>
+		<if test="status!=null">
+			AND STATUS=#{status}
+		</if>
+		<if test="appId!=null">
+			AND APP_ID=#{appId}
+		</if>
+		<if test="gatewaylist!=null">
+			AND
+			<foreach item="item" index="index" collection="gatewaylist"
+				open="(" separator=" OR " close=")">
+				MEDIA_ID = #{item}
+			</foreach>
+		</if>
+		<if test="destlist!=null">
+			AND
+			<foreach item="item" index="index" collection="destlist"
+				open="(" separator=" OR " close=")">
+				USER_ID = #{item}
+			</foreach>
+		</if>
+		<if test="appIdList!=null">
+			AND
+			<foreach item="item" index="index" collection="appIdList"
+				open="(" separator=" OR " close=")">
+				APP_ID = #{item}
+			</foreach>
+		</if>
+		<if test="areaCodeList!=null">
+			AND
+			<foreach item="item" index="index" collection="areaCodeList"
+				open="(" separator=" OR " close=")">
+				ORG_NO = #{item}
+			</foreach>
+		</if>
+		<if test="recvId!= null">
+			AND RECV_ID like #{recvId}||'%'
+		</if>
+		<if test="sendId!= null">
+			AND SEND_ID like #{sendId}||'%'
+		</if>
+		<if test="flowNo!=null">
+			AND FLOW_NO like #{flowNo}||'%'
+		</if>
+		<if test="bizName!=null">
+			AND BIZ_NAME like #{bizName}||'%'
+		</if>
+		<if test="bizType!=null">
+			AND BIZ_TYPE like #{bizType}||'%'
+		</if>
+		<if test="createUser!=null">
+			AND CREATE_USER like #{createUser}||'%'
+		</if>
+	</select>
+
+	<select id="queryMsgOutUcsByPage" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		from UMS_MSG_OUT_UCS
+		WHERE 1=1
+		<if test="startTime != null">
+			<if test="endTime != null">
+			     		<![CDATA[
+				          AND GMT_MODIFIED>=#{startTime}
+			              AND GMT_MODIFIED<=#{endTime}
+				         ]]>
+			</if>
+			<if test="endTime == null">
+			     		<![CDATA[
+				          AND GMT_MODIFIED>=#{startTime}
+				         ]]>
+			</if>
+		</if>
+		<if test="startTime == null">
+			<if test="endTime != null">
+			     		<![CDATA[
+			              AND GMT_MODIFIED<=#{endTime}
+				         ]]>
+			</if>
+		</if>
+		<if test="status!=null">
+			AND STATUS=#{status}
+		</if>
+		<if test="appId!=null">
+			AND APP_ID=#{appId}
+		</if>
+		<if test="gatewaylist!=null">
+			AND
+			<foreach item="item" index="index" collection="gatewaylist"
+				open="(" separator=" OR " close=")">
+				MEDIA_ID = #{item}
+			</foreach>
+		</if>
+		<if test="destlist!=null">
+			AND
+			<foreach item="item" index="index" collection="destlist"
+				open="(" separator=" OR " close=")">
+				USER_ID = #{item}
+			</foreach>
+		</if>
+		<if test="appIdList!=null">
+			AND
+			<foreach item="item" index="index" collection="appIdList"
+				open="(" separator=" OR " close=")">
+				APP_ID = #{item}
+			</foreach>
+		</if>
+		<if test="areaCodeList!=null">
+			AND
+			<foreach item="item" index="index" collection="areaCodeList"
+				open="(" separator=" OR " close=")">
+				ORG_NO = #{item}
+			</foreach>
+		</if>
+		<if test="recvId!= null">
+			AND RECV_ID like #{recvId}||'%'
+		</if>
+		<if test="sendId!= null">
+			AND SEND_ID like #{sendId}||'%'
+		</if>
+		<if test="flowNo!=null">
+			AND FLOW_NO like #{flowNo}||'%'
+		</if>
+		<if test="bizName!=null">
+			AND BIZ_NAME like #{bizName}||'%'
+		</if>
+		<if test="bizType!=null">
+			AND BIZ_TYPE like #{bizType}||'%'
+		</if>
+		<if test="createUser!=null">
+			AND CREATE_USER like #{createUser}||'%'
+		</if>
+		<if test="orderBy != null">
+			order by ${orderBy} desc
+		</if>
+		limit #{first} , 10
+	</select>
+
+	<select id="searchAllMsgNum" resultType="java.lang.Integer">
+		SELECT count(ID)
+		from UMS_MSG_OUT_UCS
+		WHERE 1=1
+		<if test="startTime != null">
+			<if test="endTime != null">
+			     		<![CDATA[
+				          AND GMT_MODIFIED>=#{startTime}
+			              AND GMT_MODIFIED<=#{endTime}
+				         ]]>
+			</if>
+			<if test="endTime == null">
+			     		<![CDATA[
+				          AND GMT_MODIFIED>=#{startTime}
+				         ]]>
+			</if>
+		</if>
+		<if test="startTime == null">
+			<if test="endTime != null">
+			     		<![CDATA[
+			              AND GMT_MODIFIED<=#{endTime}
+				         ]]>
+			</if>
+		</if>
+		<if test="status!=null">
+			AND STATUS=#{status}
+		</if>
+		<if test="appId!=null">
+			AND APP_ID=#{appId}
+		</if>
+		<if test="gatewaylist!=null">
+			AND
+			<foreach item="item" index="index" collection="gatewaylist"
+				open="(" separator=" OR " close=")">
+				MEDIA_ID = #{item}
+			</foreach>
+		</if>
+		<if test="destlist!=null">
+			AND
+			<foreach item="item" index="index" collection="destlist"
+				open="(" separator=" OR " close=")">
+				USER_ID = #{item}
+			</foreach>
+		</if>
+		<if test="appIdList!=null">
+			AND
+			<foreach item="item" index="index" collection="appIdList"
+				open="(" separator=" OR " close=")">
+				APP_ID = #{item}
+			</foreach>
+		</if>
+		<if test="areaCodeList!=null">
+			AND
+			<foreach item="item" index="index" collection="areaCodeList"
+				open="(" separator=" OR " close=")">
+				ORG_NO = #{item}
+			</foreach>
+		</if>
+		<if test="recvId!= null">
+			AND RECV_ID like #{recvId}||'%'
+		</if>
+		<if test="sendId!= null">
+			AND SEND_ID like #{sendId}||'%'
+		</if>
+		<if test="flowNo!=null">
+			AND FLOW_NO like #{flowNo}||'%'
+		</if>
+		<if test="bizName!=null">
+			AND BIZ_NAME like #{bizName}||'%'
+		</if>
+		<if test="bizType!=null">
+			AND BIZ_TYPE like #{bizType}||'%'
+		</if>
+		<if test="createUser!=null">
+			AND CREATE_USER like #{createUser}||'%'
+		</if>
+	</select>
+
+	<select id="searchAllMsgByPage" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		from UMS_MSG_OUT_UCS
+		WHERE 1=1
+		<if test="startTime != null">
+			<if test="endTime != null">
+			     		<![CDATA[
+				          AND GMT_MODIFIED>=#{startTime}
+			              AND GMT_MODIFIED<=#{endTime}
+				         ]]>
+			</if>
+			<if test="endTime == null">
+			     		<![CDATA[
+				          AND GMT_MODIFIED>=#{startTime}
+				         ]]>
+			</if>
+		</if>
+		<if test="startTime == null">
+			<if test="endTime != null">
+			     		<![CDATA[
+			              AND GMT_MODIFIED<=#{endTime}
+				         ]]>
+			</if>
+		</if>
+		<if test="status!=null">
+			AND STATUS=#{status}
+		</if>
+		<if test="appId!=null">
+			AND APP_ID=#{appId}
+		</if>
+		<if test="gatewaylist!=null">
+			AND
+			<foreach item="item" index="index" collection="gatewaylist"
+				open="(" separator=" OR " close=")">
+				MEDIA_ID = #{item}
+			</foreach>
+		</if>
+		<if test="destlist!=null">
+			AND
+			<foreach item="item" index="index" collection="destlist"
+				open="(" separator=" OR " close=")">
+				USER_ID = #{item}
+			</foreach>
+		</if>
+		<if test="appIdList!=null">
+			AND
+			<foreach item="item" index="index" collection="appIdList"
+				open="(" separator=" OR " close=")">
+				APP_ID = #{item}
+			</foreach>
+		</if>
+		<if test="areaCodeList!=null">
+			AND
+			<foreach item="item" index="index" collection="areaCodeList"
+				open="(" separator=" OR " close=")">
+				ORG_NO = #{item}
+			</foreach>
+		</if>
+		<if test="recvId!= null">
+			AND RECV_ID like #{recvId}||'%'
+		</if>
+		<if test="sendId!= null">
+			AND SEND_ID like #{sendId}||'%'
+		</if>
+		<if test="flowNo!=null">
+			AND FLOW_NO like #{flowNo}||'%'
+		</if>
+		<if test="bizName!=null">
+			AND BIZ_NAME like #{bizName}||'%'
+		</if>
+		<if test="bizType!=null">
+			AND BIZ_TYPE like #{bizType}||'%'
+		</if>
+		<if test="createUser!=null">
+			AND CREATE_USER like #{createUser}||'%'
+		</if>
+		<if test="orderBy != null">
+			order by ${orderBy} desc
+		</if>
+		limit #{first} , 10
+	</select>
+	<insert id="insertBatch">
+    insert into UMS_MSG_OUT_UCS (ID, BATCH_NO, SERIAL_NO,
+      SEND_ID, USER_ID, RECV_ID,
+      CONTENT, MSG_TYPE, STATUS,
+      APP_ID, SUB_APP, APP_SERIAL_NO,
+      MEDIA_ID, RET_CODE, ERROR_MSG,
+      ACK, REPLY, RETRY,
+      PRIORITY, BATCH_MODE, CONTENT_MODE,
+      TIME_SET_FLAG, SET_TIME, REPLY_DES,
+      FEE, FEE_TYPE, MSG_ID,
+      DOCOUNT, SEND_TIME, VALID_TIME,
+      GROUP_SERIAL, ORG_NO, FLOW_NO,
+      CREATE_USER, BIZ_TYPE, BIZ_NAME,
+      IDENTITY, MOBILE_STATUS, TEMPLATE_ID,HOST,
+      GMT_CREATED, GMT_MODIFIED)
+		values
+		<foreach collection="list" item="item" index="index"
+			separator=",">
+			(#{item.id,jdbcType=CHAR}, #{item.batchNo,jdbcType=VARCHAR}, #{item.serialNo,jdbcType=VARCHAR},
+      #{item.sendId,jdbcType=VARCHAR}, #{item.userId,jdbcType=VARCHAR}, #{item.recvId,jdbcType=VARCHAR},
+      #{item.content,jdbcType=VARCHAR}, #{item.msgType,jdbcType=INTEGER}, #{item.status,jdbcType=VARCHAR},
+      #{item.appId,jdbcType=VARCHAR}, #{item.subApp,jdbcType=VARCHAR}, #{item.appSerialNo,jdbcType=VARCHAR},
+      #{item.mediaId,jdbcType=VARCHAR}, #{item.retCode,jdbcType=VARCHAR}, #{item.errorMsg,jdbcType=VARCHAR},
+      #{item.ack,jdbcType=INTEGER}, #{item.reply,jdbcType=VARCHAR}, #{item.retry,jdbcType=INTEGER},
+      #{item.priority,jdbcType=INTEGER}, #{item.batchMode,jdbcType=CHAR}, #{item.contentMode,jdbcType=INTEGER},
+      #{item.timeSetFlag,jdbcType=CHAR}, #{item.setTime,jdbcType=TIMESTAMP}, #{item.replyDes,jdbcType=VARCHAR},
+      #{item.fee,jdbcType=INTEGER}, #{item.feeType,jdbcType=INTEGER}, #{item.msgId,jdbcType=VARCHAR},
+      #{item.docount,jdbcType=INTEGER}, #{item.sendTime,jdbcType=TIMESTAMP}, #{item.validTime,jdbcType=TIMESTAMP},
+      #{item.groupSerial,jdbcType=VARCHAR}, #{item.orgNo,jdbcType=VARCHAR}, #{item.flowNo,jdbcType=VARCHAR},
+      #{item.createUser,jdbcType=VARCHAR}, #{item.bizType,jdbcType=VARCHAR}, #{item.bizName,jdbcType=VARCHAR},
+      #{item.identity,jdbcType=CHAR}, #{item.mobileStatus,jdbcType=CHAR}, #{item.templateId,jdbcType=CHAR}, #{item.host,jdbcType=VARCHAR},
+      #{item.gmtCreated,jdbcType=TIMESTAMP}, #{item.gmtModified,jdbcType=TIMESTAMP})
+		</foreach>
+	</insert>
+
+	<select id="searchDataMsgforExport" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		from UMS_MSG_OUT_UCS
+		WHERE 1=1
+		<if test="startTime != null">
+			<if test="endTime != null">
+			     		<![CDATA[
+				          AND GMT_MODIFIED>=#{startTime}
+			              AND GMT_MODIFIED<=#{endTime}
+				         ]]>
+			</if>
+			<if test="endTime == null">
+			     		<![CDATA[
+				          AND GMT_MODIFIED>=#{startTime}
+				         ]]>
+			</if>
+		</if>
+		<if test="startTime == null">
+			<if test="endTime != null">
+			     		<![CDATA[
+			              AND GMT_MODIFIED<=#{endTime}
+				         ]]>
+			</if>
+		</if>
+		<if test="status!=null">
+			AND STATUS=#{status}
+		</if>
+		<if test="appId!=null">
+			AND APP_ID=#{appId}
+		</if>
+		<if test="gatewaylist!=null">
+			AND
+			<foreach item="item" index="index" collection="gatewaylist"
+				open="(" separator=" OR " close=")">
+				MEDIA_ID = #{item}
+			</foreach>
+		</if>
+		<if test="destlist!=null">
+			AND
+			<foreach item="item" index="index" collection="destlist"
+				open="(" separator=" OR " close=")">
+				USER_ID = #{item}
+			</foreach>
+		</if>
+		<if test="appIdList!=null">
+			AND
+			<foreach item="item" index="index" collection="appIdList"
+				open="(" separator=" OR " close=")">
+				APP_ID = #{item}
+			</foreach>
+		</if>
+		<if test="areaCodeList!=null">
+			AND
+			<foreach item="item" index="index" collection="areaCodeList"
+				open="(" separator=" OR " close=")">
+				ORG_NO = #{item}
+			</foreach>
+		</if>
+		<if test="recvId!= null">
+			AND RECV_ID like #{recvId}||'%'
+		</if>
+		<if test="sendId!= null">
+			AND SEND_ID like #{sendId}||'%'
+		</if>
+		<if test="flowNo!=null">
+			AND FLOW_NO like #{flowNo}||'%'
+		</if>
+		<if test="bizName!=null">
+			AND BIZ_NAME like #{bizName}||'%'
+		</if>
+		<if test="bizType!=null">
+			AND BIZ_TYPE like #{bizType}||'%'
+		</if>
+		<if test="createUser!=null">
+			AND CREATE_USER like #{createUser}||'%'
+		</if>
+		<if test="orderBy != null">
+			order by ${orderBy} desc
+		</if>
+	</select>
+
+	<select id="searchAppDataMsgNum" resultType="java.lang.Integer">
+		SELECT count(ID)
+		from UMS_MSG_OUT_UCS
+		WHERE 1=1
+
+		<if test="startTime != null">
+			<if test="endTime != null">
+			     		<![CDATA[
+				          AND GMT_MODIFIED>=#{startTime}
+			              AND GMT_MODIFIED<=#{endTime}
+				         ]]>
+			</if>
+			<if test="endTime == null">
+			     		<![CDATA[
+				          AND GMT_MODIFIED>=#{startTime}
+				         ]]>
+			</if>
+		</if>
+		<if test="startTime == null">
+			<if test="endTime != null">
+			     		<![CDATA[
+			              AND GMT_MODIFIED<=#{endTime}
+				         ]]>
+			</if>
+		</if>
+		<if test="status!=null">
+			AND STATUS=#{status}
+		</if>
+		<if test="appId!=null">
+			AND APP_ID=#{appId}
+		</if>
+		<if test="gatewaylist!=null">
+			AND
+			<foreach item="item" index="index" collection="gatewaylist"
+				open="(" separator=" OR " close=")">
+				MEDIA_ID = #{item}
+			</foreach>
+		</if>
+		<if test="destlist!=null">
+			AND
+			<foreach item="item" index="index" collection="destlist"
+				open="(" separator=" OR " close=")">
+				USER_ID = #{item}
+			</foreach>
+		</if>
+		<if test="appIdList!=null">
+			AND
+			<foreach item="item" index="index" collection="appIdList"
+				open="(" separator=" OR " close=")">
+				APP_ID = #{item}
+			</foreach>
+		</if>
+		<if test="areaCodeList!=null">
+			AND
+			<foreach item="item" index="index" collection="areaCodeList"
+				open="(" separator=" OR " close=")">
+				ORG_NO like #{item}||'%'
+			</foreach>
+		</if>
+		<if test="recvId!= null">
+			AND RECV_ID like #{recvId}||'%'
+		</if>
+		<if test="sendId!= null">
+			AND SEND_ID like #{sendId}||'%'
+		</if>
+		<if test="flowNo!=null">
+			AND FLOW_NO like #{flowNo}||'%'
+		</if>
+		<if test="bizName!=null">
+			AND BIZ_NAME like #{bizName}||'%'
+		</if>
+		<if test="bizType!=null">
+			AND BIZ_TYPE like #{bizType}||'%'
+		</if>
+		<if test="createUser!=null">
+			AND CREATE_USER like #{createUser}||'%'
+		</if>
+	</select>
+
+	<select id="searchAppDataMsgByPage" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		from UMS_MSG_OUT_UCS
+		WHERE 1=1
+		<if test="startTime != null">
+			<if test="endTime != null">
+			     		<![CDATA[
+				          AND GMT_MODIFIED>=#{startTime}
+			              AND GMT_MODIFIED<=#{endTime}
+				         ]]>
+			</if>
+			<if test="endTime == null">
+			     		<![CDATA[
+				          AND GMT_MODIFIED>=#{startTime}
+				         ]]>
+			</if>
+		</if>
+		<if test="startTime == null">
+			<if test="endTime != null">
+			     		<![CDATA[
+			              AND GMT_MODIFIED<=#{endTime}
+				         ]]>
+			</if>
+		</if>
+		<if test="status!=null">
+			AND STATUS=#{status}
+		</if>
+		<if test="appId!=null">
+			AND APP_ID=#{appId}
+		</if>
+		<if test="gatewaylist!=null">
+			AND
+			<foreach item="item" index="index" collection="gatewaylist"
+				open="(" separator=" OR " close=")">
+				MEDIA_ID = #{item}
+			</foreach>
+		</if>
+		<if test="destlist!=null">
+			AND
+			<foreach item="item" index="index" collection="destlist"
+				open="(" separator=" OR " close=")">
+				USER_ID = #{item}
+			</foreach>
+		</if>
+		<if test="appIdList!=null">
+			AND
+			<foreach item="item" index="index" collection="appIdList"
+				open="(" separator=" OR " close=")">
+				APP_ID = #{item}
+			</foreach>
+		</if>
+		<if test="areaCodeList!=null">
+			AND
+			<foreach item="item" index="index" collection="areaCodeList"
+				open="(" separator=" OR " close=")">
+				ORG_NO like #{item}||'%'
+			</foreach>
+		</if>
+		<if test="recvId!= null">
+			AND RECV_ID like #{recvId}||'%'
+		</if>
+		<if test="sendId!= null">
+			AND SEND_ID like #{sendId}||'%'
+		</if>
+		<if test="flowNo!=null">
+			AND FLOW_NO like #{flowNo}||'%'
+		</if>
+		<if test="bizName!=null">
+			AND BIZ_NAME like #{bizName}||'%'
+		</if>
+		<if test="bizType!=null">
+			AND BIZ_TYPE like #{bizType}||'%'
+		</if>
+		<if test="createUser!=null">
+			AND CREATE_USER like #{createUser}||'%'
+		</if>
+		<if test="orderBy != null">
+			order by ${orderBy} desc
+		</if>
+		limit #{first} , 10
+	</select>
+
+	<select id="getAllMsgOut" resultType="java.lang.Integer">
+		select
+		count(ID)
+		from
+		UMS_MSG_OUT_UCS
+	</select>
+
+	<select id="getMsgByStatus" resultType="java.lang.Integer">
+		select
+		count(ID)
+		from
+		UMS_MSG_OUT_UCS
+		where STATUS = #{status}
+	</select>
+
+	<select id="getMsgOutNow" resultType="java.lang.Integer">
+		select
+		count(ID)
+		from UMS_MSG_OUT_UCS
+		where
+  		<![CDATA[
+  			GMT_MODIFIED between to_date(#{date},'yyyy-mm-dd') and (to_date(#{date},'yyyy-mm-dd')+1 day)
+  			AND STATUS in (1,3)
+  	 	]]>
+	</select>
+
+	<select id="getDaySucessCount" resultType="java.lang.Integer"
+		parameterType="java.util.Map">
+		select
+		count(ID)
+		from UMS_MSG_OUT_UCS
+		where
+  	<![CDATA[
+  	GMT_MODIFIED between to_date(#{date},'yyyy-mm-dd') and (to_date(#{date},'yyyy-mm-dd')+1 day)
+  	AND STATUS = #{status}
+  	 ]]>
+	</select>
+
+	<select id="fileCreateUmsMsgOutUcs" statementType="STATEMENT" parameterType="java.util.Map">
+	  <![CDATA[
+	  create table ${tableName} like ums_msg_out_ucs
+	  ]]>
+	</select>
+	<insert id="fileInsertUmsMsgOutUcs" parameterType="java.util.Map">
+	 <![CDATA[
+	  insert into ${tableName} select * from ums_msg_out_ucs where GMT_CREATED <= #{gmtCreated} order by gmt_created asc limit 20000 
+	 ]]>
+	</insert>
+	<select id="fileDeleteUmsMsgOutUcs" parameterType="java.util.Map">
+	  <![CDATA[
+	  delete  from (select * from ums_msg_out_ucs where GMT_CREATED <= #{gmtCreated} order by gmt_created asc limit 20000 )
+	  ]]>
+	</select>
+	<select id="fileSelectCountUmsMsgOutUcs" resultType="java.lang.Integer">
+	  <![CDATA[
+	  select   count(ID)  from ums_msg_out_ucs where GMT_CREATED <= #{gmtCreated}
+	  ]]>
+	</select>
+	<select id="fileSelectUmsMsgOutUcs" resultType="java.lang.Integer">
+	  <![CDATA[
+	  select   count(*)   from   syscat.tables   where   tabname= #{tableName}
+	  ]]>
+	</select>
+
+	<update id="updateStatusById" parameterType="net.zoneland.ums.common.dal.dataobject.UmsMsgOut">
+		update UMS_MSG_OUT_UCS
+		set STATUS = #{status},ERROR_MSG = #{errorMsg},GMT_MODIFIED =
+		#{gmtModified}
+		<if test="docount != null">
+			,SEND_TIME = #{sendTime}
+		</if>
+		<if test="host != null">
+			,HOST = #{host}
+		</if>
+		where ID = #{id}
+	</update>
+
+	<update id="updateStatus" parameterType="net.zoneland.ums.common.dal.dataobject.UmsMsgOut">
+		update UMS_MSG_OUT_UCS set STATUS = #{status},ERROR_MSG =
+		#{errorMsg},GMT_MODIFIED = #{gmtModified}
+		<if test="docount != null">
+			,DOCOUNT = #{docount}
+		</if>
+
+		where ID = #{id}
+	</update>
+
+	  <update id="updateStatusByHost" parameterType="java.util.Map">
+		update
+		UMS_MSG_OUT_UCS set STATUS = #{targetStatus},GMT_MODIFIED = #{gmtModified}
+		<![CDATA[
+		where  STATUS=#{status} and HOST = #{host} and GMT_MODIFIED < #{gmtModified}
+		 ]]>
+	</update>
+
+	<select id="statMsgByAppIdAndMedia" parameterType="java.util.Map" resultMap="UmsMsgOutStatByGatewayAndAppIdBo">
+		select
+		APP_ID,MEDIA_ID,count(ID) count
+		from UMS_MSG_OUT_UCS
+		<![CDATA[
+		    where  STATUS=#{status} AND GMT_MODIFIED between DATE_FORMAT(#{date},'yyyy-mm-dd') and date_add(DATE_FORMAT(#{date},'yyyy-mm-dd'),interval 1 day)
+		    group by APP_ID,MEDIA_ID
+		 ]]>
+	</select>
+
+</mapper>

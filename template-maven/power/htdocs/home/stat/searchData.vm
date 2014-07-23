@@ -1,0 +1,197 @@
+<link href="$umsServer.getURI("/static/css/auto_table_scroll.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/queryui/jquery.ui.all.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.core.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.widget.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.position.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.autocomplete.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/My97DatePicker/WdatePicker.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/dropdown/jquery.cascadingDropDown.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/app/stat.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/app/jquery.appSelect.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/table.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/targetPage.js")"></script>
+<div id="bd">
+#set($sideMenuId="stat_data_side_bar")
+#set($HeadMenuId="stat_header")
+#parse("/home/stat/statSideBar.vm")
+#set($searchUrl = $umsServer.getURI("/stat/searchData.htm"))
+#set($param = "startTime=$!msg.startTime&endTime=$!msg.endTime&msgdestName=$!msg.msgdestName&msgDest=$!msg.msgDest&msgsrcName=$!msg.msgsrcName&msgSrc=$!msg.msgSrc&status=$!msg.status&appName=$!msg.appName&appId=$!msg.appId&gatewaytype=$!msg.gatewaytype&flowNo=$!msg.flowNo&createUser=$!msg.createUser&bizName=$!msg.bizName&bizType=$!msg.bizType&orgNo=$!msg.orgNo")
+<input style="width:50%;" type="hidden" id="param"  name="param" value="$param"/>
+<input style="width:50%;" type="hidden" id="searchUrl"  name="searchUrl" value="$searchUrl"/>
+<div id="pRight" style="width:_97%;">
+        <div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c" >
+				<form action="$umsServer.getURI("/stat/searchData.htm")" method="post" name="form_book" id="form_book">
+				<div class="searchArea">
+					<table border="0" cellpadding="0" cellspacing="1">
+						<tr>
+							<td width="10%" align="right"><span class="bold fs14 c_007">时间段：</span></td>
+							<td width="50%" colspan="3">
+								<input type="text"  id="d4311" class="Wdate" name="startTime" value="$!msg.startTime" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true,readOnly:true,maxDate:'#F{$dp.$D(\'d4312\')}'})" style="width:120px;"/>
+            					--
+            					<input type="text" id="d4312" class="Wdate" name="endTime" value="$!msg.endTime" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true,readOnly:true,minDate:'#F{$dp.$D(\'d4311\')}'})" style="width:120px;"/>
+							</td>	
+							<td width="20%" align="right"><span class="bold fs14 c_007">状态：</span></td>
+							<td width="20%">
+								<select  name="status" id="status" style="line-height: 18px; font-size:12px;height:20px;width:145px;">
+                    				<option value="">请选择</option>
+            							#foreach($state ind $statelist)
+            								#if($!msg.status == $state.getValue())
+            									<option selected="selected" value="$!state.getValue()">$!state.getDescription()</option>
+            								#else
+            									<option value="$!state.getValue()">$!state.getDescription()</option>
+            								#end
+            							#end
+            					</select>
+							</td>
+						</tr>
+						<tr>
+							<td width="20%" align="right"><span class="bold fs14 c_007">业务系统：</span></td>
+							<td width="19%">
+								<input style="width:92%" type="text" title="请输入业务系统" autocomplete="off" name="bizName" id="bizName" value="$!msg.bizName" maxlength="20"/>
+							</td>
+							<td width="18%" align="right"><span class="bold fs14 c_007">业务类别：</span></td>
+							<td width="19%">
+								<input style="width:92%" type="text" title="请输入业务类别" autocomplete="off" name="bizType" id="bizType" value="$!msg.bizType" maxlength="20"/>
+							</td>	
+							<td align="right"><span class="bold fs14 c_007">所属运营商：</span></td>
+							<td >
+								<select name="gatewaytype" id="gatewaytype" style="line-height: 18px; font-size:12px;height:20px;width:145px;">
+                    				<option value="">请选择</option>
+                    				#foreach($gatewayForm in $!gatewayFormInfos)	
+									#if($msg.gatewaytype == $gatewayForm.type)				
+									<option selected="selected" value="$!gatewayForm.type">$!gatewayForm.gatewayName</option>
+									#else
+									<option value="$!gatewayForm.type">$!gatewayForm.gatewayName</option>
+									#end
+									#end
+            					</select>
+							</td>		
+						</tr>
+						<tr>
+							<td align="right"><span class="bold fs14 c_007">流程号：</span></td>
+							<td>
+								<input style="width:92%" type="text" title="请输入流程号" autocomplete="off" name="flowNo" id="flowNo" value="$!msg.flowNo" maxlength="20"/>
+							</td>
+							<td align="right"><span class="bold fs14 c_007">所属应用：</span></td>
+							<td>
+								<input style="width:92%" type="text" title="请输入应用名称或应用ID可显示完整的应用名称" autocomplete="off" name="appName" id="appName" value="$!msg.appName" maxlength="20"/>
+							</td>
+							<td align="right"><span class="bold fs14 c_007">生成人员：</span></td>
+							<td>
+								<input style="width:92%" type="text" title="请输入生成人员" autocomplete="off" name="createUser" id="createUser" value="$!msg.createUser" maxlength="20"/>
+							</td>						
+						</tr>
+						<tr>
+							<td align="right"><span class="bold fs14 c_007">接收方手机号：</span></td>
+							<td ><input style="width:92%" type="text" title="请输入手机号，输入3位以上接收方手机号可显示内部人员完整手机号" name="msgSrc" autocomplete="off" id="msgSrc" value="$!msg.msgSrc" maxlength="20" onkeydown="javascript:var val = this.value;if(val.length>30){this.value=val.substring(0,30)}"/>
+								<input type="hidden" autocomplete="off" class="inputBox" name="recvId" id="recvId" />
+							</td>							
+							<td align="right"><span class="bold fs14 c_007">发送方人员：</span></td>
+							<td ><input style="width:92%" type="text" title="请输入发送方人员姓名" name="msgdestName" autocomplete="off" id="msgdestName" value="$!msg.msgdestName" maxlength="40" onkeydown="javascript:var val = this.value;if(val.length>50){this.value=val.substring(0,50)}"/>
+							</td>
+							<td align="right"><span class="bold fs14 c_007">发送方手机号：</span></td>
+							<td ><input style="width:92%" type="text" title="请输入发送方手机号" name="msgDest" autocomplete="off" id="msgDest" value="$!msg.msgDest" maxlength="40" onkeydown="javascript:var val = this.value;if(val.length>50){this.value=val.substring(0,50)}"/>
+							</td>								
+						</tr>
+						<tr>
+							<td align="right"><span class="bold fs14 c_007">所属单位：</span></td>
+							<td>
+								<input style="width:92%" type="text" title="请输入单位名称" autocomplete="off" name="orgNo" id="orgNo" value="$!msg.orgNo" maxlength="40"/>
+							</td>
+							<td colspan="4">
+								<input type="button" id="searchLog_sbtn" class="btn_green_search_form" value="查询" />
+								<input type="button" id="export_data_msg_sbtn" class="btn_green_search_form" value="导出" />
+							</td>
+						</tr>
+					</table>
+                </div>
+				
+				<div  class="tableContainer" >
+        			 
+					<div id="scrollContentContainer" class="scrollContentContainer" style="overflow:auto;height:370px;_width:100%;">
+        				<table class="scrollContent" cellspacing="1" cellpadding="0" style="width:100%;">
+							<thead >
+								<tr>
+        						  <td><div style="width:40px;overflow:hidden;">序号</div></td>					  
+        				          <td><div style="width:80px;overflow:hidden;">发送方人员</div></td>
+        				          <td><div style="width:170px;overflow:hidden;">发送方手机号</div></td>
+        				          <td><div style="width:130px;overflow:hidden;">接收方手机号</div></td>     
+        				          <td><div style="width:250px;overflow:hidden;">短信内容</div></td>
+								  <td><div style="width:80px;overflow:hidden;">业务系统</div></td>
+								  <td><div style="width:80px;overflow:hidden;">业务类别</div></td>
+								  <td><div style="width:160px;overflow:hidden;">所属单位</div></td>
+								  <td><div style="width:240px;overflow:hidden;">所属应用</div></td>
+								  <td><div style="width:80px;overflow:hidden;">所属运营商</div></td>									 
+								  <td><div style="width:100px;overflow:hidden;">流程号</div></td>
+								  <td><div style="width:80px;overflow:hidden;">生成人员</div></td>         
+        						  <td><div style="width:110px;overflow:hidden;">状态</div></td>
+        				          <td><div style="width:150px;overflow:hidden;">操作时间</div></td>
+        				          <td><div style="width:80px;overflow:hidden;">操作</div></td>
+        			            </tr>
+                            </thead>
+        					<tbody class="tb">
+        					#foreach($var in $result.results)
+        						<tr>
+        						  <td align="center"><div style="width:40px;overflow:hidden;">$velocityCount</div></td>      
+        				          <td title="$!var.userId"><div style="width:80px;overflow:hidden;">$!var.userId</div></td>
+        				          <td title="$!var.sendId"><div style="width:170px;overflow:hidden;">$!var.sendId</div></td>
+        				          <td title="$!var.recvId"><div style="width:130px;overflow:hidden;">$!var.recvId</div></td>
+        				          <td title="$!var.content"><div style="width:250px;overflow:hidden;">$!var.content</div></td>
+								  <td title="$!var.bizName"><div style="width:80px;overflow:hidden;">$!var.bizName</div></td>
+								  <td title="$!var.bizType"><div style="width:80px;overflow:hidden;">$!var.bizType</div></td>
+								  <td title="$!var.orgNo"><div style="width:160px;overflow:hidden;">$!var.orgNo</div></td>
+								  <td title="$!var.appId"><div style="width:240px;overflow:hidden;">$!var.appId</div></td> 
+								  <td title="$!var.mediaId"><div style="width:80px;overflow:hidden;">$!var.mediaId</div></td>				  
+								  <td title="$!var.flowNo"><div style="width:100px;overflow:hidden;">$!var.flowNo</div></td>
+								  <td title="$!var.createUser"><div style="width:80px;overflow:hidden;">$!var.createUser</div></td>
+        						  <td title="$!var.status"><div style="width:110px;overflow:hidden;">$!var.status</div></td>
+        				          <td title="$!date.format('yyyy-MM-dd HH:mm:ss',$!var.gmtModified)"><div style="width:150px;overflow:hidden;">$!date.format('yyyy-MM-dd HH:mm:ss',$!var.gmtModified)</div></td>
+        				          <td style="text-align:center;"><div style="width:80px;overflow:hidden;"><a class="a_green_form_ddl" target="_blank" href="$umsServer.getURI("/stat/searchDataMsgDetail.htm").addQueryData("id","$!var.id")&$!param&curPage=$!result.curPage">详细</a></div></td>
+        				         </tr>
+							#end
+        					   </tbody>
+        				</table>
+        				#if($!init == 0)				
+						<div class="norecord" style="width:1810px;color:green;">
+							请选择查询条件，并点击查询按钮进行查询
+						</div>
+						#end
+						#if(!($result && $result.results && $result.results.size() > 0))
+							#if($result && $result.curPage <= 1)
+							<div class="norecord" style="width:1810px;">
+								没有查询到符合条件的记录
+							</div>
+							#end
+						#end
+				
+        			</div>
+        		</div>
+        		#if($result && $!result.totalPage > 0)
+				 <div class="btnArea clearfix">
+        			<div class="page_detail">
+        				#if($!result.curPage != 1)
+    						<a class="a_green_form_ddl" href="$searchUrl?$!param"><span>首页</span></a>
+    					   #set($tempPage = $!result.curPage - 1)
+    					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$tempPage&$!param"><span>上一页</span></a>
+    				   #end
+    				   #if($!result.curPage < $!result.totalPage)
+    					   #set($tempPage = $!result.curPage + 1)
+    					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$tempPage&$!param"><span>下一页</span></a>
+    					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$!result.totalPage&$!param"><span>尾页</span></a>
+    				   #end
+    				  <span class="pager_info">当前第 <input id="targetNum" name="pageId" class="pager_inputBox" value="$!result.curPage" autocomplete="off"/>页  </span>				   
+				      <span id="targetBtn" class="a_green_form_ddl" style="cursor: pointer;">跳转</span>
+				      <span>共$!result.totalPage页 共$!result.total条记录</span>
+                     </div>
+                  </div>
+                  #end
+				</form>
+            </div>
+			<div class="rounded_btm">
+    			<span class="lt_btm"></span> <span class="rt_btm"></span>
+    		</div>
+        </div>
+    </div>

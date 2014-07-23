@@ -1,0 +1,7 @@
+#set($layout = "home/layout/errorLayout.vm")
+
+<div style="height:100%;padding:100px;text-align:center;">
+		<ul><font size="5" color="red"><b>抱歉，服务器错误，请联系系统管理员。</b> </font></ul>
+		<ul style="padding:5px;"><span style="font-size:18px;">您可以<a href="$umsServer.getURI("/msg/msg.htm")" >点此回到首页</a>发送消息</span></ul>
+</div>
+					

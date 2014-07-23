@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>net.zoneland.ums</groupId>
+		<artifactId>app</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<groupId>net.zoneland.ums.gateway</groupId>
+	<artifactId>ums-gateway</artifactId>
+	<version>1.0.0</version>
+	<name>ums-gateway</name>
+	<url>http://maven.apache.org</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.zoneland</groupId>
+			<artifactId>mvc-runtime-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>net.zoneland.ums.common.util</groupId>
+			<artifactId>ums-common-util</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.zoneland.ums.common.dal</groupId>
+			<artifactId>ums-common-dal</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.zoneland.ums.biz.msg</groupId>
+			<artifactId>ums-biz-msg</artifactId>
+		</dependency>
+
+	
+		<dependency>
+			  <groupId>net.zoneland</groupId>
+			  <artifactId>gateway</artifactId>
+		</dependency>
+		
+		<dependency>
+			<groupId>org.apache.mina</groupId>
+			<artifactId>mina-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.mina</groupId>
+			<artifactId>mina-transport-serial</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.mina</groupId>
+			<artifactId>mina-integration-ognl</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.mina</groupId>
+			<artifactId>mina-integration-beans</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.apache.mina</groupId>
+			<artifactId>mina-filter-compression</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>

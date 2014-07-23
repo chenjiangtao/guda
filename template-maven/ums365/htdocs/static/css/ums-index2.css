@@ -1,0 +1,111 @@
+*{
+margin:0px;
+padding:0px;
+}
+ .ums-top{
+ margin:0 auto;
+    width:100%;
+    height:60px;  
+    background-color: #343334;
+ }
+
+	.ums-header {
+		margin:0 auto;
+		width:1022px;
+		height:38px;
+	
+		
+	}
+.ums-logo{
+  width:100px;
+  float:left;
+ }
+ .ums-logo img{
+
+ }
+.ums-header_b{
+  width:200px;
+float:right;
+}
+.ums-header_b span{
+width:100%;
+display:inline;
+		height:20px;
+		float:right;
+		font-weight:bold;
+		font-size:14px;
+		color: #fff;
+		margin-right:0px;
+		margin-top:10px;
+		text-align:right;
+}
+.ums-header_b a{
+
+		font-weight:bold;
+		font-size:14px;
+		color: #fff;
+}
+.ums-header_b b{
+	
+	font-size:14px;
+}
+
+.ums-notice{
+   width:100%;
+    height:15px;  
+   
+    text-align:center;
+    color: #fff;
+}
+.ums-notice b{
+ line-height:25px; 
+}
+.ums-menu{
+   width:100%;
+   height:40px;
+   margin:0 auto;
+   background-color:#e9e9e9;
+}
+.ums-menu-contain{
+width:1022px;
+margin:0 auto;
+height:40px;
+
+}
+.ums-center-contain{
+    clear: both;
+    font-size: 14px;
+    margin: 0 auto;
+    overflow: hidden;
+    width: 1024px;
+    }
+.ums-menu-contain a{
+ font-size:15px;
+ font-weight:bold;
+ height:40px;
+ line-height:40px;
+ float:left;
+ border-left: 1px solid #fff;
+ width:100px;
+}
+
+.border-right{
+  border-right: 1px solid #fff;
+}
+
+
+.ums-menu-contain span{
+ 
+ display:inline-block;
+  height:40px;
+ line-height:40px;
+}
+
+.ums-menu-contain a:hover{
+  background-color: #71af48;
+  color: #fff;
+}
+.visit{
+    background-color: #71af48;
+  color: #fff;
+}

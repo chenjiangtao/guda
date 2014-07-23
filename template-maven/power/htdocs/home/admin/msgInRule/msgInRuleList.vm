@@ -1,0 +1,127 @@
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/queryui/jquery.ui.all.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.core.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.widget.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.position.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.autocomplete.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/dropdown/jquery.cascadingDropDown.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/msgInRule.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/selectApp.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/checkutil.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/table.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/targetPage.js")"></script>
+
+
+
+<div id="bd">
+	#set($sideMenuId="msgIn_rule_side_bar")
+	#set($HeadMenuId="system_header")
+	#parse("/home/admin/adminSideBar.vm")
+#set($searchUrl = $umsServer.getURI("/admin/msgInRule/list.htm"))
+#set($param = "word=$!msgInRuleForm.word&appName=$!msgInRuleForm.appName")
+<input style="width:50%;" type="hidden" id="param"  name="param" value="$param"/>
+<input style="width:50%;" type="hidden" id="searchUrl"  name="searchUrl" value="$searchUrl"/>
+<div id="pRight">
+	<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+	<div class="pRight_c">
+    <div style="margin:3px 3px;"><span><a target="_blank" href="$umsServer.getURI("/admin/msgInRule/add.htm")" class="btn green" style="width:100px;">添加上行规则</a></span></div>
+	 #if($!errorMsg)<div style="color:red;margin-left:5px"><font class="bold fs14"> $!errorMsg</font></div>#end 
+	 #if($!msg)<div style="color:red;margin-left:5px"><font class="bold fs14"> $!msg</font></div>#end
+    <form action="$umsServer.getURI("/admin/msgInRule/list.htm")" method="post" name="msgInRuleForm" id="form_book">	   
+          <div class="searchArea">
+					<table border="0" cellpadding="0" cellspacing="1">
+						<tr>
+							<td width="15%" align="right">
+								<span class="bold fs14 c_007">内容关键字：</span>
+							</td>
+							<td width="35%">
+								#springBind("msgInRuleForm.word" )						
+								<input title="请输入内容关键字" autocomplete="off" class="inputBox" maxlength="80" type="text" name="${status.expression}" value="$!status.value" onkeydown="javascript:var val = this.value;if(val.length>80){this.value=val.substring(0,80)}">
+							</td>
+							<td width="15%" align="right">			
+								<span class="bold fs14 c_007">所属应用：</span>
+							</td>
+							<td width="35%">
+								#springBind("msgInRuleForm.appName" )
+								<input id="appName" title="请输入应用名称或应用ID可显示完整的应用名称" autocomplete="off" class="inputBox" maxlength="20"  type="text" name="${status.expression}" value="$!status.value" />
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td colspan="3">
+								<input type="submit" id="searchLog_sbtn" class="btn_green_search_form" value="查询" />
+							</td>
+						</tr>
+					</table>
+                </div>
+         <div id="tableContainer" class="tableContainer" style="width:100%">
+			<div id="scrollContentContainer" class="scrollContentContainer">
+				<table class="scrollContent" cellspacing="1" cellpadding="0" width="100%">
+					<thead>
+						<tr>
+						  <td width="5%">序号</td>
+						  <td width="20%">内容关键字</td>  
+						  <td width="7%">应用ID</td>
+						  <td width="25%">所属应用</td>
+						  <td width="11%">所属子应用</td>	  
+						  <td width="20%">最近操作时间</td>
+						  <td width="12%">操作</td>       
+			            </tr>
+			        </thead>
+					<tbody class="tb">
+						#foreach($result in $results.results)
+						<tr>
+						 	<td width="5%" style="text-align:center;">$!velocityCount</td>
+				         	<td width="20%" title="$!result.word">$!result.word</td>	
+							<td width="7%" title="$!result.appId">$!result.appId</td>
+							<td width="25%" title="$!result.appName">$!result.appName</td>
+				        	<td width="11%" title="$!result.subAppId">$!result.subAppId</td>			        	
+				         	<td width="20%" title="$!date.format('yyyy-MM-dd HH:mm:ss',$!result.gmtModified)">$!date.format('yyyy-MM-dd HH:mm:ss',$!result.gmtModified)</td>
+				         	<td width="12%" style="text-align:center;">
+						    <a class="a_green_form_ddl" target="_blank" href="$umsServer.getURI("/admin/msgInRule/update.htm").addQueryData("appId","$!result.appId").addQueryData("ruleId","$!result.id").addQueryData("pageId","$!results.curPage")">编辑</a>&nbsp
+				             <a class="a_green_form_ddl"  href="javascript:confirmTool('/admin/msgInRule/del.htm?id=$!result.id&&pageId=$!results.curPage&&word=$!word&&appName=$!appName','确认删除该规则？')" >
+				             删除
+				             </a>
+                         </td>				      
+                         </td>
+				       </tr>
+						#end
+					</tbody>
+				</table>
+			</div>
+		</div>
+          #noRecord($results)
+          #if( $!results.totalPage > 0)
+          <div class="btnArea clearfix" >
+			<div class="page_detail">
+				   #if($!results.curPage != 1)	   
+				   <a class="a_green_form_ddl" href="$umsServer.getURI("/admin/msgInRule/list.htm").addQueryData("pageId","1").addQueryData("word","$!word").addQueryData("appName","$!appName")"><span>首页</span></a>
+				   #end
+				   #if($!results.curPage > 1)
+					   #set($tempPage = $!results.curPage - 1)
+					   <a class="a_green_form_ddl" href="$umsServer.getURI("/admin/msgInRule/list.htm").addQueryData("pageId","$!tempPage").addQueryData("word","$!word").addQueryData("appName","$!appName")"><span>上一页</span></a>
+				   #end
+				   #if($!results.curPage < $!results.totalPage)
+					   #set($tempPage = $!results.curPage + 1)
+					   <a class="a_green_form_ddl" href="$umsServer.getURI("/admin/msgInRule/list.htm").addQueryData("pageId","$!tempPage").addQueryData("word","$!word").addQueryData("appName","$!appName")"><span>下一页</span></a>
+				   #end
+				   #if($!results.curPage != $!results.totalPage && $!results.totalPage > 0)
+				    <a class="a_green_form_ddl" href="$umsServer.getURI("/admin/msgInRule/list.htm").addQueryData("pageId","$!results.totalPage").addQueryData("word","$!word").addQueryData("appName","$!appName")"><span>尾页</span></a>
+				   #end
+				  <span class="pager_info">当前第 <input id="targetNum" name="pageId" class="pager_inputBox" value="$!results.curPage" autocomplete="off"/>页  </span>				   
+				  <span id="targetBtn" class="a_green_form_ddl" style="cursor: pointer;">跳转</span>
+				  <span>共$!results.totalPage页 共$!results.total条记录</span>
+	    
+             </div>
+          </div>
+         #end
+         </div>
+         </form> 
+     <div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+  </div>
+</div>
+

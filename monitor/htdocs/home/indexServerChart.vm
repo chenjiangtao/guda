@@ -1,0 +1,41 @@
+#set($headMenuId="header_server_chart")
+
+<div data-options="region:'west',split:true,title:'服务器信息'" style="width:250px;padding:10px;">
+	
+	<ul id="tt" class="easyui-tree" data-options="
+			url: '$homeServer.getURI("/agent.json")',
+			animate: true,
+			onContextMenu: function(e,node){
+				e.preventDefault();
+				$(this).tree('select',node.target);
+			},
+			onClick: function(node){
+				
+				refresh('/getServerFloatKey.json',node.id);
+			}
+		"></ul>
+	
+</div>
+
+<div data-options="region:'center',title:'服务器状态'">
+ <div style="padding:5px;border:1px solid #ddd;">
+<a id="header_server_chart" href="#" class="easyui-linkbutton" style="background-color:#2E5E79;color:#fff;" data-options="plain:true">主机指标（图形展示）</a>
+<a id="header_server_grid" href="#" class="easyui-linkbutton" data-options="plain:true">主机指标（表格展示）</a>
+<a id="header_db_chart" href="#" class="easyui-linkbutton" data-options="plain:true">数据库指标（图形展示）</a>
+<a id="header_db_grid" href="#" class="easyui-linkbutton" data-options="plain:true">数据库指标（表格展示）</a>
+</div>
+	<div class="search-form">
+	  <label>开始时间:</label><input type="text" id="startTime" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:true,readOnly:true})"/>
+	  <label>结束时间:</label><input type="text" id="endTime" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:true,readOnly:true})"/>
+	  <input type="button" class="search-btn" id="search_btn" value="查询"/>
+	  
+	</div>
+	<div id="main-contain" class="contain">
+		
+	</div>
+
+</div>
+
+<div id="background" class="background" style="display: none; "></div>
+<div id="progressBar" class="progressBar" style="display: none; ">数据加载中，请稍等...</div> 
+<script type="text/javascript" src="$homeServer.getURI("/static/js/chart.js")"></script>

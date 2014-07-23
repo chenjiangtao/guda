@@ -1,0 +1,161 @@
+<link href="$umsServer.getURI("/static/css/addTemp.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/queryui/jquery.ui.all.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/temp/add.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.core.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.widget.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.position.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.autocomplete.js")"></script>
+
+<script type="text/javascript" src="$umsServer.getURI("/static/js/My97DatePicker/WdatePicker.js")"></script>
+<div id="bd">
+#set($sideMenuId="temp_side_bar")
+#set($HeadMenuId="app")
+#parse("/home/appAdmin/appSideBar.vm")
+<div id="pRight">
+        <div class="rounded_top">
+            <span class="lt_top"></span>
+            <span class="rt_top"></span>
+        </div>
+        <div class="pRight_c">
+              <div id="main">
+                       <div id="writeEmail">
+				         <form action="$umsServer.getURI("/appAdmin/temp/update.htm")" method="post" name="form_book" id="form_book">
+						     #springBind("msgTemplateForm.Id")
+				         <input class="inputBox w50" name="${status.expression}" value="$!status.value"  type="hidden"/>
+						 <div class="btnArea clearfix">
+							&nbsp;&nbsp;<a class="fs14bold c_007" href="$umsServer.getURI("/appAdmin/temp/list.htm")">短信模版维护</a><a
+							class="fs14bold c_008">-&gt;修改短信模版</a>
+						 </div>
+						  #if($!message)<div style="color:red;margin-left:2%"><font class="bold fs14"> $!message</font> </div> #end
+							<table class="form" style="width:100%;">
+								<tr>
+									#springBind("msgTemplateForm.templateId")
+									<td style="width:50%"><label class="bold fs13 c_007" id="tempId_label"><span class="red">*</span>模版ID：<br/>&nbsp</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="tempId" onblur="tempIdCheck()" type="text"/>
+									</br><span id ="tempIdMsg" class="tipMsg">不超过10位的数字与字母</span></br></td>
+									#springBind("msgTemplateForm.priority")
+									<td><label id="priority_label" class="bold fs13 c_007">优先级：<br/>&nbsp</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="priority" onblur="priorityCheck()" type="text"/>
+									</br><span id = "priorityMsg" class="tipMsg">0~999的数字</span></td>
+								</tr>
+								<tr>
+									#springBind("msgTemplateForm.appId" )
+									<td><label class="bold fs13 c_007"><span class="red">*</span>选择应用：<br/>&nbsp</label>
+									<select name="appId" id="appId" class="inputBox" style="width:160px;" onblur="appIdCheck()" onmousemove="showTitle(this[this.selectedIndex]);">
+        							<option value=""> 请选择 </option>
+									#foreach($app in $apps)	
+									#if($app.appId == $!status.value)				
+									<option selected="selected" value="$!app.appId">$!app.appName</option>
+									#else
+									<option value="$!app.appId">$!app.appName</option>
+									#end
+									#end
+								</select>
+								</br><span id="appIdMsg" class="tipMsg">应用不能为空</span></td>
+									#springBind("msgTemplateForm.subAppId" )
+									<td><label class="bold fs13 c_007">选择子应用：<br/>&nbsp</label>
+									<select name="subAppId" id="subAppId" class="inputBox" style="width:160px;" onmousemove="showSubTitle(this[this.selectedIndex]);">
+        							<option value=""> 请选择 </option>
+									#foreach($subApp in $subApps)	
+									#if($subApp.appSubId == $!status.value)				
+									<option selected="selected" value="$!subApp.appSubId">$!subApp.appSubName</option>
+									#else
+									<option value="$!subApp.appSubId">$!subApp.appSubName</option>
+									#end
+									#end
+								</select>
+								</td>
+								</tr>
+								<tr>
+									#springBind("msgTemplateForm.bizName")
+									<td style="width:50%"><label class="bold fs13 c_007" id="bizName_label">业务系统：<br/>&nbsp</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="bizName" onblur="bizNameCheck()" type="text"/>
+									</br><span id ="bizNameMsg" class="tipMsg">长度不能超过50位</span></br></td>
+									#springBind("msgTemplateForm.bizType")
+									<td><label id="bizType_label" class="bold fs13 c_007">业务类型：<br/>&nbsp</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="bizType" onblur="bizTypeCheck()" type="text"/>
+									</br><span id = "bizTypeMsg" class="tipMsg">长度不能超过50位</span></td>
+								</tr>
+								<tr>
+								#springBind("msgTemplateForm.subBizType")
+									 <td>
+									<label id="subBizType_label" class="bold fs13 c_007">业务子类型：<br/>&nbsp</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="subBizType" onblur="subBizTypeCheck()" type="text"/>
+									</br><span id = "subBizTypeMsg" class="tipMsg">长度不能超过50位</span>
+									</td>
+									#springBind("msgTemplateForm.type")
+									<td><label class="bold fs13 c_007"><span class="red">*</span>模版类型：<br/>&nbsp</label>
+									<select id="type" name="type" class="inputBox" style="width:160px;" onblur="typeCheck()">
+									<option value=""> 请选择 </option>
+									<option value="1" #if($!status.value=="1") selected="selected" #end>通知类</option>
+									<option value="2" #if($!status.value=="2") selected="selected" #end>问卷调查类</option>
+									<option value="3" #if($!status.value=="3") selected="selected" #end>主动发起类</option>
+									</select>
+									</br><span id = "typeMsg" class="tipMsg">不能为空</span></td>
+									</td>
+								
+									<!--
+									#springBind("msgTemplateForm.msgType")
+									<td><label id="priority_label" class="bold fs13 c_007">消息类型：<br/>&nbsp</label>
+									<select name="msgType" class="inputBox" style="width:31.5%">
+									<option value=""> 请选择 </option>
+									<option value="1" #if($!status.value=="1") selected="selected" #end>短信</option>
+									<option value="2" #if($!status.value=="2") selected="selected" #end>邮件</option>
+									<option value="3" #if($!status.value=="3") selected="selected" #end>彩信</option>
+									</select>
+									--></td>
+								</tr>
+								<tr>
+									#springBind("msgTemplateForm.startTime")
+									<td><label id="userName_label" class="bold fs13 c_007">启用时间：<br/>&nbsp</label><input type="text" id="d4311" class="Wdate inputBox" name="${status.expression}" value="$!status.value" onFocus="WdatePicker({dateFmt:'yyyy-M-d H:mm:ss',isShowClear:true,readOnly:true,maxDate:'#F{$dp.$D(\'d4311\')}'})" /></td>
+									#springBind("msgTemplateForm.endTime")
+									<td><label id="password_label" class="bold fs13 c_007">结束时间：<br/>&nbsp</label><input type="text" id="d4312" class="Wdate inputBox" name="${status.expression}" value="$!status.value" onFocus="WdatePicker({dateFmt:'yyyy-M-d H:mm:ss',isShowClear:true,readOnly:true,minDate:'#F{$dp.$D(\'d4311\')}'})"  /></td>
+								</tr>
+							
+								<tr>
+									<td><label class="bold fs13 c_007">有效时间：<br/>&nbsp</label>
+										#springBind("msgTemplateForm.validTimeScopeStart")
+										<input type="text" id="d4313" onblur="validTimeScopeCheck()" class="Wdate inputBox_w50" name="${status.expression}" value="$!status.value" onFocus="WdatePicker({dateFmt:'H:mm:ss',isShowClear:true,readOnly:true,maxDate:'#F{$dp.$D(\'d4314\')||\'23-59-59\'}'})"  />
+										--
+										#springBind("msgTemplateForm.validTimeScopeEnd")
+										<input type="text" id="d4314" onblur="validTimeScopeCheck()" class="Wdate inputBox_w50" name="${status.expression}" value="$!status.value" onFocus="WdatePicker({dateFmt:'H:mm:ss',isShowClear:true,readOnly:true,minDate:'#F{$dp.$D(\'d4313\')||\'00-00-00\'}'})"  />
+										</br><span id = "validTimeScopeMsg" class="tipMsg">不能只填单独一项</span></td>
+									</td>
+									#springBind("msgTemplateForm.errorAction")
+									<td><label class="bold fs13 c_007">异常处理：<br/>&nbsp</label>
+									<select name="errorAction" class="inputBox" style="width:160px;">
+									<option value=""> 请选择 </option>
+									<option value="1" #if($!status.value=="1") selected="selected" #end>直接发送</option>
+									<option value="2" #if($!status.value=="2") selected="selected" #end>重新生成以后发送</option>
+									</select>
+									</td>
+								</tr>
+								<tr>
+									#springBind("msgTemplateForm.recvComments")
+									<td colspan="2"><label class="bold fs13 c_007" style="float:left;width:12%;">接收方说明：<br/>&nbsp</label><input class="inputBox w50" id="recvComments" onblur="recvCommentsCheck()" name="${status.expression}" value="$!status.value" style="width:65%;" type="text"/>
+									</br><span id = "recvCommentsMsg" class="tipMsg">不能超过160个字</span></td>
+									</td>
+
+								</tr>
+							<tr>
+									#springBind("msgTemplateForm.content")
+									<td colspan="2"><label class="bold fs13 c_007" style="float:left;width:12%;"><span class="red">*</span>模版内容：<br/>&nbsp<br/>&nbsp</label>
+										<textarea class="inputBox fs13" id="content" onblur="contentCheck()" name="${status.expression}"  style="width:65%;height:100px;font:Verdana, Geneva, sans-serif;">$!status.value</textarea>
+									<br/><span id ="contentMsg" class="tipMsg" style="padding-left:15%">
+									不能为空且不能超过600个字
+									</span>
+									</td>
+
+								</tr>
+							</table>
+						<br/>
+                <div class="btnArea clearfix">
+					<input type="button" onclick="save()" class="btn_green" style="margin-left:40%;"value="保存">
+                </div>
+				</form>
+            </div>
+
+    </div>
+
+		<div class="rounded_btm">
+            <span class="lt_btm"></span>
+            <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>
+</div>

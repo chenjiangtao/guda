@@ -1,0 +1,22 @@
+#set($layout = "home/layout/umsLayout.vm")
+#set($HeadMenuId="a_info")
+
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/charge.css")" />
+<script type="text/javascript" src="$homeServer.getURI("/static/js/ums/charge.js")"></script>
+
+<div class="ums-center-contain">
+<div>
+    <ul id="crumbs">
+	    <li><a href="$homeServer.getURI("/ums/index.htm")">首页</a></li>
+	   <li><a href="$homeServer.getURI("/personal/personal.htm")">个人资料</a></li>
+	    <li>个人资料修改结果</li>
+    </ul>
+</div>
+
+
+ <div class="msg-contain-right">
+         <div class="span-tips"><ul>
+         <li>个人资料修改成功</li>
+         </ul></div>
+  </div>
+</div>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.tiaotiaogift.info</groupId>
+		<artifactId>app</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<groupId>com.tiaotiaogift.info.biz.common</groupId>
+	<artifactId>info-biz-common</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+
+	<name>info-biz-common</name>
+	<url>http://maven.apache.org</url>
+
+
+
+	<dependencies>
+		<dependency>
+			<groupId>com.tiaotiaogift.info.common.dal</groupId>
+			<artifactId>info-common-dal</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.tiaotiaogift.info.common.util</groupId>
+			<artifactId>info-common-util</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.zoneland</groupId>
+			<artifactId>mvc-runtime-core</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>

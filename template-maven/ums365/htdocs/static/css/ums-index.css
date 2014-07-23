@@ -1,0 +1,177 @@
+﻿.ums_banner2_href{
+	margin:0 auto;
+	width:500px;
+	
+	}
+.ums_banner2_href {height:35px;overflow:hidden;text-align:center;}
+.banner2_href_visited,.banner2_href_visited span {width:80px;background:url("../images/ums/header-bg.png") no-repeat 0 0;}
+.banner2_href_visited { float:left; margin-left:20px;padding-left:10px;font-weight:bold; color:#0d3015; background-position:0 0;}
+.banner2_href_visited span {display:inline-block; cursor:pointer; padding:0 10px 0 0;height:35px; color:#0d3015;line-height:35px; text-align:center; font-size:14px; background-position:right 0;}
+
+.ums_banner2_href a:hover,.ums_banner2_href a:hover span {width:80px;background:url("../images/ums/header-bg.png") no-repeat 0 0;}
+.ums_banner2_href a:hover { float:left; margin-left:20px;padding-left:10px;font-weight:bold; color:#0d3015; background-position:0 0;}
+.ums_banner2_href a:hover span {display:inline-block; cursor:pointer; padding:0 10px 0 0;height:35px; line-height:35px; text-align:center; font-size:14px; background-position:right 0;}
+
+.ums_banner2_href a { width:80px;float:left; margin-left:20px;padding-left:10px;font-weight:bold; background-position:0 0;}
+.ums_banner2_href a span {width:80px;display:inline-block; cursor:pointer; padding:0 10px 0 0;height:35px; line-height:35px; text-align:center; font-size:14px; background-position:right 0;}
+.ums_banner2_href a{
+
+		font-family: "宋体";
+		font-size: 16px;
+		font-weight:bold;
+	  color: white;
+	  line-height:35px;
+	  
+	}
+.input_text{ 
+background:url(../images/pic_6.jpg) no-repeat 0 0; 
+border:1px solid #e0e0e0;
+width:420px; 
+height:30px; line-height:30px; 
+padding-left:10px;}
+.input_text200{ 
+background:url(../images/pic_6.jpg) no-repeat 0 0; 
+border:1px solid #e0e0e0;
+width:200px; 
+height:30px; line-height:30px; 
+padding-left:10px;}
+.contain{
+  margin:0 auto;
+	width:1024px;
+
+    background:#fff url(../images/gradient.png) repeat-x ;
+}
+
+.contain-right{
+width:700px;
+ margin:0 auto;
+text-align:left;
+line-height:25px;
+	margin-top:30px;
+
+}
+
+.contain-right ul li{
+ font-size:14px;
+ padding-top:10px;
+
+}
+
+.contain-right ul li span{
+ font-size:14px;
+
+ float:left;
+     width:10%;
+     padding:0px 10px;
+
+     font-weight:bold;
+     font-size:14px;
+}
+.title{
+  text-align:right;
+}
+.left_nav_no_visited{
+ line-height:40px;
+
+ background-image: url("../images/ums/nav.png");
+    background-repeat: repeat-x;
+    border-bottom: 1px solid #c5e6c7;
+border-right: 1px solid #c5e6c7;
+}
+.left_nav_visited {
+
+  line-height:40px;
+ background-image: url("../images/ums/nav-link.png");
+    background-repeat: repeat-x;
+    border-bottom: 1px solid #c5e6c7;
+}
+.left-lev li  a{
+ line-height:40px;
+DISPLAY: block; 
+}
+.left-lev  a:hover{
+ line-height:40px;
+DISPLAY: block; 
+ background-image: url("../images/ums/nav-link.png");
+    background-repeat: repeat-x;
+    
+}
+
+.send_btn span{
+    display:inline-block;
+  line-height:35px;
+  width:150px;
+   background:#6fbf4c;
+	color:#fff;
+  text-align:center;
+   margin-left:160px;
+ margin-bottom:100px;
+}
+.send_btn a:hover span{
+  display:inline-block;
+  line-height:35px;
+ 
+    background:#61ad3f;
+	color:#fff;
+  text-align:center;
+
+   margin-left:160px;
+ margin-bottom:100px;
+}
+
+
+.error-li{
+  margin-left:100px;
+
+}
+.tips{
+ margin-left:100px;
+ margin-top:-10px;
+ line-height:10px;
+ font-size:10px;
+ color:#778779;
+}
+.choosePerson{
+  background-image: url("../images/ums/contact.png");
+  background-repeat: no-repeat;
+  width:27px;
+  height:42px;
+  line-height:30px;
+  display:inline-block;
+  text-decoration: none;
+
+}
+
+.choosePerson:hover{
+  background-image: url("../images/ums/contact.png");
+  background-repeat: no-repeat;
+  width:27px;
+  height:42px;
+  line-height:30px;
+  display:inline-block;
+  text-decoration: none;
+
+}
+
+.ibutton { 
+   padding: 3px 15px; 
+   *padding: 0 15px; 
+   *height: 24px;  
+   font-size: 12px; text-align: center; 
+   margin-left:2px;
+   border:1px solid #E0E7EB; border-radius: 2px; 
+   background:#6fbf4c;
+   color:#fff;
+   cursor: pointer; 
+   display: inline-block; }  
+.abutton { 
+     padding: 3px 15px; 
+     font-size: 12px; 
+     background:#6fbf4c;
+	 color:#fff;
+     text-align: center; 
+     margin-left:2px;
+     border:1px solid #E0E7EB; 
+     border-radius: 2px; 
+     cursor: pointer; display: inline-block;
+       }  

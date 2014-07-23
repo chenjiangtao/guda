@@ -1,0 +1,19 @@
+.selected{
+			background-color:#FFFF00;
+		}
+
+/*表单*/
+/*
+.inputBox{
+   border:1px solid #cbe1eb;
+   padding:5px;
+   width:50%;
+ }
+*/
+ /*表单*/
+.inputBox_sub{
+   border:1px solid #cbe1eb;
+   padding:5px;
+   width:90%;
+ }
+

@@ -1,0 +1,125 @@
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/queryui/jquery.ui.all.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.core.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.widget.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.position.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.autocomplete.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/dropdown/jquery.cascadingDropDown.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/app/app_select.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/table.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/targetPage.js")"></script>
+<div id="bd">
+#set($sideMenuId="app_side_bar")
+#set($HeadMenuId="app")
+#parse("/home/appAdmin/appSideBar.vm")
+#set($searchUrl = $umsServer.getURI("/appAdmin/appList.htm"))
+#set($param = "appName=$!app.appName&appCode=$!app.appCode&status=$!app.status")
+<input style="width:50%;" type="hidden" id="param"  name="param" value="$param"/>
+<input style="width:50%;" type="hidden" id="searchUrl"  name="searchUrl" value="$searchUrl"/>
+<div id="pRight">
+	<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c">
+	 <form action="$umsServer.getURI("/appAdmin/appList.htm")" method="post" name="search_form" id="search_form">
+		<div class="searchArea">
+					<table border="0" cellpadding="0" cellspacing="1">
+						<tr>
+							<td width="15%" align="right"><span class="bold fs14 c_007">应用名称：</span></td>
+							<td width="35%">
+									<input id="appName" title="请输入应用名称或应用ID可显示完整的应用名称" autocomplete="off" type="text" name="appName" value="$!app.appName" />  
+							</td>
+							<td width="15%" align="right"><span class="bold fs14 c_007">应用状态: </span></td>
+							<td width="45%" >
+								<select style="line-height: 18px; font-size:12px;height:20px;text-align:center;width:155px;" name="status" id="status">
+                    				<option value="">请选择</option>
+            							#foreach($state in $statelist)
+            								#if($app.status == $state.getValue())
+            									<option selected="selected" value="$!state.getValue()">$!state.getDescription()</option>
+            								#else
+            									<option value="$!state.getValue()">$!state.getDescription()</option>
+            								#end
+            							#end
+            					</select>
+							</td>
+							
+						</tr>
+						<tr>
+							
+							<td width="15%" align="right"><span class="bold fs14 c_007">应用短号：</span></td>
+							<td width="25%"><input title="请输入应用短号" autocomplete="off" type="text" name="appCode" value="$!app.appCode"/></td>
+							<td colspan="2">
+								<input type="button" id="searchLog" class="btn_green_search_form" value="查询" />
+							</td>
+						</tr>
+					</table>
+                </div>
+
+        <div class="tableContainer" >
+
+			<div id="scrollContentContainer" class="scrollContentContainer">
+				<table class="scrollContent" cellspacing="1" cellpadding="0" width="100%">
+					<thead >
+						<tr>
+						  <td width="4%">序号</td>
+						  <td width="6%">应用ID</td>
+				          <td width="15%">应用名称</td>
+				          <td width="7%">应用短号</td>
+				          <td width="15%">日流量(使用量/限制)</td>
+				          <td width="15%">月流量(使用量/限制)</td>
+						  <td width="7%">状态</td>
+				          <td width="19%">修改时间</td>
+				          <td width="10%">操作</td>
+			            </tr>
+                    </thead>
+					<tbody class="tb">
+					#foreach($var in $result.results)
+						<tr>
+						  <td width="4%" align="center">$velocityCount</td>
+				          <td width="6%" align="center" title="$!var.appInfo.appId">$!var.appInfo.appId</td>
+				          <td width="15%" align="center" title="$!var.appInfo.appName">$!var.appInfo.appName</td>
+				          <td width="7%" align="center" title="$!var.appInfo.appCode">$!var.appInfo.appCode</td>
+						  <td width="15%" align="center" title="$!var.dayflow">$!var.dayflow</td>
+				           <td width="15%" align="center" title="$!var.monthflow">$!var.monthflow</td>
+						   #if($!var.appInfo.status==1)
+						   <td width="7%" align="center">可用</td>
+						   #else
+						   <td width="7%" align="center">不可用</td>
+						   #end
+				          <td align="center" width="19%" title="$!date.format('yyyy-MM-dd HH:mm:ss',$!var.appInfo.gmtModified)">$!date.format('yyyy-MM-dd HH:mm:ss',$!var.appInfo.gmtModified)</td>
+				          <td width="10%" align="center">
+							<a class="a_green_form_ddl" href="$umsServer.getURI("/appAdmin/appPWEdit.htm").addQueryData("id","$!var.appInfo.id").addQueryData("pageId","$!result.curPage")">修改密码</a>
+                         </td>
+				         </tr>
+						#end
+					    </tbody>
+				</table>
+			</div>
+		</div>
+       #noRecord($result)
+       	  #if( $!result.totalPage > 0)
+          <div class="btnArea clearfix" >
+			<div class="page_detail">
+				#if($!result.curPage != 1)
+						<a class="a_green_form_ddl" href="$searchUrl?$!param"><span>首页</span></a>
+					   #set($tempPage = $!result.curPage - 1)
+					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$tempPage&$!param"><span>上一页</span></a>
+				   #end
+				   #if($!result.curPage < $!result.totalPage)
+					   #set($tempPage = $!result.curPage + 1)
+					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$tempPage&$!param"><span>下一页</span></a>
+					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$!result.totalPage&$!param"><span>尾页</span></a>
+				   #end
+				  <span class="pager_info">当前第 <input id="targetNum" name="pageId" class="pager_inputBox" value="$!result.curPage" autocomplete="off"/>页  </span>				   
+				  <span id="targetBtn" class="a_green_form_ddl" style="cursor: pointer;">跳转</span>
+				  <span>共$!result.totalPage页 共$!result.total条记录</span>
+             </div>
+          </div>
+     	  #end
+  </form>
+        </div>
+		<div class="rounded_btm">
+    			<span class="lt_btm"></span> <span class="rt_btm"></span>
+    		</div>
+</div>
+</div>

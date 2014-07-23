@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- 定时重新发送失败的消息 -->
+	<bean id="sendFailureSmsJob" class="net.zoneland.ums.biz.msg.quartz.SendFailureSmsJob" />
+	<bean id="sendFailureSmsJobDetail" class="net.zoneland.ums.biz.msg.quartz.support.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="targetObject" ref="sendFailureSmsJob" />
+		<property name="targetMethod" value="executeInternal" />
+	</bean>
+	<bean id="sendFailureSmsTriggerBean" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail" ref="sendFailureSmsJobDetail" />
+		<property name="startDelay" value="60000" />
+		<property name="repeatInterval" value="${sendFailure.repeatInterval}" />
+		<property name="repeatCount" value="-1" />
+	</bean>
+
+	<!-- 定时集群监测的消息 -->
+	<bean id="clusterMonitorJob" class="net.zoneland.ums.biz.msg.quartz.ClusterMonitorJob" />
+	<bean id="clusterMonitorJobDetail" class="net.zoneland.ums.biz.msg.quartz.support.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="targetObject" ref="clusterMonitorJob" />
+		<property name="targetMethod" value="executeInternal" />
+	</bean>
+	<bean id="clusterMonitorTriggerBean" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail" ref="clusterMonitorJobDetail" />
+		<property name="startDelay" value="60000" />
+		<property name="repeatInterval" value="${cluster.repeatInterval}" />
+		<property name="repeatCount" value="-1" />
+	</bean>
+
+
+	<!-- 定时统计短信 -->
+	<bean id="statJob" class="net.zoneland.ums.biz.msg.quartz.StatJob" />
+	<bean id="statJobDetail" class="net.zoneland.ums.biz.msg.quartz.support.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="targetObject" ref="statJob" />
+		<property name="targetMethod" value="executeInternal" />
+	</bean>
+
+	 <bean id="statTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+        <property name="jobDetail" ref="statJobDetail" />
+        <property name="cronExpression">
+             <value> 0 0 5 * * ?</value><!--在每天晚上21:00触发 0 0 21 * * ?-->
+             <!-- 0 * 12 * * ?  在每天下午12点到下午12:59期间的每1分钟触发 -->
+        </property>
+     </bean>
+
+
+
+
+	<!-- 定时发送延迟发送的消息 -->
+	<bean id="sendDelaySmsJob" class="net.zoneland.ums.biz.msg.quartz.SendDelaySmsJob" />
+	<bean id="sendDelaySmsJobDetail" class="net.zoneland.ums.biz.msg.quartz.support.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="targetObject" ref="sendDelaySmsJob" />
+		<property name="targetMethod" value="executeInternal" />
+	</bean>
+	<bean id="sendDelaySmsTriggerBean" class="org.springframework.scheduling.quartz.SimpleTriggerBean">
+		<property name="jobDetail" ref="sendDelaySmsJobDetail" />
+		<property name="startDelay" value="60000" />
+		<property name="repeatInterval" value="${sendDelay.repeatInterval}" />
+		<property name="repeatCount" value="-1" />
+	</bean>
+
+	<bean id="filingJob" class="net.zoneland.ums.biz.msg.quartz.FilingJob">
+		<property name="repeatInterval" value="${filingJob.repeatInterval}" />
+	</bean>
+	<bean id="filingJobDetail" class="net.zoneland.ums.biz.msg.quartz.support.MethodInvokingJobDetailFactoryBean">
+		<property name="concurrent" value="true" />
+		<property name="targetObject" ref="filingJob" />
+		<property name="targetMethod" value="executeInternal" />
+	</bean>
+	<bean id="filingTriggerBean" class="org.springframework.scheduling.quartz.CronTriggerBean">
+		<property name="jobDetail" ref="filingJobDetail" />
+		<property name="cronExpression">
+             <value>0 0/10 18,19,20,21,22,23,0,1,2,3,4,5 * * ?</value><!--在每天晚上21:00触发 0 0 21 * * ?-->
+             <!-- 0 * 12 * * ?  在每天下午12点到下午12:59期间的每1分钟触发 -->
+        </property>
+	</bean>
+
+
+
+
+	<!-- 使用Spring 的DataSource <ref bean="taskTriggerBean" /> 调度器 -->
+	<bean class="org.springframework.scheduling.quartz.SchedulerFactoryBean">
+		<property name="dataSource" ref="umsDataSource" />
+		<property name="configLocation" value="classpath:/spring/quartz.properties" />
+		<property name="triggers">
+			<list>
+				<ref bean="sendFailureSmsTriggerBean" />
+				<ref bean="sendDelaySmsTriggerBean" />
+				<ref bean="filingTriggerBean" />
+				<ref bean="clusterMonitorTriggerBean" />
+				<ref bean="statTriggerBean" />
+			</list>
+		</property>
+		<property name="applicationContextSchedulerContextKey" value="applicationContext" />
+		<property name="autoStartup">
+			<value>true</value>
+		</property>
+	</bean>
+
+
+</beans>

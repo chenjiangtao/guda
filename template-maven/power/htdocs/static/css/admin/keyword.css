@@ -1,0 +1,31 @@
+.w50{
+   width:50%;
+}
+   
+.h100{
+   height:100px;
+}
+
+.inputBox{
+   border:1px solid #cbe1eb;   
+}
+.form_div{
+  width:70%;
+  margin-left:50px;
+  margin-top:50px;
+}
+
+.form_div label{
+  float: left;
+  width: 19%;
+}
+
+.form_div select {
+  width:270px;
+  border:1px solid #e0e0e0; 
+  height:30px; 
+}
+
+.form_div ul{
+  padding:10px;
+}

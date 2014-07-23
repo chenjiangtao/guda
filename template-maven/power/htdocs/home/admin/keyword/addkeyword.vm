@@ -1,0 +1,90 @@
+<script type="text/javascript" src="$umsServer.getURI("/static/js/log_search.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/checkutil.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/keyword.js")"></script>
+<link href="$umsServer.getURI("/static/css/main.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/admin/keyword.css")" type="text/css" rel="stylesheet" />
+<div id="bd">
+	#set($sideMenuId="keyword_side_bar") #set($HeadMenuId="system_header")
+	#parse("/home/admin/adminSideBar.vm")
+	<div id="pRight" >
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c">
+			<div id="writeEmail" style="_height:450px;">
+				<div class="btnArea clearfix">
+					&nbsp;&nbsp;
+					<a class="fs14bold c_007" href="$umsServer.getURI("/admin/keyword/keywordlist.htm")">关键词维护</a>
+					<a class="fs14bold c_008">-&gt;新增关键词</a>
+				</div>
+				<form action="$umsServer.getURI("/admin/keyword/keywordsave.htm")" method="post" name="form_book"
+					id="form_book">
+					<div class="form_div">
+						#if($!errorMsg)
+						<div style="color:red;margin-left:10px;">
+							<font class="bold fs14"> $!errorMsg</font>
+						</div>
+						#end
+						<ul>
+							<label class="bold fs14 c_007"><span class="red">*</span>关键字:</label>
+							#springBind("keyWordInfoForm.keyword")
+							<textarea maxlength="400" class="inputBox w50 h100"
+								style="font:13px Verdana, Geneva, sans-serif;width:270px;height:110px;"
+								name="${status.expression}" id="keyword" value="$!status.value"
+								onkeydown="javascript:var val = this.value;if(val.length>400){this.value=val.substring(0,400)}">$!status.value</textarea>
+							<br />
+						</ul>
+						<ul>
+							<label>&nbsp;</label>注:多个关键词以英文逗号","分隔<br/>
+							<label>&nbsp;</label>(输入关键字长度不能超过12个汉字，36个字符)
+						</ul>
+						<ul>
+						</ul>
+						<ul>
+							<label class="bold fs14 c_007"><span class="red">*</span>所属应用:</label>
+							<select name="appId" id="appinfo" onmousemove="showTitle(this[this.selectedIndex]);">
+								<option value="">请选择</option>
+								#if(0 == $appId)	
+        						<option value="0" selected="selected">全部应用 (0)</option>
+        						#else
+								<option value="0">全部应用 (0)</option>
+								#end
+								#foreach($app in $apps)
+								#if($app.appId == $appId)
+								<option selected="selected" value="$app.appId">$app.appName ($!app.appId)</option>
+								#else
+								<option value="$!app.appId">$app.appName ($!app.appId)</option> 
+								#end 
+								#end
+							</select>
+						</ul>
+						<ul>
+							<label>&nbsp;</label>
+							<input type="submit" class="btn_green_search_form" value="保存" />
+						</ul>
+					</div>
+				</form>
+				<br />
+				<!--
+			<div id="writeEmail">
+               
+				<form action="$umsServer.getURI("/admin/keyword/excelAdd.htm")" enctype="multipart/form-data" method="post"  name="form_excel" id="form_excel" >
+                <div class="btnArea clearfix">
+                     &nbsp;<strong >关键字Excel批量导入 </strong> <span style="color:red">(提示:注意导入excel格式,在第一个sheet中,第一列是关键字,第二列对应所属应用id,用数字0表示全部应用)</span>        
+                </div>
+				<ul class="form clearfix">
+                    <li><label>文件</label><input  class="inputBox w50" name="excelfile" id="excelfile" type="file" /></li>
+				</ul>
+                <div class="btnArea clearfix" >
+						<a class="sjBtn" href="#" id="savekeywordExcel"><span>确定</span></a>
+					</div>
+				</form>
+				</div>
+				-->
+			</div>
+		</div>
+		<div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>

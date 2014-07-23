@@ -1,0 +1,50 @@
+#set($layout = "home/layout/umsLayout.vm")
+#set($HeadMenuId="a_info")
+
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/charge.css")" />
+<script type="text/javascript" src="$homeServer.getURI("/static/js/ums/charge.js")"></script>
+
+<div class="ums-center-contain">
+<div>
+    <ul id="crumbs">
+	    <li><a href="$homeServer.getURI("/ums/index.htm")">首页</a></li>
+	    <li><a href="$homeServer.getURI("/personal/personal.htm")">个人资料</a></li>
+	    <li>修改个人资料</li>
+    </ul>
+</div>
+
+<form name="userForm" method="post" action="$homeServer.getURI("personal/modifyUser.htm")">
+  <input style="display:none" type="text"  name="_form_token" value="$formTool.newForm($request)" />
+  #springBind("userForm.id")
+  <input style="display:none" type="text"   name="${status.expression}" value="$!status.value" />
+  <div class="tab-contain">
+  <li>
+	<p style="color:red;">  
+			<b>$!{tips}</b>
+	</li>
+  #springBind("userForm.userId")
+   <li>  <label>登录帐号:</label><input  class="input_text200" type="text" readonly="true" name="${status.expression}" value="$!status.value"/></li>
+  #springBind("userForm.phone")
+   <li>  <label>手机号:</label><input  class="input_text200" type="text"  name="${status.expression}" value="$!status.value"/></li>
+   <li>
+	<p style="color:red;">  
+	  #foreach($error in $status.errorMessages)
+			<b>$error</b>
+	  #end </p>
+	
+	</li>
+  #springBind("userForm.email")
+   <li>  <label>邮箱:</label><input  class="input_text200" type="text"  name="${status.expression}" value="$!status.value"/></li>
+       <li>
+	<p style="color:red;">  
+	  #foreach($error in $status.errorMessages)
+			<b>$error</b>
+	  #end </p>
+	
+	</li>
+  </div>
+  <div>
+    <input type="submit"  class="abutton" value="保存"/><a  class="ibutton" href="">取消</a>
+  </div>
+ </form>
+</div>

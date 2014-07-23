@@ -1,0 +1,33 @@
+
+#set($HeadMenuId="a_news")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ada.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/left-nav.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/news.css")" />
+<div class="contain">
+  #parse("home/left-nav.vm")
+  <div class="contain-right">
+     <ul>
+        <li class="banner-mid"><img class="title-bar-img-contain" src="$homeServer.getURI("/static/images/ada/ico-3.png")"/><b>新闻中心</b> <span>当前位置: <a href="$homeServer.getURI("/index.htm")">首页</a> &gt; 新闻中心</span></li>
+     </ul>
+	<ul>
+	 <li class="new-title">$!{currentNew.title}</li>
+	  <li class="new-tip">新闻来源:$!{currentNew.source}  发布日期:$!date.format('yyyy-MM-dd',$!currentNew.gmtCreated)</li>
+	</ul>
+	<ul>
+	 <li class="new-content">$!{currentNew.content}</li>
+	</ul>
+	<ul>
+	  <div>
+	   #if ($!{lastNew})
+	   #set($lastPage = $!{pageId} + 1)
+	    <li>上一篇:<a href="$homeServer.getURI("/news/news.htm").addQueryData("pageId","$!{lastPage}")">$!{lastNew.title}</a></li>
+	   #end
+	   #if ($!{nextNew})
+	   #set($nextPage = $!{pageId} - 1)
+	    <li>下一篇:<a href="$homeServer.getURI("/news/news.htm").addQueryData("pageId","$!{nextPage}")">$!{nextNew.title}</a></li>
+	   #end
+	  </div>
+	</ul>
+  </div>
+  
+   </div>

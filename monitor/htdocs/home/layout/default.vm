@@ -1,0 +1,54 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>监控平台</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+
+<!--[if IE]><script language="javascript" type="text/javascript" src="$homeServer.getURI("/static/js/plugin/excanvas.min.js")"></script><![endif]-->
+
+    <link rel="stylesheet" type="text/css" href="$homeServer.getURI("/static/js/ui/themes/default/easyui.css")">
+	<link rel="stylesheet" type="text/css" href="$homeServer.getURI("/static/js/ui/themes/icon.css")">
+	<link rel="stylesheet" type="text/css" href="$homeServer.getURI("/static/css/progressbar.css")">
+
+	<script type="text/javascript" src="$homeServer.getURI("/static/js/ui/jquery-1.8.0.min.js")"></script>
+
+	<script type="text/javascript" src="$homeServer.getURI("/static/js/ui/jquery.easyui.min.js")"></script>
+	
+	
+	
+    <script type="text/javascript" src="$homeServer.getURI("/static/js/plugin/jquery.jqplot.min.js")"></script>
+
+
+    <script class="include" type="text/javascript" src="$homeServer.getURI("/static/js/plugin/jqplot/jqplot.logAxisRenderer.min.js")"></script>
+    <script class="include" type="text/javascript" src="$homeServer.getURI("/static/js/plugin/jqplot/jqplot.canvasTextRenderer.min.js")"></script>
+    <script class="include" type="text/javascript" src="$homeServer.getURI("/static/js/plugin/jqplot/jqplot.canvasAxisLabelRenderer.min.js")"></script>
+    <script class="include" type="text/javascript" src="$homeServer.getURI("/static/js/plugin/jqplot/jqplot.canvasAxisTickRenderer.min.js")"></script>
+    <script class="include" type="text/javascript" src="$homeServer.getURI("/static/js/plugin/jqplot/jqplot.dateAxisRenderer.min.js")"></script>
+    <script class="include" type="text/javascript" src="$homeServer.getURI("/static/js/plugin/jqplot/jqplot.categoryAxisRenderer.min.js")"></script>
+    <script class="include" type="text/javascript" src="$homeServer.getURI("/static/js/plugin/jqplot/jqplot.barRenderer.min.js")"></script>
+    <script type="text/javascript" src="$homeServer.getURI("/static/js/plugin/jqplot/jqplot.highlighter.min.js")"></script>
+    <script type="text/javascript" src="$homeServer.getURI("/static/js/plugin/jqplot/jqplot.cursor.min.js")"></script>
+    <script type="text/javascript" src="$homeServer.getURI("/static/js/plugin/jqplot/jqplot.trendline.min.js")"></script>
+    <link rel="stylesheet" type="text/css" href="$homeServer.getURI("/static/js/plugin/jquery.jqplot.min.css")" />
+
+    <link rel="stylesheet" type="text/css" href="$homeServer.getURI("/static/css/style.css")">
+    <script type="text/javascript" src="$homeServer.getURI("/static/js/My97DatePicker/WdatePicker.js")"></script>
+    
+    
+    <link rel="stylesheet" type="text/css" href="$homeServer.getURI("/static/css/grid.css")" media="screen">
+    <link rel="stylesheet" type="text/css" href="$homeServer.getURI("/static/css/layout.css")" media="screen">
+    <link rel="stylesheet" type="text/css" href="$homeServer.getURI("/static/css/nav.css")" media="screen">
+    <link rel="stylesheet" href="$homeServer.getURI("/static/css/sexybuttons.css")" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="$homeServer.getURI("/static/css/round-corners/styles/rounded-corners.css")" />
+<script>
+	var currenthost = "$!homeServer";
+</script>
+</head>
+ <body class="easyui-layout">
+
+      #parse('home/layout/header2.vm')
+      $screen_content
+      #parse('home/layout/footer.vm')
+ </body>
+</html>

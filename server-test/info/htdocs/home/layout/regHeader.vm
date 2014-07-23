@@ -1,0 +1,22 @@
+
+
+<div class="container"  style="border-bottom:1px solid #dddddd;">
+         <div class="grid doc">
+            <div class="col-2-10">
+            <div class="block">
+               <a href="$homeServer.getURI("/index.htm")"><img width="200" height="60" src="$homeServer.getURI("/static/images/logo-4.png")"/>
+               </a>
+              </div>
+            </div>
+            <div class="col-7-10">
+             <div class="block">
+              <h2>$!{_title}</h2>
+               </div>
+            </div>
+             <div class="col-1-10">
+                 &nbsp;
+            </div>
+        </div>
+</div>
+
+

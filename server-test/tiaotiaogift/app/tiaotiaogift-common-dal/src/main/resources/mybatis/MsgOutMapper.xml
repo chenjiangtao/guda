@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tiaotiaogift.common.dal.MsgOutMapper" >
+  <resultMap id="BaseResultMap" type="com.tiaotiaogift.common.mysql.dataobject.MsgOut" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="send_id" property="sendId" jdbcType="VARCHAR" />
+    <result column="recv_id" property="recvId" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+    <result column="send_time" property="sendTime" jdbcType="TIMESTAMP" />
+    <result column="gmt_modify" property="gmtModify" jdbcType="TIMESTAMP" />
+    <result column="gmt_created" property="gmtCreated" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.tiaotiaogift.common.mysql.dataobject.MsgOut" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  
+
+  <sql id="Base_Column_List" >
+    id, send_id, recv_id, status, send_time, gmt_modify, gmt_created
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from msg_out
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from msg_out
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tiaotiaogift.common.mysql.dataobject.MsgOut" >
+    insert into msg_out (id, send_id, recv_id, 
+      status, send_time, gmt_modify, 
+      gmt_created, content)
+    values (#{id,jdbcType=VARCHAR}, #{sendId,jdbcType=VARCHAR}, #{recvId,jdbcType=VARCHAR}, 
+      #{status,jdbcType=VARCHAR}, #{sendTime,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, 
+      #{gmtCreated,jdbcType=TIMESTAMP}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tiaotiaogift.common.mysql.dataobject.MsgOut" >
+    insert into msg_out
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sendId != null" >
+        send_id,
+      </if>
+      <if test="recvId != null" >
+        recv_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="sendTime != null" >
+        send_time,
+      </if>
+      <if test="gmtModify != null" >
+        gmt_modify,
+      </if>
+      <if test="gmtCreated != null" >
+        gmt_created,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="recvId != null" >
+        #{recvId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null" >
+        #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null" >
+        #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtCreated != null" >
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tiaotiaogift.common.mysql.dataobject.MsgOut" >
+    update msg_out
+    <set >
+      <if test="sendId != null" >
+        send_id = #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="recvId != null" >
+        recv_id = #{recvId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="sendTime != null" >
+        send_time = #{sendTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null" >
+        gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtCreated != null" >
+        gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tiaotiaogift.common.mysql.dataobject.MsgOut" >
+    update msg_out
+    set send_id = #{sendId,jdbcType=VARCHAR},
+      recv_id = #{recvId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
+      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tiaotiaogift.common.mysql.dataobject.MsgOut" >
+    update msg_out
+    set send_id = #{sendId,jdbcType=VARCHAR},
+      recv_id = #{recvId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      send_time = #{sendTime,jdbcType=TIMESTAMP},
+      gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
+      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <select id="selectByRecvId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from msg_out
+    where recv_id = #{recvId,jdbcType=VARCHAR} and status='1'
+  </select>
+  
+  <select id="selectByParams" resultMap="ResultMapWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from msg_out
+    where 1=1 
+      <if test="sendId !=null">
+		and send_id = #{sendId,jdbcType=VARCHAR}
+	  </if>
+     <if test="startTime!=null and endTime!=null">
+		<![CDATA[	AND gmt_created > #{startTime} and gmt_created < #{endTime} ]]>
+	    </if>
+    order by gmt_created desc limit #{start},20 
+  </select>
+  
+    <select id="selectCountByParams" resultType="int">
+    select 
+    count(id)
+    from msg_out
+    where 1=1 
+      <if test="sendId !=null">
+		and send_id = #{sendId,jdbcType=VARCHAR}
+	  </if>
+     <if test="startTime!=null and endTime!=null">
+		<![CDATA[	AND gmt_created > #{startTime} and gmt_created < #{endTime} ]]>
+	 </if>
+  </select>
+  
+    <select id="selectWait" resultMap="ResultMapWithBLOBs">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+     from msg_out
+    <![CDATA[
+    where status = '0' order by gmt_created limit 1;
+    ]]>
+  </select>
+  
+   <select id="selectCountToday" resultType="java.lang.Integer">
+    select  count(id) from msg_out
+    <![CDATA[
+    where status='1' and datediff(gmt_modify,NOW())=0
+    ]]>
+  </select>
+  
+   <select id="selectCountByUser" resultType="java.lang.Integer">
+    select  count(id) from msg_out
+    <![CDATA[
+    where status='1' and send_id = #{sendId,jdbcType=VARCHAR}
+    ]]>
+  </select>
+  <resultMap id="BaseUserResultMap" type="com.tiaotiaogift.common.mysql.dataobject.MsgOutVo" extends="ResultMapWithBLOBs">
+
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+   
+  </resultMap>
+    <select id="selectByUserName" resultMap="BaseUserResultMap" >
+    select 
+    m.id, m.send_id, m.recv_id, m.status, m.send_time, m.gmt_modify, m.gmt_created, m.content,u.user_id
+    from msg_out m left join user u on u.id=m.send_id where 1=1
+    
+     <if test="userName !=null ">
+		and u.user_id like CONCAT(CONCAT('%', #{userName}), '%') 
+	</if>
+    <if test="startTime!=null and endTime!=null ">
+		<![CDATA[	AND m.gmt_created > #{startTime} and m.gmt_created < #{endTime} ]]>
+	</if>
+    order by gmt_created desc limit #{start},#{rows}
+  </select>
+  
+    <select id="selectCountByUserName" resultType="java.lang.Integer">
+    select 
+    count(m.id)
+    from msg_out m left join user u on u.id=m.send_id where 1=1
+    <if test="userName !=null ">
+		and u.user_id like CONCAT(CONCAT('%', #{userName}), '%') 
+	</if>
+     <if test="startTime!=null and endTime!=null ">
+			<![CDATA[	AND m.gmt_created > #{startTime} and m.gmt_created < #{endTime} ]]>
+	</if>
+  </select>
+  
+    <select id="selectByRecvIdLimit" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from msg_out
+    where recv_id = #{recvId,jdbcType=VARCHAR}  limit 1 
+  </select>
+  
+  
+   <select id="selectRecentByUserId" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from msg_out
+    where send_id = #{userId,jdbcType=VARCHAR}  order by gmt_created desc limit 1 
+  </select>
+  
+     <update id="updateStatusBatch" parameterType="Map">  
+            update msg_out   set   
+                status=#{status},gmt_modify = #{gmtModify,jdbcType=TIMESTAMP}
+            where id in   
+            <foreach collection="ids" index="index" item="item" open="(" separator="," close=")" >  
+                #{item}  
+            </foreach>  
+    </update>  
+  
+  
+  
+</mapper>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	default-autowire="byName">
+
+
+
+	<bean id="mysqlDataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName">
+			<value>com.mysql.jdbc.Driver</value>
+		</property>
+		<property name="url">
+			<value>${mysqljdbc.url}</value>
+		</property>
+		<property name="username">
+			<value>${mysqljdbc.username}</value>
+		</property>
+		<property name="password">
+			<value>${mysqljdbc.password}</value>
+		</property>
+	</bean>
+
+	<bean id="transactionManager"
+		class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+		<property name="dataSource" ref="mysqlDataSource" />
+	</bean>
+
+	<bean id="inReadyMapper" class="net.zoneland.ums.common.mysql.dal.InReadyMapperImpl">
+		<property name="dataSource" ref="mysqlDataSource"></property>
+	</bean>
+	
+	<bean id="inErrorMapper" class="net.zoneland.ums.common.mysql.dal.InErrorMapperImpl">
+		<property name="dataSource" ref="mysqlDataSource"></property>
+	</bean>
+	
+	<bean id="filterMessageMapper" class="net.zoneland.ums.common.mysql.dal.FilterMessageMapperImpl">
+		<property name="dataSource" ref="mysqlDataSource"></property>
+	</bean>
+	
+	<bean id="outReplyMapper" class="net.zoneland.ums.common.mysql.dal.OutReplyMapperImpl">
+		<property name="dataSource" ref="mysqlDataSource"></property>
+	</bean>
+	
+		
+	<bean id="recvidAppMapper" class="net.zoneland.ums.common.mysql.dal.RecvidAppMapperImpl">
+		<property name="dataSource" ref="mysqlDataSource"></property>
+	</bean>
+
+
+
+
+
+</beans>

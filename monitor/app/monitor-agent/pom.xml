@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.foodoon.monitor</groupId>
+		<artifactId>app</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<groupId>com.foodoon.monitor.agent</groupId>
+	<artifactId>monitor-agent</artifactId>
+	<version>1.0.0</version>
+	<name>monitor-agent</name>
+	<url>http://maven.apache.org</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.zoneland</groupId>
+			<artifactId>mvc-runtime-core</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>org.hyperic</groupId>
+			<artifactId>sigar</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.apache</groupId>
+			<artifactId>commons-dbutils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.oracle.db</groupId>
+			<artifactId>ojdbc</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>xfile</groupId>
+			<artifactId>commons-httpclient</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>xfile</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>xfile</groupId>
+			<artifactId>commons-beanutils</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>sqlserver</groupId>
+			<artifactId>sqljdbc</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>

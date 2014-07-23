@@ -1,0 +1,27 @@
+#set($headMenuId="header_all")
+
+
+
+<div data-options="region:'center',title:'服务器最近半小时概况'">
+
+<div id="main-contain" class="contain">
+	
+</div>
+</div>
+
+<div id="background" class="background" style="display: none; "></div>
+<div id="progressBar" class="progressBar" style="display: none; ">数据加载中，请稍等...</div> 
+
+
+
+
+ <div id="mm3" class="easyui-menu" style="width:80px;">
+
+
+<div><a target="_blank" id="dbHref">查看数据库详情</a></div>
+<div><a target="_blank" id="serverHref">查看服务器详情</a></div>
+
+</div>
+
+<script type="text/javascript" src="$homeServer.getURI("/static/js/plugin/jqplot/jqplot.pieRenderer.min.js")"></script>
+<script type="text/javascript" src="$homeServer.getURI("/static/js/indexAll.js")"></script>

@@ -1,0 +1,34 @@
+<div id="lt_nav">
+		<div class="lt_nav_hd"><span>系统管理</span></div>
+        <div id="lt_nav_menu" class="lt_nav_menu">
+			<a id="app_side_bar" href="$umsServer.getURI("/app/list.htm")" >应用维护</a>
+			<a id="msgIn_rule_side_bar" href="$umsServer.getURI("/admin/msgInRule/list.htm")" >上行规则维护</a>
+			<a id="gate_rule_side_bar" href="$umsServer.getURI("/gatewayRule/list.htm")" >网关规则配置</a>
+			<a id="sys_info_side_bar" href="$umsServer.getURI("/admin/system/system.htm")">查询系统</a>
+			<a id="role_side_bar" href="$umsServer.getURI("/admin/role/roleconfig.htm")">权限配置</a>
+			<a id="org_side_bar" href="$umsServer.getURI("/admin/area/list.htm")">单位维护</a>
+            <a id="flow_side_bar" href="$umsServer.getURI("/admin/flow/flowlist.htm")">流量配置</a>
+            <a class="select" id="black_list_side_bar" href="$umsServer.getURI("/admin/blacklist/blacklist.htm")">黑名单维护</a>
+            <a id="keyword_side_bar" href="$umsServer.getURI("/admin/keyword/keywordlist.htm")">关键字维护</a>
+			<a id="gate_side_bar" href="$umsServer.getURI("/gateway/list.htm")" >网关配置</a>
+			<a id="log_side_bar" href="$umsServer.getURI("/log/log.htm")" >日志管理</a>
+			<!--
+			<a id="gateway_group_side_bar" href="$umsServer.getURI("/admin/gateGroupList.htm")" >网关分组配置</a>
+			<a id="gatewayGroup_rule_side_bar" href="$umsServer.getURI("/admin/gateGroupRuleList.htm")" >网关分组规则配置</a>
+			-->
+        </div>
+        <div class="rounded_btm">
+            <span class="lt_btm"></span>
+            <span class="rt_btm"></span>
+        </div>
+ </div>
+<script language="javascript">
+	var oul = document.getElementById("lt_nav_menu").getElementsByTagName("a");
+	for(var i=0,len=oul.length;i<len;++i){
+	   oul[i].className="";
+	}
+	var oli = document.getElementById("$sideMenuId");
+	if(oli){
+		oli.className="select";
+	}
+</script>

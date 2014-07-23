@@ -1,0 +1,22 @@
+<div class="contain-left">
+	<ul class="left-lev" id="left_nav">
+	 <li id="left_index" class="left_nav_no_visited"><a href="$homeServer.getURI("/ums/index.htm")"><b>发送短信</b></a></li>
+	 <li id="left_send"><a href="$homeServer.getURI("/ums/send.htm")"><b>已发送的消息</b></a></li>
+
+	 <li id="left_recv"><a href="$homeServer.getURI("/ums/recv.htm")"><b>接收到的消息</b></a></li>
+	
+	</ul>
+</div>
+
+<script language="javascript">
+	var oul = document.getElementById("left_nav").getElementsByTagName("li");
+	for(var i=0,len=oul.length;i<len;++i){
+	   oul[i].className="left_nav_no_visited";
+	}
+	var oli = document.getElementById("$leftMenuId");
+
+	if(oli){
+		oli.className="left_nav_visited";
+	}
+	
+</script>

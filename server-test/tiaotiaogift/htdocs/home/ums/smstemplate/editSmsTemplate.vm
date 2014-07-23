@@ -1,0 +1,40 @@
+
+#set($layout = "home/layout/blank.vm")
+
+
+
+<div >
+
+
+<form method="post" action="$homeServer.getURI("/resetPassword.htm")" id="smsTemplateForm" name="smsTemplateForm">
+<div >
+
+<input style="display:none" type="text"  name="_form_token" value="$formTool.newForm($request)" />
+
+<li><label>请输入模版内容:</label>
+  #springBind("smsTemplateForm.content" )
+  <textarea cols="50" rows="10"   id="template_content" name="${status.expression}" onkeyup="javascript:var val = this.value;if(val.length>200){this.value=val.substring(0,200)}">$!status.value</textarea> 
+</li>
+<li>
+<p class="error-span">
+  #foreach($error in $status.errorMessages)
+		<b>$error</b>
+  #end
+</p>
+</li>
+
+<li>
+<p class="error-span">
+  #foreach($error in $status.errorMessages)
+		<b>$error</b>
+  #end
+</p>
+</li>
+<li class="form-btn"><a class="button w100" id="reg_btn" href="#">保存</a><a id="reset_btn" class="button w100" href="#">重置</a></li>
+
+
+</div>
+</form>
+</div>
+
+</div>

@@ -1,0 +1,131 @@
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/queryui/jquery.ui.all.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.core.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.widget.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.position.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.autocomplete.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/dropdown/jquery.cascadingDropDown.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/log_search.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/selectApp.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/flow_config.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/table.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/targetPage.js")"></script>
+<div id="bd">
+#set($sideMenuId="flow_side_bar")
+#set($HeadMenuId="system_header")
+#parse("/home/admin/adminSideBar.vm")
+#set($searchUrl = $umsServer.getURI("/admin/flow/flowlist.htm"))
+#set($param = "appName=$!appName&status=$!status")
+<input style="width:50%;" type="hidden" id="param"  name="param" value="$param"/>
+<input style="width:50%;" type="hidden" id="searchUrl"  name="searchUrl" value="$searchUrl"/>
+<div id="pRight">
+	<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+	<div class="pRight_c">
+
+			#if($!errorMsg) <div style="color:red;"><font class="bold fs14"> $!errorMsg</font> </div> #end
+			#if($!msg) <div style="color:red;"><font class="bold fs14"> $!msg</font> </div> #end
+				<form action="$umsServer.getURI("/admin/flow/flowlist.htm")" method="post" name="form_book" id="form_book">
+                <div class="searchArea">
+					<table border="0" cellpadding="0" cellspacing="1">
+						<tr>
+
+							<td width="15%" align="right"><span class="bold fs14 c_007">应用名称：</span></td>
+							<td width="35%">
+								<input id="appName" autocomplete="off" title="请输入应用名称或应用ID可显示完整的应用名称" class="inputBox" maxlength="12"  type="text" name="appName" value="$!appName"/>
+							</td>
+							<td width="15%" align="right"><span class="bold fs14 c_007">应用状态：</span></td>
+
+							<td width="35%">
+								  <select name="status" style="width:155px;border:1px solid #cbe1eb;">
+									<option value="">所有状态</option>
+									#foreach($var in $stateEnum)
+										<option value="$var.value" #if($!status==$var.value) selected="selected" #end>$var.description</option>
+									#end
+								  </select>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td colspan="3">
+								<input type="submit" id="searchLog_sbtn" class="btn_green_search_form" value="查询" />
+							</td>
+						</tr>
+					</table>
+                </div>
+			<div id="tableContainer" class="tableContainer" style="width: 100%;">
+				<div id="scrollContentContainer" class="scrollContentContainer">
+					<table class="scrollContent" cellspacing="1" cellpadding="0" width="100%">
+							<thead>
+								<tr>
+									<td width="5%">序号</td>
+									<td width="7%">应用ID</td>
+									<td width="23%">应用名称</td>
+									<td width="7%">应用短号</td>
+									<td width="10%">流量(日)</td>
+									<td width="10%">流量(月)</td>
+									<td width="8%">应用状态</td>
+									<td width="20%">修改时间</td>
+									<td width="10%">操作</td>
+								</tr>
+							</thead>
+							<tbody class="tb">
+
+						#foreach($var in $result.results)
+							<tr>
+							  <td width="5%" style="text-align:center;">$velocityCount</td>
+					          <td width="10%" title="$!var.appId">$!var.appId</td>
+					          <td width="15%" title="$!var.appName">$!var.appName</td>
+					          <td width="10%" title="$!var.appCode">$!var.appCode</td>
+					          <td width="10%" title="$!var.flowDay">$!var.flowDay</td>
+					          <td width="10%" title="$!var.flowMonth">$!var.flowMonth</td>
+					           #if($!var.status==1)
+							   <td width="10%">可用</td>
+							   #else
+							   <td width="10%">不可用</td>
+							   #end
+					          <td width="20%" title="$!date.format('yyyy-MM-dd HH:mm:ss',$!var.gmtModified))">$!date.format('yyyy-MM-dd HH:mm:ss',$!var.gmtModified)</td>
+					          <td width="10%" style="text-align:center;">
+					          <a class="a_green_form_ddl" target="_blank" href="$umsServer.getURI("/admin/flow/updateflow.htm").addQueryData("pageId","$!result.curPage").addQueryData("id","$!var.id").addQueryData("appName","$!appName").addQueryData("status","$!status")"  id="modifyFlow">设置流量<span></span></a>
+
+	                         </td>
+					         </tr>
+							#end
+							 </tbody>
+					</table>
+				</div>
+			</div>
+			#noRecord($result)
+			#if( $!result.totalPage > 0)
+			<div class="btnArea clearfix" >
+			<div class="page_detail">
+				   #if($!result.curPage != 1)
+				   <a class="a_green_form_ddl" href="$umsServer.getURI("/admin/flow/flowlist.htm").addQueryData("pageId","1").addQueryData("appName","$!appName").addQueryData("status","$!status")"><span>首页</span></a>
+				   #end
+				   #if($!result.curPage > 1)
+					   #set($tempPage = $!result.curPage - 1)
+					   <a class="a_green_form_ddl" href="$umsServer.getURI("/admin/flow/flowlist.htm").addQueryData("pageId","$!tempPage").addQueryData("appName","$!appName").addQueryData("status","$!status")"><span>上一页</span></a>
+				   #end
+				   #if($!result.curPage < $!result.totalPage)
+					   #set($tempPage = $!result.curPage + 1)
+					   <a class="a_green_form_ddl" href="$umsServer.getURI("/admin/flow/flowlist.htm").addQueryData("pageId","$!tempPage").addQueryData("appName","$!appName").addQueryData("status","$!status")"><span>下一页</span></a>
+				   #end
+				   #if($!result.curPage != $!result.totalPage && $!result.totalPage > 0)
+				    <a class="a_green_form_ddl" href="$umsServer.getURI("/admin/flow/flowlist.htm").addQueryData("pageId","$!result.totalPage").addQueryData("appName","$!appName").addQueryData("status","$!status")"><span>尾页</span></a>
+				   #end
+				 <span class="pager_info">当前第 <input id="targetNum" name="pageId" class="pager_inputBox" value="$!result.curPage" autocomplete="off"/>页  </span>				   
+				<span id="targetBtn" class="a_green_form_ddl" style="cursor: pointer;">跳转</span>
+				<span>共$!result.totalPage页 共$!result.total条记录</span>
+
+             </div>
+          </div>
+           #end
+		</form>
+
+		  </div>
+		 <div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+		</div>
+   </div>

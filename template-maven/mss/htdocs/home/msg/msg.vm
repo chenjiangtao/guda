@@ -1,0 +1,74 @@
+
+#set($HeadMenuId="a_msg")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ada.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/left-nav.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/msg.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/pager.css")" />
+<script type="text/javascript" src="$homeServer.getURI("/static/js/msg.js")"></script>
+<div class="contain">
+  #parse("home/left-nav.vm")
+  <div class="contain-right">
+     <ul>
+        <li class="banner-mid"><img class="title-bar-img-contain" src="$homeServer.getURI("/static/images/ada/ico-3.png")"/><b>在线留言</b> <span>当前位置: <a href="$homeServer.getURI("/index.htm")">首页</a> &gt; 在线留言</span></li>
+     </ul>
+	
+	 #foreach($var in $res.result)
+	 <ul class="msg-content">
+       <li class="msg-title">留言客户:&nbsp;$!{var.msg.contactName} <span>留言时间:$!date.format('yyyy-MM-dd',$!var.msg.gmtCreated)</span></li>
+     <li class="msg-detail">留言内容:&nbsp;$!{var.msg.content}</li>
+       #foreach($reply in $var.msgReplys)
+         <li class="reply-content">回复内容:&nbsp;$!{reply.content} </li>
+       #end
+       </ul>
+      #end
+	  
+	  <div class="btnArea clearfix" >
+    			<div class="page_detail">
+    				#if($!res.pageId != 1)
+						<a class="a_green_form_ddl" href="$homeServer.getURI("/msg/msg.htm").addQueryData("pageId","1")"><span>首页</span></a>
+					   #set($tempPage = $!res.pageId - 1)
+					   <a class="a_green_form_ddl" href="$homeServer.getURI("/msg/msg.htm").addQueryData("pageId","$!tempPage")"><span>上一页</span></a>
+				   #end
+				   #if($!res.pageId < $!res.pageCount)
+					   #set($tempPage = $!res.pageId + 1)
+					   <a class="a_green_form_ddl" href="$homeServer.getURI("/msg/msg.htm").addQueryData("pageId","$!tempPage")"><span>下一页</span></a>
+					   <a class="a_green_form_ddl" href="$homeServer.getURI("/msg/msg.htm").addQueryData("pageId","$!res.pageCount")"><span>尾页</span></a>
+				   #end
+				   <span class="pager_info">当前第$!res.pageId页  共$!res.pageCount页 共$!res.total条记录</span>
+                </div>
+            </div>
+	 <!-- 提交留言表单 -->
+	 <div class="msg-form">
+	 <form action="$homeServer.getURI("/msg/msg.htm")" id="msg-Form" name="msgForm" method="post">
+	   <ul>
+	     <li><label>问题:</label>
+	     #springBind("msgForm.content" )
+	     <textarea cols="50" class="form-textarea" name="${status.expression}" >$!status.value</textarea></li>
+	     <li class="error-li">
+		  #foreach($error in $status.errorMessages)
+			<b class="error-tips">$error</b>
+			<br/> 
+		  #end
+		  </li>
+	      #springBind("msgForm.contactName" )
+	     <li><label>联系人:</label><input class="input_text" type="text" name="${status.expression}" value="$!status.value" /></li>
+	     	     <li class="error-li">
+		  #foreach($error in $status.errorMessages)
+			<b class="error-tips">$error</b>
+			<br/> 
+		  #end
+		  </li>
+	      #springBind("msgForm.contactInfo" )
+	     <li><label>联系方式:</label><input class="input_text"  type="text" name="${status.expression}" value="$!status.value"/>请注明是手机、电话、QQ、Email,方便我们和您联系 </li>
+	     	     <li class="error-li">
+		  #foreach($error in $status.errorMessages)
+			<b class="error-tips">$error</b>
+			<br/> 
+		  #end
+		  </li>
+	     <li><a href="#" class="btn" id="msg-submit"><span>提交留言</span></a></li>
+	   </ul>
+	   </form>
+	 </div>
+  </div>
+ </div>

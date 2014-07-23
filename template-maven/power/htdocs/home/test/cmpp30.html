@@ -1,0 +1,67 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+</head>
+<body>
+cmpp3 test            
+<form action="" name="cmpp30Msg"  method="post">
+<label>gatewayId</label><input type="text" name="gatewayId" value="99cc1dff-4518-4e99-b11b-64cd9b13180a"/><label></label><br/>
+<label>pk_Total</label><input type="text" name="pk_Total" value="1"/><label></label><br/>
+<label>pk_Number</label><input type="text" name="pk_Number" value="1"/><label></label><br/>
+<label>registered_Delivery</label><input type="text" name="registered_Delivery" value="1"/><label>是否要求返回状态确认报告：
+0：不需要；
+1：需要。</label><br/>
+
+<label>msg_Level</label><input type="text" name="msg_Level" value="1"/><label>信息级别。</label><br/>
+<label>service_Id</label><input type="text" name="service_Id" value="95598"/><label>业务标识，是数字、字母和符号的组合。</label><br/>
+<label>fee_UserType</label><input type="text" name="fee_UserType" value="2"/><label>计费用户类型字段：
+0：对目的终端MSISDN 计费；
+1：对源终端MSISDN 计费；
+2：对SP 计费；
+3 ： 表示本字段无效， 对谁计费参见
+Fee_terminal_Id 字段。</label><br/>
+
+<label>fee_Terminal_Id</label><input type="text" name="fee_Terminal_Id" value=""/><label>被计费用户的号码，当Fee_UserType 为3
+时该值有效，当Fee_UserType 为0、1、2
+时该值无意义。</label><br/>
+<label>fee_Terminal_Type</label><input type="text" name="fee_Terminal_Type" value="0"/><label>被计费用户的号码类型，0：真实号码；1：
+伪码。</label><br/>
+<label>tp_Pid</label><input type="text" name="tp_Pid" value="0"/><label></label><br/>
+
+<label>tp_Udhi</label><input type="text" name="tp_Udhi" value="0"/><label></label><br/>
+<label>msg_Fmt</label><input type="text" name="msg_Fmt" value="8" /><label>信息格式：
+0：ASCII 串；
+3：短信写卡操作；4：二进制信息；
+8：UCS2 编码；
+15：含GB 汉字。。。。。。</label><br/>
+<label>msg_Src</label><input type="text" name="msg_Src" value="95598"/><label>信息内容来源(SP_Id)。</label><br/>
+
+<label>fee_Type</label><input type="text" name="fee_Type" value="1"/><label>资费类别：
+01：对“计费用户号码”免费；
+02：对“计费用户号码”按条计信息费；
+03：对“计费用户号码”按包月收取信息
+费。</label><br/>
+<label>fee_Code</label><input type="text" name="fee_Code" value="00001"/><label>资费代码（以分为单位）。</label><br/>
+<label>src_Terminal_Id</label><input type="text" name="src_Terminal_Id" value="95598"/><label>源号码。SP 的服务代码或前缀为服务代
+码的长号码, 网关将该号码完整的填到
+SMPP 协议Submit_SM 消息相应的
+source_addr 字段，该号码最终在用户手机
+上显示为短消息的主叫号码。</label><br/>
+<label>dest_Terminal_Id</label><input type="text" name="dest_Terminal_Id" value="13588754574"/><label>接收短信的MSISDN 号码。</label><br/>
+<label>dest_Terminal_Type</label><input type="text" name="dest_Terminal_Type" value="0"/><label>接收短信的用户的号码类型，0：真实号
+码；1：伪码。</label><br/>
+<label>msg_Content</label><input type="text" name="msg_Content" value="测试短信"/><label></label><br/>
+
+<label>LinkID</label><input type="text" name="LinkID" value=""/><label>点播业务使用的LinkID，非点播类业务的
+MT 流程不使用该字段。</label><br/>
+<label></label><input type="text" name="" value=""/><label></label><br/>
+
+<label></label><input type="text" name="" value=""/><label></label><br/>
+<label></label><input type="text" name="" value=""/><label></label><br/>
+
+<input type="submit" value="submit"/>
+
+</form>
+</body>
+</html>

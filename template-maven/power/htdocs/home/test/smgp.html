@@ -1,0 +1,73 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+</head>
+<body>
+cmpp3 test
+<form action="" name="cmpp30Msg"  method="post">
+<label>gatewayId</label><input type="text" name="gatewayId" value="12a71fcd-e654-4c93-9406-a91f1feba6bf"/><label></label><br/>
+<label>msgType</label><input type="text" name="msgType" value="6"/><label>6＝MT 消息（SP 发给终端，包括WEB 上发送的点对点短消息）；</label><br/>
+<label>needReport</label><input type="text" name="needReport" value="1"/><label>是否要求返回状态报告。
+0＝不要求返回状态报告；
+1＝要求返回状态报告；
+其它保留。</label><br/>
+<label>priority</label><input type="text" name="priority" value="3"/><label>短消息发送优先级。
+0＝低优先级；
+1＝普通优先级；
+2＝较高优先级；
+3＝高优先级；
+其它保留。</label><br/>
+
+<label>serviceId</label><input type="text" name="serviceId" value="95598"/><label>业务代码，用于固定网业务。
+对于MO 消息或点对点短消息，该字段无效；
+对于MT 消息，该字段表示业务代码，是该条短消息所属的业务类别，由数字、字母
+和符号组合而成。对于从WEB 上发送的点对点短消息，要求业务代码为 “PC2P”，其它业
+务代码由SP 自定义。</label><br/>
+<label>feeType</label><input type="text" name="feeType" value="01"/><label>对计费用户采取的收费类型。
+对于MO 消息或点对点短消息，该字段无效。对于MT 消息，该字段用法如下：
+00＝免费，此时FixedFee 和FeeCode 无效；
+01＝按条计信息费，此时FeeCode 表示每条费用，FixedFee 无效；
+02＝按包月收取信息费，此时FeeCode 无效，FixedFee 表示包月费用；
+03＝按封顶收取信息费，若按条收费的费用总和达到或超过封顶费后，则按照封顶费
+用收取信息费；若按条收费的费用总和没有达到封顶费用，则按照每条费用总和收取信息费。FeeCode 表示每条费用，FixedFee 表示封顶费用。</label><br/>
+<label>feeCode</label><input type="text" name="feeCode" value="5"/><label>每条短消息费率，单位为“分”。
+对于MO 消息或点对点短消息，该字段无效；对于MT 消息，该字段具体使用方法参</label><br/>
+
+<label>fixedFee</label><input type="text" name="fixedFee" value=""/><label>短消息的包月费/封顶费，单位为“分”。
+对于MO 消息或点对点短消息，该字段无效；对于MT 消息，该字段具体使用方法参
+见7.2.13 节。</label><br/>
+<label>msgFormat</label><input type="text" name="msgFormat" value="8"/><label></label><br/>
+<label>srcTermId</label><input type="text" name="srcTermId" value="1065920595598"/><label>短消息发送方号码。
+对于MT 消息，SrcTermID 格式为“118＋SP 服务代码＋其它（可选）”，例如SP 服务
+代码为1234 时，SrcTermID 可以为1181234 或118123456 等。
+对于MO 消息，固定网中SrcTermID 格式为“区号+号码（区号前添零）”，例如
+02087310323，07558780808，移动网中SrcTermID 格式为MSISDN 号码格式。
+对于固定网点对点消息，主叫号码为普通终端时，SrcTermID 格式为“区号+号码（区
+号前添零）”；主叫号码为爱因平台时，SrcTermID 格式为“10631＋区号+号码（区号前添零）”。</label><br/>
+
+<label>chargeTermId</label><input type="text" name="chargeTermId" value="1065920595598"/><label>计费用户号码。
+ChargeTermID 为空时，如果是MT 消息，则表示对被叫用户号码计费；如果是MO 或
+点对点消息，则表示对主叫用户号码计费。
+ChargeTermID 为非空时，表示对计费用户号码计费。</label><br/>
+<label>destTermId</label><input type="text" name="destTermId" value="13395719129"/><label>短消息接收号码。
+对于MT 消息，DestTermID 连续存储DestTermIDCount 个号码，每一个接收方号码为
+21 位，固定网中DestTermID 格式为“区号+号码（区号前添零）”，移动网中DestTermID 格
+式为MSISDN 号码格式，不足21 位时应左对齐，右补0x00。对于MO 消息，DestTermID 格式为“118＋SP 服务代码＋其它（可选）”。对于点对点
+短消息，DestTermID 格式为“区号+号码（区号前添零）” ，不足21 位时应左对齐，右补
+0x00。对于固定网点对点消息，被叫号码为普通终端时，SrcTermID 格式为“区号+号码（区
+号前添零）”；被叫号码为爱因平台时，SrcTermID 格式为“10631＋区号+号码（区号前添零）”。</label><br/>
+<label>msgContent</label><input type="text" name="msgContent" value="短信测试"/><label></label><br/>
+
+<label>reserve</label><input type="text" name="reserve" value=""/><label></label><br/>
+<label></label><input type="text" name="" value=""/><label></label><br/>
+<label></label><input type="text" name="" value=""/><label></label><br/>
+<label></label><input type="text" name="" value=""/><label></label><br/>
+<label></label><input type="text" name="" value=""/><label></label><br/>
+<label></label><input type="text" name="" value=""/><label></label><br/>
+
+<input type="submit" value="submit"/>
+
+</form>
+</body>
+</html>

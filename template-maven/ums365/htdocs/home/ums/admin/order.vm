@@ -1,0 +1,41 @@
+#set($layout = "home/layout/umsLayout.vm")
+
+<script type="text/javascript" src="$homeServer.getURI("/static/js/ums/order.js")"></script>
+
+<div class="center-contain">
+
+ <div>
+    <table id="admin-order-table"></table>
+ </div>
+</div>
+
+<div style="display:none;">
+<div id="tempDialog" class="easyui-dialog" style="width:400px;height:400px;"  closed="true" > 
+
+    <div class="ftitle "></div> 
+
+    <form id="tempForm" method="post" > 
+         <input name="id" style="display:none"> 
+
+         <div class="padding15 margin-left30"> 
+            <label>用户ID:</label> 
+            <input name="userId" id="userId"  class="easyui-validatebox" required="true"> 
+         </div> 
+         <div class="padding15 margin-left30"> 
+            <label>订单金额:</label> 
+            <input name="amount" id="amount"  class="easyui-validatebox"> 
+        </div> 
+        <div class="padding15 margin-left30"> 
+            <label>包含短信条数:</label> 
+            <input name="sum" id="sum"  class="easyui-validatebox" > 
+        </div> 
+        <div class="padding15 margin-left30"> 
+            <label>状态:</label> 
+            <input name="status" id="status"  class="easyui-validatebox" > 
+        </div> 
+       
+        
+      
+    </form> 
+</div> 
+</div> 

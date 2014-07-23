@@ -1,0 +1,38 @@
+   
+
+<div id="lt_nav">
+
+
+	<div class="lt_nav_hd">
+		<span>我的工作台</span>
+	</div>
+	<div class="lt_nav_menu" id="side_lt_nav_menu">
+		<a class="select" id="msg_send_side_bar" href="$umsServer.getURI("/msg/msg.htm")">
+			<img src="$umsServer.getURI("/static/images/pic_9.jpg")" />发送消息
+		</a>
+		<a id="msg_draft_side_bar" href="$umsServer.getURI("/msg/msgDraft.htm")">
+			草稿箱
+		</a>
+		<a id="msg_send_list_side_bar" href="$umsServer.getURI("/msg/mysendmsg.htm")">
+			已发送的消息
+		</a>
+		<a id="msg_recv_side_bar" href="$umsServer.getURI("/msg/myacceptmsg.htm")">
+			已接收的消息
+		</a>
+	</div>
+	<div class="rounded_btm">
+		<span class="lt_btm"></span> <span class="rt_btm"></span>
+	</div>
+	
+</div>
+<script language="javascript">
+	var side_oul = document.getElementById("side_lt_nav_menu")
+			.getElementsByTagName("a");
+	for ( var i = 0, len = side_oul.length; i < len; ++i) {
+		side_oul[i].className = "";
+	}
+	var side_oli = document.getElementById("$sideMenuId");
+	if (side_oli) {
+		side_oli.className = "select";
+	}
+</script>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.foodoon.monitor.dal.AgentMapper" >
+  <resultMap id="BaseResultMap" type="com.foodoon.monitor.dal.dataobject.Agent" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="k" property="k" jdbcType="VARCHAR" />
+    <result column="host" property="host" jdbcType="VARCHAR" />
+    <result column="value_type" property="valueType" jdbcType="INTEGER" />
+    <result column="order_num" property="orderNum" jdbcType="INTEGER" />
+    <result column="gmt_created" property="gmtCreated" jdbcType="TIMESTAMP" />
+    <result column="comment" property="comment" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, ip, k, host, value_type, gmt_created, comment,order_num
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_agent
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from m_agent
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.foodoon.monitor.dal.dataobject.Agent" >
+    insert into m_agent (id, ip, k, host, 
+      value_type, gmt_created, comment,order_num
+      )
+    values (#{id,jdbcType=VARCHAR}, #{ip,jdbcType=VARCHAR}, #{k,jdbcType=VARCHAR}, #{host,jdbcType=VARCHAR}, 
+      #{valueType,jdbcType=INTEGER}, #{gmtCreated,jdbcType=TIMESTAMP}, #{comment,jdbcType=VARCHAR},#{orderNum,jdbcType=INTEGER}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.foodoon.monitor.dal.dataobject.Agent" >
+    insert into m_agent
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="k != null" >
+        k,
+      </if>
+      <if test="host != null" >
+        host,
+      </if>
+      <if test="valueType != null" >
+        value_type,
+      </if>
+      <if test="gmtCreated != null" >
+        gmt_created,
+      </if>
+      <if test="comment != null" >
+        comment,
+      </if>
+      <if test="orderNum != null" >
+        order_num,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="k != null" >
+        #{k,jdbcType=VARCHAR},
+      </if>
+      <if test="host != null" >
+        #{host,jdbcType=VARCHAR},
+      </if>
+      <if test="valueType != null" >
+        #{valueType,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreated != null" >
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comment != null" >
+        #{comment,jdbcType=VARCHAR},
+      </if>
+       <if test="orderNum != null" >
+        #{order_num,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.foodoon.monitor.dal.dataobject.Agent" >
+    update m_agent
+    <set >
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="k != null" >
+        k = #{k,jdbcType=VARCHAR},
+      </if>
+      <if test="host != null" >
+        host = #{host,jdbcType=VARCHAR},
+      </if>
+      <if test="valueType != null" >
+        value_type = #{valueType,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreated != null" >
+        gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="comment != null" >
+        comment = #{comment,jdbcType=VARCHAR},
+      </if>
+       <if test="orderNum != null" >
+        order_num = #{orderNum,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.foodoon.monitor.dal.dataobject.Agent" >
+    update m_agent
+    set ip = #{ip,jdbcType=VARCHAR},
+      k = #{k,jdbcType=VARCHAR},
+      host = #{host,jdbcType=VARCHAR},
+      value_type = #{valueType,jdbcType=INTEGER},
+      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      comment = #{comment,jdbcType=VARCHAR},
+      order_num = #{orderNum,jdbcType=INTEGER}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+  
+  
+  
+    <select id="selectAll" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from m_agent order by order_num desc
+  </select>
+  
+
+  
+  
+  
+   <select id="selectByIpAndKey" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from m_agent where ip=#{ip} and k=#{key}
+  </select>
+  
+   <select id="selectByIpAndType" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from m_agent where ip=#{ip} and value_type=#{valueType} order by order_num desc
+  </select>
+  
+    <delete id="deleteByIp" parameterType="java.lang.String" >
+    delete from m_agent
+    where ip = #{ip,jdbcType=VARCHAR}
+  </delete>
+  
+  
+</mapper>

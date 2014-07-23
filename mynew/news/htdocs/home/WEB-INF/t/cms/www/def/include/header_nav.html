@@ -1,0 +1,21 @@
+<div  class="col-1-1 menu-horizontal">
+     <ul class="grid" style="font-size:18px;">
+              
+        [@cms_channel_list]
+        <li class="menu_first">
+        <a href="${base}/" target="_self" [#if !channel??]class="selected"[/#if]><span>首 页</span></a>
+        </li>
+        [#list tag_list as c]
+        [#if c_index<24]
+        <li>
+        <a href="${c.url}" target="_self" [#if channel??&&channel.id==c.id] class="selected" [/#if]><span>${c.name}</span></a>
+        </li>
+        [/#if]
+        [/#list]
+        [/@cms_channel_list]
+        <li style="border-right:0;">
+        <a href="${base}/guestbook.jspx" target="blank">留言版</a>
+        </li>
+    </dl>
+</div>
+<div class="clear"></div>

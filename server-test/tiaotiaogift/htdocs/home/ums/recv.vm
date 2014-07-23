@@ -1,0 +1,28 @@
+#set($HeadMenuId="a_recv")
+
+
+#set($layout = "home/layout/umsLayout.vm")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ums-mymsg.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/pager.css")" />
+<script type="text/javascript" src="$homeServer.getURI("/static/js/ums/recv.js")"></script>
+<script type="text/javascript" src="$homeServer.getURI("/static/js/My97DatePicker/WdatePicker.js")"></script>
+<div class="ums-center-contain">
+<div>
+    <ul id="crumbs">
+	    <li><a href="$homeServer.getURI("/ums/index.htm")">首页</a></li>
+	    <li>接收到的短信</li>
+    </ul>
+</div>
+<div class="msg-contain-right">
+ <div id="tb" style="padding:3px;text-align:left;">  
+		    <span>开始时间:</span>  
+		    <input id="startTime" style="line-height:24px;border:1px solid #ccc"  onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:true,readOnly:true,maxDate:'%y-%M-#{%d}'})">  
+		    <span>结束时间:</span>  
+		    <input id="endTime" style="line-height:24px;border:1px solid #ccc" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:true,readOnly:true,maxDate:'%y-%M-#{%d}'})">  
+		    <a href="#" class="easyui-linkbutton" plain="true" onclick="doSearch()">查询</a>  
+		</div> 
+  <table id="recv-table"></table>
+
+ </div> 
+    
+</div>

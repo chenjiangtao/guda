@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.zoneland.ums.common.dal.UmsGatewayGroupRelMapper" >
+  <resultMap id="BaseResultMap" type="net.zoneland.ums.common.dal.dataobject.UmsGatewayGroupRel" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="GATEWAY_GROUP_ID" property="gatewayGroupId" jdbcType="VARCHAR" />
+    <result column="GATEWAY_ID" property="gatewayId" jdbcType="VARCHAR" />
+    <result column="GMT_CREATED" property="gmtCreated" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, GATEWAY_GROUP_ID, GATEWAY_ID, GMT_CREATED
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from UMS_GATEWAY_GROUP_REL
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from UMS_GATEWAY_GROUP_REL
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="net.zoneland.ums.common.dal.dataobject.UmsGatewayGroupRel" >
+    insert into UMS_GATEWAY_GROUP_REL (ID, GATEWAY_GROUP_ID, GATEWAY_ID, 
+      GMT_CREATED)
+    values (#{id,jdbcType=CHAR}, #{gatewayGroupId,jdbcType=VARCHAR}, #{gatewayId,jdbcType=VARCHAR}, 
+      #{gmtCreated,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="net.zoneland.ums.common.dal.dataobject.UmsGatewayGroupRel" >
+    insert into UMS_GATEWAY_GROUP_REL
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="gatewayGroupId != null" >
+        GATEWAY_GROUP_ID,
+      </if>
+      <if test="gatewayId != null" >
+        GATEWAY_ID,
+      </if>
+      <if test="gmtCreated != null" >
+        GMT_CREATED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=CHAR},
+      </if>
+      <if test="gatewayGroupId != null" >
+        #{gatewayGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="gatewayId != null" >
+        #{gatewayId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null" >
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.zoneland.ums.common.dal.dataobject.UmsGatewayGroupRel" >
+    update UMS_GATEWAY_GROUP_REL
+    <set >
+      <if test="gatewayGroupId != null" >
+        GATEWAY_GROUP_ID = #{gatewayGroupId,jdbcType=VARCHAR},
+      </if>
+      <if test="gatewayId != null" >
+        GATEWAY_ID = #{gatewayId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null" >
+        GMT_CREATED = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.zoneland.ums.common.dal.dataobject.UmsGatewayGroupRel" >
+    update UMS_GATEWAY_GROUP_REL
+    set GATEWAY_GROUP_ID = #{gatewayGroupId,jdbcType=VARCHAR},
+      GATEWAY_ID = #{gatewayId,jdbcType=VARCHAR},
+      GMT_CREATED = #{gmtCreated,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <select id="selectByGatewayGroupId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from UMS_GATEWAY_GROUP_REL
+    where GATEWAY_GROUP_ID = #{gatewayGroupId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByGatewayGroupId" parameterType="java.lang.String" >
+    delete from UMS_GATEWAY_GROUP_REL
+    where GATEWAY_GROUP_ID = #{gatewayGroupId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByGatewayIds" parameterType="java.util.Map" >
+    delete from UMS_GATEWAY_GROUP_REL
+    where GATEWAY_GROUP_ID = #{gatewayGroupId} AND GATEWAY_ID = #{gatewayId}
+  </delete>
+</mapper>

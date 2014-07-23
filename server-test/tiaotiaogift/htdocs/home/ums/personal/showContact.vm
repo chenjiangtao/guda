@@ -1,0 +1,37 @@
+#set($layout = "home/layout/blank.vm")
+
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ums-showContact.css")" />
+<script type="text/javascript" src="$homeServer.getURI("/static/js/ums/showContact.js")"></script>
+<div class="div-body">
+<form action="$homeServer.getURI("/personal/showContact.htm")" name="contactForm" id="contactForm" method="post">
+#springBind("contactForm.name" )
+<input style="width:170px; height:16px; color:#DFDFDF" id="search-text" name="name" type="text"  value="$!searchText" onfocus='if(this.value==="请输入联系人姓名或者手机号"){this.value="";this.style.color="black";}' onblur='if(this.value===""||this.value==="请输入联系人姓名或者手机号"){this.value="请输入联系人姓名或者手机号";this.style.color="#DFDFDF";}'>
+<a href="#" class="a-btn" id="search-btn"><span>搜索</span></a>
+</form>
+</div>
+<div>
+
+#foreach($var in $res.result)
+	#if("" != $!var.name) 
+	<li><input type="checkbox" onclick="selectRecv(this,'$!var.phone')"/>$!var.name ($!var.phone)</li>
+	#else
+	<li><input type="checkbox" onclick="selectRecv(this,'$!var.phone')"/>$!var.phone</li>
+	#end
+#end
+
+</div>
+<div class="btnArea clearfix" >
+    			<div class="page_detail">
+    				#if($!res.pageId != 1)
+						<a  href="$homeServer.getURI("/personal/showContact.htm").addQueryData("pageId","1").addQueryData("name","$!form.name")"><span>首页</span></a>
+					   #set($tempPage = $!res.pageId - 1)
+					   <a  href="$homeServer.getURI("/personal/showContact.htm").addQueryData("pageId","$!tempPage").addQueryData("name","$!form.name")"><span>上一页</span></a>
+				   #end
+				   #if($!res.pageId < $!res.pageCount)
+					   #set($tempPage = $!res.pageId + 1)
+					   <a  href="$homeServer.getURI("/personal/showContact.htm").addQueryData("pageId","$!tempPage").addQueryData("name","$!form.name")"><span>下一页</span></a>
+					   <a  href="$homeServer.getURI("/personal/showContact.htm").addQueryData("pageId","$!res.pageCount").addQueryData("name","$!form.name")"><span>尾页</span></a>
+				   #end
+				   <span class="pager_info">当前第$!res.pageId页  共$!res.pageCount页 共$!res.total条记录</span>
+                </div>
+</div>

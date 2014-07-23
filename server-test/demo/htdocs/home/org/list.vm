@@ -1,0 +1,24 @@
+<a href="$!homeServer.getURI("org/create.htm")" >新建</a>
+
+<table>
+ <tr>
+              id
+              orgName
+              code
+              gmtCreate
+              gmtModify
+          <td>操作</td>
+ </tr>
+#foreach($f in $orgDOList)
+  <tr>
+               <td> $f.id</td>
+               <td> $f.orgName</td>
+               <td> $f.code</td>
+               <td> $f.gmtCreate</td>
+               <td> $f.gmtModify</td>
+          <td><a href="$!homeServer.getURI("org/edit.htm").addQueryData('id',"$!f.id")" >编辑</a></td>
+    <td><a href="$!homeServer.getURI("org/detail.htm").addQueryData('id',"$!f.id")" >查看详情</a></td>
+      <td><a href="$!homeServer.getURI("org/doDelete.htm").addQueryData('id',"$!f.id")" onclick="return confirm('确定删除吗?')">删除</a></td>
+ </tr>
+#end
+</table>

@@ -1,0 +1,60 @@
+#set($layout = "home/layout/blank.vm")
+
+<link rel="stylesheet" type="text/css" href="$homeServer.getURI("/static/css/set.css")">
+
+<div id="dlg" class="easyui-dialog" style="width:600px;height:500px;padding:10px 20px"  closed="true" buttons="#dlg-buttons"> 
+
+    <div class="ftitle "></div> 
+
+    <form id="fm" method="post"> 
+
+        <div class="fitem margin-top10"> 
+
+            <label>告警服务器:</label> 
+
+            <input name="firstname" readonly="true" class="easyui-validatebox" required="true"> 
+
+        </div> 
+
+        <div class="fitem margin-top10"> 
+
+            <label>当:</label> 
+
+            <input class="easyui-combobox" name="k"
+						data-options="
+								url:'combobox_data.json',
+								valueField:'id',
+								textField:'text',
+								panelHeight:'auto'
+			">
+			<input class="easyui-combobox" name="cond"
+						data-options="
+								url:'combobox_data.json',
+								valueField:'id',
+								textField:'text',
+								panelHeight:'auto'
+			">
+            <input name="val" class="easyui-validatebox" required="true"> 
+        </div> 
+        <div class="fitem margin-top10"> 
+         <span  class="vtop"> <input type="checkbox" name="email" value="email"/>邮件通知以下人员（多个人员以分号分隔）</span>
+            <textarea name="emailVal" style="height:100px;width:300px;"></textarea>
+        </div>
+        <div class="fitem margin-top10"> 
+          <span  class="vtop"><input type="checkbox" name="phone" value="phone" />短信通知以下人员（多个人员以分号分隔）</span>
+            <textarea name="phoneVal" style="height:100px;width:300px;"></textarea>
+        </div>
+       
+    </form> 
+
+</div> 
+
+ 
+
+<div id="dlg-buttons"> 
+
+    <a href="#" class="easyui-linkbutton" iconCls="icon-ok" onclick="saveUser()">Save</a> 
+
+    <a href="#" class="easyui-linkbutton" iconCls="icon-cancel" onclick="javascript:$('#dlg').dialog('close')">Cancel</a> 
+
+</div>

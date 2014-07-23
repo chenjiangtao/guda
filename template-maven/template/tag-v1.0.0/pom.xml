@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>net.zoneland</groupId>
+	<artifactId>template</artifactId>
+	<version>1.0.0</version>
+	<packaging>pom</packaging>
+
+	<name>template parent</name>
+
+	<profiles>
+		<profile>
+			<id>dev</id>
+			<activation>
+				<activeByDefault>true</activeByDefault>
+			</activation>
+			<repositories>
+
+				<repository>
+					<id>land_repo</id>
+					<url>http://devsrv.zoneland.net/nexus/content/repositories/land_repo</url>
+					<snapshots>
+					</snapshots>
+				</repository>
+
+			</repositories>
+
+		</profile>
+
+	</profiles>
+
+	<properties>
+		<org.springframework.version>3.1.1.RELEASE</org.springframework.version>
+		<org.springframework.security.version>3.1.0.RELEASE</org.springframework.security.version>
+		<org.slf4j.version>1.6.1</org.slf4j.version>
+		<jetty.version>6.1.26</jetty.version>
+		<mvc.runtime.core.version>1.0.0</mvc.runtime.core.version>
+	</properties>
+	
+	<dependencyManagement>
+		<dependencies>
+			<dependency>
+				<groupId>net.zoneland.template.web</groupId>
+				<artifactId>template-web-home</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+
+			<dependency>
+				<groupId>net.zoneland.template.common.dal</groupId>
+				<artifactId>template-common-dal</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>net.zoneland.template.biz.common</groupId>
+				<artifactId>template-biz-common</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+			<dependency>
+				<groupId>net.zoneland.template.common.util</groupId>
+				<artifactId>template-common-util</artifactId>
+				<version>1.0.0</version>
+			</dependency>
+
+			<dependency>
+			  <groupId>net.zoneland</groupId>
+			  <artifactId>mvc-runtime-core</artifactId>
+			  <version>${mvc.runtime.core.version}</version>
+			</dependency>
+			
+		</dependencies>
+	</dependencyManagement>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				    <version>2.3.2</version>  
+				<configuration>
+					<source>1.5</source>
+					<target>1.5</target>
+					<showWarnings>true</showWarnings>
+				</configuration>
+			</plugin>
+			
+
+		</plugins>
+	</build>
+  <modules>
+    <module>app</module>
+    <module>assembly</module>
+  </modules>
+</project>

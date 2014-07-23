@@ -1,0 +1,20 @@
+#set($headMenuId="header_sys")
+#parse("home/sysLeftBar.vm")
+<div data-options="region:'center',title:'修改登录密码'" >
+<div class="search-form">
+<form action="$homeServer.getURI("/sysPass.htm")" method="post" name="passwordForm">
+<ul><b style="color:red;">$!{errorMsg}</b></ul>
+ <ul><span style="display:inline-block;width:100px;">旧密码:</span>
+  #springBind("passwordForm.old" )
+  <input  name="${status.expression}" type="password" /></ul>
+ <ul><span style="display:inline-block;width:100px;">新密码:</span>
+ #springBind("passwordForm.newPass" )
+ <input  name="${status.expression}" type="password" /></ul>
+ <ul><span style="display:inline-block;width:100px;">重复输入新密码:</span>
+ #springBind("passwordForm.newPassSec" )
+ <input  name="${status.expression}" type="password" /></ul>
+ <ul><button style="margin-left:100px;" type="submit"  class="sexybutton"  value="保存"><span><span><span class="ok">保存</span></span></span></button></ul>
+</form>
+</div>
+
+</div>

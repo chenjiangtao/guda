@@ -1,0 +1,101 @@
+<link href="$umsServer.getURI("/static/css/group.css")" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/checkutil.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/groupSelect.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/group/group.js")"></script>
+<script>
+	$(document).ready(function(){
+		init();
+	});
+</script>
+
+<div id="bd">
+	#set($HeadMenuId="personal_header")
+	#set($sideMenuId="group_side_bar")
+	#parse("/home/user/userSideBar.vm")
+	#set($searchUrl = $umsServer.getURI("/user/mygroup.htm"))
+	#set($param = "searchName=$!groupForm.searchName&curPage=$!groupForm.curPage")
+	<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c">
+            <div id="writeEmail">
+                <div class="btnArea clearfix">
+					 &nbsp;&nbsp;<a class="fs14bold c_007" href="$searchUrl?$param">我的群组</a><a class="fs14bold c_008">-&gt;修改群组</a>
+                </div>
+				#if($!successMsg)
+				<div class="success" id="errorMsg">
+					$!successMsg
+				</div>
+				#else
+				<div class="error" id="errorMsg">
+					$!errorMsg
+				</div>
+				#end
+				<div class="groupinfo">
+					<form id="groupForm" method="post" action="$umsServer.getURI("/user/updateGroup.htm")" >
+						<input type="hidden" id="id" name="id" value="$!groupForm.id" />
+						<input type="hidden" id="relJson" name="relJson" value='$!groupForm.relJson' />
+						<table border="0">
+							<tr>
+								<td align="right" width="20%"><span class="bold fs14 c_007"><span class="red">*</span>群组名称：</span></td>
+								<td width="50%"><input class="input_text" name="groupName" value="$!groupForm.groupName" id="groupName"/></td>
+								<td><span class="tipMsg" id="groupNameMsg">请输入群组名称</span></td>
+							</tr>
+							<tr>
+    							<td align="right" valign="top" ><span class="bold fs14 c_007"><span class="red">*</span>群组成员：</span>
+									<div style="margin-top:5px; margin-right:17px;">
+										<input type="button" id="span_add_btn" class="btn_green" value="添加" />
+									</div>
+								</td>
+    							<td>
+									<div id="memberDiv" class="memberBox">
+                					</div>
+								</td>
+    							<td valign="top" ><span class="tipMsg" id="groupMemberMsg">请添加群组成员</span></td>
+    						</tr>
+							<tr style="height:36px;">
+								<td>&nbsp;</td>
+								<td colspan="2"><input type="button" id="span_submit_btn" class="btn_green" value="保存" /></td>
+                            </tr>
+						</table>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>
+
+<div id="mask" style="display:none;"></div>
+<div id="memberContainer" style="display:none;">
+	<div class="title">添加成员</div>
+	<table border="0">
+		<tr>
+			<td align="right" width="20%"><span class="bold fs14 c_007">成员类型：</span></td>
+			<td width="40%"><input type="radio" value="0" checked name="memberType" id="inner"/> <label for="inner">门户用户</label>&nbsp;&nbsp;
+				<input type="radio" value="1" name="memberType" id="extenal" /> <label for="extenal">直接输入</label>
+			</td>
+			<td>&nbsp;</td>
+		</tr>
+		<tr>
+            <td align="right"><span class="bold fs14 c_007"><span class="red" id="requiredmember">*</span>成员名称：</span></td>
+			<td><input type="text" class="input_text" id="memberName" autocomplete="off" readonly /></td>
+			<td><div class="tipMsg" id="memberNameMsg" style="height:37.5px;overflow:auto;width:245px;padding-left:10px;padding-top:15px;">双击选择人员</div></td>
+		</tr>
+		<tr id="memberDescTr" style="display:none;">
+            <td align="right"><span class="bold fs14 c_007"><span class="red">*</span>成员手机号：</span></td>
+			<td><input type="text" class="input_text" id="memberDesc" /></td>
+			<td><div class="tipMsg" id="memberDescMsg" style="height:37.5px;overflow:auto;width:245px;padding-left:10px;padding-top:15px;">请输入手机号</div></td>
+		</tr>
+		<tr style="display:none"><td><input type="hidden" class="input_text" id="memberPhone" /></td></tr>
+		<tr style="height:36px;">
+			<td>&nbsp;</td>
+			<td colspan="2" ><input type="button" id="span_addMember_btn" class="btn_green" value="添加" />
+				<input type="button" id="span_close_btn" class="btn_green" value="取消" />
+			</td>
+		</tr>
+	</table>
+</div>

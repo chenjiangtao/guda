@@ -1,0 +1,136 @@
+<link href="$umsServer.getURI("/static/css/table.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/queryui/jquery.ui.all.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.core.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.widget.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.position.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.autocomplete.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/log_search.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/role/role_config.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/role/role_list.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/table.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/targetPage.js")"></script>
+
+<div id="bd">
+	#set($sideMenuId="role_side_bar") #set($HeadMenuId="system_header")
+	#parse("/home/admin/adminSideBar.vm")
+	#set($searchUrl = $umsServer.getURI("/admin/role/roleconfig.htm"))
+	#set($param = "userId=$!userInfoForm.userId&userName=$!userInfoForm.userName&phone=$!userInfoForm.phone")
+	<input style="width:50%;" type="hidden" id="param"  name="param" value="$param"/>
+	<input style="width:50%;" type="hidden" id="searchUrl"  name="searchUrl" value="$searchUrl"/>
+	<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c">
+			#if($!msg) <div style="color:red;margin-left:5px;"><font class="bold fs14">$!msg</font></div> #end 
+			#if($!errorMsg) <div style="color:red;margin-left:5px;"><font class="bold fs14">$!errorMsg</font></div> #end
+			<form action="$umsServer.getURI("/admin/role/queryrole.htm")" method="post" name="userInfoForm" id="form_book">
+				 <input type="hidden" name="orgId" id="orgId" value="$!user.orgId" />
+				 <input type="hidden" id="cur_page" value="$!user.curPage"/>
+				 <div class="searchArea">
+					<table border="0" cellpadding="0" cellspacing="1">
+						<tr>
+							<td width="10%" align="right">
+								<span class="bold fs14 c_007">员工工号：</span>
+							</td>
+							<td width="18%">
+								#springBind("userInfoForm.userId" )
+								<input title="请输入员工工号" style="width:80%;" autocomplete="off" class="inputBox" maxlength="40" type="text" name="${status.expression}" value="$!status.value" onkeydown="javascript:var val = this.value;if(val.length>50){this.value=val.substring(0,50)}">
+							</td>
+							<td width="10%" align="right">			
+								<span class="bold fs14 c_007">员工姓名：</span>
+							</td>
+							<td width="18%">
+								#springBind("userInfoForm.userName" )
+								<input title="请输入员工姓名" style="width:80%;" autocomplete="off" class="inputBox" maxLength="40" type="text" name="${status.expression}" value="$!status.value" onkeydown="javascript:var val = this.value;if(val.length>50){this.value=val.substring(0,50)}">
+							</td>
+							<td width="10%" align="right">
+								<span class="bold fs14 c_007">手机号：</span>
+							</td>
+							<td width="18%">
+								#springBind("userInfoForm.phone" )
+								<input id="userPhone" style="width:80%;" title="请输入手机号，输入3位以上接收方手机号可显示内部人员完整手机号" autocomplete="off" class="inputBox" maxLength="30" type="text" name="${status.expression}" value="$!status.value" onkeydown="javascript:var val = this.value;if(val.length>30){this.value=val.substring(0,30)}">
+								<input type="hidden" autocomplete="off" class="inputBox" name="recvId" id="recvId" />
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td colspan="5">
+								<input type="submit" id="searchLog_sbtn" class="btn_green_search_form" value="查询" />
+							</td>
+						</tr>
+					</table>
+                </div>
+			
+			<div id="tableContainer" class="tableContainer" style="width: 100%;">
+				<div id="scrollContentContainer" class="scrollContentContainer">
+					<table class="scrollContent" cellspacing="1" cellpadding="0" width="100%">
+						<thead>
+							<tr>
+							   <td width="4%">序号</td>
+							   <td width="12%">员工工号</td>
+				      	   	   <td width="9%">员工姓名</td>
+				      	   	   <td width="9%">所属角色</td>
+				      	       <td width="13%">手机号</td>
+				      	       <td width="15%">邮箱地址</td>
+				      	       <td width="15%">所属组织</td>	      	       
+				     	       <td width="23%">操作</td>         
+			                </tr>
+					    </thead>
+						<tbody class="tb">
+						#foreach($var in $result.results)
+						   <tr>
+						   	  <td width="4%" style="text-align:center;">$velocityCount</td>
+							  <td width="12%" title="$!var.userId">$!var.userId</td>
+				        	  <td width="9%" title="$!var.userName">$!var.userName</td>
+				        	  <td width="9%" title="$!var.employeeId">$!var.employeeId</td>
+				        	  <td width="13%" title="$!var.phone">$!var.phone</td>
+				          	  <td width="15%" title="$!var.email">$!var.email</td>		
+							  <td width="15%" title="$!var.organizationId">$!var.organizationId</td>		  
+				         	  <td width="23%" style="text-align:center;">
+				             	  <a name="black_del_btn" target="_blank" class="a_green_form_ddl" href="$umsServer.getURI("/admin/role/giverole.htm").addQueryData("id","$!var.id").addQueryData("pageId","$!result.curPage")">
+				              	    分配角色
+				            	  </a> 
+								  &nbsp
+								  <a name="black_del_btn" target="_blank" class="a_green_form_ddl" href="$umsServer.getURI("/admin/role/giveArea.htm").addQueryData("id","$!var.id").addQueryData("pageId","$!result.curPage")">
+				              	    分配单位
+				            	  </a> 
+                        	  </td>
+				           </tr>
+						#end
+					    </tbody>
+				    </table>
+			    </div>	
+		</div>		
+		#noRecord($result)
+		#if( $!result.totalPage > 0)
+		<div class="btnArea clearfix" >
+			<div class="page_detail">
+				   #if($!result.curPage != 1)
+				   <a class="a_green_form_ddl" href="$umsServer.getURI("/admin/role/roleconfig.htm").addQueryData("pageId","1").addQueryData("checkId","$!user.checkId").addQueryData("orgId","$!user.orgId").addQueryData("userId","$!user.userId").addQueryData("userName","$!user.userName").addQueryData("phone","$!user.phone")"><span>首页</span></a>
+				   #end
+				   #if($!result.curPage > 1)
+					   #set($tempPage = $!result.curPage - 1)
+					   <a class="a_green_form_ddl" href="$umsServer.getURI("/admin/role/roleconfig.htm").addQueryData("pageId","$!tempPage").addQueryData("checkId","$!user.checkId").addQueryData("orgId","$!user.orgId").addQueryData("userId","$!user.userId").addQueryData("userName","$!user.userName").addQueryData("phone","$!user.phone")"><span>上一页</span></a>
+				   #end
+				   #if($!result.curPage < $!result.totalPage)
+					   #set($tempPage = $!result.curPage + 1)
+					   <a class="a_green_form_ddl" href="$umsServer.getURI("/admin/role/roleconfig.htm").addQueryData("pageId","$!tempPage").addQueryData("checkId","$!user.checkId").addQueryData("orgId","$!user.orgId").addQueryData("userId","$!user.userId").addQueryData("userName","$!user.userName").addQueryData("phone","$!user.phone")"><span>下一页</span></a>
+				   #end
+				   #if($!result.curPage != $!result.totalPage && $!result.totalPage > 0)
+				    <a class="a_green_form_ddl" href="$umsServer.getURI("/admin/role/roleconfig.htm").addQueryData("pageId","$!result.totalPage").addQueryData("checkId","$!user.checkId").addQueryData("orgId","$!user.orgId").addQueryData("userId","$!user.userId").addQueryData("userName","$!user.userName").addQueryData("phone","$!user.phone")"><span>尾页</span></a>
+				   #end
+				   <span class="pager_info">当前第 <input id="targetNum" name="pageId" class="pager_inputBox" value="$!result.curPage" autocomplete="off"/>页  </span>				   
+				  <span id="targetBtn" class="a_green_form_ddl" style="cursor: pointer;">跳转</span>
+				  <span>共$!result.totalPage页 共$!result.total条记录</span>
+             </div>
+        </div>
+        #end
+      </div>
+      </form>
+        <div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>

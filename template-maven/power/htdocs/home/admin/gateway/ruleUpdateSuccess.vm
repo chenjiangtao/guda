@@ -1,0 +1,34 @@
+<link href="$umsServer.getURI("/static/css/msgsuccess.css")" type="text/css" rel="stylesheet" />
+<div id="bd">
+	#set($HeadMenuId="system_header")
+	#set($sideMenuId="gate_rule_side_bar")
+	#parse("/home/admin/adminSideBar.vm")
+	<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c">
+			<div id="writeEmail" style="height:100%;background-color:#fafcfc;">
+				<div class="btnArea clearfix">
+								&nbsp;&nbsp;<a class="bold fs14 c_007" href="$umsServer.getURI("/gatewayRule/list.htm")">网关规则配置</a><a class="fs14bold c_008">-&gt;网关规则修改成功</a>
+				</div>
+				<div id="messageForm_div">
+			<table cellpadding="0" cellspacing="10px" width="100%" border="0" style="line-height: 200%;margin-left:1%">
+			<tr align="">
+				<td width="95%"><font size="4" color="green"><b>网关规则修改成功！</b></font></td>
+			</tr>
+			<tr align="" style="font-size: 15px; color: green;">
+				<td>您可以点此<a href="$umsServer.getURI("/gatewayRule/add.htm")" class="fs14bold c_007">返回继续添加网关规则</a></td>
+			</tr>
+			<tr align="" style="font-size: 15px; color: green;">
+				<td>您可以点此<a href="$umsServer.getURI("/gatewayRule/update.htm").addQueryData("ruleId","$!umsGatewayRule.id")" class="fs14bold c_007">继续编辑该网关规则</a></td>
+			</tr>
+		</table>
+				</div>
+			</div>
+		</div>
+		<div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>

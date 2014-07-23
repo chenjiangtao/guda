@@ -1,0 +1,65 @@
+<link href="$umsServer.getURI("/static/css/admin/flow.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/flow_config.js")"></script>
+<div id="bd">
+#set($sideMenuId="flow_side_bar")
+#set($HeadMenuId="system_header")
+#parse("/home/admin/adminSideBar.vm")
+<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+	<div class="pRight_c">
+   <div id="writeEmail">
+          <div class="btnArea clearfix">
+					 &nbsp;&nbsp;<a class="fs14bold c_007" href="$umsServer.getURI("/admin/flow/flowlist.htm").addQueryData("pageId","$!pageId").addQueryData("id","$!var.id").addQueryData("appName","$!appName").addQueryData("status","$!status")">流量配置</a><a class="fs14bold c_008">-&gt;设置流量</a>
+          </div>
+		<form action="$umsServer.getURI("/admin/flow/updateflow.htm")" method="post" name="flowForm" id="form_book">
+         #if($!errorMsg) <div style="color:red;margin-left:2%"><font class="bold fs14"> $!errorMsg</font> </div> #end
+			        #if($!msg) <div style="color:red;margin-left:2%"><font class="bold fs14"> $!msg</font> </div> #end
+			<div class="form_div">
+			        #springBind("flowForm.id" )
+					<input type="hidden"  name="${status.expression}" value="$!status.value"/>
+					<ul style="width:100%;"><label class="bold fs14 c_007">应用ID：</label>
+					#springBind("flowForm.appId" )
+                    <lable>$flowForm.appId</lable>
+					<input class="input_text readonly" type = "hidden"name="${status.expression}" value="$!status.value"/></ul>
+
+                    <ul style="width:100%;">
+                      <label class="bold fs14 c_007">应用名：</label>
+					  <lable>$flowForm.appName</lable>
+                      #springBind("flowForm.appName" )
+                      <input class="input_text readonly" type="hidden"  name="${status.expression}" value="$!status.value"/></ul>
+                    <ul style="width:100%;">
+                      <label class="bold fs14 c_007">流量(日)：</label>
+                       #springBind("flowForm.flowDay" )
+                      <input id= "dayFlow" type="text" class="inputBox" name="${status.expression}" value="$!status.value"/><span class="tipMsg" id="dayMsg">只能输入0~199999999之间的数字</span>
+					</ul>
+                    <ul style="width:100%;">
+                      <label class="bold fs14 c_007">流量(月)：</label>
+                       #springBind("flowForm.flowMonth" )
+                      <input id = "monthFlow" type="text" class="inputBox" name="${status.expression}" value="$!status.value"/><span class="tipMsg" id="monthMsg">只能输入0~199999999之间的数字，并且大于等于日流量</span>
+                    </ul>
+                    <ul class="div_form_btn">
+                    <label>&nbsp;</label>
+
+	                <input type="button" class="btn_green_search_form" value="保存" onclick="check()"/>
+					  <ul>
+
+					  <span class="tipMsg">
+						<span class="bold fs14 c_007">注：</span>
+						</br>1.只填写"流量（日）"表示只按日流量值控制消息发送的发送量。
+						</br>2.只填写"流量（月）"表示只按月流量值控制消息发送的发送量。
+						</br>3.既填写流量（日）又填写流量（月）时表示即按日也按月控制消息发送的发送量，且两种都填写时月流量必须大于等于日流量"
+					  </span>
+                    </ul>
+	                </ul>
+            </div>
+
+		</form>
+		</div>
+			  </div>
+			  <div class="rounded_btm">
+				<span class="lt_btm"></span> <span class="rt_btm"></span>
+			  </div>
+   </div>
+ </div>

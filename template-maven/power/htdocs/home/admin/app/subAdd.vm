@@ -1,0 +1,56 @@
+<style >
+	.inputBox{
+		width:50%;
+		height:30px;
+	}
+	.h100{height:100px;}
+</style>
+<link href="$umsServer.getURI("/static/css/ruleAdd.css")" type="text/css" rel="stylesheet" />
+
+<div id="bd">
+#set($HeadMenuId="system_header")
+#set($sideMenuId="gate_rule_side_bar")
+#parse("/home/admin/adminSideBar.vm")
+    <div id="pRight">
+        <div class="rounded_top">
+            <span class="lt_top"></span>
+            <span class="rt_top"></span>
+        </div>
+        <div class="pRight_c">
+        <div id="writeEmail" style="height:100%;background-color:#fafcfc;">
+				 <div class="btnArea clearfix">
+								&nbsp;&nbsp;<a class="bold fs14 c_007" href="$umsServer.getURI("/gatewayRule/list.htm")">$!appName</a><a class="fs14bold c_007">-&gt;添加子应用</a>
+				</div>
+
+            <div id="messageForm_div" >
+				<form name="subAppForm" action="$umsServer.getURI("/subApp/add.htm")" method="post" >
+					#springBind("subAppForm.appId")
+					 <input id="appId" type="hidden" name="${status.expression}" value="$!status.value" />
+					#if($!message)<div style="color:red;margin-left:2%"><font class="bold fs13"> $!message</font> </div> #end
+					<ul class="form clearfix" style="padding:2%;">
+						<li class="formLI"><label class="bold fs14 c_007">子应用ID:</label>
+							#springBind("subAppForm.appSubId")
+							<input type="text" id="inputBox" class="inputBox" name="${status.expression}" value="$!status.value"/>
+							#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end
+						</li>
+						<li><label class="bold fs14 c_007">子应用名字:</label>
+							#springBind("subAppForm.appSubName")
+							<input type="text" id="inputBox" class="inputBox" name="${status.expression}" value="$!status.value"/>
+							#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end
+						</li>
+						#springBind("subAppForm.priority")
+						<li class="formLI"><label class="bold fs14 c_007">优先级:</label>
+							<input type="text" id="inputBox" class="inputBox" name="${status.expression}" value="$!status.value"/>
+						#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end
+						</li>
+					</ul>
+						<div class="" style="padding-left:14%;">
+								<input type="submit" id="span_send_btn" class="btn_green" value="保存" />
+						</div>
+				</form>
+
+				</div>
+        </div>
+		</div>
+    </div>
+</div>

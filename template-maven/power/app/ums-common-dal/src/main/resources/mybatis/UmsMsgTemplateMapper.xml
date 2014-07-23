@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.zoneland.ums.common.dal.UmsMsgTemplateMapper" >
+  <resultMap id="BaseResultMap" type="net.zoneland.ums.common.dal.dataobject.UmsMsgTemplate" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="TEMPLATE_ID" property="templateId" jdbcType="VARCHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="CONTENT" property="content" jdbcType="VARCHAR" />
+    <result column="MSG_TYPE" property="msgType" jdbcType="CHAR" />
+    <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+    <result column="SUB_APP_ID" property="subAppId" jdbcType="VARCHAR" />
+    <result column="PRIORITY" property="priority" jdbcType="INTEGER" />
+    <result column="START_TIME" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="END_TIME" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="RECV_COMMENTS" property="recvComments" jdbcType="VARCHAR" />
+    <result column="VALID_TIME_SCOPE" property="validTimeScope" jdbcType="VARCHAR" />
+    <result column="ERROR_ACTION" property="errorAction" jdbcType="CHAR" />
+    <result column="BIZ_TYPE" property="bizType" jdbcType="VARCHAR" />
+    <result column="BIZ_NAME" property="bizName" jdbcType="VARCHAR" />
+    <result column="SUB_BIZ_TYPE" property="subBizType" jdbcType="VARCHAR" />
+    <result column="GMT_CREATED" property="gmtCreated" jdbcType="TIMESTAMP" />
+    <result column="GMT_MODIFIED" property="gmtModified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, TEMPLATE_ID, TYPE, CONTENT, MSG_TYPE, APP_ID, SUB_APP_ID, PRIORITY, START_TIME, 
+    END_TIME, RECV_COMMENTS, VALID_TIME_SCOPE, ERROR_ACTION, GMT_CREATED, GMT_MODIFIED
+    ,BIZ_TYPE,BIZ_NAME,SUB_BIZ_TYPE
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from UMS_MSG_TEMPLATE
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from UMS_MSG_TEMPLATE
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <delete id="deleteByAppId" parameterType="java.lang.String" >
+    delete from UMS_MSG_TEMPLATE
+    where APP_ID = #{appId,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteBySubAppId" parameterType="java.lang.String" >
+    delete from UMS_MSG_TEMPLATE
+    where SUB_APP_ID = #{subAppId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="net.zoneland.ums.common.dal.dataobject.UmsMsgTemplate" >
+    insert into UMS_MSG_TEMPLATE (ID, TEMPLATE_ID, TYPE, 
+      CONTENT, MSG_TYPE, APP_ID, 
+      SUB_APP_ID, PRIORITY, START_TIME, 
+      END_TIME, RECV_COMMENTS, VALID_TIME_SCOPE, 
+      ERROR_ACTION, GMT_CREATED, GMT_MODIFIED
+      ,BIZ_TYPE,BIZ_NAME,SUB_BIZ_TYPE
+      )
+    values (#{id,jdbcType=CHAR}, #{templateId,jdbcType=VARCHAR}, #{type,jdbcType=VARCHAR}, 
+      #{content,jdbcType=VARCHAR}, #{msgType,jdbcType=CHAR}, #{appId,jdbcType=VARCHAR}, 
+      #{subAppId,jdbcType=VARCHAR}, #{priority,jdbcType=INTEGER}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{recvComments,jdbcType=VARCHAR}, #{validTimeScope,jdbcType=VARCHAR}, 
+      #{errorAction,jdbcType=CHAR}, #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}
+      , #{bizType,jdbcType=VARCHAR}, #{bizName,jdbcType=VARCHAR}, #{subBizType,jdbcType=VARCHAR}
+      )
+  </insert>
+
+  <update id="updateByPrimaryKey" parameterType="net.zoneland.ums.common.dal.dataobject.UmsMsgTemplate" >
+    update UMS_MSG_TEMPLATE
+    set TEMPLATE_ID = #{templateId,jdbcType=VARCHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      CONTENT = #{content,jdbcType=VARCHAR},
+      MSG_TYPE = #{msgType,jdbcType=CHAR},
+      APP_ID = #{appId,jdbcType=VARCHAR},
+      SUB_APP_ID = #{subAppId,jdbcType=VARCHAR},
+      PRIORITY = #{priority,jdbcType=INTEGER},
+      START_TIME = #{startTime,jdbcType=TIMESTAMP},
+      END_TIME = #{endTime,jdbcType=TIMESTAMP},
+      RECV_COMMENTS = #{recvComments,jdbcType=VARCHAR},
+      VALID_TIME_SCOPE = #{validTimeScope,jdbcType=VARCHAR},
+      BIZ_TYPE=#{bizType,jdbcType=VARCHAR}, 
+      BIZ_NAME=#{bizName,jdbcType=VARCHAR},
+      SUB_BIZ_TYPE=#{subBizType,jdbcType=VARCHAR},
+      ERROR_ACTION = #{errorAction,jdbcType=CHAR},
+      GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  
+    <select id="findByTempId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from UMS_MSG_TEMPLATE
+    where TEMPLATE_ID = #{tempId,jdbcType=CHAR}
+  </select>
+  
+  <select id="getCountByRequirement" resultType="java.lang.Integer" parameterType="java.util.Map" >
+    select 
+    count(ID)
+    from UMS_MSG_TEMPLATE
+    where 
+    1 = 1
+    <if test="tempId != null">
+		AND	TEMPLATE_ID like '%'||#{tempId}||'%'
+	</if>
+	<if test="appIdList!=null">
+			AND APP_ID IN
+			<foreach item="item" index="index" collection="appIdList"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+  </select>
+  
+  <select id="searchByPage" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		from UMS_MSG_TEMPLATE
+		WHERE 
+		1 = 1
+		<if test="tempId != null">
+		AND	TEMPLATE_ID like '%'||#{tempId}||'%'
+		</if>
+		<if test="appIdList!=null">
+			AND APP_ID IN
+			<foreach item="item" index="index" collection="appIdList"
+				open="(" separator="," close=")">
+				#{item}
+			</foreach>
+		</if>
+		 order by GMT_MODIFIED desc
+		limit #{first} , 10
+	</select>
+	
+	  <select id="searchByAppId" resultMap="BaseResultMap">
+		
+		SELECT
+		<include refid="Base_Column_List" />
+		from UMS_MSG_TEMPLATE
+		WHERE 
+		1 = 1
+		<if test="appId != null">
+		AND	 APP_ID = #{appId}
+		</if>
+		<if test="subAppId != null">
+		AND	  SUB_APP_ID = #{subAppId}
+		</if>
+		<if test="templateId != null">
+		AND	  TEMPLATE_ID = #{templateId}
+		</if>
+	</select>
+	
+    <select id="selectByTemplateId" resultMap="BaseResultMap">
+		
+		SELECT
+		<include refid="Base_Column_List" />
+		from UMS_MSG_TEMPLATE
+		WHERE 
+		  TEMPLATE_ID = #{templateId}
+	</select>
+  
+</mapper>

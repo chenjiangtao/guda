@@ -1,0 +1,18 @@
+
+#set($HeadMenuId="a_msg")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ada.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/left-nav.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/msg.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/pager.css")" />
+<script type="text/javascript" src="$homeServer.getURI("/static/js/msg.js")"></script>
+<div class="contain">
+  #parse("home/left-nav.vm")
+  <div class="contain-right">
+     <ul>
+        <li class="banner-mid"><img class="title-bar-img-contain" src="$homeServer.getURI("/static/images/ada/ico-3.png")"/><b>在线留言</b> <span>当前位置: <a href="$homeServer.getURI("/index.htm")">首页</a> &gt; 提交留言结果</span></li>
+     </ul>
+	
+      <ul><b style="font-size:14px;color:#35993c;">留言提交成功</b></ul>
+
+  </div>
+ </div>

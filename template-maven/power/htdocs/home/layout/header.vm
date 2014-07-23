@@ -1,0 +1,40 @@
+<div id="hd">
+    <h1 id="logo"></h1>
+    <div id="nav_login">
+    #if( $operationContext.getOperationContext().getPrincipal().getLogonId() == 'anonymous' )
+      您尚未登录,请<a href="$umsServer.getURI("/login.htm")"><font color="#fff">登录</font></a>
+    #else
+     $operationContext.getOperationContext().getPrincipal().getUserName()，欢迎您 | <a href="#" onclick="javascript:loginOut();">退出</a>
+    #end
+    </div>
+    <div id="nav">
+        <a class="current" href="$umsServer.getURI("/msg/msg.htm")" id="work_header">我的工作台</a>
+        <a href="$umsServer.getURI("/user/user.htm")" id="personal_header">个人资料</a>
+        
+        #if($!operatorHolder.isQuery())
+        <a href="$umsServer.getURI("/queryAdmin/selectMsgOutInit.htm")" id="select_header">短信查询</a>
+		#end
+		
+		#if($!operatorHolder.isAdmin())
+        <a href="$umsServer.getURI("/stat/searchmsgInit.htm")" id="stat_header">统计报表</a>
+		#end
+
+		#if($!operatorHolder.isAppAdmin())
+		<a href="$umsServer.getURI("/appAdmin/appList.htm")" id="app_header">应用管理</a>
+		#end
+
+		#if($!operatorHolder.isAdmin())
+        <a href="$umsServer.getURI("/app/list.htm")" id="system_header">系统管理</a>
+		#end
+    </div>
+</div>
+<script language="javascript">
+	var oul = document.getElementById("nav").getElementsByTagName("a");
+	for(var i=0,len=oul.length;i<len;++i){
+	   oul[i].className="";
+	}
+	var oli = document.getElementById("$HeadMenuId");
+	if(oli){
+		oli.className="current";
+	}
+</script>

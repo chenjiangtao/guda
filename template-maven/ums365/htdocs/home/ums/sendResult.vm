@@ -1,0 +1,25 @@
+
+
+#set($layout = "home/layout/umsLayout.vm")
+
+
+#set($HeadMenuId="a_work")
+
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ums-reg.css")" />
+
+<div class="ums-center-contain">
+<div>
+    <ul id="crumbs">
+	    <li><a href="$homeServer.getURI("/ums/index.htm")">首页</a></li>
+	    <li>短信发送结果</li>
+    </ul>
+</div>
+
+  <div class="contain-tips"><p style="font-size:18px;font-weight:bold;">$!msg</p>
+	  <p style="font-size:16px;font-weight:bold;">您可以点此<a href="$homeServer.getURI("/ums/index.htm")">继续发送短信</a></p>
+	  <p style="font-size:16px;font-weight:bold;">您可以点此<a href="$homeServer.getURI("/ums/send.htm")">查询短信发送结果</a></p>
+  </div>
+   #parse("home/ums/ask/ask.vm")
+
+   
+ </div>

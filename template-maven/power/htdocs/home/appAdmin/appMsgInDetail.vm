@@ -1,0 +1,79 @@
+<link href="$umsServer.getURI("/static/css/myMsg.css")" type="text/css" rel="stylesheet" />
+<div id="bd">
+	#set($sideMenuId="app_msgIn_side_bar")
+	#set($HeadMenuId="app_header")
+	#parse("/home/appAdmin/appSideBar.vm")
+	#set($searchUrl = $umsServer.getURI("/appAdmin/appMsgIn.htm"))
+	#set($param = "startTime=$!msg.startTime&endTime=$!msg.endTime&msgdestName=$!msg.msgdestName&msgDest=$!msg.msgDest&msgsrcName=$!msg.msgsrcName&msgSrc=$!msg.msgSrc&status=$!msg.status&appName=$!msg.appName&appId=$!msg.appId")
+	<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c">
+			<div id="writeEmail">
+				<div class="btnArea clearfix">
+					 &nbsp;&nbsp;<a class="fs14bold c_007" href="$searchUrl?$param&pageId=$!msg.pageId">查询应用上行短信</a><a class="fs14bold c_008">-&gt;短信详细信息</a>
+                </div>
+
+				<div class="form clearfix">
+					<table border="0" cellpadding="0" cellspacing="1" class="msgTable">
+						<tr>
+							<td title="批次号" width="15%" align="right"><div style="width:100px;height:20px;overflow:hidden;white-space:nowrap">批次号：</div></td>
+							<td title="$!msgInfo.batchNo"><div style="width:600px;height:20px;overflow:hidden;white-space:nowrap">$!msgInfo.batchNo</div></td>
+						</tr>
+						<!--
+						<tr>
+							<td title="流水号" width="15%" align="right"><div style="width:100px;height:20px;overflow:hidden;white-space:nowrap">流水号：</div></td>
+							<td title="$!msgInfo.serialNo"><div style="width:600px;height:20px;overflow:hidden;white-space:nowrap">$!msgInfo.serialNo</div></td>
+						</tr>
+						-->
+						<tr>
+							<td title="发送号码" width="15%" align="right"><div style="width:100px;height:20px;overflow:hidden;white-space:nowrap">发送号码：</div></td>
+							<td title="$!msgInfo.sendId"><div style="width:600px;height:20px;overflow:hidden;white-space:nowrap">$!msgInfo.sendId</div></td>
+						</tr>
+						<tr>
+							<td title="接收方" width="15%" align="right"><div style="width:100px;height:20px;overflow:hidden;white-space:nowrap">接收方：</div></td>
+							<td title="$!msgInfo.recvId"><div style="width:600px;height:20px;overflow:hidden;white-space:nowrap">$!msgInfo.recvId</div></td>
+						</tr>
+						<tr>
+							<td title="消息内容" align="right"><div style="width:100px;height:20px;overflow:hidden;white-space:nowrap">消息内容：</div></td>
+							<td title="$!msgInfo.content"><div style="width:600px;height:20px;overflow:hidden;white-space:nowrap">$!msgInfo.content</div></td>
+						</tr>
+						<tr>
+							<td title="应用" align="right"><div style="width:100px;height:20px;overflow:hidden;white-space:nowrap">应用：</div></td>
+							<td title="$!msgInfo.appId"><div style="width:600px;height:20px;overflow:hidden;white-space:nowrap">$!msgInfo.appId</div></td>
+						</tr>
+						<tr>
+							<td title="发送网关" align="right"><div style="width:100px;height:20px;overflow:hidden;white-space:nowrap">发送网关：</div></td>
+							<td title="$!msgInfo.mediaId"><div style="width:600px;height:20px;overflow:hidden;white-space:nowrap">$!msgInfo.mediaId</div></td>
+						</tr>
+						<tr>
+							<td title="被重发次数" align="right"><div style="width:100px;height:20px;overflow:hidden;white-space:nowrap">被重发次数：</div></td>
+							<td title="$!msgInfo.docount"><div style="width:600px;height:20px;overflow:hidden;white-space:nowrap">$!msgInfo.docount</div></td>
+						</tr>
+						<tr>
+							<td title="状态" align="right"><div style="width:100px;height:20px;overflow:hidden;white-space:nowrap">状态：</div></td>
+							<td title="$!msgInfo.status"><div style="width:600px;height:20px;overflow:hidden;white-space:nowrap">$!msgInfo.status</div></td>
+						</tr>
+						<tr>
+							<td title="错误信息" align="right"><div style="width:100px;height:20px;overflow:hidden;white-space:nowrap">错误信息：</div></td>
+							<td title="$!msgInfo.errorMsg"><div style="width:600px;height:20px;overflow:hidden;white-space:nowrap">$!msgInfo.errorMsg</div></td>
+						</tr>	
+						<tr>
+							<td title="最近操作时间" align="right"><div style="width:100px;height:20px;overflow:hidden;white-space:nowrap">最近操作时间：</div></td>
+							<td title="$!date.format('yyyy-MM-dd HH:mm:ss',$!msgInfo.gmtModified)"><div style="width:600px;height:20px;overflow:hidden;white-space:nowrap">$!date.format('yyyy-MM-dd HH:mm:ss',$!msgInfo.gmtModified)</div></td>
+						</tr>
+						<tr>
+							<td title="创建时间" align="right"><div style="width:100px;height:20px;overflow:hidden;white-space:nowrap">创建时间：</div></td>
+							<td title="$!date.format('yyyy-MM-dd HH:mm:ss',$!msgInfo.gmtCreated)"><div style="width:600px;height:20px;overflow:hidden;white-space:nowrap">$!date.format('yyyy-MM-dd
+								HH:mm:ss',$!msgInfo.gmtCreated)</div></td>
+						</tr>
+					</table>
+				</div>
+			</div>
+		</div>
+		<div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>

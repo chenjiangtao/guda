@@ -1,0 +1,51 @@
+#set($HeadMenuId="a_template")
+
+
+#set($layout = "home/layout/umsLayout.vm")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ums-mymsg.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/pager.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/all.css")" />
+
+
+<script type="text/javascript" src="$homeServer.getURI("/static/js/ums/smsTemplate.js")"></script>
+
+<div class="ums-center-contain">
+<div>
+    <ul id="crumbs">
+	    <li><a href="$homeServer.getURI("/ums/index.htm")">首页</a></li>
+	    <li>短信模版</li>
+    </ul>
+</div>
+ <div class="msg-contain-right">
+  <table id="template-table"></table>
+  </div>
+</div>
+
+<div style="display:none;">
+<div id="tempDialog" class="easyui-dialog" style="width:600px;height:500px;padding:10px 20px"  closed="true" buttons="#dlg-buttons"> 
+
+    <div class="ftitle "></div> 
+
+    <form id="tempForm" method="post" > 
+     <input name="id" style="display:none"> 
+
+        <div class="fitem margin-top10"> 
+         
+            <div> 
+	            <a id="addTaobaoName" class="do-btn-small" href="javascript:addTag('content','taobaoName')">插入淘宝昵称</a>
+	            <a id="addTaobaoOrder" class="do-btn-small" href="javascript:addTag('content','taobaoOrder')">插入淘宝订单号</a>
+	            <a id="addDeliveryName" class="do-btn-small" href="javascript:addTag('content','deliveryName')">插入物流公司名称</a>
+	            <a id="addDeliveryNo" class="do-btn-small" href="javascript:addTag('content','deliveryNo')">插入物流单号</a>
+	            <a id="addPaipaiName" class="do-btn-small" href="javascript:addTag('content','paipaiName')">插入拍拍昵称</a>
+	            <a id="addPaipaiName" class="do-btn-small" href="javascript:addTag('content','paipaiOrder')">插入拍拍订单号</a>
+            </div>
+            <div>
+               模版内容: 
+            </div>
+            <textarea name="content" id='content' style="height:300px;width:500px;"></textarea>
+        </div>
+      
+    </form> 
+
+</div> 
+</div>

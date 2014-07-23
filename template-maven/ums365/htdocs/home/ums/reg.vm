@@ -1,0 +1,92 @@
+#set($HeadMenuId="a_try")
+#set($leftMenuId="try_ums")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ums-reg.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/step.css")" />
+<script type="text/javascript" src="$homeServer.getURI("/static/js/ums/reg.js")"></script>
+<div class="ums-center-contain">
+<div>
+    <ul id="crumbs">
+	    <li><a href="$homeServer.getURI("/ums/index.htm")">首页</a></li>
+	    <li>注册</li>
+    </ul>
+</div>
+
+<div class="step width80">
+            <ul>
+               <li class="one cur">填写注册信息</li>
+               <li class="">验证邮箱</li>
+               <li class="four">完成</li>
+            </ul>
+        </div>
+<form method="post" action="$homeServer.getURI("/reg.htm")" id="regForm" name="regForm">
+
+<div class="reg-contain">
+<input style="display:none" type="text"  name="_form_token" value="$formTool.newForm($request)" />
+<li><label>用户名:</label>
+  #springBind("regForm.userName" )
+  <input class="reg_input_text" type="text"  name="${status.expression}" value="$!status.value" />
+    <span>用户名为您的登录名</span>
+</li>
+<li>
+<p class="error-span">  
+  #foreach($error in $status.errorMessages)
+		<b>$error</b>
+  #end </p>
+
+</li>
+<li><label>密码:</label>
+  #springBind("regForm.password" )
+ <input class="reg_input_text" type="password"  name="${status.expression}" value="$!status.value" />
+ <span>请尽量输入复杂的密码</span>
+</li>
+<li>
+<p class="error-span">
+#foreach($error in $status.errorMessages)
+	<b>$error</b>
+  #end
+</p>
+</li>
+<li><label>请再次输入密码:</label>
+   #springBind("regForm.secPassword" )
+   <input class="reg_input_text" type="password"  name="${status.expression}" value="$!status.value" />
+   <span>重复上面输入的密码</span>
+ </li>
+<li>
+<p class="error-span">
+#foreach($error in $status.errorMessages)
+		<b>$error</b>
+  #end
+</p>
+</li>
+<li><label>手机号:</label>
+   #springBind("regForm.phone" )
+   <input class="reg_input_text" type="text"  name="${status.expression}" value="$!status.value" />
+   <span>请输入正确的手机号</span>
+</li>
+<li>
+<p class="error-span">
+  #foreach($error in $status.errorMessages)
+	$error
+  #end
+</p>
+</li>
+<li><label>邮箱:</label>
+   #springBind("regForm.email" )
+   <input class="reg_input_text" type="text"  name="${status.expression}" value="$!status.value" />
+   <span>请输入您的常用邮箱，方便您找回密码</span>
+</li>
+<li>
+<p class="error-span">
+  #foreach($error in $status.errorMessages)
+		<b>$error</b>
+  #end
+</p>
+</li>
+<li class="form-btn"><a id="reg_btn" href="#" class="do-btn">注册</a><a id="reset_btn" href="#" class="do-btn">重置</a></li>
+
+
+</div>
+</form>
+</div>
+
+</div>

@@ -1,0 +1,153 @@
+#set($layout = "home/layout/publishLayout.vm")
+
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/publish.css")">
+
+<script type="text/javascript" src="$homeServer.getURI("/static/uploadify/jquery.uploadify.js")"></script>
+ <link href="$homeServer.getURI("/static/uploadify/uploadify.css")" rel="stylesheet" type="text/css" />
+<div class="container">
+<div class="grid doc">
+    <ul class="breadcrumb  font-size16">
+	    <li><a href="$homeServer.getURI("/")">首页</a></li>
+	    <li>发布信息</li>
+    </ul>
+</div>
+</div>
+
+<div class="container">
+<div class="grid  mg-t-40">
+<div class="col-1-6">&nbsp;</div>
+<div class="col-5-6">
+<form class="form form-aligned"  name="publishForm" action="$homeServer.getURI("/prod/publish.htm")" method="post">
+    <input style="display:none" type="text"  name="_form_token" value="$formTool.newForm($request)" />
+    #springBind("publishForm.id")
+    <input style="display:none" type="text"  name="${status.expression}" value="$!{status.value}" />
+  <div class="control">
+    <label>类别</label>
+   
+      <select id="classify-id" name="classifyId" >
+        <option>请选择</option>
+        #foreach($class in $classify)
+          #if($class.id == $publishForm.classifyId)
+		    <option value="$class.id" selected="true">$class.name</option>
+		  #else
+		    <option value="$class.id" >$class.name</option>
+		  #end
+		#end
+        
+      </select>
+
+      <select id="sub-classify-id" name="subClassifyId" >
+        <option>请选择</option>
+        #foreach($subClass in $subClassify)
+          #if($subClass.id == $publishForm.subClassifyId)
+		    <option value="$subClass.id" selected="true">$subClass.name</option>
+		  #else
+		    <option value="$subClass.id" >$subClass.name</option>
+		  #end
+		#end
+      </select>
+  </div>
+  <div class="control">
+
+    <label >价格</label>
+
+      #springBind("publishForm.price")
+      <input   type="text" name="${status.expression}" value="$!{status.value}" >
+      <span>元</span>
+       #springShowErrors("" "color:red;")
+</div>
+  <div class="control">
+    <label  >所在城市</label>
+    
+      <select id="province-id" name="provinceId" >
+        <option>请选择</option>
+        #foreach($prov in $province)
+		      #if($prov.id == $publishForm.provinceId)
+			   <option value="$prov.id" selected>$prov.name</option>
+			  #else
+			   <option value="$prov.id">$prov.name</option>
+			  #end
+		#end
+        
+      </select>
+
+      <select id="city-id" name="cityId" >
+        <option>请选择</option>
+        #foreach($city in $city)
+		      #if($city.id == $publishForm.cityId)
+			   <option value="$city.id" selected="true">$city.name</option>
+			  #else
+			   <option value="$city.id">$city.name</option>
+			  #end
+		#end
+        
+      </select>
+    </div>
+    <div class="control">
+     <label></label>
+      <div id="image"  style="display:inline-block;">
+        #foreach($im in $imgs)
+         <div class="img_box" id="$!im.id-div">
+	         <a class="a_close" id="$!im.id" href="javascript:void(0);"></a>
+	         <span class="span_box">
+	           <img src="$!homeServer$im.path"/>
+	         </span>
+         </div>
+        #end
+      
+   </div>
+   </div>
+   
+    <div class="control">
+      <label>图片</label>
+        <div style="display:inline-block;">
+		<input id="file_upload" onclick="uploadFile()" name="file_upload" type="file" multiple="true">
+        </div>
+    </div>
+  <div class="control">
+    <label>标题</label>
+   
+     #springBind("publishForm.title")
+      <input type="text" class="x2-large" name="${status.expression}" value="$!{status.value}"  >
+      #springShowErrors("" "color:red;")
+</div>
+  <div class="control">
+   
+    <label style="vertical-align:top">详细说明</label>
+      #springBind("publishForm.content")
+       <textarea class="x2-large" name="${status.expression}"  rows="9">$!{status.value}</textarea>
+       #springShowErrors("" "color:red;")
+    </div>
+  <div class="control">
+    <label >联系人</label>
+  
+    #springBind("publishForm.contactUser")
+      <input type="text"  name="${status.expression}" value="$!{status.value}">
+      #springShowErrors("" "color:red;")
+   </div>
+  <div class="control">
+    <label>联系电话</label>
+   
+    #springBind("publishForm.contactInfo")
+      <input type="text"  name="${status.expression}" value="$!{status.value}" >
+      #springShowErrors("" "color:red;")
+  </div>
+
+ <div class="control">
+        <label></label>
+        <button type="submit" class="button-green">确认发布</button>
+    </div>
+
+</form>
+ </div>
+ </div>
+ </div>
+ <script type="text/javascript">
+     
+            var _jid="$!{_sessionid}";
+      
+</script>
+
+<script src="$homeServer.getURI("/static/js/publish.js")"></script>
+
+

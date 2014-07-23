@@ -1,0 +1,135 @@
+<link href="$umsServer.getURI("/static/css/table.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/log_search.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/My97DatePicker/WdatePicker.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/dropdown/jquery.cascadingDropDown.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/app/subApp.js")"></script>
+<div id="bd">
+#set($sideMenuId="sideMenuAllmsg")
+#set($HeadMenuId="system_header")
+#parse("/home/admin/adminSideBar.vm")
+<div id="pRight">
+        <div class="rounded_top">
+            <span class="lt_top"></span>
+            <span class="rt_top"></span>
+        </div>
+        <div class="pRight_c">
+	 <div id="main">
+        <div class="p25">
+            <div id="writeEmail">
+				<form action="$umsServer.getURI("/admin/msg/searchmsg.htm")" method="post" name="form_book" id="form_book">
+                <div class="btnArea clearfix">					
+					<table>
+						<tr>
+                            <td align="right"><span class="bold fs14 c_007">时间段：</span></td>
+							<td >
+								<input style="height:25px" type="text"  id="d4311" class="Wdate" name="startTime" value="$!msg.startTime" onFocus="WdatePicker({dateFmt:'yyyy-M-d H:mm:ss',isShowClear:true,readOnly:true,maxDate:'#F{$dp.$D(\'d4312\')}',maxDate:'%y-%M-%d'})"/>
+            					--
+            					<input style="height:25px" type="text" id="d4312" class="Wdate" name="endTime" value="$!msg.endTime" onFocus="WdatePicker({dateFmt:'yyyy-M-d H:mm:ss',isShowClear:true,readOnly:true,minDate:'#F{$dp.$D(\'d4311\')}',maxDate:'%y-%M-%d'})"/>
+							</td>
+                            <td align="right"><span class="bold fs14 c_007">状态：</span></td>
+							<td >
+								<input class="input_text" type="text" name="status" id="status" value="$!msg.status"/>
+							</td>
+						</tr>
+						<tr>
+                            <td align="right"><span class="bold fs14 c_007">发送人员：</span></td>
+							<td>
+								<input class="input_text" type="text" name="msgdestName" id="msgdestName" value="$!msg.msgdestName" "/>
+								<input type="hidden" name="msgDest" id="msgDest" value="$!msg.msgDest"/>
+							</td>
+                            <td align="right"><span class="bold fs14 c_007">接收方：</span></td>
+							<td>
+								<input class="input_text" type="text" name="msgsrcName" id="msgsrcName" value="$!msg.msgsrcName" "/>
+								<input type="hidden" name="msgSrc" id="msgSrc" value="$!msg.msgSrc"/>
+							</td>
+						</tr>
+						<tr>
+                            <td align="right"><span class="bold fs14 c_007">应用：</span></td>
+							<td>
+								<select name="appId" id="appinfo">
+        							<option value="">--请选择--</option>
+									#foreach($app in $apps)
+										#if($app.appId == $srcAppId)
+											<option selected="selected" value="$app.appId">$app.appName  </option>
+										#else
+											<option value="$app.appId">$app.appName</option>
+										#end
+									#end
+								</select>
+							</td>
+                            <td align="right"><span class="bold fs14 c_007">子应用：</span></td>
+							<td>
+								<select name="subApp" id="appcategory">
+									#if($srcSubAppId&&$srcSubAppName)
+										<option value="$srcSubAppId">$srcSubAppName</option>
+									#else
+										<option value="">--请选择--</option>
+									#end					
+								</select>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td align="right" height="32px"><a class="sjBtn" href="#" id="searchLog_sbtn"><span class="bold fs14 c_007">查询</span></a>
+							</td>		
+							<td>&nbsp;</td>
+                            <td align="right"><a class="sjBtn" href="$umsServer.getURI("/admin/msg/exportExcel.htm")" id="exportmsg_sbtn"><span class="bold fs14 c_007">导出</span></a></td>
+						</tr>
+					</table>
+                </div>
+				
+				<div class="form clearfix">			
+					<div id="mainTable2" class="clearfix litable lisize10">
+                		<ul > 
+                            <li class="mainHeader "><span class="bold fs14 c_007">发送方手机号</span></li> 
+                			<li class="mainHeader "><span class="bold fs14 c_007">发送方人员</span></li>
+							<li class="mainHeader "><span class="bold fs14 c_007">接收方</span></li>
+                			<li class="mainHeader "><span class="bold fs14 c_007">应用</span></li> 
+							<li class="mainHeader "><span class="bold fs14 c_007">子应用</span></li> 
+							<li class="mainHeader "><span class="bold fs14 c_007">状态</span></li> 
+                			<li class="mainHeader  r"><span class="bold fs14 c_007">操作时间</span></li> 
+                		</ul>
+						<div id="srcoll" style="position:relative;width:100%;height:155px;overflow:auto;">
+                		#foreach($var in $result.results)
+                		#if( $velocityCount == $result.results.size() )
+							#set($bclass="b")
+						#end
+						<ul > 
+                	       <li class="$!bclass" title="$!var.sendId">$!var.sendId</li>
+                	       <li class="$!bclass" title="$!var.userId">$!var.userId</li>
+						   <li class="$!bclass" title="$!var.recvId">$!var.recvId</li>
+                	       <li class="$!bclass" title="$!var.appId">$!var.appId</li>
+						   <li class="$!bclass" title="$!var.subApp">$!var.subApp</li>
+                	       <li class="$!bclass" title="$!var.status">$!var.status</li>
+						   <li class="$!bclass r" title="$!date.format('yyyy-MM-dd HH:mm:ss',$!var.gmtCreated)">$!date.format('yyyy-MM-dd HH:mm:ss',$!var.gmtCreated)</li>
+						  </ul>
+                	     #end 
+					</div> 
+                    </div>				
+                </div>
+                
+                <div class="btnArea clearfix">
+						<div style="float:right">
+						<span class="bold fs14 c_007">总页数：$result.totalPage页</span>				
+						<span class="bold fs14 c_007">当前页面：</span>
+						<input type="text" id="current_page" name="curPage" size="1" value="$result.curPage"/>
+						<input type ="hidden" name="totalPage" id="tPage" value="$result.totalPage"/>
+						#if($result.totalPage!=1&&$result.totalPage!=0)
+							<a class="sjBtn" href="#" id="toFirst"><span class="bold fs14 c_007">&lt;&lt;</span></a>
+							<a class="sjBtn" href="#" id="up"><span class="bold fs14 c_007">&lt;</span></a>
+							<a class="sjBtn" href="#" id="down"><span class="bold fs14 c_007">&gt;</span></a>
+							<a class="sjBtn" href="#" id="toEnd"><span class="bold fs14 c_007">&gt;&gt;</span></a>
+						#end
+                    </div>
+                </div>
+				</form>
+            </div>
+        </div>
+    </div>		
+	</div>
+	<div class="rounded_btm">
+            <span class="lt_btm"></span>
+            <span class="rt_btm"></span>
+			</div>
+</div>
+</div>

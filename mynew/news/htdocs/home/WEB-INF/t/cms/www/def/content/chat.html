@@ -1,0 +1,89 @@
+﻿
+
+<div class="pinglun">
+	<div class="LanMu01-2">
+        <div class="LanMu01-1"></div>
+        <span>聊天室（多人在线）</span>
+        <div class="LanMu01-3"></div>
+    </div>
+    
+    <div class="clear-10"></div>
+    <div width="500px" height="300px" style="text-indent:10pt;min-height:300px;background-color:white;">
+    <li><b style="color:red">欢迎来到聊天室，请文明聊天</b></li>
+    <li>9:23</li>
+    <li>您对大家说：早上好</li>
+    <li>9:24</li>
+    <li><b style="color:red">游客</b>说:大家好</li>
+    </div>
+    <div class="pltable">
+  	[#if content.channel.commentControl==0 || (content.channel.commentControl==1 && user??)]
+    <form id="commentForm" action="${base}/comment.jspx" method="post">
+    <div class="plfl1">输入内容：</div>
+    <div class="plfr1"><textarea name="text"  cols="60" rows="2"></textarea></div>
+   
+
+    <input type="submit" name="Submit" value=" 确认 " class="published" />
+   
+
+    </form>
+    </div>
+	<script type="text/javascript">
+    $(function() {
+    /*
+        $("#commentForm").validate( {
+            submitHandler : function(form) {
+                $(form).ajaxSubmit( {
+                    "success" : function(data) {
+                        if(data.success) {
+                            alert("评论成功");
+                            location.href=location.href;
+                        } else {
+                            alert("评论失败");
+                        }
+                    },
+                    "dataType" : "json"
+                });
+            }
+        });
+    */
+        Cms.comment(function(data) {
+            if(data.status==0) {
+                alert("评论成功");
+                location.href=location.href;
+            } else if(data.status==1) {	
+                alert("验证码错误");
+                $("#commentCaptcha").click();
+            } else if(data.status==2) {	
+                alert("内容不存在");
+                $("#commentCaptcha").click();
+            } else if(data.status==3) {	
+                alert("评论关闭");
+                $("#commentCaptcha").click();
+            } else if(data.status==4) {	
+                alert("需要登录评论");
+                $("#commentCaptcha").click();
+            } else if(data.status==100) {	
+                alert("内容不存在");
+                $("#commentCaptcha").click();
+            } else if(data.status==101) {	
+                alert("评论不能为空");
+                $("#commentCaptcha").click();
+            } else {
+                alert("评论失败");
+                $("#commentCaptcha").click();
+            }
+        });
+    });
+    </script>
+
+    [#elseif channel.commentControl==1 && !user??]
+    [#--登录评论，且未登录--]
+    <div style="width:96%;font-size:14px;color:red;margin:10px;">
+    您尚未登录，请登录后发布评论！ 【<a href="${base}/login.jspx?returnUrl=/">马上登录</a>】
+    </div>
+    [#else]
+    [#--不允许评论--]
+    [/#if]
+</div>
+
+

@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+</head>
+<body>
+cmpp3 test
+<form action="" name="cmpp30Msg" method="post">
+<label>gatewayId</label><input type="text" name="gatewayId" value="58271314-92bb-422b-b35a-abb491ec3e8f"/><label></label><br/>
+<label>msgType</label><input type="text" name="msgType" value="6"/><label>短消息类型。
+对于回执消息该字段无效；对于文本短消息，该字段表示短消息的消息流
+向：
+0＝MO 消息（终端发给SP）；
+6＝MT 消息（SP 发给终端，包括WEB 上发送的点对点短消息）；
+7＝点对点短消息；
+其它保留。</label><br/>
+<label>needReport</label><input type="text" name="needReport" value="1"/><label>是否要求返回状态报告。
+基0＝不要求返回状态报告；
+1＝要求返回状态报告；</label><br/>
+<label>priority</label><input type="text" name="priority" value="3"/><label>短消息发送优先级。
+0＝低优先级；
+1＝普通优先级；
+2＝较高优先级；
+3＝高优先级；
+其它保留。</label><br/>
+
+<label>serviceId</label><input type="text" name="serviceId" value="good"/><label>业务代码，用于固定网业务。
+对于MO 消息或点对点短消息，该字段无效；
+对于MT 消息，该字段表示业务代码，是该条短消息所属的业务类别，由
+数字、字母和符号组合而成。对于从WEB 上发送的点对点短消息，要求业务代
+码为 “PC2P”，其它业务代码由SP 自定义。</label><br/>
+<label>feeType</label><input type="text" name="feeType" value="01"/><label>对计费用户采取的收费类型。
+对于MO 消息或点对点短消息，该字段无效。对于MT 消息，该字段用法
+如下：
+00＝免费，此时FixedFee 和FeeCode 无效；
+01＝按条计信息费，此时FeeCode 表示每条费用，FixedFee 无效；
+02＝按包月收取信息费，此时FeeCode 无效，FixedFee 表示包月费用；
+03＝按封顶收取信息费，若按条收费的费用总和达到或超过封顶费后，则</label><br/>
+<label>feeCode</label><input type="text" name="feeCode" value="1"/><label>每条短消息费率，单位为“分”。
+对于MO 消息或点对点短消息，该字段无效；对于MT 消息，该字段具体
+使用方法参见7.2.13 节。</label><br/>
+
+<label>fixedFee</label><input type="text" name="fixedFee" value=""/><label></label><br/>
+<label>msgFormat</label><input type="text" name="msgFormat" value="8"/><label>短消息内容体的编码格式。
+0＝ASCII 编码；
+3＝短消息写卡操作；
+4＝二进制短消息；
+8＝UCS2 编码；
+15＝GB18030 编码；对于文字短消息，要求MsgFormat＝15。对于回执消息，要求MsgFormat
+＝0。</label><br/>
+<label>srcTermId</label><input type="text" name="srcTermId" value="1065920595598"/><label>短消息发送方号码。
+对于MT 消息，SrcTermID 格式为“118＋SP 服务代码＋其它（可选）”，例
+如SP 服务代码为1234 时，SrcTermID 可以为1181234 或118123456 等。
+对于MO 消息，固定网中SrcTermID 格式为“区号+号码（区号前添零）”，
+例如02087310323，07558780808，移动网中SrcTermID 格式为MSISDN 号码格
+式。
+对于固定网点对点消息，主叫号码为普通终端时，SrcTermID 格式为“区号
++号码（区号前添零）”；主叫号码为爱因平台时，SrcTermID 格式为“10631＋区
+号+号码（区号前添零）”。</label><br/>
+
+<label>chargeTermId</label><input type="text" name="chargeTermId" value=""/><label>计费用户号码。
+ChargeTermID 为空时，如果是MT 消息，则表示对被叫用户号码计费；如
+果是MO 或点对点消息，则表示对主叫用户号码计费。
+ChargeTermID 为非空时，表示对计费用户号码计费。</label><br/>
+<label>destTermId</label><input type="text" name="destTermId" value="13395719129"/><label>短消息接收号码。
+对于MT 消息，DestTermID 连续存储DestTermIDCount 个号码，每一个接
+收方号码为21 位，固定网中DestTermID 格式为“区号+号码（区号前添零）”，
+移动网中DestTermID 格式为MSISDN 号码格式，不足21 位时应左对齐，右补
+0x00。对于MO 消息，DestTermID 格式为“118＋SP 服务代码＋其它（可选）”。
+对于点对点短消息，DestTermID 格式为“区号+号码（区号前添零）” ，不足21
+位时应左对齐，右补0x00。
+对于固定网点对点消息，被叫号码为普通终端时，SrcTermID 格式为“区号
++号码（区号前添零）”；被叫号码为爱因平台时，SrcTermID 格式为“10631＋区
+号+号码（区号前添零）”。</label><br/>
+<label>msgContent</label><input type="text" name="msgContent" value="短信测试"/><label></label><br/>
+
+<label>reserve</label><input type="text" name="reserve" value=""/><label></label><br/>
+<label>tp_pid</label><input type="text" name="tp_pid" value="0"/><label></label><br/>
+<label>tp_udhi</label><input type="text" name="tp_udhi" value="0"/><label></label><br/>
+<label>linkId</label><input type="text" name="linkId" value=""/><label></label><br/>
+<label>msgSrc</label><input type="text" name="msgSrc" value="1"/><label>在固定网短消息业务中，MsgSrc 填写SP
+的服务代码。在移动网短消息业务中，
+MsgSrc 填写SP 的企业代码。</label><br/>
+<label>ChargeUserType</label><input type="text" name="ChargeUserType" value="1"/><label>计费用户类型。
+0＝对短消息接收方计费；
+1＝对短消息发送方计费；
+2＝对SP 计费；
+3＝表示本字段无效，对谁计费参见
+ChargeTermID 或ChargeTermPseudo 字
+段。</label><br/>
+
+<label>ChargeTermType</label><input type="text" name="ChargeTermType" value="0"/><label>计费用户的号码类型。
+0＝真实号码；
+1＝伪码；
+其它保留。</label><br/>
+<label>ChargeTermPseudo</label><input type="text" name="ChargeTermPseudo" value=""/><label>计费用户的伪码</label><br/>
+<label>DestTermType</label><input type="text" name="DestTermType" value="0"/><label>短消息接收方的号码类型。
+0＝真实号码；
+1＝伪码；
+其它保留。</label><br/>
+<label>DestTermPseudo</label><input type="text" name="DestTermPseudo" value=""/><label>短消息接收方的伪码，当有多个接收方
+伪码时，要求每个接收方伪码的长度一
+样。</label><br/>
+<label>pkNumber</label><input type="text" name="pkNumber" value="1"/><label></label><br/>
+<label>submitMsgType</label><input type="text" name="submitMsgType" value="0"/><label>SP 发送的消息类型。
+0＝普通短消息；
+1＝WEB 方式定制结果消息；
+2＝WEB 方式取消定制结果消息；
+3＝终端方式定制结果消息；
+4＝终端方式取消定制结果消息；
+5＝包月扣费通知消息；
+6＝WEB 方式定制二次确认消息；
+7＝WEB 方式取消定制二次确认消息；
+8＝终端方式定制二次确认消息；
+9＝终端方式取消定制二次确认消息；
+10＝WEB 方式点播二次确认消息；
+11＝终端方式点播二次确认消息（暂保
+留）；
+12＝群发请求；
+13：订购（包括点播和定制）关系同步；
+其它保留；
+14：群发结果</label><br/>
+
+<label>spDealResult</label><input type="text" name="spDealResult" value="1"/><label>SP 对消息的处理结果
+0＝成功；
+1＝失败；
+其它保留。
+该字段在 SubmitMsgType 为0、5、6、7、
+8、9、10、11、14 时无效。</label><br/>
+<label>mserviceId</label><input type="text" name="mserviceId" value=""/><label></label><br/>
+<label></label><input type="text" name="" value=""/><label></label><br/>
+<label></label><input type="text" name="" value=""/><label></label><br/>
+<label></label><input type="text" name="" value=""/><label></label><br/>
+<input type="submit" value="submit"/>
+
+</form>
+</body>
+</html>

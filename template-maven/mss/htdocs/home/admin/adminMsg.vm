@@ -1,0 +1,52 @@
+#set($layout = "home/layout/admin.vm")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/adminProd.css")" />
+
+<div class="contain">
+<ul class="contain-title"><li><a href="$homeServer.getURI("/admin/admin.htm")">后台管理</a>-&gt;<a href="$homeServer.getURI("/admin/adminMsg.htm")">留言管理</a>-&gt;留言列表</li></ul>
+<ul class="contain-title"><li><a href="$homeServer.getURI("/admin/adminMsgEdit.htm")" class="btn blue">发布新闻</a></li></ul>
+  <table border= "1 " cellspacing="0" cellpadding="0">
+    <thead><tr>
+       <td width="45%">留言内容</td>
+       <td width="45%">答复内容</td>
+       <td width="10%">操作</td>
+    </tr></thead>
+    <tbody>
+       	      #foreach($var in $res.result)
+       	      <tr><td>$!{var.source}</td>
+       	      <td>$!{var.title}</td><td>$!{var.content}</td><td><a href="$homeServer.getURI("/admin/adminMsgEdit.htm").addQueryData("id","$!{var.id}")"> 编辑 </a><a href="$homeServer.getURI("/admin/adminMsgDel.htm").addQueryData("id","$!{var.id}")" onClick="return delete_confirm()"> 删除</a></td></tr>
+	       
+     #end
+
+    </tbody>
+  </table>
+</div>
+	<!--分页开始-->
+
+		  <div class="btnArea clearfix" >
+    			<div class="page_detail">
+    				#if($!res.pageId != 1)
+						<a class="a_green_form_ddl" href="$homeServer.getURI("/admin/adminMsg.htm").addQueryData("pageId","1")"><span>首页</span></a>
+					   #set($tempPage = $!res.pageId - 1)
+					   <a class="a_green_form_ddl" href="$homeServer.getURI("/admin/adminMsg.htm").addQueryData("pageId","$!tempPage")"><span>上一页</span></a>
+				   #end
+				   #if($!res.pageId < $!res.pageCount)
+					   #set($tempPage = $!res.pageId + 1)
+					   <a class="a_green_form_ddl" href="$homeServer.getURI("/admin/adminMsg.htm").addQueryData("pageId","$!tempPage")"><span>下一页</span></a>
+					   <a class="a_green_form_ddl" href="$homeServer.getURI("/admin/adminMsg.htm").addQueryData("pageId","$!res.pageCount")"><span>尾页</span></a>
+				   #end
+				   <span class="pager_info">当前第$!res.pageId页  共$!res.pageCount页 共$!res.total条记录</span>
+                </div>
+            </div>
+       
+	<!--分页结束 -->
+
+<script language="javascript">
+	  function delete_confirm(){
+		 var k = window.confirm("你确定要删除该记录");
+		 if(k){
+		    return true;
+		 }else{
+		    return false;
+		 }
+}
+	</script>

@@ -1,0 +1,224 @@
+<link rel="stylesheet" href="$umsServer.getURI("/static/css/msg.css")" type="text/css" />
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/zTreeStyle.css")" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="$umsServer.getURI("/static/css/tokeninput/token-input-facebook.css")" type="text/css" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/zTree/jquery.ztree.core-3.4.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/zTree/jquery.ztree.exedit-3.4.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/zTree/jquery.ztree.excheck-3.4.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/My97DatePicker/WdatePicker.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jquery.tokeninput.land.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/checkutil.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/msg/msg.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/group/addGroup.js")"></script>
+
+<div id="bd">
+	#set($HeadMenuId="work_header") #set($sideMenuId="msg_send_side_bar")
+	#parse("/home/msg/msgSideBar.vm")
+	<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c">
+			<div id="writeEmail" style="height:100%;background-color:#fafcfc;">
+				<div id="messageForm_div">
+					<form name="messageForm" id="send_msg_form_id" method="post" >
+						<ul class="form clearfix">
+							#springBind("messageForm.draftId" )
+							<input style="display: none" type="text" name="${status.expression}" value="$!status.value" />
+							#springBind("messageForm.msgDestName" )
+							<input style="display: none" type="text" id="receive_user_name_input_id" name="${status.expression}" value="$!status.value" /> #springBind("messageForm.recvId" )	
+							#if($msgSendErrorLength && $msgSendErrorLength > 50)
+							<div class="error" id="errorMsg" style="height:55px;">
+								$!msgSendError
+							</div>	
+							#else	
+							<div class="error" id="errorMsg">
+								$!msgSendError
+							</div>
+							#end					
+							<li class="formLI"><label><span class="bold fs14 c_007"><span class="red">*</span>收件人：</span></label> 
+								<input type="text" id="receive_user_id_input_id" name="${status.expression}" value="$!status.value" title="$!status.value" />	
+								<div id="displayTip" style="height:43px;_height:54px;">				
+								<a id="choosePerson" class="choosePerson" onclick="chooseReceive()" href="#">选择收件人</a>
+								<br/>
+								<a id="addGroupDialog" style="display:none;" onclick="addGroupDialog()" class="chooseGroup" href="#">选择群组</a>
+								<br/>
+								</div>
+								
+								<!--
+								<a id="chooseGroup" style="display:none;" class="chooseGroup" onclick="chooseGroup('group')" href="#">选择群组</a>
+								<a class="chooseGroupblank" href="#"> </a>
+								<li style="margin-top:-8px;">
+								<label>&nbsp</label><input type="text" value="注:请输入用户名，群组名或者手机号(以中英文分号;或中英文逗号,结尾)" style="background-color:#fff;color:#000000;padding:4px;border:0px;width:60%;" readonly /> 
+								<a id="addGroupDialog" onclick="addGroupDialog()" class="chooseGroup" href="#">增加群组</a></li>	
+								-->
+							</li>
+							<li class="formLI"><label>&nbsp</label> 注:请输入用户名，群组名或者手机号(以中英文分号;或中英文逗号,结尾)</li>
+						</ul>
+						<ul class="form1">
+							#springBind("messageForm.content" )
+							<li class="formLI"><label><span class="red">*</span>内容：</label>
+							<div>
+							<textarea class="inputBox w50 h100 mgsContent" style="margin-top:6px;*margin-top:-6px;_margin-top:-6px;font:13px Verdana, Geneva, sans-serif;" name="${status.expression}" cols="" rows="" id="content" maxlength="600" onkeyup="javascript:var val = this.value;if(val.length>600){this.value=val.substring(0,600)}">$!status.value</textarea>
+							</div>
+							<div id="divShowNum" ><span id="changeNum"></span>/<span style="font:15px/20px Georgia,Tahoma,Arial;">600</span></div>			
+							</li>
+							#foreach($error in $status.errorMessages)
+							<b>$error</b>
+							<br> #end
+							#springBind("messageForm.sendTime" )
+							<li class="formLI"><label>定时发送：</label> <input
+								class="inputBox Wdate" name="${status.expression}"
+								value="$!status.value"
+								onFocus="WdatePicker({dateFmt:'yyyy-M-d H:mm:ss',isShowClear:true,readOnly:true,minDate:'%y-%M-%d %H:%m:%s'})"
+								type="text" /> 
+							</li>
+							<li class="formLI">
+								#springBind("messageForm.validTime" )
+								<label >有效时间：</label>
+								<input class="inputBox" style="width:50px;" id="validTime" name="${status.expression}"  value="$!status.value" />  分钟</li>
+							#foreach($error in $status.errorMessages)
+							<b>$error</b>
+							<br> #end
+							#if($!operatorHolder.isOrgAdmin())
+							<li class="radioButtons"><label>发送身份：</label>
+								#springFormRadioButtons("messageForm.identity",$identifyMap,"","")
+							</li>
+							#end
+							<div class="" style="padding-left:39%;padding-top:16px;">
+								<input type="button" id="span_send_btn" class="btn_green" value="发送" />
+								<input type="button" id="save_draft_btn" class="btn_green" value="存草稿" />
+							</div>
+						</ul>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>
+
+<div id="mask" style="height: 100%;*height: 103.5%;_height: 700px; width: 100%; display:none;"></div>
+<!--<div id="memberContainer" style="float:left;width: 370px;height: 535px;_height: 460px;display:none;">
+	<div class="title">-->
+		<!--
+		<div style="float:left;margin:14px 7px;">
+				<span>
+					<a id="addParent" title="添加群组" onclick="return false;" class="btn green">添加群组</a>
+				</span>
+		</div>
+		-->
+		<!--
+		<div style="float:left;margin:14px 7px;">	
+			<span>
+				<a id="sendGroupMsg" title='请勾选要发送消息的"群组"，再点击本按钮进行批量发送' onclick="return false;" class="btn green">发送消息</a>
+			</span>
+		</div>
+		
+		<div style="float:left;margin:14px 7px;">
+				<span>
+					<a id="delBatchGroup" title='请勾选要删除的"群组"或"群组成员"再点击本按钮进行批量删除' onclick="return false;" class="btn green">批量删除</a>
+				</span>
+		</div>
+			<div style="float:left;margin-left:91px;_margin-left:72px;margin-top:22px;*margin-top:12px;_margin-top:22px;height:21px;">
+				<image title="刷新" id="span_refresh_btn" src="$umsServer.getURI("/static/images/fresh.jpg")" onmouseover="this.src='$umsServer.getURI("/static/images/freshMouseOver.jpg")'"   onmouseout="this.src='$umsServer.getURI("/static/images/fresh.jpg")'" onmousedown="this.src='$umsServer.getURI("/static/images/freshClick.jpg")'" onmouseup="this.src='$umsServer.getURI("/static/images/freshMouseOver.jpg")'"/>
+			</div>
+			-->
+			<!--	<div id="span_refresh_btn" title="刷新重新加载" style="float:left;margin-left:91px;_margin-left:70px;margin-top:22px;height:21px;width:22px;" class="refreshBtn">	
+				</div>-->
+			<!--
+			<a id="span_refresh_btn" class="closeWin" title="刷新重新加载" style="float:left;margin-left:68px;_margin-left:20px;margin-top:10px;height:36px;width:50px;" href="#">刷新</a>
+			<a id="span_close_btn" class="closeWin" title="关闭窗口" style="float:left;margin-top:10px;height:36px;width:70px;" href="#">关闭窗口</a>-->
+			<!--
+			<div>
+				<a id="span_close_btn" title="关闭窗口" style="float:left;margin-left:18px;margin-top:22px;height:26px;width:28px;" class="closeBtn">		
+				</a>
+			</div>
+	</div>
+	-->
+	<div id="memberContainer" style="position:absolute;left:39.5%;top:90px;width: 322px;_width: 330px;height: 485px;_height: 488px;display:none;" class="pop_selectGroups_wrap">
+  <div class="hd">
+    <a class="btn_blue_h27" href="#" id="sendGroupMsg" title='请勾选要发送消息的"群组"，再点击本按钮进行批量发送'><span>发送消息</span></a><a class="btn_blue_h27" href="#" id="delBatchGroup" title='请勾选要删除的"群组"或"群组成员"再点击本按钮进行批量删除'><span>批量删除</span></a>
+    <span class="renew" id="span_refresh_btn" title="刷新重新加载"><em>刷新</em></span>
+    <span class="close" id="span_close_btn" title="关闭窗口">x</span>
+  </div>
+  <div class="bd">
+    <div class="pop_sg_search">
+    	<div id="searchTip" style="float:left;margin-left:20px;padding-top:7px;position:absolute;color:#CCCCCC"><span>搜索...</span></div>
+      <div class="inputBox_s_w"><input id="key" class="emptyBlur" name="" type="text" /></div><input id="searchButton" class="btn_s" name="" type="button" />
+    </div>
+    <div class="pop_sg_tab">   	
+      <a class="current" href="#" id="one0" onclick="setTab('treeDemo',0)">我的群组</a>    
+      <a href="#" id="one1" onclick="setTab('treeDemo',1)">搜索结果</a>
+    </div>
+     
+    <div class="bd_main">
+    	<ul id="treeDemo" class="ztree"></ul>
+		<ul style="display:none;" id="treeDemoSearch" class="ztree"></ul>	
+    </div>
+  </div>
+</div>
+<!--</div>
+
+		<div class="content" style="margin-top:5px;">	
+			<div class="zTreeDemoBackground left" id="zTreeDemoBackground" style="margin-left:14px;_margin-left:7px;margin-top:10px;">
+				<div id="searchTip" style="float:left;margin-left:55px;padding-top:22px;position:absolute;color:#CCCCCC"><span>搜索...</span></div>
+				<div class="searchGroup">
+					<input type="text" id="key" class="empty" style="margin-top: 20px; margin-left: 50px; width: 240px;" />				
+				</div>
+				<div id="menu" class="menu">
+   				     <ul>
+         			   <li class="off" style="color:#00764b" id="one0" onclick="setTab('treeDemo',0)">我的群组</li>
+        			    <li id="one1" style="border-bottom:#A8C29F solid 1px" onclick="setTab('treeDemo',1)">搜索结果</li>
+      				  </ul>
+    			</div>
+					<ul id="treeDemo" class="ztree"></ul>
+					<ul style="display:none;" id="treeDemoSearch" class="ztree"></ul>
+			</div>
+		</div>	
+	</div>
+</div>
+-->
+<div id="secondMask" style="width: 322px;height: 485px;_width: 332px;_height: 488px;display:none;"></div>
+<div id="externalMember" class="externalMember" style="display:none;">
+	   <div class="title" style="height:36px;width:545px;_width:560px;">直接输入用户成员</div>
+			<table border="0" style="margin:20px;">
+		<tr>
+            <td align="right"><span class="bold fs14 c_007">成员名称：</span></td>
+			<td><input type="text" class="input_text" id="memberName" autocomplete="off" /></td>
+			<td><div style="height:37.5px;overflow:auto;width:245px;padding-left:10px;padding-top:15px;" class="tipMsg" id="memberNameMsg">请输入成员姓名，多个以“,”隔开</div></td>
+		</tr>
+		<tr id="memberDescTr">
+            <td align="right"><span class="bold fs14 c_007"><span class="red">*</span>成员手机号：</span></td>
+			<td><input type="text" class="input_text" id="memberDesc" autocomplete="off" /></td>
+			<td><div style="height:37.5px;overflow:auto;width:245px;padding-left:10px;padding-top:15px;" class="tipMsg" id="memberDescMsg" style="padding-left:10px;">请输入手机号码，多个以“,”隔开</div></td>
+		</tr>
+		<tr><td><input type="hidden" class="input_text" id="memberPhone" /></td></tr>
+		<tr style="height:36px;">
+			<td>&nbsp;</td>
+			<td colspan="2" ><input type="button" id="span_addMember_btn" class="btn_green" value="添加" />
+				<input type="button" id="span_closeAddMember_btn" class="btn_green" value="取消" />
+			</td>
+		</tr>
+	</table>
+	</div>
+	
+<div id="secondMask" style="height: 100%;_height: 700px; width: 100%; display:none;"></div>
+<div id="addNewGroup" class="addNewGroup" style="display:none;">
+	   <div class="title" style="height:36px;">添加群组</div>
+				<table border="0" style="margin:30px 38px;">
+		<tr>
+            <td align="right"><span class="bold fs14 c_007">群组名称：</span></td>
+			<td><input type="text" class="input_text" id="groupName" autocomplete="off" /></td>
+			<td><span class="tipMsg" id="groupNameMsg" style="padding-left:10px;">请输入群组名称</span></td>
+		</tr>
+		<tr style="height:47px;">
+			<td>&nbsp;</td>
+			<td colspan="2" ><input type="button" id="span_addNewGroup_btn" class="btn_green" value="添加" />
+				<input type="button" id="span_closeAddNewGroup_btn" class="btn_green" value="取消" />
+			</td>
+		</tr>
+	</table>
+	</div>

@@ -1,0 +1,55 @@
+#writeEmail .form{
+	padding-right:0px;
+	background-color:#fafcfc;
+	}
+#writeEmail .form ul li{
+	float:left;
+	padding:10px 0px;
+	height: 20px;
+	}
+
+#writeEmail .form b{
+	padding:5px 10px 5px 130px;
+	clear:both;
+	color:red;
+	}
+#writeEmail .form label{
+	float:left;
+	width:23%;
+	padding:5px 10px;
+	text-align:right;
+	color:#00764b;
+	}
+
+
+/*表单*/
+.inputBox{
+	border:1px solid #cbe1eb;
+	padding:5px;
+	}
+
+table {
+	margin-top:3%;
+}
+
+.formLiErrorTips{
+	color:red;
+}
+
+.bold{
+  font-weight:bold;
+  }
+.fs13{
+  font-size:13px;
+  }
+.fs14{
+  font-size:14px;
+  }
+
+.c_007{
+	color:#00764b;
+}
+
+.tipMsg{
+  margin-left:5px;
+}

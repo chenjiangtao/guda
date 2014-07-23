@@ -1,0 +1,19 @@
+<div class="contain-left">
+	<ul class="left-lev" id="prod_left_nav">
+	 <li id="prod_ums" class="q_left_nav_no_visited"><a href="$homeServer.getURI("/prod/prod.htm")"><b>短信平台</b></li>
+	 <li id="prod_monitor"><a href="$homeServer.getURI("/prod/monitor.htm")"><b>监控平台</b></li>
+	</ul>
+</div>
+
+<script language="javascript">
+	var oul = document.getElementById("prod_left_nav").getElementsByTagName("li");
+	for(var i=0,len=oul.length;i<len;++i){
+	   oul[i].className="q_left_nav_no_visited";
+	}
+	var oli = document.getElementById("$leftMenuId");
+
+	if(oli){
+		oli.className="q_left_nav_visited";
+	}
+	
+</script>

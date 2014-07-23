@@ -1,0 +1,91 @@
+
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/log_search.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/blacklist.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/checkutil.js")"></script>
+
+<div id="bd">
+#set($sideMenuId="black_list_side_bar")
+#set($HeadMenuId="system_header")
+#parse("/home/admin/adminSideBar.vm")
+<div id="pRight">
+    <div style="margin:3px 3px"><span><a href="$umsServer.getURI("/admin/blacklist/addlist.htm")" class="btn green">添加黑名单</a></span></div>
+    <form action="$umsServer.getURI("/admin/blacklist/blacklist.htm")" method="post" name="form_book" id="form_book">
+                <div class="btnArea clearfix">
+					<div style="float:left;margin-left:5px;">
+					<span class="bold fs14 c_007"> 员工工号：</span><input style="height:20px" type="text" name="userId" value="$!userId"/>
+					<span class="bold fs14 c_007">员工姓名：</span><input style="height:20px" type="text" name="userName" value="$!userName"/>
+					<span class="bold fs14 c_007">应用：</span>
+					<select style="line-height: 14px; font-size:14px;height:20px;align:center;position: relative;left: -2px;top: -2px;" name="appId" id="appinfo">
+        				<option value="0">全部应用</option>
+							#foreach($app in $apps)
+								#if($app.appId == $srcAppId)
+									<option selected="selected" value="$app.appId">$app.appName</option>
+								#else
+									<option value="$app.appId">$app.appName</option>
+								#end
+							#end
+					</select>
+					<input type="button" id="searchLog_sbtn" class="btn_green_search_form" value="查询" />
+					</div>
+					
+					
+                </div>
+         
+  
+        <div id="tableContainer" class="tableContainer" style="width: 100%">
+			<div id="fixedHeaderContainer" class="fixedHeaderContainer">
+				<table cellspacing="0" cellpadding="0">
+
+					<tbody class="fixedHeader">
+						<tr>
+						  <td width="5%">序号</td>
+				          <td width="20%">工号</td>
+				          <td width="20%">姓名</td>
+				          <td width="20%">手机号</td>
+				          <td width="10%">所屏蔽应用</td>
+				          <td width="15%">创建时间</td>
+				          <td width="10%">操作</td>
+				          <td >&nbsp&nbsp&nbsp</td>
+			            </tr>
+				</table>
+			</div>
+			<div id="scrollContentContainer" class="scrollContentContainer">
+				<table class="scrollContent" cellspacing="0" cellpadding="0" width="100%">
+					<tbody>
+					#foreach($var in $result.results)
+						<tr>
+						  <td width="5%" style="text-align:center;">$velocityCount</td>
+				          <td width="20%">$!var.employeeId</td>
+				          <td width="20%">$!var.userName</td>
+				          <td width="20%">$!var.phone</td>
+				          #if($var.app.appName)
+				               <td width="10%">$!var.app.appName</td>
+							#else
+							   <td width="10%">全部应用</td>
+							#end
+				          <td width="15%" title="$!date.format('yyyy-MM-dd HH:mm:ss',$!var.gmtCreated)">$!date.format('yyyy-MM-dd HH:mm:ss',$!var.gmtCreated)</td>
+				          <td width="10%" style="text-align:center;">
+				          <a class="a_green_form_ddl"  href="javascript:confirmTool('/admin/blacklist/deleteblacklist.htm?id=$!var.id','确认删除该黑名单？')" >
+				          删除
+				          </a>
+				            
+                         </td>
+				         </tr>
+						#end
+					    </tbody>
+				</table>
+			</div>
+		</div>
+       
+          <div class="btnArea clearfix" >
+			<div class="page_detail">
+				#pageBreak($!result)
+             </div>
+          </div>
+     
+  </form>  
+
+</div>
+
+

@@ -1,0 +1,204 @@
+*{
+margin:0px;
+padding:0px;
+}
+.error-span{
+ clear:both;
+ color:red;
+}
+a {
+color: #093117;
+text-decoration: none;
+}
+
+a:visited {
+text-decoration: none;
+}
+a:hover {
+ text-decoration: underline;
+
+}
+a:active {
+text-decoration: none;
+}
+li{margin:0; padding:0; list-style-type:none;}
+.clearfix:after {
+        content: ".";
+        display: block;
+        height: 0;
+        clear: both;
+        visibility: hidden;
+    } 
+body{
+  background-color:#fff;
+  font-size:14px;
+  font-weight:bold;
+}
+.login-contain{
+   clear:both;
+    overflow:hidden;
+	margin:0 auto;
+	margin-top:30px;
+	width:1024px;
+	background:#fff url(../images/gradient.png) repeat-x ;
+}
+.login-form{
+  margin:0 auto;
+  height:400px;
+}
+.login_input_text{ 
+background:url(../images/pic_6.jpg) no-repeat 0 0; 
+border:1px solid #e0e0e0;
+width:150px; 
+float:left;
+height:30px; 
+line-height:30px; 
+margin-left:15px;
+
+}
+
+.checkcode_input_text{ 
+	background:url(../images/pic_6.jpg) no-repeat 0 0; 
+	border:1px solid #e0e0e0;
+	width:70px; 
+	height:30px; 
+	line-height:30px; 
+	float:left;
+	margin-left:15px;
+
+}
+#kaptchaImg{
+  float:left;
+  margin-left:5px;
+}
+.contain-form h3{
+   background:#fff url(../images/gradient.png) repeat-x ;
+  line-height:30px;
+  font-size:14px;
+  text-align:left;
+  
+	padding:2px 10px;
+	border-bottom:1px solid #c5e6c7;
+	margin:0;
+}
+.input-form{
+  margin:0 auto;
+  margin-top:100px;
+  width:850px;
+  height:300px;
+ 
+  
+}
+.contain-left-form{
+  width:400px;
+  height:300px;
+  float:left;
+  
+  
+}
+.contain-form{
+  float:right;
+  width:330px;
+  text-align:right;
+  border:1px solid #c5e6c7;
+}
+
+
+.contain-form label{
+  width:70px;
+  display:block;
+  font-size:16px;
+  font-weight:bold;
+
+
+}
+.login-div{
+   margin:0 auto;
+   width:240px;
+   height:230px;
+   margin-top:40px;
+
+}
+.left-a{
+
+ width:100%;
+}
+.left-a a{
+
+  margin-right:10px;
+}
+
+.login-div li{
+  display:inline-block;
+  width:100%;
+  margin-top:5px;
+  *margin-top:0px;
+}
+.line-height15{
+  line-height:15px;
+  height:15px;
+}
+.u-login-div{
+margin:20px 0 0 0;/*For ALL*/
+   *margin:20px 0 0 0;   /*for IE6,7,8*/
+}
+.u-login-div li{
+  display:inline-block;
+}
+.u-login-div label{
+  display:inline-block;
+  width:70px;
+  text-align:right;
+  font-size:14px;
+  font-weight:bold;
+  margin-left:0px;
+  float:left;
+}
+.margin-top20{
+   margin:20px 0 0 0;/*For ALL*/
+   *margin:20px 0 0 0;   /*for IE6,7,8*/
+}
+.margin-top10{
+  margin-top:10px;
+}
+.margin-top40{
+  margin-top:40px;
+}
+.login-div label{
+  display:inline-block;
+  width:50px;
+  text-align:right;
+  font-size:14px;
+  font-weight:bold;
+  margin-left:0px;
+  float:left;
+  line-height:30px;
+}
+
+.btn-a a{
+  display:inline-block;
+  line-height:25px;
+  width:60px;
+  background:#6fbf4c;
+	color:#fff;
+  text-align:center;
+  float:left;
+
+}
+.btn-a a:hover{
+  display:inline-block;
+  line-height:25px;
+  width:60px;
+  text-align:center;
+  float:left;
+ background:#61ad3f;
+	color:#fff;
+	text-decoration:none;
+    
+}
+.margin-left40{
+ margin-left:40px;
+}
+.margin-left80{
+ margin-left:80px;
+}

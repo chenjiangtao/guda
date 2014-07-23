@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.foodoon.monitor</groupId>
+		<artifactId>app</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<groupId>com.foodoon.monitor.server</groupId>
+	<artifactId>monitor-server</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+
+	<name>monitor-server</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+
+
+
+		<dependency>
+			<groupId>net.zoneland</groupId>
+			<artifactId>mvc-runtime-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.eclipse.jetty.aggregate</groupId>
+			<artifactId>jetty-all</artifactId>
+
+		</dependency>
+
+		<dependency>
+			<groupId>com.foodoon.monitor.dal</groupId>
+			<artifactId>monitor-dal</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>smslib</groupId>
+			<artifactId>smslib</artifactId>
+			<version>3.5.2</version>
+			<classifier>pduutils</classifier>
+		</dependency>
+		<dependency>
+			<groupId>smslib</groupId>
+			<artifactId>smslib</artifactId>
+			<version>3.5.2</version>
+		</dependency>
+		<dependency>
+			<groupId>smslib</groupId>
+			<artifactId>smslib</artifactId>
+			<version>3.5.2</version>
+			<classifier>sun-comm2</classifier>
+		</dependency>
+		
+				<dependency>
+			<groupId>com.oracle.db</groupId>
+			<artifactId>ojdbc</artifactId>
+		</dependency>
+		
+		<dependency>
+			    <groupId>net.sourceforge.javacsv</groupId>
+			    <artifactId>javacsv</artifactId>
+        </dependency>
+
+	</dependencies>
+</project>

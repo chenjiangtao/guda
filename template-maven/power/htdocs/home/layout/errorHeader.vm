@@ -1,0 +1,11 @@
+<div id="hd">
+    <h1 id="logo"></h1>
+    <div id="nav_login">
+    #if( $operationContext.getOperationContext().getPrincipal().getLogonId() == 'anonymous' )
+      您尚未登录,请<a href="$umsServer.getURI("/login.htm")"><font color="#fff">登录</font></a>
+    #else
+     $operationContext.getOperationContext().getPrincipal().getUserName()，欢迎您 | <a href="$umsServer.getURI("/user/loginOut.htm")">退出</a>
+    #end
+    </div>
+    
+</div>

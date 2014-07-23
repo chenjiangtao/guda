@@ -1,0 +1,1 @@
+%cd%\jre\bin\java  -Djava.ext.dirs=%cd%/lib  com.foodoon.monitor.agent.key.Key

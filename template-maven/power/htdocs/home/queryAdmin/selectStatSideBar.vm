@@ -1,0 +1,22 @@
+<dl id="lt_nav">
+		<div class="lt_nav_hd"><span>短信查询</span></div>
+        <div id="lt_nav_menu" class="lt_nav_menu">
+			<a id="select_msg_side_bar" href="$umsServer.getURI("/queryAdmin/selectMsgOutInit.htm")">查询用户短信</a>
+			<a id="select_data_side_bar" href="$umsServer.getURI("/queryAdmin/selectMsgOutUcsInit.htm")">查询数据短信</a>
+			<a id="select_msgIn_side_bar" href="$umsServer.getURI("/queryAdmin/selectMsgInInit.htm")">查询上行短信</a>	
+        </div>
+        <div class="rounded_btm">
+            <span class="lt_btm"></span>
+            <span class="rt_btm"></span>
+        </div>
+ </dl>
+<script language="javascript">
+var oul = document.getElementById("lt_nav_menu").getElementsByTagName("a");
+for(var i=0,len=oul.length;i<len;++i){
+   oul[i].className="";
+}
+var oli = document.getElementById("$sideMenuId");
+if(oli){
+	oli.className="select";
+}
+</script>

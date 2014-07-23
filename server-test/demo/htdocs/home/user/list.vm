@@ -1,0 +1,16 @@
+<a href="$!homeServer.getURI("/user/create.htm")" >新建</a>
+
+<table>
+ <tr>
+    <td>name</td><td>password</td><td>操作</td>
+ </tr>
+#foreach($v in $staffDOList)
+  <tr>
+    <td>$v.name</td><td>$v.password</td>
+    <td><a href="$!homeServer.getURI("/user/edit.htm").addQueryData('id',"$v.id")" >编辑</a></td>
+    <td><a href="$!homeServer.getURI("/user/detail.htm").addQueryData('id',"$v.id")" >查看详情</a></td>
+ </tr>
+#end
+</table>
+
+#tile('common/page.vm').add('a','123')

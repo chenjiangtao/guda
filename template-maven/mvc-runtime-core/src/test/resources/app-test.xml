@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+	<property name="app_name" defaultValue="sms" description="系统名" />
+	<property name="app_root" defaultValue="/home/admin23232"
+		description="系统根目录" />
+	<property name="htdocs_root" defaultValue="cc" description="文档目录" />
+</config>

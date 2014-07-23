@@ -1,0 +1,70 @@
+#set($headMenuId="header_set")
+<link rel="stylesheet" type="text/css" href="$homeServer.getURI("/static/css/set.css")">
+<script type="text/javascript" src="$homeServer.getURI("/static/js/set.js")"></script>
+
+<div data-options="region:'west',split:true,title:'服务器信息'" style="width:250px;padding:10px;">
+	
+	<ul id="tt" class="easyui-tree" data-options="
+			url: '$homeServer.getURI("/agent.json")',
+			animate: true,
+			onContextMenu: function(e,node){
+				e.preventDefault();
+				$(this).tree('select',node.target);
+			},
+			onClick: function(node){
+				
+				loadSet(node.id);
+			}
+		"></ul>
+	
+</div>
+
+<div data-options="region:'center',title:'告警设置'" >
+  
+
+	<table id="dg" fit="true"></table>
+
+</div>
+
+
+<div id="dlg" class="easyui-dialog" style="width:600px;padding:10px 20px"  closed="true" buttons="#dlg-buttons"> 
+
+    <div class="ftitle "></div> 
+
+    <form id="fm" method="post" > 
+     <input name="id" style="display:none"> 
+        <div class="fitem margin-top10"> 
+
+            <label>告警服务器（IP地址）:</label> 
+
+            <input name="ip" id="ip_id" readonly="true" class="easyui-validatebox" required="true"> 
+
+        </div> 
+
+        <div class="fitem margin-top10"> 
+
+            <label>当:</label> 
+
+            <select  id="k_id" name="k" style="width:150px;">
+             
+            </select>
+			<select  id="cond_id" name="cond" style="width:50px;">
+              <option value=">" selected="true">大于</option>
+              <option value="<">小于</option>
+              <option value="=">等于</option>
+				
+            </select>
+            <input name="val" class="easyui-validatebox" required="true"> 
+        </div> 
+        <div class="fitem margin-top10"> 
+         <span  class="vtop"> <input type="checkbox" id="email_box" name="email" value="email"/>邮件通知以下人员（多个人员以分号分隔）</span>
+            <textarea name="emailVal" style="height:100px;width:300px;"></textarea>
+        </div>
+        <div class="fitem margin-top10"> 
+          <span  class="vtop"><input type="checkbox" name="phone" id="phone_box" value="phone" />短信通知以下人员（多个人员以分号分隔）</span>
+            <textarea name="phoneVal" style="height:100px;width:300px;"></textarea>
+        </div>
+       
+    </form> 
+
+</div> 

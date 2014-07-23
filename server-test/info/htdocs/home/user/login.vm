@@ -1,0 +1,68 @@
+#set($layout = "home/layout/regLayout.vm")
+#set($_title="用户登录")
+<div class="container">
+<div class="grid doc" style="height:350px;">
+<div class="col-1-6">
+&nbsp;
+</div>
+<div class="col-3-6 block">
+<form class="form form-aligned"  name="userForm" action="$homeServer.getURI("/user/login.htm")" method="post">
+  <input style="display:none" type="text"  name="_form_token" value="$formTool.newForm($request)" />
+   <input style="display:none" type="text"  name="refer" value="$!refer" />
+  <div class="control">
+
+    <label >用户名</label>
+
+      #springBind("userForm.userName")
+      <input   type="text" name="${status.expression}" value="$!{status.value}" >
+    
+       #springShowErrors("" "color:red;")
+ </div>
+
+  <div class="control">
+    <label >密码</label>
+      #springBind("userForm.password")
+      <input   type="password" name="${status.expression}" value="$!{status.value}" >
+       #springShowErrors("" "color:red;")
+ </div>
+ 
+  #if( $needCheckCode == '1' )
+    <div class="control"><label>验证码:</label>
+	#springBind("userForm.checkCode" )
+	<input  type="text" name="checkCode" />
+	<span>
+	<img width="70px;"  height="25px" id="kaptchaImg" src="$homeServer.getURI("/kaptcha.htm")" title="看不清，点击换一张"
+onclick="updateImg(this)" /> 
+   </span>
+	#springShowErrors("" "color:red;")
+	</div>
+  #end
+ 
+
+ <div class="control">
+        <label></label>
+        <button type="submit" class="button-green">登录</button>
+        <span>忘记密码?点此<a href="$homeServer.getURI("/user/findPass.htm")">找回密码</a></span>
+    </div>
+
+</form>
+ </div>
+ <div class="col-1-6">
+  &nbsp;
+ </div>
+<div class="col-1-6 block" style="border-left:1px solid #dddddd;">
+您还不是会员？请<a href="$homeServer.getURI("/user/reg.htm")">注册</a>
+</div>
+</div>
+ </div>
+
+
+<script language="javascript">
+  function updateImg(obj) {
+    var src = currenthost+"/kaptcha.htm?" + new Date();
+	obj.src = src;
+	
+  }
+
+</script>
+

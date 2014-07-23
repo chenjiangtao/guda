@@ -1,0 +1,102 @@
+div.zTreeDemoBackground {
+	width: 250px;
+	height: 100%;
+	float: left;
+	text-align: left;
+}
+
+.inputBox {
+	border: 1px solid #cbe1eb;
+	padding: 5px;
+}
+
+div.areaBackGround {
+	width: 250px;
+	height: 100% px;
+	text-align: left;
+}
+
+ul.ztree {
+	width: 220px;
+	height: 350px;
+	overflow: auto;
+}
+
+.list {
+	float: left;
+	padding-left: 20px;
+}
+
+ul.areaEdit {
+	margin-top: 30%;
+	margin-bottom: 20%;
+	border: 1px solid #617775;
+	background: #f0f6e4;
+	width: 220px;
+	height: 50%;
+}
+
+.areaEdit label {
+	float: left;
+	width: 30%;
+	text-align: right;
+	color: #00764b;
+}
+
+.areaEdit li {
+	padding-top: 10px;
+}
+
+.ztree li span.button.add {
+	margin-left: 2px;
+	margin-right: -1px;
+	background-position: -144px 0;
+	vertical-align: top;
+	*vertical-align: middle
+}
+
+#memberContainer {
+	width: 800px;
+	top: 35%;
+	left: 30%;
+	z-index: 999;
+	position: absolute;
+	border: 1px solid #CCCCCC;
+	background-color: #FFFFFF;
+}
+
+#memberContainer .title {
+	height: 36px;
+	line-height: 36px;
+	color: #00764B;
+	font-size: 14px;
+	font-weight: bold;
+	background-color: #EEF5F7;
+	padding-left: 10px;
+}
+
+#memberContainer table {
+	width: 98%;
+	margin: 20px auto;
+}
+
+#memberContainer .input_text {
+	width: 94%;
+}
+
+#mask {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	background-color: #C7EDCC;
+	top: 0px;
+	z-index: 998;
+	filter: Alpha(Opacity = 60);
+	opacity: 0.6;
+}
+
+/*表单*/
+.inputBox {
+	border: 1px solid #cbe1eb;
+	padding: 5px;
+}

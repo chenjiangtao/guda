@@ -1,0 +1,10 @@
+#set($layout = "home/layout/blank.vm")
+<table border="1">
+  <thead><td>操作</td><td>code</td><td>type</td><td>title</td><td>content</td></thead>
+  <tbody>
+    #foreach($var in $res)
+     <tr><td><a href="$homeServer.getURI("/admin/put.htm").addQueryData("id","$!var.id")">编辑</a><a href="$homeServer.getURI("/admin/docdel.htm").addQueryData("id","$!var.id")">删除</a></td><td>$var.code</td><td>$var.type</td><td>$var.title</td><td>$var.content</td></tr>
+    #end
+  </tbody>
+  
+</table>

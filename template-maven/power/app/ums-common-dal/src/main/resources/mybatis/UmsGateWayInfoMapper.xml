@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.zoneland.ums.common.dal.UmsGateWayInfoMapper" >
+  <resultMap id="BaseResultMap" type="net.zoneland.ums.common.dal.dataobject.UmsGateWayInfo" >
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="GATEWAY_NAME" property="gatewayName" jdbcType="VARCHAR" />
+    <result column="GATEWAY_STATE" property="gatewayState" jdbcType="CHAR" />
+    <result column="TYPE" property="type" jdbcType="VARCHAR" />
+    <result column="SP_NUMBER" property="spNumber" jdbcType="VARCHAR" />
+    <result column="HOST" property="host" jdbcType="VARCHAR" />
+    <result column="PORT" property="port" jdbcType="INTEGER" />
+    <result column="LOCAL_HOST" property="localHost" jdbcType="VARCHAR" />
+    <result column="LOCAL_PORT" property="localPort" jdbcType="INTEGER" />
+    <result column="SOURCE_ADDR" property="sourceAddr" jdbcType="VARCHAR" />
+    <result column="SHARED_SECRET" property="sharedSecret" jdbcType="VARCHAR" />
+    <result column="VERSION" property="version" jdbcType="VARCHAR" />
+    <result column="READ_TIMEOUT" property="readTimeout" jdbcType="INTEGER" />
+    <result column="RECONNECT_INTERVAL" property="reconnectInterval" jdbcType="INTEGER" />
+    <result column="TRANSACTION_TIMEOUT" property="transactionTimeout" jdbcType="INTEGER" />
+    <result column="HEARTBEAT_INTERVAL" property="heartbeatInterval" jdbcType="INTEGER" />
+    <result column="HEARTBEAT_NORESPONSEOUT" property="heartbeatNoresponseout" jdbcType="INTEGER" />
+    <result column="DEBUG" property="debug" jdbcType="INTEGER" />
+    <result column="CORP_ID" property="corpId" jdbcType="VARCHAR" />
+    <result column="STATUS" property="status" jdbcType="CHAR" />
+    <result column="GMT_CREATED" property="gmtCreated" jdbcType="TIMESTAMP" />
+    <result column="GMT_MODIFIED" property="gmtModified" jdbcType="TIMESTAMP" />
+    <result column="IS_OUT_PROV" property="isOutProv" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, GATEWAY_NAME, GATEWAY_STATE, TYPE, SP_NUMBER, HOST, PORT, LOCAL_HOST, LOCAL_PORT,
+    SOURCE_ADDR, SHARED_SECRET, VERSION, READ_TIMEOUT, RECONNECT_INTERVAL, TRANSACTION_TIMEOUT,
+    HEARTBEAT_INTERVAL, HEARTBEAT_NORESPONSEOUT, DEBUG, CORP_ID, STATUS, GMT_CREATED,
+    GMT_MODIFIED, IS_OUT_PROV
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from UMS_GATEWAY_INFO
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    delete from UMS_GATEWAY_INFO
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+   <insert id="insert" parameterType="net.zoneland.ums.common.dal.dataobject.UmsGateWayInfo" >
+    insert into UMS_GATEWAY_INFO (ID, GATEWAY_NAME, GATEWAY_STATE,
+      TYPE, SP_NUMBER, HOST,
+      PORT, LOCAL_HOST, LOCAL_PORT,
+      SOURCE_ADDR, SHARED_SECRET, VERSION,
+      READ_TIMEOUT, RECONNECT_INTERVAL, TRANSACTION_TIMEOUT,
+      HEARTBEAT_INTERVAL, HEARTBEAT_NORESPONSEOUT,
+      DEBUG, CORP_ID, STATUS,
+      GMT_CREATED, GMT_MODIFIED, IS_OUT_PROV
+      )
+    values (#{id,jdbcType=CHAR}, #{gatewayName,jdbcType=VARCHAR}, #{gatewayState,jdbcType=CHAR},
+      #{type,jdbcType=VARCHAR}, #{spNumber,jdbcType=VARCHAR}, #{host,jdbcType=VARCHAR},
+      #{port,jdbcType=INTEGER}, #{localHost,jdbcType=VARCHAR}, #{localPort,jdbcType=INTEGER},
+      #{sourceAddr,jdbcType=VARCHAR}, #{sharedSecret,jdbcType=VARCHAR}, #{version,jdbcType=VARCHAR},
+      #{readTimeout,jdbcType=INTEGER}, #{reconnectInterval,jdbcType=INTEGER}, #{transactionTimeout,jdbcType=INTEGER},
+      #{heartbeatInterval,jdbcType=INTEGER}, #{heartbeatNoresponseout,jdbcType=INTEGER},
+      #{debug,jdbcType=INTEGER}, #{corpId,jdbcType=VARCHAR}, #{status,jdbcType=CHAR},
+      #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}, #{isOutProv,jdbcType=VARCHAR}
+      )
+  </insert>
+	<update id="updateByPrimaryKey" parameterType="net.zoneland.ums.common.dal.dataobject.UmsGateWayInfo">
+    update UMS_GATEWAY_INFO
+    set GATEWAY_NAME = #{gatewayName,jdbcType=VARCHAR},
+      GATEWAY_STATE = #{gatewayState,jdbcType=CHAR},
+      TYPE = #{type,jdbcType=VARCHAR},
+      SP_NUMBER = #{spNumber,jdbcType=VARCHAR},
+      HOST = #{host,jdbcType=VARCHAR},
+      PORT = #{port,jdbcType=INTEGER},
+      LOCAL_HOST = #{localHost,jdbcType=VARCHAR},
+      LOCAL_PORT = #{localPort,jdbcType=INTEGER},
+      SOURCE_ADDR = #{sourceAddr,jdbcType=VARCHAR},
+      SHARED_SECRET = #{sharedSecret,jdbcType=VARCHAR},
+      VERSION = #{version,jdbcType=VARCHAR},
+      READ_TIMEOUT = #{readTimeout,jdbcType=INTEGER},
+      RECONNECT_INTERVAL = #{reconnectInterval,jdbcType=INTEGER},
+      TRANSACTION_TIMEOUT = #{transactionTimeout,jdbcType=INTEGER},
+      HEARTBEAT_INTERVAL = #{heartbeatInterval,jdbcType=INTEGER},
+      HEARTBEAT_NORESPONSEOUT = #{heartbeatNoresponseout,jdbcType=INTEGER},
+      DEBUG = #{debug,jdbcType=INTEGER},
+      CORP_ID = #{corpId,jdbcType=VARCHAR},
+      GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      IS_OUT_PROV = #{isOutProv,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+
+  	<update id="updateStatusByPrimaryKey" parameterType="java.util.Map">
+    update UMS_GATEWAY_INFO
+    set STATUS=#{status,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+
+   <update id="updateGatewayState" parameterType="java.util.Map">
+    update UMS_GATEWAY_INFO
+    set GATEWAY_STATE=#{gatewayState,jdbcType=CHAR}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+
+<!-- 也分查询获得所有网关信息 -->
+  <select id="selectAll" resultMap="BaseResultMap" parameterType="java.util.Map">
+     SELECT <include refid="Base_Column_List" />  from UMS_GATEWAY_INFO
+			 order by GMT_MODIFIED desc
+		 limit #{start} , 10
+  </select>
+
+  <select id="loadValidAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+     from UMS_GATEWAY_INFO where status='1'
+  </select>
+
+ <!-- 获得网关个数 -->
+  <select id="selectCount" resultType="java.lang.Integer">
+    select count(ID)
+    from UMS_GATEWAY_INFO
+  </select>
+
+
+ <!-- 获得所有网关信息 -->
+  <select id="findAll" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from UMS_GATEWAY_INFO
+  </select>
+
+   <select id="findWithType" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from UMS_GATEWAY_INFO where TYPE = #{type,jdbcType=VARCHAR} and status='1'
+  </select>
+
+  <select id="findAllByType" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from UMS_GATEWAY_INFO where TYPE = #{type,jdbcType=VARCHAR}
+  </select>
+
+  <select id="findOneValid" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from UMS_GATEWAY_INFO where  status='1' limit 1 
+  </select>
+
+    <select id="findWithParam" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from UMS_GATEWAY_INFO where TYPE = #{type,jdbcType=VARCHAR} and IS_OUT_PROV = #{isOutProv,jdbcType=VARCHAR} and status='1'
+  </select>
+
+
+
+
+</mapper>

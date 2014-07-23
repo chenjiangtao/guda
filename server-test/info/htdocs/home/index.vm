@@ -1,0 +1,81 @@
+#set($menuId="index")
+
+
+<div class="container" >
+<div class="col-1-1">
+<div class="grid doc" style="border-bottom:1px solid #93d090;">
+<div class="col-1-6">
+	
+	<ul class="list-unstyled">
+	 #foreach($item in $list1)
+	    <li><h4><a href="$homeServer.getURI("/list.htm")?id=$item.classify.id">$item.classify.name</a></h4></li>
+	     #foreach($subItem in $item.subClassify)
+	     <li><a href="$homeServer.getURI("/list.htm")?subId=$subItem.id&id=$item.classify.id">$subItem.name</a></li>
+         #end
+     #end
+	 </ul>
+	
+</div>
+<div class="col-1-6">
+	
+	<ul class="list-unstyled">
+	 #foreach($item in $list2)
+	    <li><h4><a href="$homeServer.getURI("/list.htm")?id=$item.classify.id">$item.classify.name</a></h4></li>
+	     #foreach($subItem in $item.subClassify)
+	     <li><a href="$homeServer.getURI("/list.htm")?subId=$subItem.id&id=$item.classify.id">$subItem.name</a></li>
+         #end
+     #end
+	 </ul>
+	
+</div>
+<div class="col-1-6">
+	
+	<ul class="list-unstyled">
+	 #foreach($item in $list3)
+	    <li><h4><a href="$homeServer.getURI("/list.htm")?id=$item.classify.id">$item.classify.name</a></h4></li>
+	     #foreach($subItem in $item.subClassify)
+	     <li><a href="$homeServer.getURI("/list.htm")?subId=$subItem.id&id=$item.classify.id">$subItem.name</a></li>
+         #end
+     #end
+	 </ul>
+	
+</div>
+<div class="col-1-6">
+	
+	<ul class="list-unstyled">
+	 #foreach($item in $list4)
+	    <li><h4><a href="$homeServer.getURI("/list.htm")?id=$item.classify.id">$item.classify.name</a></h4></li>
+	     #foreach($subItem in $item.subClassify)
+	     <li><a href="$homeServer.getURI("/list.htm")?subId=$subItem.id&id=$item.classify.id">$subItem.name</a></li>
+         #end
+     #end
+	 </ul>
+	
+</div>
+<div class="col-1-6">
+	
+	<ul class="list-unstyled">
+	 #foreach($item in $list5)
+	    <li><h4><a href="$homeServer.getURI("/list.htm")?id=$item.classify.id">$item.classify.name</a></h4></li>
+	     #foreach($subItem in $item.subClassify)
+	     <li><a href="$homeServer.getURI("/list.htm")?subId=$subItem.id&id=$item.classify.id">$subItem.name</a></li>
+         #end
+     #end
+	 </ul>
+	
+</div>
+<div class="col-1-6">
+	
+	<ul class="list-unstyled">
+	 #foreach($item in $list6)
+	    <li><h4><a href="$homeServer.getURI("/list.htm")?id=$item.classify.id">$item.classify.name</a></h4></li>
+	     #foreach($subItem in $item.subClassify)
+	     <li><a href="$homeServer.getURI("/list.htm")?subId=$subItem.id&id=$item.classify.id">$subItem.name</a></li>
+         #end
+     #end
+	 </ul>
+	
+</div>
+</div>
+</div>
+</div>

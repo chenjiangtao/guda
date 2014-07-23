@@ -1,0 +1,12 @@
+#set($layout = "home/layout/regLayout.vm")
+#set($_title="用户注册")
+
+<div class="container">
+	<div class="col-1-1"  style="height:350px;">
+	  <p style="font-size:16px;font-weight:bold;">注册成功,请记住您的用户和密码.</p>
+	  <p style="font-size:14px;font-weight:bold;">您可以点此<a href="$homeServer.getURI("/")">回到首页</a></p>
+	
+	
+	</div>
+
+</div>

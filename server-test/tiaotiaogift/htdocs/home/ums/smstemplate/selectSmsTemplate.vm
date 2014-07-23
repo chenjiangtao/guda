@@ -1,0 +1,6 @@
+#set($layout = "home/layout/blank.vm")
+
+<div class="center-contain">
+  <table id="template-table"></table>
+  
+</div>

@@ -1,0 +1,9 @@
+#set($headMenuId="header_sys")
+#parse("home/sysLeftBar.vm")
+
+<div data-options="region:'center',title:'版本信息'"  >
+<div class="search-form">
+  <b style="color:green;"> 当前版本：1.0。联众科技版权所有</b>
+</div>
+
+</div>

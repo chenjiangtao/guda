@@ -1,0 +1,40 @@
+#set($layout = "home/layout/admin.vm")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/adminProd.css")" />
+<script src="$homeServer.getURI("/ckeditor/ckeditor.js")" type="text/javascript"></script>
+
+<div class="contain">
+<ul class="contain-title"><li><a href="$homeServer.getURI("/admin/admin.htm")">后台管理</a>-&gt;<a href="$homeServer.getURI("/admin/adminNews.htm")">新闻管理</a>-&gt;$!{label}</li></ul>
+
+
+<form name="newsForm" id="newsForm" action="$homeServer.getURI("/admin/adminNewsEdit.htm")" method="post">
+#springBind("newsForm.id" )
+<input type="text" style="display:none" name="${status.expression}" value="$!status.value" />
+#springBind("newsForm.source" )
+  <li><label>新闻来源:</label><input class="input_text" type="text"  name="${status.expression}" value="$!status.value" /></li>
+#springBind("newsForm.title" )
+ <li><label>新闻标题:</label><input type="text"  class="input_text"  name="${status.expression}" value="$!status.value" />请保持上传的图片名与该名称一致</li>
+
+#springBind("newsForm.content" )
+  <li><label>产品内容:</label><textarea id="editor1" rows="10" cols="50" name="${status.expression}">$!{status.value}</textarea></li>
+  <li><a href="#"  id="editNews-submit" class="btn blue">保存</a></li>
+  </form>
+</div>
+
+<script type="text/javascript">CKEDITOR.replace("editor1",
+{
+filebrowserBrowseUrl :  '/admin/upload.htm',
+filebrowserUploadUrl :  '/admin/upload.htm',
+filebrowserImageWindowWidth :  '640',
+filebrowserImageWindowHeight : '480',
+});
+
+$(function() {
+	$("#editNews-submit").click(function() {
+		
+			$("#newsForm").submit();
+		
+	});
+});
+
+
+</script>

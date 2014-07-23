@@ -1,0 +1,44 @@
+
+.contain-left{
+  width:20%;
+  float:left;
+}
+.contain-right{
+width:78%;
+float:left;
+text-align:left;
+padding:5px;
+line-height:22px;
+margin-left:5px;
+}
+.contain-right li{
+  line-height:25px;
+
+}
+.q_left_nav_no_visited{
+ line-height:40px;
+
+ background-image: url("../images/nav-h2.png");
+    background-repeat: repeat-x;
+    border-bottom: 1px solid #c5e6c7;
+}
+.left-lev li  a{
+ line-height:40px;
+DISPLAY: block; 
+ 
+    
+}
+.q_left_nav_visited {
+
+  line-height:40px;
+ background-image: url("../images/nav-h3.png");
+    background-repeat: repeat-x;
+    border-bottom: 1px solid #c5e6c7;
+}
+.left-lev  a:hover{
+ line-height:40px;
+DISPLAY: block; 
+ background-image: url("../images/nav-h3.png");
+    background-repeat: repeat-x;
+    
+}

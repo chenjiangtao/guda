@@ -1,0 +1,14 @@
+#set($layout = "home/layout/admin.vm")
+<div class="contain">
+<ul><b>后台管理</b></ul>
+<ul>
+<li><a href="$homeServer.getURI("/admin/adminProd.htm")">发布产品</a></li>
+<li><a href="$homeServer.getURI("/admin/adminNews.htm")">发布新闻</a></li>
+<li><a href="$homeServer.getURI("/admin/adminMsg.htm")">管理留言</a></li>
+<li><a href="$homeServer.getURI("/admin/adminQ.htm")">发布常见问题</a></li>
+<li><a href="$homeServer.getURI("/admin/adminMeet.htm")">更新展会动态</a></li>
+<li><a href="$homeServer.getURI("/admin/adminAbout.htm")">更新关于爱塔</a></li>
+<li><a href="$homeServer.getURI("/admin/adminODM.htm")">更新ODM合作</a></li>
+<li><a href="$homeServer.getURI("/admin/adminContact.htm")">更新联系方式</a></li>
+</ul>
+</div>

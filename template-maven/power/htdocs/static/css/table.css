@@ -1,0 +1,74 @@
+.pager{
+ padding:25px 130px;
+ float:right;
+}
+
+.litable {
+	padding:5px 0px 5px 30px;
+	}
+.litable ul {
+	list-style:none
+	}
+.litable li {
+  border-left:1px solid #ccc;
+  border-top:1px solid #ccc;
+  float:left;
+  height:33px;
+  text-align:center;
+  line-height:33px;
+  overflow:hidden;
+  white-space:nowrap;
+  text-overflow:ellipsis;
+}
+.litable li.b {
+	border-bottom:1px solid #ccc
+	}
+.litable li.r {
+	border-right:1px solid #ccc
+	}
+.litable li.mainHeader {
+ border-left:1px solid #ccc;
+ border-top:1px solid #ccc;
+ float:left;
+ height:33px;
+ text-align:center;
+ overflow:hidden;
+ line-height:33px;
+ background:#daecf2;
+ white-space:nowrap;
+  text-overflow:ellipsis;
+ }
+
+.lisize4 li{
+	width:24.6%;
+	}
+.lisize5 li{
+	width:15%;
+	}
+.lisize6 li{
+	width:16.3%;
+	}
+.lisize7 li{
+	width:14.28%;
+	}
+.lisize8 li{
+	width:12.25%;
+	}
+.lisize9 li{
+	width:10.8%;
+	}
+.lisize10 li{
+	width:13.4%;
+	}
+.lisize11 li{
+	width:19%;
+	}
+.lisize12 li{
+	width:8%;
+	}
+
+
+
+
+
+

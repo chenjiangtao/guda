@@ -1,0 +1,16 @@
+#set($layout = "home/layout/blank.vm")
+#foreach($var in $files)
+<a href="javascript:funCallback('$callback','$var')">$var <br/>
+
+#end
+<script language="javascript">
+function funCallback(funcNum,fileUrl){  
+
+    var parentWindow = ( window.parent == window ) ? window.opener : window.parent;  
+
+    parentWindow.CKEDITOR.tools.callFunction(funcNum, fileUrl);  
+
+    window.close();  
+
+}  
+</script>

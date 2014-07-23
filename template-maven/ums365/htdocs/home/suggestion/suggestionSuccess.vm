@@ -1,0 +1,26 @@
+#set($HeadMenuId="a_suggestion")
+
+
+#set($layout = "home/layout/umsLayout.vm")
+
+
+
+<form name="suggestionForm" action="$homeServer.getURI("/suggestion.htm")" method="post" id="send_msg_form_id">
+<div class="ums-center-contain">
+<div>
+    <ul id="crumbs">
+	    <li><a href="$homeServer.getURI("/ums/index.htm")">首页</a></li>
+	    <li><a href="$homeServer.getURI("/suggestion.htm")">提点建议</a></li>
+	    <li>建议已经成功提交</li>
+    </ul>
+</div>
+ <div class="contain-right" style="margin-bottom:200px;">
+    感谢您抽出珍贵的时间，给我们提出宝贵的建议，我们一定会不断努力改进。
+ </div>
+
+</div>
+
+
+
+
+</div> 

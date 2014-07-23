@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <property name="run_mode" defaultValue="prod" description="运行模式，开发还是线上" />
+	<property name="app_name" defaultValue="ums" description="系统名" />
+	<property name="app_root" defaultValue="D:\work-dir\sms\trunk"
+		description="系统根目录" />
+	<property name="htdocs_root" defaultValue="/" description="文档目录" />
+
+	<property name="sendMsgThread.sendThreadCount" defaultValue="10" />
+	<property name="sendMsgThread.sendThreadSleepMillis" defaultValue="10" />
+	<property name="sendMsgThread.invokeRecvIdCount" defaultValue="50" />
+
+	<property name="filingJob.repeatInterval" defaultValue="3" />
+
+	<property name="sendDelay.repeatInterval" defaultValue="30000" />
+
+	<property name="sendFailure.repeatInterval" defaultValue="30000" />
+
+	<property name="clusterHosts" defaultValue="10.137.253.2:9081" />
+
+	<property name="cluster.repeatInterval" defaultValue="60000" />
+
+	<property name="mail.name" defaultValue="gang0119@163.com" />
+	<property name="mail.sender.host" defaultValue="smtp.163.com" />
+	<property name="mail.receive.host" defaultValue="pop3.163.com" />
+	<property name="mail.username" defaultValue="gang0119@163.com" />
+	<property name="mail.password" defaultValue="gavin1217" />
+
+
+	<property name="fmt_cmpp" defaultValue="8" />
+	<property name="fmt_cmpp30" defaultValue="8" />
+	<property name="fmt_sgip" defaultValue="8" />
+	<property name="fmt_smgp" defaultValue="8" />
+	<property name="fmt_smgp3" defaultValue="8" />
+
+	<property name="socket.server.addr" defaultValue="0.0.0.0:8888,9999" />
+	<property name="socket.common.server.addr" defaultValue="7777" />
+
+	<property name="socket.client.host" defaultValue="127.0.0.1" />
+	<property name="socket.client.port" defaultValue="5555" />
+	<property name="socket.client.maxConnect" defaultValue="30" />
+	<property name="socket.gateway.server.addr" defaultValue="5555" />
+
+	<property name="dealInitServer" defaultValue="172.16.1.202" />
+
+	<property name="jdbc.url" defaultValue="jdbc:db2://172.16.86.102:50000/UMSDB" />
+	<property name="jdbc.username" defaultValue="ums" />
+	<property name="jdbc.password" defaultValue="zone2012" />
+
+	<property name="mysqljdbc.url" defaultValue="jdbc:mysql://172.16.86.102:3306/ums?characterEncoding=gbk" />
+	<property name="mysqljdbc.username" defaultValue="root" />
+	<property name="mysqljdbc.password" defaultValue="zone2012" />
+
+
+	<property name="dbName" defaultValue="db2" />
+
+	<property name="mediaId" defaultValue="11" />
+
+	<property name="gateway.service.url" defaultValue="http://172.16.86.103:9080/gateway/invoke/gatewayService" />
+	<property name="gateway.ws.url" defaultValue="http://sms.zpepc.com.cn:9080/gateway/services/GatewayWebService" />
+
+
+	<property name="msgCodecType" defaultValue="15" />
+
+	<property name="queue.capacity" defaultValue="10000" />
+
+	<property name="cmpp.registered_Delivery" defaultValue="0" />
+	<property name="cmpp.service_Id" defaultValue="TZJ0010103" />
+	<property name="cmpp.fee_UserType" defaultValue="2" />
+	<property name="cmpp.fee_Terminal_Id" defaultValue="1" />
+	<property name="cmpp.tp_Pid" defaultValue="0" />
+	<property name="cmpp.fee_Type" defaultValue="02" />
+	<property name="cmpp.fee_Code" defaultValue="000005" />
+	<property name="cmpp.msg_Src" defaultValue="911337" />
+	<property name="cmpp.reserve" defaultValue="" />
+
+	<property name="cmpp30.registered_Delivery" defaultValue="0" />
+	<property name="cmpp30.service_Id" defaultValue="TZJ0010103" />
+	<property name="cmpp30.fee_UserType" defaultValue="2" />
+	<property name="cmpp30.fee_Terminal_Id" defaultValue="1" />
+	<property name="cmpp30.tp_Pid" defaultValue="0" />
+	<property name="cmpp30.fee_Type" defaultValue="02" />
+	<property name="cmpp30.fee_Code" defaultValue="000005" />
+	<property name="cmpp30.msg_Src" defaultValue="911337" />
+	<property name="cmpp30.reserve" defaultValue="" />
+	<property name="cmpp30.dest_Terminal_Type" defaultValue="1" />
+	<property name="cmpp30.linkID" defaultValue="1" />
+	<property name="cmpp30.priority" defaultValue="3" />
+
+	<property name="sgip.chargeNumber" defaultValue="000000000000000000000" />
+	<property name="sgip.corpId" defaultValue="62292" />
+	<property name="sgip.serviceType" defaultValue="9999" />
+	<property name="sgip.feeType" defaultValue="0" />
+	<property name="sgip.feeValue" defaultValue="000005" />
+	<property name="sgip.givenValue" defaultValue="0" />
+	<property name="sgip.agentFlag" defaultValue="1" />
+	<property name="sgip.morelatetoMTFlag" defaultValue="2" />
+	<property name="sgip.reportFlag" defaultValue="0" />
+	<property name="sgip.tp_pid" defaultValue="0" />
+	<property name="sgip.messageType" defaultValue="0" />
+	<property name="sgip.reserve" defaultValue="" />
+
+	<property name="smgp.msgType" defaultValue="6" />
+	<property name="smgp.needReport" defaultValue="1" />
+	<property name="smgp.serviceId" defaultValue="good" />
+	<property name="smgp.feeType" defaultValue="01" />
+	<property name="smgp.feeCode" defaultValue="1" />
+	<property name="smgp.fixedFee" defaultValue="" />
+	<property name="smgp.chargeTermId" defaultValue="" />
+	<property name="smgp.reserve" defaultValue="" />
+
+	<property name="smgp3.msgType" defaultValue="6" />
+	<property name="smgp3.needReport" defaultValue="1" />
+	<property name="smgp3.serviceId" defaultValue="good" />
+	<property name="smgp3.feeType" defaultValue="01" />
+	<property name="smgp3.feeCode" defaultValue="1" />
+	<property name="smgp3.fixedFee" defaultValue="" />
+	<property name="smgp3.chargeTermId" defaultValue="" />
+	<property name="smgp3.reserve" defaultValue="" />
+	<property name="smgp3.tp_pid" defaultValue="0" />
+	<property name="smgp3.linkId" defaultValue="" />
+	<property name="smgp3.msgSrc" defaultValue="1" />
+	<property name="smgp3.chargeUserType" defaultValue="1" />
+	<property name="smgp3.chargeTermType" defaultValue="0" />
+	<property name="smgp3.chargeTermPseudo" defaultValue="" />
+	<property name="smgp3.destTermType" defaultValue="0" />
+	<property name="smgp3.destTermPseudo" defaultValue="" />
+	<property name="smgp3.submitMsgType" defaultValue="0" />
+	<property name="smgp3.spDealResult" defaultValue="1" />
+	<property name="smgp3.mserviceId" defaultValue="" />
+
+
+
+
+</config>

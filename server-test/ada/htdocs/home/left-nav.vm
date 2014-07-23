@@ -1,0 +1,38 @@
+<div class="contain-left">
+  <div>
+    <ul>
+      <li class="title-bar"><img class="title-bar-img" src="$homeServer.getURI("/static/images/ada/ico-3.png")"/><b>产品分类</b></li>
+    </ul>
+	<ul class="left-lev" id="prod_left_nav">
+	
+	 <li id="tech" class="left_nav_no_visited"><a href="$homeServer.getURI("/prod/prod.htm?type=tech")">雕刻工艺品</a></li>
+	 <li id="jew"><a href="$homeServer.getURI("/prod/prod.htm?type=jew")">首饰相关</a></li>
+	 <li id="gift"><a href="$homeServer.getURI("/prod/prod.htm?type=gift")">摆件礼品</a></li>
+	 <li id="tech"><a href="$homeServer.getURI("/prod/prod.htm?type=untech")">不定型系</a></li>
+	</ul>
+  </div>
+  <div>
+     <ul>
+      <li class="title-bar"><img class="title-bar-img" src="$homeServer.getURI("/static/images/ada/ico-3.png")"/><b>最新留言</b></li>
+    </ul>
+     <ul>
+       #foreach($var in $newMsg)
+       <li class="new-msg"><font style="color: #2f517b;">$!{var.contactName}留言:</font>$!{var.content}</li>
+
+      #end
+     </ul>
+  </div>
+</div>
+
+<script language="javascript">
+	var oul = document.getElementById("prod_left_nav").getElementsByTagName("li");
+	for(var i=0,len=oul.length;i<len;++i){
+	   oul[i].className="left_nav_no_visited";
+	}
+	var oli = document.getElementById("$leftMenuId");
+
+	if(oli){
+		oli.className="left_nav_visited";
+	}
+	
+</script>

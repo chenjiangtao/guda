@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.tiaotiaogift.tiaotiaogift</groupId>
+		<artifactId>app</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<groupId>com.tiaotiaogift.tiaotiaogift.common.util</groupId>
+	<artifactId>tiaotiaogift-common-util</artifactId>
+	<version>1.0.0</version>
+	<name>tiaotiaogift-common-util</name>
+	<url>http://maven.apache.org</url>
+
+	<dependencies>
+		<dependency>
+			<groupId>net.zoneland</groupId>
+			<artifactId>mvc-runtime-core</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>net.sf.opencsv</groupId>
+			<artifactId>opencsv</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.mail</groupId>
+			<artifactId>mail</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.google</groupId>
+			<artifactId>kaptcha</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>gson</groupId>
+			<artifactId>gson</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>xfile</groupId>
+			<artifactId>commons-httpclient</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>xfile</groupId>
+			<artifactId>commons-codec</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>xfile</groupId>
+			<artifactId>commons-beanutils</artifactId>
+		</dependency>
+		
+		<dependency>
+			  <groupId>com.taobao</groupId>
+			  <artifactId>taobao-sdk-java-auto_1371196228171</artifactId>
+		</dependency>
+		<dependency>
+			  <groupId>com.taobao</groupId>
+			  <artifactId>taobao-sdk-java-online_standard</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>

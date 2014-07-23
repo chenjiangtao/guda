@@ -1,0 +1,32 @@
+.left_nav_no_visited{
+ line-height:40px;
+ background-color: #eceef8;
+    border-bottom: 1px dashed  #cfd7f6;
+}
+.left_nav_visited {
+
+  line-height:40px;
+   background-color: #dfe3f5;
+     border-bottom: 1px dashed  #cfd7f6;
+}
+.title-bar {
+ text-align:left;
+
+  line-height:40px;
+background-color:#cbcbcb;
+    border-bottom: 1px solid #c5e6c7;
+}
+
+.new-msg{
+     line-height:25px;
+     text-align:left;
+      border-bottom: 1px dashed  #cfd7f6;
+}
+.left_nav_no_visited:hover{
+
+ line-height:40px;
+background-color: #dfe3f5;
+
+    border-bottom: 1px dashed  #cfd7f6;
+    
+}

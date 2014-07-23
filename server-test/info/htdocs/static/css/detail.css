@@ -1,0 +1,32 @@
+.pub-date{
+  color:#999999;
+}
+.pub-red{
+  color:#CC0000;
+}
+.font-size16{
+  font-size:16px;
+}
+
+.line40 li{
+  line-height:40px;
+}
+.font-size14{
+  font-size:14px;
+}
+.border3{
+  border-bottom:1px solid #93d090;
+  border-left:1px solid #93d090;
+  border-right:1px solid #93d090;
+}
+.height300{
+  height:auto !important;
+  height:300px;
+  min-height:300px;
+}
+.pub-title{
+  background-color:#92d090;
+  line-height:25px;
+  display:block;
+  padding:8px 20px;width:70px;
+}

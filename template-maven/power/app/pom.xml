@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+<parent>
+    <groupId>net.zoneland</groupId>
+	  <artifactId>ums</artifactId>
+    <version>1.0.0</version>
+  </parent>
+  <groupId>net.zoneland.ums</groupId>
+  <artifactId>app</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+
+  <name>app parent</name>
+  <modules>
+    <module>ums-biz-user</module>
+    <module>ums-biz-config</module>
+    <module>ums-biz-msg</module>
+    <module>ums-gateway</module>
+    <module>ums-service</module>
+    <module>ums-common-dal</module>
+    <module>ums-test</module>
+    <module>ums-web-home</module>
+    <module>ums-common-util</module>
+  </modules>
+</project>

@@ -1,0 +1,190 @@
+<?xml version="1.0"?>
+<!DOCTYPE Configure PUBLIC "-//Mort Bay Consulting//DTD Configure//EN" "http://jetty.mortbay.org/configure.dtd">
+
+<!-- 配置Server对象，此时会调用org.mortbay.jetty.Server默认构造函数new一个Server -->
+<Configure id="Server" class="org.mortbay.jetty.Server">
+
+    <!-- =========================================================== -->
+    <!-- 配置线程池 -->
+    <!-- =========================================================== -->
+
+    <!-- 调用当前Server对象的setThreadPool方法 -->
+    <Set name="ThreadPool">
+      <!-- new一个ThreadPool对象，作为setThreadPool方法的参数  -->
+      <New class="org.mortbay.thread.concurrent.ThreadPool">
+        <!-- 设置线程池核心线程数大小 -->
+        <Set name="corePoolSize">50</Set>
+
+        <!-- 设置线程池最大线程数 -->
+        <Set name="maximumPoolSize">50</Set>
+      </New>
+
+    </Set>
+
+
+
+    <!-- =========================================================== -->
+    <!-- 注册 connectors                                              -->
+    <!-- =========================================================== -->
+  
+    <!-- 调用当前Server对象的addConnector方法  -->
+    <Call name="addConnector">
+      <Arg> <!--Arg 标签表示addConnector方法的参数列表-->
+            
+           <!--new一个SelectChannelConnector对象-->
+          <New class="org.mortbay.jetty.nio.SelectChannelConnector">
+
+            <!-- 调用当前SelectChannelConnector对象的setHost方法，
+                    host表示Connector需要监听的IP地址或者hostname，
+                    SystemProperty标签用来获取Java系统变量。
+             -->
+            <Set name="host"><SystemProperty name="jetty.host" /></Set>
+
+            <!-- 监听端口 -->
+            <Set name="port"><SystemProperty name="jetty.port" default="9090"/></Set>
+
+            <!-- 一个连接的最大空闲时间  -->
+            <Set name="maxIdleTime">30000</Set>
+
+            <!-- Acceptor线程数量，Accepto的功能是接收客户端连接然后分配个ThreadPool处理-->
+            <Set name="Acceptors">2</Set>
+            
+            <!-- 是否开启统计功能  -->
+            <Set name="statsOn">false</Set>
+            
+            <Set name="confidentialPort">8443</Set>
+
+            <!-- 连接数量达到该数值时，Jetty会认为服务器资源已被耗尽  -->
+           <Set name="lowResourcesConnections">5000</Set>
+
+            <!-- 当资源饱和时，连接最大等待时间，时间单位是毫秒 -->
+           <Set name="lowResourcesMaxIdleTime">5000</Set>
+          </New>
+      </Arg>
+    </Call>
+
+
+    <!-- =========================================================== -->
+    <!-- 设置Handlers                            --> 
+    <!-- =========================================================== -->
+
+    <Set name="handler">
+<!-- HandlerCollection中每一个Handler都会被按顺序执行 --> 
+      <New id="Handlers" class="org.mortbay.jetty.handler.HandlerCollection">
+        <Set name="handlers">
+         <Array type="org.mortbay.jetty.Handler">
+           <Item>
+                <!-- ContextHandler的集合 --> 
+             <New id="Contexts" class="org.mortbay.jetty.handler.ContextHandlerCollection"/>
+           </Item>
+           <Item>
+              <!-- DefaultHandler 如果前一Handler没有处理request的话就会执行它。用来输出提示信息或者输出网站图标 --> 
+             <New id="DefaultHandler" class="org.mortbay.jetty.handler.DefaultHandler"/>
+           </Item>
+            
+            <!-- 请求日志记录器  -->
+           <Item>
+             <New id="RequestLog" class="org.mortbay.jetty.handler.RequestLogHandler"/>
+           </Item>
+         </Array>
+        </Set>
+      </New>
+    </Set>
+    
+    <!-- =========================================================== -->
+    <!-- Configure the context deployer                              -->
+    <!-- A context deployer will deploy contexts described in        -->
+    <!-- configuration files discovered in a directory.              -->
+    <!-- The configuration directory can be scanned for hot          -->
+    <!-- deployments at the configured scanInterval.                 -->
+    <!--                                                             -->
+    <!-- This deployer is configured to deploy contexts configured   -->
+    <!-- in the $JETTY_HOME/contexts directory                       -->
+    <!--                                                             -->
+    <!-- =========================================================== -->
+    <Call name="addLifeCycle">
+      <Arg>
+        <New class="org.mortbay.jetty.deployer.ContextDeployer">
+          <Set name="contexts"><Ref id="Contexts"/></Set>
+          <Set name="configurationDir">
+              <SystemProperty name="jetty.home" default="."/>/contexts</Set>
+          <Set name="scanInterval">5</Set>
+        </New>
+      </Arg>
+    </Call>
+
+    <!-- =========================================================== -->
+    <!-- Configure the webapp deployer.                              -->
+    <!-- A webapp  deployer will deploy standard webapps discovered  -->
+    <!-- in a directory at startup, without the need for additional  -->
+    <!-- configuration files.    It does not support hot deploy or   -->
+    <!-- non standard contexts (see ContextDeployer above).          -->
+    <!--                                                             -->
+    <!-- This deployer is configured to deploy webapps from the      -->
+    <!-- $JETTY_HOME/webapps directory                               -->
+    <!--                                                             -->
+    <!-- Normally only one type of deployer need be used.            -->
+    <!--                                                             -->
+    <!-- =========================================================== 
+    <Call name="addLifeCycle">
+      <Arg>
+        <New class="org.mortbay.jetty.deployer.WebAppDeployer">
+          <Set name="contexts"><Ref id="Contexts"/></Set>
+          <Set name="webAppDir"><SystemProperty name="jetty.home" default="."/>/webapps</Set>
+ <Set name="parentLoaderPriority">false</Set>
+ <Set name="extract">true</Set>
+ <Set name="allowDuplicates">false</Set>
+          <Set name="defaultsDescriptor"><SystemProperty name="jetty.home" default="."/>/etc/webdefault.xml</Set>
+        </New>
+      </Arg>
+    </Call>
+-->
+    <!-- =========================================================== -->
+    <!-- Configure Authentication Realms                             -->
+    <!-- Realms may be configured for the entire server here, or     -->
+    <!-- they can be configured for a specific web app in a context  -->
+    <!-- configuration (see $(jetty.home)/contexts/test.xml for an   -->
+    <!-- example).                                                   -->
+    <!-- =========================================================== 
+    <Set name="UserRealms">
+      <Array type="org.mortbay.jetty.security.UserRealm">
+        <Item>
+          <New class="org.mortbay.jetty.security.HashUserRealm">
+            <Set name="name">Test Realm</Set>
+            <Set name="config"><SystemProperty name="jetty.home" default="."/>/etc/realm.properties</Set>
+            <Set name="refreshInterval">0</Set>
+          </New>
+        </Item>
+      </Array>
+    </Set>
+-->
+    <!-- =========================================================== -->
+    <!-- Configure Request Log                                       -->
+    <!-- Request logs  may be configured for the entire server here, -->
+    <!-- or they can be configured for a specific web app in a       -->
+    <!-- contexts configuration (see $(jetty.home)/contexts/test.xml -->
+    <!-- for an example).                                            -->
+    <!-- =========================================================== -->
+    <Ref id="RequestLog">
+      <Set name="requestLog">
+        <New id="RequestLogImpl" class="org.mortbay.jetty.NCSARequestLog">
+          <Set name="filename"><SystemProperty name="jetty.logs" default="./logs"/>/yyyy_mm_dd.request.log</Set>
+          <Set name="filenameDateFormat">yyyy_MM_dd</Set>
+          <Set name="retainDays">90</Set>
+          <Set name="append">true</Set>
+          <Set name="extended">false</Set>
+          <Set name="logCookies">false</Set>
+          <Set name="LogTimeZone">GMT</Set>
+        </New>
+      </Set>
+    </Ref>
+
+    <!-- =========================================================== -->
+    <!-- 其他配置选项                                               -->
+    <!-- =========================================================== -->
+    <Set name="stopAtShutdown">true</Set>
+    <Set name="sendServerVersion">true</Set>
+    <Set name="sendDateHeader">true</Set>
+    <Set name="gracefulShutdown">1000</Set>
+
+</Configure>

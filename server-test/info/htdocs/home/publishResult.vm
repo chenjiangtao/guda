@@ -1,0 +1,23 @@
+#set($layout = "home/layout/publishLayout.vm")
+
+<div class="container">
+<div class="grid doc">
+    <ul class="breadcrumb  font-size16">
+	    <li><a href="$homeServer.getURI("/")">首页</a></li>
+	    <li><a href="$homeServer.getURI("/prod/publish.htm")">发布信息</a></li>
+	    <li>发布结果</li>
+    </ul>
+</div>
+</div>
+
+<div class="container"  style="height:350px;">
+<div class="grid doc " >
+	<div class="col-1-6">
+	&nbsp;
+	</div>
+	 <div class="col-4-6 block">
+  <p style="font-size:16px;font-weight:bold;color: #93D090;">$!{tips}</p>
+  <p style="font-size:14px;font-weight:bold;">您可以点此<a href="$homeServer.getURI("/prod/detail.htm")?id=$!tid">查看详情</a></p>
+ </div>
+</div>
+</div>

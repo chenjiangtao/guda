@@ -1,0 +1,23 @@
+#set($HeadMenuId="a_q")
+#set($leftMenuId="q_monitor")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/q.css")" />
+<div class="center-contain">
+<div class="contain">
+  #parse("home/q/left-nav.vm")
+  <div class="contain-right">
+	<ul>
+	  <li><b style="font-size:14px;">1，问:监控平台可以监控哪些指标？</b></li>
+	  <li><b>答:监控平台目前可以支持主机，数据库，应用的监控<br/>
+	  1，主机的监控指标：linux,windows,aix等主机的磁盘IO，CPU，负载，内存等指标。<br/>
+	  2，数据库的监控指标：缓存命中，锁表（oracle），磁盘容量，连接数等指标。<br/>
+	  3，应用的监控指标：主要是端口，webservice等服务是否可用。<br/>
+	  以上指标均可以按时间范围查询。并以图表的形式展示<br/><br/></b></li>
+	  <li><b style="font-size:14px;">2，问:监控的平台的优势？</b></li>
+	  <li><b>答:监控平台主要是辅助人工监控，减少人力成本的投入，监控平台主要优势是可以在一个控制台监控到所有服务器，数据库，应用的状态
+	  。并可以设定指标阀值，对超过阀值的情况以短信，邮件方式告警，提高故障处理及时率。<br/><br/></b></li>
+	  
+	  
+	</ul>
+</div>
+ </div>  
+</div>

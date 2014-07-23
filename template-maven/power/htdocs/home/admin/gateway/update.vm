@@ -1,0 +1,162 @@
+<link href="$umsServer.getURI("/static/css/addgateway.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/gateway.js")"></script>
+<div id="bd">
+#set($HeadMenuId="system_header")
+#set($sideMenuId="gate_side_bar")
+#parse("/home/admin/adminSideBar.vm")
+<div id="pRight">
+        <div class="rounded_top">
+            <span class="lt_top"></span>
+            <span class="rt_top"></span>
+        </div>
+        <div class="pRight_c">
+              <div id="main">
+                  <div class="p25">
+                       <div id="writeEmail">
+				         <form action="$umsServer.getURI("/gateway/update.htm")" method="post" name="form_book" id="form_book">
+							 <div class="btnArea clearfix">
+								&nbsp;&nbsp;<a class="bold fs14 c_007" href="$umsServer.getURI("/gateway/list.htm")">网关配置</a><a class="fs14bold c_008">-&gt;修改网关</a>
+							 </div>
+							 #if($!message)<div style="color:red;margin-left:2%"><font class="bold fs14"> $!message</font> </div> #end
+				           #springBind("gateWayForm.id" )
+				           <input name="id" id="id" type="hidden" name="${status.expression}" value="$!status.value" />
+
+						 <br/>
+							<table class="form" style="width:100%">
+								<tr>
+									#springBind("gateWayForm.type")
+									<td style="width:50%"><label class="c_007"><span class="red">*</span>网关类型：<br/>(gateway-type)</label>
+										<select name="type" class="inputBox" style = "width:162px;" id="gatewayType" onblur="gatewayTypeCheck()">
+											<option value="">--请选择--</option>
+											#foreach($var in $type)
+												<option value="$var.value" #if($!gateWayForm.type==$var.value) selected="selected" #end>$var.description</option>
+											#end
+											</select>
+											<br/><span class="tipMsg" id="gatewayTypeMsg">网关类型不能为空</span>
+											<!--<br/>#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end-->
+									</td>
+									#springBind("gateWayForm.gatewayName")
+									<td style="width:50%"><label class="c_007"><span class="red">*</span>网关名字：<br/>(gateway-name)</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="gatewayName" onblur="gatewayNameCheck()" type="text"/>
+									<br/><span class="tipMsg" id="gatewayNameMsg">长度不能超过12位</span>
+									<!--<br/>#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end-->
+									</td>
+								</tr>
+								<tr>
+									#springBind("gateWayForm.localHost")
+									<td ><label class="c_007">本地主机：<br/>(localhost)</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="localHost" onblur="localHostCheck()" style="ime-mode:disabled;" type="text"/>
+									</br><span class="tipMsg" id="localHostMsg">长度不能超过20位</span>
+									<!--</br>#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end-->
+									</td>
+									#springBind("gateWayForm.localPort")
+									<td ><label class="c_007" ><span id = "localportspan">本地端口：</span><br/>(localport)</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="localPort" onblur="localPortCheck()" type="text"/>
+									</br><span class="tipMsg" id="localPortMsg">请输入1025-65535的数字</span>
+									<!--<br/>#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end-->
+									</td>
+								</tr>
+								<tr>
+									#springBind("gateWayForm.host")
+									<td><label class="c_007"><span class="red">*</span>服务器IP：<br/>(host)</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="host" onblur="hostCheck()" style="ime-mode:disabled;" type="text"/>
+									<br/><span class="tipMsg" id="hostMsg">长度不能超过20</span>
+									<!--<br/>#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end-->
+									</td>
+									#springBind("gateWayForm.port")
+									<td><label class="c_007"><span class="red">*</span>服务器端口：<br/>(port)</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="port" onblur="portCheck()" type="text"/>
+									<br/><span class="tipMsg" id="portMsg">请输入1025-65535的数字</span>
+									<!--<br/>#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end-->
+									</td>
+								</tr>
+								<tr>
+									#springBind("gateWayForm.sourceAddr")
+									<td><label class="c_007"><span class="red">*</span>用户名：<br/>(source-addr)</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="sourceAddr" onblur="sourceAddrCheck()" type="text"/>
+									<br/><span class="tipMsg" id="sourceAddrMsg">必须为1~20位数字或字母</span>
+									<!--<br/>#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end-->
+									</td>
+									#springBind("gateWayForm.sharedSecret")
+									<td><label class="c_007"><span class="red">*</span>密码：<br/>(shared-secret)</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="sharedSecret" onblur="sharedSecretCheck()" type="text"/>
+									<br/><span class="tipMsg" id="sharedSecretMsg">4~20位数字或字母</span>
+									<!--<br/>#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end-->
+									</td>
+								</tr>
+								<tr>
+									#springBind("gateWayForm.heartbeatInterval")
+									<td><label class="c_007"><span class="red">*</span>心跳间隔时间：<br/>(heartbeat-interval)</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="heartbeatInterval" onblur="heartbeatIntervalCheck()" type="text"/>
+									<br/><span class="tipMsg" id="heartbeatIntervalMsg">0~999数字，单位为秒</span>
+									<!--<br/>#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end-->
+									</td>
+									#springBind("gateWayForm.heartbeatNoresponseout" )
+									<td><label class="c_007"><span class="red">*</span>心跳失败次数：<br/>(heartbeat-noresponseout)</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="heartbeatNoresponseout" onblur="heartbeatNoresponseoutCheck()" type="text"/>
+									<br/><span class="tipMsg" id="heartbeatNoresponseoutMsg">0~999数字，单位为秒</span>
+									<!--<br/>#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end-->
+									</td>
+								</tr>
+								<tr>
+									#springBind("gateWayForm.readTimeout")
+									<td><label class="c_007"><span class="red">*</span>读取超时：<br/>(read-timeout)</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="readTimeout" onblur="readTimeoutCheck()" type="text"/>
+									<br/><span class="tipMsg" id="readTimeoutMsg">0~999数字，单位为秒</span>
+									<!--<br/>#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end-->
+									</td>
+									#springBind("gateWayForm.reconnectInterval")
+									<td><label class="c_007"><span class="red">*</span>重连间隔时间：<br/>(reconnect-interval)</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="reconnectInterval" onblur="reconnectIntervalCheck()" type="text"/>
+									<br/><span class="tipMsg" id="reconnectIntervalMsg">0~999数字，单位为秒</span>
+									<!--<br/>#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end-->
+									</td>
+								</tr>
+								<tr>
+									#springBind("gateWayForm.transactionTimeout")
+									<td><label class="c_007"><span class="red">*</span>发送消息的操作时间：<br/>(transaction-timeout)</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="transactionTimeout" onblur="transactionTimeoutCheck()" type="text"/>
+									<br/><span class="tipMsg" id="transactionTimeoutMsg">0~999数字，单位为秒</span>
+									<!--<br/>#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end-->
+									</td>
+									#springBind("gateWayForm.corpId")
+									<td><label class="c_007">公司Id：<br/>(corpId)</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="corpId" onblur="corpIdCheck()" type="text"/>
+									<br/><span class="tipMsg" id="corpIdMsg">长度不能超过6位</span>
+									<!--<br/>#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end-->
+									</td>
+								</tr>
+								<tr>
+									#springBind("gateWayForm.spNumber")
+									<td><label class="c_007"><span class="red">*</span>服务号码：<br/>(spNumber)</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="spNumber" onblur="spNumberCheck()" type="text"/>
+									<br/><span class="tipMsg" id="spNumberMsg">必须是不超过20位的数字</span>
+									<!--<br/>#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end-->
+									</td>
+									#springBind("gateWayForm.debug")
+									<td><label class="c_007">是否调试：<br/>(debug)</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="debug" onblur="debugCheck()" type="text"/>
+									<br/><span class="tipMsg" id="debugMsg">1表示调试,0表示不调试</span>
+									<!--<br/>#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end-->
+									</td>
+								</tr>
+								<tr>
+									#springBind("gateWayForm.version")
+									<td><label class="c_007"><span class="red">*</span>版本：<br/>(version)</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="version" onblur="versionCheck()" type="text"/>
+									<br/><span class="tipMsg" id="versionMsg">请输入0~999的数字</span>
+									<!--<br/>#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end-->
+									</td>
+									#springBind("gateWayForm.isOutProv")
+									<td style="width:50%"><label class="c_007">是否支持外省：</label>
+										<select name="isOutProv" class="inputBox" style = "width:162px;" id="outProv" >
+											<option value="">--请选择--</option>
+											#foreach($var in $outProv)
+												<option value="$var.value" #if($!gateWayForm.isOutProv==$var.value) selected="selected" #end>$var.description</option>
+											#end
+											</select>
+										
+											
+									</td>
+								</tr>
+							</table>
+					<br/>
+                <div class="btnArea clearfix">
+					<input type="button" style="margin-left:45%" class="btn_green" value="保存" onclick="check()">
+                </div>
+				</form>
+            </div>
+        </div>
+    </div>
+
+		<div class="rounded_btm">
+            <span class="lt_btm"></span>
+            <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>
+</div>

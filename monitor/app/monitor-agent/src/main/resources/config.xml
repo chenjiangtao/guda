@@ -1,0 +1,359 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+
+ <sysInfo>
+	  <sys key="cpu" comments="cpu使用率(百分比)"  interval="30" order="1">
+	  </sys>
+	  <sys key="mem" comments="内存(单位:MB)"  interval="30" order="2">
+	  </sys>
+	  <sys key="net-in" comments="入网(单位:KB)"  interval="30" order="3">
+	  </sys>
+	  <sys key="net-out" comments="出网(单位:KB)"  interval="30" order="4">
+	  </sys>
+	  <sys key="file-read" comments="读磁盘(单位:KB)"  interval="30" order="5">
+	  </sys>
+	  <sys key="file-write" comments="写磁盘(单位:KB)"  interval="30" order="6">
+	  </sys>
+	  <sys key="dev-used" comments="磁盘使用率(百分比)"  interval="30" order="7">
+	  </sys>
+	  <sys key="processInfo" comments="进程信息"  interval="30" order="8">
+	  </sys>
+	  <sys key="log" comments="系统日志"  interval="30" order="9">
+	  </sys>
+	  <sys key="runTime" comments="运行时间"  interval="30" order="10">
+	  </sys>
+	  <!--  
+	  <sys key="load" comments="负载" monitor="true" interval="30">
+	  </sys>
+	  -->
+  </sysInfo>
+ 
+  <dbInfo>
+
+	  <db  driverClass="oracle.jdbc.driver.OracleDriver">
+	     <sqlUrl>jdbc:oracle:thin:@172.16.67.105:1521:portaldb</sqlUrl>
+	     <sqlUserName>sys as sysdba</sqlUserName>
+	     <sqlPassword>oracle</sqlPassword>
+	     
+	     <sql interval="30" key="警告日志" resultType="string">
+		     <query>select value from sys.v_$parameter where name = 'background_dump_dest'</query>
+	     </sql>
+	     
+	     <sql interval="30" key="在线用户数" resultType="int">
+		     <query >select count(*) from v$session</query>
+		     <map column="0" showName="在线用户数"></map>
+	     </sql>
+	     
+	     <sql interval="30" key="实例状态" resultType="string">
+		     <query >select instance_name,status from gv$instance </query>
+		     <map column="instance_name" showName="实例名"></map>
+		     <map column="status" showName="实例状态"></map>
+	     </sql>
+	     <sql interval="30" key="当前用户连接数" resultType="string">
+		     <query>Select inst_id,count(*) from gv$session group by inst_id </query>
+		     <map column="inst_id" showName="实例ID"></map>
+		     <map column="count(*)" showName="连接数"></map>
+	     </sql>
+	     
+	     <sql interval="30" key="活动用户数" resultType="string">
+		     <query >select schemaname,count(*) from gv$session where status='ACTIVE' group by schemaname</query>
+		     <map column="schemaname" showName="实例"></map>
+		     <map column="count(*)" showName="活动用户数"></map>
+	     </sql>
+	     
+	     <sql interval="30" key="业务数据量大小" resultType="int">
+		     <query >select sum(bytes)/1024/1024/1024 from dba_segments</query>
+		     
+	     </sql>
+	     
+	    
+	     <sql interval="30" key="表空间使用率" resultType="multi-value"  suffixColumn="TABLESPACE_NAME" valueColumn="USED_RATE">
+		     <query>
+		     <![CDATA[
+		       SELECT D.TABLESPACE_NAME,  
+			         SPACE || 'M' "SUM_SPACE(M)",  
+			         BLOCKS "SUM_BLOCKS",  
+			         SPACE - NVL (FREE_SPACE, 0) || 'M' "USED_SPACE(M)",  
+			         ROUND ( (1 - NVL (FREE_SPACE, 0) / SPACE) * 100, 2)  
+			            "USED_RATE",  
+			         FREE_SPACE || 'M' "FREE_SPACE(M)"  
+			    FROM (  SELECT TABLESPACE_NAME,  
+			                   ROUND (SUM (BYTES) / (1024 * 1024), 2) SPACE,  
+			                   SUM (BLOCKS) BLOCKS  
+			              FROM DBA_DATA_FILES  
+			          GROUP BY TABLESPACE_NAME) D,  
+			         (  SELECT TABLESPACE_NAME,  
+			                   ROUND (SUM (BYTES) / (1024 * 1024), 2) FREE_SPACE  
+			              FROM DBA_FREE_SPACE  
+			          GROUP BY TABLESPACE_NAME) F  
+			   WHERE D.TABLESPACE_NAME = F.TABLESPACE_NAME(+)  
+			  UNION ALL                                                         
+			  SELECT D.TABLESPACE_NAME,  
+			         SPACE || 'M' "SUM_SPACE(M)",  
+			         BLOCKS SUM_BLOCKS,  
+			         USED_SPACE || 'M' "USED_SPACE(M)",  
+			         ROUND (NVL (USED_SPACE, 0) / SPACE * 100, 2)  "USED_RATE",  
+			         NVL (FREE_SPACE, 0) || 'M' "FREE_SPACE(M)"  
+			    FROM (  SELECT TABLESPACE_NAME,  
+			                   ROUND (SUM (BYTES) / (1024 * 1024), 2) SPACE,  
+			                   SUM (BLOCKS) BLOCKS  
+			              FROM DBA_TEMP_FILES  
+			          GROUP BY TABLESPACE_NAME) D,  
+			         (  SELECT TABLESPACE_NAME,  
+			                   ROUND (SUM (BYTES_USED) / (1024 * 1024), 2) USED_SPACE,  
+			                   ROUND (SUM (BYTES_FREE) / (1024 * 1024), 2) FREE_SPACE  
+			              FROM V$TEMP_SPACE_HEADER  
+			          GROUP BY TABLESPACE_NAME) F  
+			   WHERE D.TABLESPACE_NAME = F.TABLESPACE_NAME(+)  
+			  ORDER BY 1
+
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	     
+	      
+	     
+	     <sql interval="30" key="磁盘排序率" resultType="int">
+		     <query>
+		     <![CDATA[
+		      SELECT value FROM v$sysstat t WHERE NAME='sorts (disk)'
+		     ]]>
+		     </query>
+		     <map column="value" showName="磁盘排序率"></map>
+		    
+	     </sql>
+	     <sql interval="30" key="读缓存命中率" resultType="float">
+		     <query>
+		     <![CDATA[
+		      select 1-(sum(decode(name,'physical reads',value,0))/(sum(decode(name,'db block gets',value,0))+(sum(decode(name,'consistent gets',value,0))))) as rate
+              from v$sysstat
+
+		     ]]>
+		     </query>
+		     <map column="rate" showName="读缓存命中率"></map>
+		    
+	     </sql>
+	     <sql interval="30" key="用户提交数" resultType="int">
+		     <query>
+		     <![CDATA[
+		      select value from v$sysstat where name='user commits'
+		     ]]>
+		     </query>
+		     <map column="value" showName="用户提交数"></map>
+		    
+	     </sql>
+	     
+	     
+	     <sql interval="30" key="用户回滚数" resultType="int">
+		     <query>
+		     <![CDATA[
+		     select value from v$sysstat where name='user rollbacks'
+		     ]]>
+		     </query>
+		     <map column="value" showName="用户回滚数"></map>
+		    
+	     </sql>
+	     <sql interval="30" key="死锁数" resultType="int">
+		     <query>
+		     <![CDATA[
+		     select count(*) from v$locked_object
+		     ]]>
+		     </query>
+		     <map column="count(*)" showName="死锁数"></map>
+	     </sql>
+	     <sql interval="30" key="REDO WRITES" resultType="int">
+		     <query>
+		     <![CDATA[
+		     Select max(lebsz) as redo from x$kccle
+		     ]]>
+		     </query>
+		     <map column="redo" showName="REDO WRITES"></map>
+	     </sql>
+	     
+	     
+	     <sql interval="30" key="TABLE SCANS (LONG TABLES)" resultType="int">
+		     <query>
+		     <![CDATA[
+		     Select value from v$sysstat where name='table scans (long tables)'
+		     ]]>
+		     </query>
+		     <map column="value" showName="TABLE SCANS (LONG TABLES)"></map>
+	     </sql>
+	     <sql interval="30" key="硬解析率" resultType="int">
+		     <query>
+		     <![CDATA[
+		     select 1-(a.value/b.value) as rate
+			 from v$sysstat a,v$sysstat b 
+			 Where a.name='parse count (hard)' and b.name='parse count (total)'
+		     ]]>
+		     </query>
+		     <map column="rate" showName="硬解析率"></map>
+	     </sql>
+	     <sql interval="30" key="当前登录数" resultType="int">
+		     <query>
+		     <![CDATA[
+		     select count(*) from v$session
+		     ]]>
+		     </query>
+		     <map column="count(*)" showName="当前登录数"></map>
+	     </sql>
+	     
+	     
+	     <sql interval="30" key="free buffer waits" resultType="int">
+		     <query>
+		     <![CDATA[
+		     select count(*) from v$event_name where name ='free buffer waits'
+		     ]]>
+		     </query>
+		     
+	     </sql>
+	    
+	       
+	      <sql interval="30" key="log file switch completion" resultType="multi-value"  suffixColumn="sid" valueColumn="total_waits">
+		     <query>
+		     <![CDATA[
+		     Select sid,event,total_waits, wait_class from v$session_event where event ='log file switch completion'
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	      
+	     
+	      <sql interval="30" key="log file sync" resultType="multi-value"  suffixColumn="sid" valueColumn="total_waits">
+		     <query>
+		     <![CDATA[
+		     Select sid,event,total_waits, wait_class from v$session_event where event ='log file sync'
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	     
+	     
+	      <sql interval="30" key="log file parallel write" resultType="multi-value"  suffixColumn="sid" valueColumn="total_waits">
+		     <query>
+		     <![CDATA[
+		     Select sid,event,total_waits, wait_class from v$session_event where event ='log file parallel write'
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	     
+	     
+	      <sql interval="30" key="enqueue waits" resultType="string">
+		     <query>
+		     <![CDATA[
+		     SELECT s.sid,
+			       s.event,
+			       s.p1,
+			       s.p1raw,
+			       chr(bitand(s.p1, -16777216) / 16777215) ||
+			       chr(bitand(s.p1, 16711680) / 65535) AS "TYPE",
+			       MOD(s.p1, 16) AS "MODE"
+			  FROM v$session_wait s
+			 WHERE s.event = 'enqueue'
+
+		     ]]>
+		     </query>
+		   
+	     </sql>
+	     
+	    
+	      <sql interval="30" key="db file sequential read waits" resultType="int">
+		     <query>
+		     <![CDATA[
+		     SELECT sum(total_waits)
+				FROM v$session_event
+				WHERE event='db file sequential read'
+
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	    
+	     
+	      <sql interval="30" key="db file scattered read" resultType="int">
+		     <query>
+		     <![CDATA[
+		     SELECT sum(total_waits)
+				FROM v$session_event
+				WHERE event='db file scattered read'
+
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	      <sql interval="30" key="direct path read" resultType="int">
+		     <query>
+		     <![CDATA[
+		     select count(*) from v$event_name where name='direct path read'
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	      <sql interval="30" key="direct path write" resultType="int">
+		     <query>
+		     <![CDATA[
+		     select count(*) from v$event_name where name='direct path write'
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	      <sql interval="30" key="latch free" resultType="int">
+		     <query>
+		     <![CDATA[
+		     select count(*) from v$session_wait
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	     <sql interval="30" key="多版本的sql语句" resultType="string">
+		     <query>
+		     <![CDATA[
+		     select sql_fulltext,sql_id,version_count from v$sqlarea where version_count>5
+		     ]]>
+		     </query>
+		     <map column="sql_fulltext" showName="sql_fulltext"></map>
+		     <map column="sql_id" showName="sql_id"></map>
+		     <map column="version_count" showName="version_count"></map>
+	     </sql>
+	     <sql interval="30" key="最近一次的日志序号数" resultType="string">
+		     <query>
+		     <![CDATA[
+		     select max(sequence#) from v$archived_log
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	     <sql interval="30" key="实例启动时间" resultType="string">
+		     <query>
+		     <![CDATA[
+		     select INST_ID,INSTANCE_NAME,HOST_NAME,STARTUP_TIME,STATUS from gv$instance
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	     
+	     <sql interval="30" key="sql执行情况" resultType="string">
+		     <query>
+		     <![CDATA[
+		     select username, sql_text from v$session a, v$sqltext b where a.sql_address =b.address order by address, piece
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	     <sql interval="30" key="用户session使用cpu" resultType="string">
+		     <query>
+		     <![CDATA[
+		     select a.sid,spid,status,substr(a.program,1,40) prog,a.terminal,osuser,value/60/100 value   
+		     from v$session a,v$process b,v$sesstat c    where c.statistic#=12   
+		       and c.sid=a.sid      and a.paddr=b.addr    order by value desc
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	    
+	  </db>
+	 
+  </dbInfo>
+</root>

@@ -1,0 +1,7 @@
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/info.css")" />
+<div class="center-contain">
+<div class="info-contain">
+$!contents
+
+</div>
+</div>

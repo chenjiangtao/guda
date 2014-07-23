@@ -1,0 +1,7 @@
+#set($layout = "home/layout/errorLayout.vm")
+
+<div style="height:100%;padding:100px;text-align:center;background-color:#e2f2ec;">
+<ul>
+<font size="5" color="red"><b>请您先到门户系统录入手机号，再访问本系统！</b></font></ul>
+</div>
+

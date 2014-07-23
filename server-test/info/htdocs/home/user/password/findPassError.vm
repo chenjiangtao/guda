@@ -1,0 +1,16 @@
+#set($layout = "home/layout/regLayout.vm")
+#set($_title="找回密码")
+
+
+
+<div class="container"  style="height:350px;">
+<div class="grid doc" >
+	<div class="col-1-6">
+	&nbsp;
+	</div>
+	 <div class="col-4-6">
+  <p style="font-size:16px;font-weight:bold;color:red;">对不起，您输入的用户名和邮箱不匹配.</p>
+ <p style="font-size:14px;font-weight:bold;">您可以点此<a href="$homeServer.getURI("/user/findPass.htm")">重新输入用户名和邮箱</a>来找回您的密码</p>
+ </div>
+</div>
+</div>

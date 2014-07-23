@@ -1,0 +1,19 @@
+
+#set($HeadMenuId="a_about")
+
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/about.css")" />
+<div class="center-contain">
+<div class="contain">
+
+	<ul>
+	  <li><b class="font16">我们专业提供企业短信群发解决方案，可定制需求。提供短信功能集成到现有系统中的技术方案。</b></li>
+	  <li>成功案例：</li>
+	  <li>1，某企业主机，数据库监控平台，对主机运行状态，数据库运行指标通过短信方式提供告警，状态查询。并通过短信的方式告警，
+	  减少了人力成本，提高了故障处理响应速度。</li>
+	   <li>2，针对短信量大的企业，我们采用缓冲技术，在保证网关可用的前提下，最大化系统吞吐率。保证系统的高可用。</li>
+	   <li>我们的联系方式:</li>
+	   <li>电话:15558135733</li>
+	   <li>QQ:52313882</li>
+	</ul>
+</div>
+</div>

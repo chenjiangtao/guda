@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <property name="run_mode" defaultValue="prod" description="运行模式，开发还是线上" />
+	<property name="jdbc.url" defaultValue="jdbc:mysql://localhost:3306/monitor?characterEncoding=utf-8" description="系统名" />
+	<property name="jdbc.username" defaultValue="root"
+		description="系统根目录" />
+	<property name="jdbc.password" defaultValue="vivian119" description="" />
+	<property name="jdbc.driver" defaultValue="oracle.jdbc.driver.OracleDriver" description="" />
+	<property name="log4j.home" defaultValue="d:" description="" />
+	<property name="htdocs_root" defaultValue="/" description="" />
+	
+	<property name="http.port" defaultValue="9090" description="" />
+	<property name="ajp.port" defaultValue="9092" description="" />
+	
+	<property name="mail.host" defaultValue="smtp.163.com" description="" />
+	<property name="mail.port" defaultValue="25" description="" />
+	<property name="mail.username" defaultValue="ums365service@163.com" description="" />
+	<property name="mail.password" defaultValue="gavin1217" description="" />
+	
+	<property name="modem.modemId" defaultValue="modem.com4" description="" />
+	<property name="modem.port" defaultValue="COM4" description="" />
+	<property name="modem.baudRate" defaultValue="9600" description="" />
+	<property name="modem.manufacturer" defaultValue="wavecom" description="" />
+	
+	<property name="agent.key" defaultValue="xxx" description="" />
+	
+	
+	
+	
+	
+	
+
+</config>

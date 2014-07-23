@@ -1,0 +1,133 @@
+<link href="$umsServer.getURI("/static/css/group.css")" rel="stylesheet"type="text/css" />
+<link href="$umsServer.getURI("/static/css/applist.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/checkutil.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/app/subAppList.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/table.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/targetPage.js")"></script>
+<div id="bd">
+#set($sideMenuId="app_side_bar")
+#set($HeadMenuId="system_header")
+#parse("/home/admin/adminSideBar.vm")
+#set($searchUrl = $umsServer.getURI("/subApp/list.htm"))
+#set($param = "appId=$!appId")
+<input style="width:50%;" type="hidden" id="param"  name="param" value="$param"/>
+<input style="width:50%;" type="hidden" id="searchUrl"  name="searchUrl" value="$searchUrl"/>
+<div id="pRight">
+	<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+	<div class="pRight_c">
+
+	<div class="btnArea clearfix">
+								&nbsp;&nbsp;<a class="bold fs14 c_007" href="$umsServer.getURI("/app/list.htm").addQueryData("pageId","$!page")">应用管理</a><a class="fs14bold c_008">-&gt;子应用维护</a><a class="fs14bold c_008">-&gt;$!appName</a>
+							 </div>
+	 <div style="margin:3px 3px;"><span><a href="javascript:;" id="span_add_btn" class="btn green">添加子应用</a></span> </div>
+	 #if($!message)<div style="color:red;"><font id="message" class="bold fs14"> $!message</font> </div> #end
+
+        <div id="tableContainer" class="tableContainer" style="width:100%">
+			<div id="scrollContentContainer" class="scrollContentContainer">
+				<form action="$umsServer.getURI("/subApp/list.htm")" method="post">					
+				<input type="hidden" id="appId"  name="appId" value="$!appId"/>
+				<table class="scrollContent" cellspacing="1" cellpadding="0" width="100%">
+						<thead>
+						<tr>
+						  <td width="5%">序号</td>
+				          <td width="20%">子应用名称</td>
+				          <td width="10%">子应用ID</td>
+						  <td width="10%">优先级</td>
+						  <td width="20%">最近操作时间</td>
+				          <td width="20%">操作</td>
+			            </tr>
+						</thead>
+					<tbody class="tb">
+					#foreach($result in $!results.results)
+						<tr>
+						  <td width="5%" style="text-align:center;" >$velocityCount</td>
+				          <td width="20%" id="name$!result.id" title="$!result.appSubName">$!result.appSubName</td>
+				          <td width="10%" id="id$!result.id" title="$!result.appSubId">$!result.appSubId</td>
+				          <td width="10%" id="priority$!result.id" title="$!result.priority">$!result.priority</td>
+				          <td width="20%" title="$!date.format('yyyy-MM-dd HH:mm:ss',$!result.gmtModified)">$!date.format('yyyy-MM-dd HH:mm:ss',$!result.gmtModified)</td>
+				          <td width="20%" style="text-align:center;">
+						  <a class="a_green_form_ddl" href="javascript:;" onclick="editSubApp('$!result.id')">编辑</a>
+				          <a class="a_green_form_ddl"  href="javascript:confirmTool('/subApp/del.htm?id=$!result.id&pageId=$!results.curPage&appId=$!appId&appName=$!appName','确认删除该应用？')" >
+							删除
+				          </a>
+						   </td>
+				         </tr>
+						#end
+					    </tbody>
+				</table>
+			</div>
+		</div>
+		#noRecord($!results)
+		#if($!results.totalPage>0)
+          <div class="btnArea clearfix" >
+			<div class="page_detail">
+				#if($!results.curPage != 1)
+					<a class="a_green_form_ddl" href="$umsServer.getURI("/subApp/list.htm").addQueryData("pageId","1").addQueryData("appId","$!appId")"><span>首页</span></a>
+				#end
+				#if($!results.curPage > 1)
+					#set($tempPage = $!results.curPage - 1)
+					<a class="a_green_form_ddl" href="$umsServer.getURI("/subApp/list.htm").addQueryData("pageId","$!tempPage").addQueryData("appId","$!appId")"><span>上一页</span></a>
+				#end
+				#if($!results.curPage < $!results.totalPage)
+					#set($tempPage = $!results.curPage + 1)
+					<a class="a_green_form_ddl" href="$umsServer.getURI("/subApp/list.htm").addQueryData("pageId","$!tempPage").addQueryData("appId","$!appId")"><span>下一页</span></a>
+				#end
+				#if($!results.curPage != $!results.totalPage && $!results.totalPage > 0)
+					<a class="a_green_form_ddl" href="$umsServer.getURI("/subApp/list.htm").addQueryData("pageId","$!results.totalPage").addQueryData("appId","$!appId")"><span>尾页</span></a>
+				#end
+				<span class="pager_info">当前第 <input id="targetNum" name="pageId" class="pager_inputBox" value="$!results.curPage" autocomplete="off"/>页  </span>				   
+				<span id="targetBtn" class="a_green_form_ddl" style="cursor: pointer;">跳转</span>
+				<span>共$!results.totalPage页 共$!results.total条记录</span>
+             </div>
+          </div>
+		  #end
+		    </div>
+		    </form>
+		 <div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+</div>
+</div>
+
+<div id="mask" style="display:none;"></div>
+<div id="memberContainer" style="display:none;">
+	<div class="title"><span id="subTitle" >添加子应用</span >&nbsp&nbsp<span id="existMessage" style="color:red;"></span></div>
+	<form id="subAppForm" action="$umsServer.getURI("/subApp/addOrUpdate.htm")" method="post">
+	<input id="appId" type="hidden" name="appId" value="$!appId" />
+	<input id="id" type="hidden" name="id"/>
+	<table border="0">
+		<tr>
+            <td align="right"><span class="bold fs14 c_007" width="20%"><span class="red">*</span>子应用名称：</span></td>
+			<td width="35%" >
+				<input type="text" class="inputBox_sub" id="appSubName" name="appSubName" />
+			</td>
+			<td width="45%"><span class="tipMsg" id="nameMsg">名称长度不能超过16位</span></td>
+		</tr>
+		<tr id="memberDescTr">
+            <td align="right"><span class="bold fs14 c_007"><span class="red">*</span>子应用ID：</span></td>
+			<td>
+				<input type="text" class="inputBox_sub" id="appSubId" name="appSubId"/>
+			</td>
+			<td><span class="tipMsg" id="idMsg">必须为2位数字</span></td>
+		</tr>
+		<tr id="memberDescTr">
+            <td align="right"><span class="bold fs14 c_007"><span class="red">*</span>优先级：</span></td>
+			<td>
+				<input type="text" class="inputBox_sub" id="priority" name="priority" />
+			</td>
+			<td><span class="tipMsg" id="priorityMsg">0-999之间的数字,0表示最低,999表示最高</span></td>
+		</tr>
+		<tr style="height:36px;">
+			<td>&nbsp;</td>
+			<td colspan="2" ><input type="button" id="span_addMember_btn" class="btn_green" value="保存" />
+				<input type="button" id="span_close_btn" class="btn_green" value="取消" />
+			</td>
+		</tr>
+	</table>
+	</form>
+</div>
+
+

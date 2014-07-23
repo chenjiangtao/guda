@@ -1,0 +1,1 @@
+%cd%\jre\bin\java  -Djava.ext.dirs=%cd%/WEB-INF/lib com.foodoon.monitor.web.home.warn.modem.Send 13588754574 测试短信 modem.com4 COM5 9600 wavecom 

@@ -1,0 +1,24 @@
+<div id="lt_nav">
+	<div class="lt_nav_hd">
+		<span>个人资料</span>
+	</div>
+	<div class="lt_nav_menu" id="lt_nav_menu">
+		<a id="personal_side_bar" href="$umsServer.getURI("user/user.htm")">我的个人资料</a>
+		<a id="group_side_bar" href="$umsServer.getURI("user/mygroup.htm")">我的群组</a>
+		<a id="contact_side_bar" href="$umsServer.getURI("user/myContact.htm")">我的联系人</a>
+	</div>
+	<div class="rounded_btm">
+		<span class="lt_btm"></span> <span class="rt_btm"></span>
+	</div>
+</div>
+
+<script language="javascript">
+	var oul = document.getElementById("lt_nav_menu").getElementsByTagName("a");
+	for(var i=0,len=oul.length;i<len;++i){
+	   oul[i].className="";
+	}
+	var oli = document.getElementById("$sideMenuId");
+	if(oli){
+		oli.className="select";
+	}
+</script>

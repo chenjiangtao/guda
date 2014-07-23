@@ -1,0 +1,34 @@
+<link href="$umsServer.getURI("/static/css/msgsuccess.css")" type="text/css" rel="stylesheet" />
+<div id="bd">
+	#set($sideMenuId="temp_side_bar")
+	#set($HeadMenuId="app")
+	#parse("/home/appAdmin/appSideBar.vm")
+	<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c">
+			<div id="writeEmail" style="height:100%;background-color:#fafcfc;">
+				<div class="btnArea clearfix">
+							&nbsp;&nbsp;<a class="fs14bold c_007" href="$umsServer.getURI("/appAdmin/temp/list.htm")">短信模版维护</a><a
+							class="fs14bold c_008">-&gt;短信模版添加成功</a>
+						 </div>
+			<table cellpadding="0" cellspacing="10px" width="100%" border="0" style="line-height: 200%;margin-left:1%">
+			<tr align="">
+				<td width="95%"><font size="4" color="green"><b>短信模版添加成功！</b></font></td>
+			</tr>
+			<tr align="" style="font-size: 15px; color: green;">
+				<td>您可以点此<a href="$umsServer.getURI("/appAdmin/temp/add.htm")" class="fs14bold c_007">返回继续添加短信模版</a></td>
+			</tr>
+			<tr align="" style="font-size: 15px; color: green;">
+				<td>您可以点此<a href="$umsServer.getURI("/appAdmin/temp/update.htm").addQueryData("id","$!umsMsgTemplate.id").addQueryData("appId","$!umsMsgTemplate.appId").addQueryData("tempId","$!umsMsgTemplate.templateId")" class="fs14bold c_007">继续编辑该短信模版</a></td>
+			</tr>
+		</table>
+				</div>
+			</div>
+		</div>
+		<div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>

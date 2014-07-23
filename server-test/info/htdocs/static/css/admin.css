@@ -1,0 +1,8 @@
+.contain{
+ margin:0 auto;width:1024px;text-align:left;
+}
+
+.contain li{
+ line-height:20px;
+ padding:5px;
+}

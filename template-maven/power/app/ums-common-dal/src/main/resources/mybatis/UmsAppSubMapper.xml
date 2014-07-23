@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.zoneland.ums.common.dal.UmsAppSubMapper">
+	<resultMap id="BaseResultMap"
+		type="net.zoneland.ums.common.dal.dataobject.UmsAppSub">
+		<id column="ID" property="id" jdbcType="CHAR" />
+		<result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+		<result column="APP_SUB_ID" property="appSubId" jdbcType="VARCHAR" />
+		<result column="APP_SUB_CODE" property="appSubCode" jdbcType="VARCHAR" />
+		<result column="APP_SUB_NAME" property="appSubName" jdbcType="VARCHAR" />
+		<result column="PRIORITY" property="priority" jdbcType="INTEGER" />
+		<result column="GMT_CREATED" property="gmtCreated" jdbcType="TIMESTAMP" />
+		<result column="GMT_MODIFIED" property="gmtModified" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, APP_ID, APP_SUB_ID, APP_SUB_CODE, APP_SUB_NAME, PRIORITY,
+		GMT_CREATED, GMT_MODIFIED
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from UMS_APP_SUB
+		where ID = #{id,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from UMS_APP_SUB
+		where ID = #{id,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="net.zoneland.ums.common.dal.dataobject.UmsAppSub">
+		insert into UMS_APP_SUB (ID, APP_ID, APP_SUB_ID,
+		APP_SUB_CODE, APP_SUB_NAME, PRIORITY,
+		GMT_CREATED, GMT_MODIFIED)
+		values (#{id,jdbcType=CHAR}, #{appId,jdbcType=VARCHAR},
+		#{appSubId,jdbcType=VARCHAR},
+		#{appSubCode,jdbcType=VARCHAR}, #{appSubName,jdbcType=VARCHAR}, #{priority,jdbcType=INTEGER},
+		#{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP})
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="net.zoneland.ums.common.dal.dataobject.UmsAppSub">
+		update UMS_APP_SUB
+		<set>
+			<if test="appId != null">
+				APP_ID = #{appId,jdbcType=VARCHAR},
+			</if>
+			<if test="appSubId != null">
+				APP_SUB_ID = #{appSubId,jdbcType=VARCHAR},
+			</if>
+			<if test="appSubCode != null">
+				APP_SUB_CODE = #{appSubCode,jdbcType=VARCHAR},
+			</if>
+			<if test="appSubName != null">
+				APP_SUB_NAME = #{appSubName,jdbcType=VARCHAR},
+			</if>
+			<if test="priority != null">
+				PRIORITY = #{priority,jdbcType=INTEGER},
+			</if>
+			<if test="gmtCreated != null">
+				GMT_CREATED = #{gmtCreated,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="net.zoneland.ums.common.dal.dataobject.UmsAppSub">
+		update UMS_APP_SUB
+		set APP_ID = #{appId,jdbcType=VARCHAR},
+		APP_SUB_ID = #{appSubId,jdbcType=VARCHAR},
+		APP_SUB_CODE = #{appSubCode,jdbcType=VARCHAR},
+		APP_SUB_NAME = #{appSubName,jdbcType=VARCHAR},
+		PRIORITY = #{priority,jdbcType=INTEGER},
+		GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP}
+		where ID = #{id,jdbcType=CHAR}
+	</update>
+
+
+	<select id="selectAllSubApp" parameterType="java.lang.String"
+		resultMap="BaseResultMap">
+		select
+		APP_SUB_ID,APP_SUB_CODE,APP_SUB_NAME
+		from UMS_APP_SUB
+		where APP_ID = #{appId,jdbcType=CHAR}
+	</select>
+
+	<select id="getSubAppName" resultType="java.lang.String">
+		select
+		APP_SUB_NAME
+		from UMS_APP_SUB
+		where APP_SUB_ID = #{subAppId} AND APP_ID = #{appId}
+	</select>
+
+	<select id="searchSubByPage" resultMap="BaseResultMap"
+		parameterType="java.util.Map">
+		SELECT
+		<include refid="Base_Column_List" />
+		from UMS_APP_SUB
+		WHERE APP_ID = #{appId,jdbcType=CHAR}
+		order by GMT_MODIFIED desc
+		limit #{first} , 10
+	</select>
+
+	<select id="getCountByAppId" parameterType="java.lang.String"
+		resultType="java.lang.Integer">
+		select
+		count(id)
+		from UMS_APP_SUB
+		where APP_ID = #{appId}
+	</select>
+
+	<select id="selectBySubAppId" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from UMS_APP_SUB
+		where APP_SUB_ID = #{subAppId,jdbcType=CHAR}
+		AND APP_ID = #{appId}
+	</select>
+
+	<delete id="deleteByAppId" parameterType="java.lang.String">
+		delete from UMS_APP_SUB
+		where APP_ID = #{appId,jdbcType=CHAR}
+	</delete>
+
+	<select id="getSubAppByAppId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from UMS_APP_SUB
+		WHERE APP_ID=#{appId}
+	</select>
+</mapper>

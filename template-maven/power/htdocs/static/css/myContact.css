@@ -1,0 +1,53 @@
+/*表单*/
+.inputBox_sub {
+	border: 1px solid #cbe1eb;
+	padding: 5px;
+	width: 90%;
+}
+
+#memberContainer {
+	width: 605px;
+	height: 205px;
+	top: 38%;
+	left: 30%;
+	z-index: 999;
+	position: absolute;
+	border: 1px solid #D1DDD8;
+	background-color: #FFFFFF;
+	border: 1px solid #296181;
+	border-radius: 3px 3px 3px 3px;
+	box-shadow: 0 0 5px #969696;
+}
+
+#memberContainer .title {
+	height: 36px;
+	line-height: 36px;
+	color: #00764B;
+	font-size: 14px;
+	font-weight: bold;
+	background-color: #EEF5F7;
+	padding-left: 10px;
+	border-bottom:1px solid #D1DDD8;
+	background:url("../images/brightBlue_gradient.gif") repeat-x scroll 0 0 transparent;
+}
+
+#memberContainer table {
+	width: 98%;
+	margin: 20px auto;
+}
+
+#memberContainer .input_text {
+	width: 94%;
+}
+
+#mask {
+	position: absolute;
+	height: 111%;
+	_height: 690px;
+	width: 100%;
+	background-color: #C7EDCC;
+	top: 0px;
+	z-index: 998;
+	filter: Alpha(Opacity = 60);
+	opacity: 0.6;
+}

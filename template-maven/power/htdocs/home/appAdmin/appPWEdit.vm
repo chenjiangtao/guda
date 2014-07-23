@@ -1,0 +1,65 @@
+<link href="$umsServer.getURI("/static/css/user.css")" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/app/modfiyPassword.js")"></script>
+
+<div id="bd">
+#set($sideMenuId="app_side_bar")
+#set($HeadMenuId="app_header")
+#parse("/home/appAdmin/appSideBar.vm")
+<div id="pRight">
+	<div class="pRight_c">
+			<div id="main">
+                <div class="p25">
+                    <div id="writeEmail">
+                        <div class="btnArea clearfix">
+        					 &nbsp;&nbsp;<a class="fs14bold c_007" href="$umsServer.getURI("/appAdmin/appList.htm").addQueryData("id","$!id").addQueryData("pageId","$!pageId")">查询应用状态</a><a class="fs14bold c_008">-&gt;应用密码修改</a>
+                        </div>
+						#if($!msg)
+						<div class="success" id="errorMsg"  style="padding-left:30%">
+							$!msg
+						</div>
+						#else
+						<div class="error" id="errorMsg" style="padding-left:30%">
+							$!errorMsg
+						</div>
+						#end
+						<div class="userinfo">
+							<form id="pwd_form"  method="post" action="$umsServer.getURI("/appAdmin/appPWEdit.htm")" >
+								<input id="id" name="id" type="hidden" value="$!id"/>
+								<input id="pageId" name="pageId" type="hidden" value="$!pageId"/>
+    							<table border="0">
+									<tr>
+    									<td align="right"  width="30%"><span class="bold fs14 c_007"><span class="red">*</span>新密码：</span></td>
+										<td  width="30%"><input type="password" class="input_text" name="newPassword" id="newPassword"/></td>
+										<td><span class="tipMsg" id="newPwdMsg">请输入新密码</span></td>
+    								</tr>
+									<tr>
+    									<td align="right"><span class="bold fs14 c_007"><span class="red">*</span>确认密码：</span></td>
+										<td><input type="password" class="input_text" name="rePassword" id="rePassword"/></td>
+										<td><span class="tipMsg" id="rePwdMsg">请输入确认密码</span></td>
+    								</tr>
+									<tr style="height:36px;">
+										<td>&nbsp;</td>
+										<td colspan="2" style="*padding-left:10px;">
+											<input type="button" id="span_pwd_submit_btn" class="btn_green" value="保存" />
+											<input class="btn_green" type="button" id="return" name="return" value="返回" onclick="selectCurPageId('$!pageId')"/>
+										</td>
+                                    </tr>
+    							</table>
+							</form>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+	
+	
+	
+	
+	
+         
+</div>
+		 
+</div>

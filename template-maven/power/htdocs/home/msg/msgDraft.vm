@@ -1,0 +1,82 @@
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/msg/draft.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/table.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/targetPage.js")"></script>
+<div id="bd">
+	#set($HeadMenuId="work_header")
+	#set($sideMenuId="msg_draft_side_bar")
+	#parse("/home/msg/msgSideBar.vm")
+	#set($searchUrl = $umsServer.getURI("/msg/msgDraft.htm"))
+	<input style="width:50%;" type="hidden" id="searchUrl"  name="searchUrl" value="$searchUrl"/>
+	<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c">
+			<div class="tableContainer">
+    			<div id="scrollContentContainer" class="scrollContentContainer">
+    				<form action="$searchUrl" method="post" id="myDraftForm">
+    				<table class="scrollContent" cellspacing="1" cellpadding="0" width="100%">
+    					<thead >
+							<tr>
+    						  <td width="4%">序号</td>
+    				          <td width="13%">消息内容</td>
+    				          <td width="13%">消息接收方</td>
+    				          <td width="12%">定时发送时间</td>
+    				          <td width="10%">有效时间</td>
+    				          <td width="19%">修改时间</td>
+    				          <td width="19%">创建时间</td>
+    				          <td width="11%">操作</td>
+    			            </tr>
+                        </thead>
+						<tbody class="tb">
+    					#foreach ( $result in $results.results )
+    						<tr>
+    						  <td width="4%" style="text-align:center;">$velocityCount</td>
+    				          <td width="13%" title="$!result.content">$!result.content</td>
+    				          <td width="13%" title="$!result.recvId">$!result.recvId</td>
+    				          <td width="12%" title="$!date.format('yyyy-MM-ddHH:mm:ss', $!result.sendTime)">$!date.format("yyyy-MM-ddHH:mm:ss", $!result.sendTime)</td>
+    				          <td width="10%" title="$!result.validTime">$!result.validTime</td>
+    				          <td width="19%" title="$!date.format('yyyy-MM-dd HH:mm:ss',$!result.gmtModified)">$!date.format('yyyy-MM-dd HH:mm:ss',$!result.gmtModified)</td>
+							  <td width="19%" title="$!date.format('yyyy-MM-dd HH:mm:ss',$!result.gmtCreated)">$!date.format('yyyy-MM-dd HH:mm:ss',$!result.gmtCreated)</td>
+    				          <td width="11%" style="text-align:center;">
+    				            <a class="a_green_form_ddl" href="$umsServer.getURI("/msg/msg.htm").addQueryData("dId","$!result.id")">编辑</a>
+								<a class="a_green_form_ddl" href="javascript:deleteDraft('$!result.id','$!results.curPage');">删除</a>
+                             </td>
+    				         </tr>
+    						#end
+    					    </tbody>
+    				</table>
+    			</div>
+    		</div>
+			#noRecord($results)
+			#if($!results.totalPage>0)
+    		<div class="btnArea clearfix" >
+    			<div class="page_detail">
+    				#if($!results.curPage != 1)
+				   <a class="a_green_form_ddl" href="$searchUrl"><span>首页</span></a>
+				   #end
+				   #if($!results.curPage > 1)
+					   #set($tempPage = $!results.curPage - 1)
+					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$tempPage"><span>上一页</span></a>
+				   #end
+				   #if($!results.curPage < $!results.totalPage)
+					   #set($tempPage = $!results.curPage + 1)
+					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$tempPage"><span>下一页</span></a>
+				   #end
+				   #if($!results.curPage != $!results.totalPage && $!results.totalPage > 0)
+				    <a class="a_green_form_ddl" href="$searchUrl?pageId=$!results.totalPage"><span>尾页</span></a>
+				   #end
+				   <span class="pager_info">当前第 <input id="targetNum" name="pageId" class="pager_inputBox" value="$!results.curPage" autocomplete="off"/>页  </span>				   
+				   <span id="targetBtn" class="a_green_form_ddl" style="cursor: pointer;">跳转</span>
+				   <span>共$!results.totalPage页 共$!results.total条记录</span>
+                </div>
+            </div>
+			#end
+		</div>
+		</form>
+		<div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>

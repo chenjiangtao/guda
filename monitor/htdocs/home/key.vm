@@ -1,0 +1,61 @@
+#set($headMenuId="header_key")
+<div data-options="region:'west',split:true,title:'系统管理'" style="width:250px;padding:10px;">
+	
+	<ul class="easyui-tree">  
+       
+                <li>  
+                   
+                    <div class="tree-node" style="cursor: pointer;">
+
+                     <span class="tree-title">
+                      <a href="$homeServer.getURI("/sys.htm")">删除历史数据</a></span>
+                    </div>
+                </li>  
+                <li>  
+                  <div class="tree-node" style="cursor: pointer;">
+                     <span class="tree-title">
+                    <a href="$homeServer.getURI("/sysPass.htm")">修改密码</a></span>  
+                   </div>
+                </li>  
+                #if('admin'==$!operationContext.getOperationContext().getPrincipal().getUserName())
+                <li>  
+                  <div class="tree-node tree-node-selected" style="cursor: pointer;">
+                     <span class="tree-title">
+                    <a href="$homeServer.getURI("/key.htm")">生成key</a></span>  
+                   </div>
+                </li>  
+                #end
+               
+      </ul>  
+        
+	
+</div>
+
+<div data-options="region:'center'" >
+<div class="search-form">
+
+<ul><b style="color:red;">$!{errorMsg}</b></ul>
+ <ul><span style="display:inline-block;width:120px;">请输入原始key(*):</span>
+ 
+  <input  name="key" id="key" type="text" size="50"/>
+  
+  </ul>
+   <ul><span style="display:inline-block;width:120px;">有效时间:</span>
+ 
+  <input  name="validTime" id="validTime" type="text" size="50" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true,readOnly:true})"/>
+  (为空则表示永久有效)
+  </ul>
+  <ul>
+   <button style="margin-left:150px;" type="button"  class="sexybutton" id="create-btn"  value="生成key"><span><span><span class="download">点此生成key</span></span></span></button>
+  </ul>
+ <ul><span style="display:inline-block;width:120px;">新key:</span>
+
+ <input  name="newKey" id="newKey" type="text" size="80" /></ul>
+ 
+ 
+</form>
+</div>
+
+</div>
+
+<script type="text/javascript" src="$homeServer.getURI("/static/js/key.js")"></script>

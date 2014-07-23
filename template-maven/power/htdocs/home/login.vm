@@ -1,0 +1,54 @@
+#set($layout = "home/layout/loginLayout.vm")  
+<script type="text/javascript" src="$umsServer.getURI("/static/js/login.js")"></script>
+
+
+<div id="all">
+   
+    <div id="main">
+    	<form action="$umsServer.getURI("/login.htm")" method="post" id="myform" name="myform" onsubmit="return beforeSubmit()">
+        <table id="login">
+        	<tr>
+            	<td>用户名</td>
+                <td><input class="input_t" id="name" name="name" type="text" autocomplete='off'/><span style="color:red;margin-left:3px;display:none;" id="checkUserName"> 请输入用户名 </span></td>
+            </tr>
+            <tr><td></td><td></td></tr>
+            <tr><td></td><td></td></tr>
+            <tr>
+            	<td>密码</td>
+                <td><input class="input_t" id="pass" name="password" type="password" autocomplete='off'/><span style="color:red;margin-left:3px;display:none;" id="checkPassword"> 请输入密码 </span></td>
+            </tr>
+             <input type="hidden" name="refer" value="$!refer"/>
+            <tr>
+            	<td></td>
+            	<td style="text-align: left; padding-top: 32px;">
+                	<input type="image" src="$umsServer.getURI("/static/images/login/login.gif")" name="submit"  />&nbsp;&nbsp;&nbsp;
+                    <input type="image" src="$umsServer.getURI("/static/images/login/cancel.gif")" name="cancel" onclick="reset_form();" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div id="btm">
+        <div id="btm_left">&nbsp;</div>
+        <div id="btm_mid">&nbsp;</div>
+        <div id="btm_right">&nbsp;</div>
+    </div>
+</div>
+<!--
+<div class="wrap">
+
+        <form method="POST" action="$umsServer.getURI("/login.htm")" id="myform" name="myform" onsubmit="return beforeSubmit()">
+		<div class="form" style="_margin-right:-60px;">			
+            <p style="height:22px;width:120%"><label>用户名：</label><input class="input_t" id="name" name="name" type="text" autocomplete='off'/><span style="color:red;margin-left:3px;display:none;" id="checkUserName"> 请输入用户名 </span></p>
+            <p style="width:120%"><label>密码：</label><input class="input_t" id="pass" name="password" type="password" autocomplete='off'/><span style="color:red;margin-left:3px;display:none;" id="checkPassword"> 请输入密码 </span></p>
+			<p><label>&nbsp</label><input type="checkbox" id="remember_box"/>7天内记住登陆状态</p>
+				#if($!msg) <div style="color:red;"> $!msg </div> #end
+            <p style="text-align:right;padding-right:20px;padding-top:20px;">
+            <input type="hidden" name="refer" value="$!refer"/>
+            <input type="image" src="$umsServer.getURI("/static/images/btn.gif")" /></p>       
+        </div>
+		</form>
+        <div style="width:100%;text-align:center;color:#01544a;position:absolute;bottom:0px;">Copyright © 2012 foodoon</div>
+   
+   
+</div>
+-->

@@ -1,0 +1,23 @@
+
+#set($layout = "home/layout/errorLayout.vm")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/error.css")" />
+<div id="content" class="clearfix">
+           <div class="img-div">
+           
+		    <img id="book" src="$homeServer.getURI("/static/images/500.png")" width="400px" height="300px"/>
+		    </div>
+		
+			<div id="text">
+			
+				<p>抱歉，请不要重复提交请求。</p>
+                <br />
+				<h4>您可以...</h4>
+			
+				<ul>
+					<li><a href="$homeServer.getURI("/u.htm")">&raquo; 回到首页</a></li>
+				</ul>
+				
+			</div>
+		
+			<div style="clear:both;"></div>
+</div>

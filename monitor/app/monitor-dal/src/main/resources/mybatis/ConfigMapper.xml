@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.foodoon.monitor.dal.ConfigMapper" >
+  <resultMap id="BaseResultMap" type="com.foodoon.monitor.dal.dataobject.Config" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="agent_id" property="agentId" jdbcType="VARCHAR" />
+    <result column="sql_type" property="sqlType" jdbcType="VARCHAR" />
+    <result column="sql_url" property="sqlUrl" jdbcType="VARCHAR" />
+    <result column="sql_password" property="sqlPassword" jdbcType="VARCHAR" />
+    <result column="sql_schema" property="sqlSchema" jdbcType="VARCHAR" />
+    <result column="k" property="k" jdbcType="VARCHAR" />
+    <result column="warn_cond" property="warnCond" jdbcType="VARCHAR" />
+    <result column="warn_val" property="warnVal" jdbcType="REAL" />
+    <result column="warn_phone" property="warnPhone" jdbcType="VARCHAR" />
+    <result column="warn_email" property="warnEmail" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.foodoon.monitor.dal.dataobject.Config" extends="BaseResultMap" >
+    <result column="sql_text" property="sqlText" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, agent_id, sql_type, sql_url, sql_password, sql_schema, k, warn_cond, warn_val, 
+    warn_phone, warn_email
+  </sql>
+  <sql id="Blob_Column_List" >
+    sql_text
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from m_config
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from m_config
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.foodoon.monitor.dal.dataobject.Config" >
+    insert into m_config (id, agent_id, sql_type, 
+      sql_url, sql_password, sql_schema, 
+      k, warn_cond, warn_val, 
+      warn_phone, warn_email, sql_text
+      )
+    values (#{id,jdbcType=VARCHAR}, #{agentId,jdbcType=VARCHAR}, #{sqlType,jdbcType=VARCHAR}, 
+      #{sqlUrl,jdbcType=VARCHAR}, #{sqlPassword,jdbcType=VARCHAR}, #{sqlSchema,jdbcType=VARCHAR}, 
+      #{k,jdbcType=VARCHAR}, #{warnCond,jdbcType=VARCHAR}, #{warnVal,jdbcType=REAL}, 
+      #{warnPhone,jdbcType=VARCHAR}, #{warnEmail,jdbcType=VARCHAR}, #{sqlText,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.foodoon.monitor.dal.dataobject.Config" >
+    insert into m_config
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="agentId != null" >
+        agent_id,
+      </if>
+      <if test="sqlType != null" >
+        sql_type,
+      </if>
+      <if test="sqlUrl != null" >
+        sql_url,
+      </if>
+      <if test="sqlPassword != null" >
+        sql_password,
+      </if>
+      <if test="sqlSchema != null" >
+        sql_schema,
+      </if>
+      <if test="k != null" >
+        k,
+      </if>
+      <if test="warnCond != null" >
+        warn_cond,
+      </if>
+      <if test="warnVal != null" >
+        warn_val,
+      </if>
+      <if test="warnPhone != null" >
+        warn_phone,
+      </if>
+      <if test="warnEmail != null" >
+        warn_email,
+      </if>
+      <if test="sqlText != null" >
+        sql_text,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="agentId != null" >
+        #{agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlType != null" >
+        #{sqlType,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlUrl != null" >
+        #{sqlUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlPassword != null" >
+        #{sqlPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlSchema != null" >
+        #{sqlSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="k != null" >
+        #{k,jdbcType=VARCHAR},
+      </if>
+      <if test="warnCond != null" >
+        #{warnCond,jdbcType=VARCHAR},
+      </if>
+      <if test="warnVal != null" >
+        #{warnVal,jdbcType=REAL},
+      </if>
+      <if test="warnPhone != null" >
+        #{warnPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="warnEmail != null" >
+        #{warnEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlText != null" >
+        #{sqlText,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.foodoon.monitor.dal.dataobject.Config" >
+    update m_config
+    <set >
+      <if test="agentId != null" >
+        agent_id = #{agentId,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlType != null" >
+        sql_type = #{sqlType,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlUrl != null" >
+        sql_url = #{sqlUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlPassword != null" >
+        sql_password = #{sqlPassword,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlSchema != null" >
+        sql_schema = #{sqlSchema,jdbcType=VARCHAR},
+      </if>
+      <if test="k != null" >
+        k = #{k,jdbcType=VARCHAR},
+      </if>
+      <if test="warnCond != null" >
+        warn_cond = #{warnCond,jdbcType=VARCHAR},
+      </if>
+      <if test="warnVal != null" >
+        warn_val = #{warnVal,jdbcType=REAL},
+      </if>
+      <if test="warnPhone != null" >
+        warn_phone = #{warnPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="warnEmail != null" >
+        warn_email = #{warnEmail,jdbcType=VARCHAR},
+      </if>
+      <if test="sqlText != null" >
+        sql_text = #{sqlText,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.foodoon.monitor.dal.dataobject.Config" >
+    update m_config
+    set agent_id = #{agentId,jdbcType=VARCHAR},
+      sql_type = #{sqlType,jdbcType=VARCHAR},
+      sql_url = #{sqlUrl,jdbcType=VARCHAR},
+      sql_password = #{sqlPassword,jdbcType=VARCHAR},
+      sql_schema = #{sqlSchema,jdbcType=VARCHAR},
+      k = #{k,jdbcType=VARCHAR},
+      warn_cond = #{warnCond,jdbcType=VARCHAR},
+      warn_val = #{warnVal,jdbcType=REAL},
+      warn_phone = #{warnPhone,jdbcType=VARCHAR},
+      warn_email = #{warnEmail,jdbcType=VARCHAR},
+      sql_text = #{sqlText,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.foodoon.monitor.dal.dataobject.Config" >
+    update m_config
+    set agent_id = #{agentId,jdbcType=VARCHAR},
+      sql_type = #{sqlType,jdbcType=VARCHAR},
+      sql_url = #{sqlUrl,jdbcType=VARCHAR},
+      sql_password = #{sqlPassword,jdbcType=VARCHAR},
+      sql_schema = #{sqlSchema,jdbcType=VARCHAR},
+      k = #{k,jdbcType=VARCHAR},
+      warn_cond = #{warnCond,jdbcType=VARCHAR},
+      warn_val = #{warnVal,jdbcType=REAL},
+      warn_phone = #{warnPhone,jdbcType=VARCHAR},
+      warn_email = #{warnEmail,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+</mapper>

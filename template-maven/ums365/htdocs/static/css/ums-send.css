@@ -1,0 +1,34 @@
+.contain{
+    margin:0 auto;
+	width:1024px;
+	background:#fff url(../images/gradient.png) repeat-x ;
+    height:500px;
+    margin-bottom:50px;
+}
+.contain-title{  
+  text-align:left;
+  font-weight:bold;
+  font-size:14px;
+  width:100%;
+  margin-left:0px;
+
+  background-color:red;
+}
+.contain-title a:hover{
+   text-decoration: underline;
+}
+.contain-tips-right{
+ width:1024px;
+ margin:0 auto;
+text-align:left;
+line-height:25px;
+}
+.contain-tips{
+
+  margin-top:50px;
+  margin-left:200px;
+  font-size:16px;
+  font-weight:bold;
+  margin-bottom:100px;
+  color:#07aa21;
+}

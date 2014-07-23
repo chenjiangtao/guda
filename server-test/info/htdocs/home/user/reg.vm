@@ -1,0 +1,55 @@
+#set($layout = "home/layout/regLayout.vm")
+#set($_title="用户注册")
+<div class="container">
+<div class="grid doc"  style="height:350px;">
+<div class="col-1-6">
+&nbsp;
+</div>
+<div class="col-3-6 block">
+<form class="form form-aligned"  name="regForm" action="$homeServer.getURI("/user/reg.htm")" method="post">
+  <input style="display:none" type="text"  name="_form_token" value="$formTool.newForm($request)" />
+  <div class="control">
+
+    <label>用户名</label>
+
+      #springBind("regForm.userName")
+      <input   type="text" name="${status.expression}" value="$!{status.value}" >
+    
+       #springShowErrors("" "color:red;")
+ </div>
+ <div class="control">
+    <label>电子邮箱</label>
+      #springBind("regForm.email")
+      <input   type="text" name="${status.expression}" value="$!{status.value}" >
+       #springShowErrors("" "color:red;")
+ </div>
+  <div class="control">
+    <label>密码</label>
+      #springBind("regForm.password")
+      <input   type="password" name="${status.expression}" value="$!{status.value}" >
+       #springShowErrors("" "color:red;")
+ </div>
+  <div class="control">
+    <label>确认密码</label>
+      #springBind("regForm.password2")
+      <input   type="password" name="${status.expression}" value="$!{status.value}" >
+       #springShowErrors("" "color:red;")
+ </div>
+
+ <div class="control">
+        <label></label>
+        <button type="submit" class="button-green">同意以下协议并注册</button>
+    </div>
+
+</form>
+ </div>
+ <div class="col-1-6">
+  &nbsp;
+ </div>
+<div class="col-1-6 block" style="border-left:1px solid #dddddd;">
+您已经是会员？请<a href="$homeServer.getURI("/user/login.htm")">登录</a>
+</div>
+</div>
+ </div>
+
+

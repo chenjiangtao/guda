@@ -1,0 +1,17 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>短信助手,短信群发 ,短信365,短信发送好帮手</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/u.css")" />
+<script src="$homeServer.getURI("/static/js/jquery.min.js")"></script>
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ums-index2.css")" />
+<link href="$homeServer.getURI("/favico.ico")" type="image/x-icon" rel="shortcut icon">
+</head>
+ <body>
+      #parse('home/layout/errorHeader.vm')
+      $screen_content
+      #parse('home/layout/footer.vm')
+ </body>
+</html>

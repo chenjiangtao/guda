@@ -1,0 +1,9 @@
+#set($layout = "home/layout/blank.vm")
+<div style="margin:0 auto;padding-top:20px;">
+<form action="$homeServer.getURI("/personal/importTaobao.htm")" method="post" enctype="multipart/form-data">
+    <input type="file" size="35" name ="fileup"/><input type="submit" value="导入" class="do-btn" ><br>
+    <div style="color:red;font-size:12px;">
+                说明:请选择从淘宝导出的以.csv结尾的文件.导入后，相同手机号的联系人会被覆盖。
+    </div>
+</form>
+</div>

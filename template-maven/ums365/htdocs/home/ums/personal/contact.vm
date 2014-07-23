@@ -1,0 +1,61 @@
+#set($HeadMenuId="a_personal")
+
+
+#set($layout = "home/layout/umsLayout.vm")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ums-mymsg.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/pager.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/all.css")" />
+<script type="text/javascript" src="$homeServer.getURI("/static/js/ums/contact.js")"></script>
+<div class="ums-center-contain">
+<div>
+    <ul id="crumbs">
+	    <li><a href="$homeServer.getURI("/ums/index.htm")">首页</a></li>
+	    <li>我的联系人</li>
+    </ul>
+</div>
+
+ <div class="msg-contain-right">
+    <div class="center-contain">
+
+	   <div id="tb" style="padding:3px;text-align:left;">  
+		    <span>联系人姓名或手机号:</span>  
+		    <input id="contactName" style="line-height:24px;border:1px solid #ccc" onkeypress="personalSearch(event)" onkeydown="personalSearch()">  
+		    <span>订单状态:</span>  
+		    <input id="orderStatus" style="line-height:24px;border:1px solid #ccc" onkeypress="personalSearch(event)" onkeydown="personalSearch()">  
+		    <a href="#" class="easyui-linkbutton" plain="true" onclick="doSearch()">查询</a>  
+		</div> 
+
+         <table id="template-table"></table>
+        
+    </div>
+
+
+	
+  </div>
+</div>
+
+<div style="display:none;">
+<div id="tempDialog" class="easyui-dialog" style="width:400px;height:300px;"  closed="true" > 
+
+    <div class="ftitle "></div> 
+
+    <form id="tempForm" method="post" > 
+         <input name="id" style="display:none"> 
+
+         <div class="padding15 margin-left30"> 
+            <label>联系人姓名:</label> 
+            <input name="name" id="name"  class="easyui-validatebox" required="true"> 
+        </div> 
+         <div class="padding15 margin-left30"> 
+            <label>联系人电话:</label> 
+            <input name="phone" id="phone"  class="easyui-validatebox" required="true"> 
+        </div> 
+      
+    </form> 
+</div> 
+</div> 
+<div class="easyui-dialog" style="display:none"  closed="true">
+
+  <iframe  id="importTaobaoDialog" class="easyui-dialog" border="no" width="400" height="150"  />
+  
+</div>

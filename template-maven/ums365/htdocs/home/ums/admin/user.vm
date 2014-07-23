@@ -1,0 +1,73 @@
+#set($layout = "home/layout/umsLayout.vm")
+
+<script type="text/javascript" src="$homeServer.getURI("/static/js/ums/adminUser.js")"></script>
+
+<div class="center-contain">
+
+ <div>
+    <table id="admin-user-table"></table>
+ </div>
+</div>
+
+<div style="display:none;">
+<div id="tempDialog" class="easyui-dialog" style="width:500px;height:500px;"  closed="true" > 
+    <div class="ftitle "></div> 
+    <form id="tempForm" method="post" > 
+         <input name="id" style="display:none"> 
+         <div class="padding15 margin-left30"> 
+            <label>登录ID:</label> 
+            <input name="userId" id="userId"  class="easyui-validatebox" required="true"> 
+        </div> 
+         <div class="padding15 margin-left30"> 
+            <label>密码:</label> 
+            <input name="password" id="password"  class="easyui-validatebox"> 
+        </div> 
+        <div class="padding15 margin-left30"> 
+            <label>联系人电话:</label> 
+            <input name="phone" id="phone"  class="easyui-validatebox" > 
+        </div> 
+        <div class="padding15 margin-left30"> 
+            <label>邮箱:</label> 
+            <input name="email" id="email"  class="easyui-validatebox" > 
+        </div> 
+        <div class="padding15 margin-left30"> 
+            <label>状态:</label> 
+            <input name="status" id="status"  class="easyui-validatebox" > 
+        </div> 
+        <div class="padding15 margin-left30"> 
+            <label>等级:</label> 
+            <input name="grade" id="grade"  class="easyui-validatebox" > 
+        </div> 
+        <div class="padding15 margin-left30"> 
+            <label>账户余额:</label> 
+            <input name="balance" id="balance"  class="easyui-validatebox" > 
+        </div> 
+        <div class="padding15 margin-left30"> 
+            <label>冻结余额:</label> 
+            <input name="balanceLock" id="balanceLock"  class="easyui-validatebox" > 
+        </div> 
+    </form> 
+</div> 
+</div> 
+
+
+<div style="display:none;">
+<div id="chargeDialog" class="easyui-dialog" style="width:400px;height:300px;"  closed="true" > 
+    <div class="ftitle "></div> 
+    <form id="chargeForm" method="post" > 
+       
+         <div class="padding15 margin-left30"> 
+            <label>用户ID:</label> 
+            <input name="userId" id="userId"  class="easyui-validatebox" required="true"> 
+        </div> 
+        <div class="padding15 margin-left30"> 
+            <label>登录ID:</label> 
+            <input name="userName" id="userName"  class="easyui-validatebox" required="true"> 
+        </div> 
+         <div class="padding15 margin-left30"> 
+            <label>充值短信条数:</label> 
+            <input name="sum" id="sum"  class="easyui-validatebox" required="true"> 
+        </div> 
+    </form> 
+</div> 
+</div> 

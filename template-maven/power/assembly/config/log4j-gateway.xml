@@ -1,0 +1,278 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http:/jakarta.apache.org/log4j/">
+
+
+	<appender name="DEFAULT-APPENDER"
+		class="net.zoneland.mvc.runtime.core.log4j.DailyRollingFileAppender">
+		<param name="file" value="/was/zoneland/ums/gateway/common-default.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %c  %-5p - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="ERROR-APPENDER"
+		class="net.zoneland.mvc.runtime.core.log4j.DailyRollingFileAppender">
+		<param name="file" value="/was/zoneland/ums/gateway/common-error.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<param name="threshold" value="error" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %c  %-5p - %m%n" />
+		</layout>
+	</appender>
+
+
+	<appender name="STDOUT-APPENDER" class="org.apache.log4j.ConsoleAppender">
+		<param name="encoding" value="UTF-8" />
+		<param name="target" value="System.out" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %c  %-5p - %m%n" />
+		</layout>
+
+	</appender>
+
+	<appender name="STDERR-APPENDER" class="org.apache.log4j.ConsoleAppender">
+		<param name="encoding" value="UTF-8" />
+		<param name="target" value="System.err" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %c  %-5p - %m%n" />
+		</layout>
+
+	</appender>
+
+	<appender name="NULL-APPENDER" class="org.apache.log4j.varia.NullAppender" />
+
+	<appender name="APACHE-APPENDER"
+		class="net.zoneland.mvc.runtime.core.log4j.DailyRollingFileAppender">
+		<param name="file" value="/was/zoneland/ums/gateway/common-apache.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %c  %-5p - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="VELOCITY-APPENDER"
+		class="net.zoneland.mvc.runtime.core.log4j.DailyRollingFileAppender">
+		<param name="file" value="/was/zoneland/ums/gateway/common-velocity.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %c  %-5p - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="DAL-APPENDER"
+		class="net.zoneland.mvc.runtime.core.log4j.DailyRollingFileAppender">
+		<param name="file" value="/was/zoneland/ums/gateway/ums-dal.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %c  %-5p - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="BIZ-APPENDER"
+		class="net.zoneland.mvc.runtime.core.log4j.DailyRollingFileAppender">
+		<param name="file" value="/was/zoneland/ums/gateway/ums-biz.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %c  %-5p - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="WEB-APPENDER"
+		class="net.zoneland.mvc.runtime.core.log4j.DailyRollingFileAppender">
+		<param name="file" value="/was/zoneland/ums/gateway/ums-web.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %c  %-5p - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="SERVICE-APPENDER"
+		class="net.zoneland.mvc.runtime.core.log4j.DailyRollingFileAppender">
+		<param name="file" value="/was/zoneland/ums/gateway/ums-service.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %c  %-5p - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="GATEWAY-APPENDER"
+		class="net.zoneland.mvc.runtime.core.log4j.DailyRollingFileAppender">
+		<param name="file" value="/was/zoneland/ums/gateway/ums-gateway.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %c  %-5p - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="GATEWAY-DEBUG-APPENDER"
+		class="net.zoneland.mvc.runtime.core.log4j.DailyRollingFileAppender">
+		<param name="file" value="/was/zoneland/ums/gateway/ums-gateway-debug.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %c  %-5p - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="home-DEFAULT-APPENDER"
+		class="net.zoneland.mvc.runtime.core.log4j.DailyRollingFileAppender">
+		<param name="file" value="/was/zoneland/ums/gateway/logs-default.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="DAL-MONITOR-APPENDER"
+		class="net.zoneland.mvc.runtime.core.log4j.DailyRollingFileAppender">
+		<param name="file" value="/was/zoneland/ums/gateway/dal-monitor.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c - %m%n" />
+		</layout>
+	</appender>
+
+	<appender name="UMS-GATEWAY-MO-APPENDER"
+		class="net.zoneland.mvc.runtime.core.log4j.DailyRollingFileAppender">
+		<param name="file" value="/was/zoneland/ums/gateway/gateway-mo.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c - %m%n" />
+		</layout>
+	</appender>
+	
+	<appender name="GATEWAY-PERFORM-APPENDER"
+		class="net.zoneland.mvc.runtime.core.log4j.DailyRollingFileAppender">
+		<param name="file" value="/was/zoneland/ums/gateway/perform.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d %-5p %c - %m%n" />
+		</layout>
+	</appender>
+	<logger name="PERFORM" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="GATEWAY-PERFORM-APPENDER" />
+	</logger>
+
+	<logger name="STDOUT" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="STDOUT-APPENDER" />
+	</logger>
+
+	<logger name="STDERR" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="STDERR-APPENDER" />
+	</logger>
+
+	<logger name="org.apache" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="APACHE-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+
+	<logger name="com.ibatis" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="DAL-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<logger name="java.sql" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="DAL-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+
+	<logger name="org.springframework" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="DEFAULT-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<logger name="net.zoneland.ums.common.dal" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="DAL-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<logger name="net.zoneland.ums.biz" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="BIZ-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+	<logger name="net.zoneland.ums.web" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="WEB-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+	<logger name="net.zoneland.ums.service" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="SERVICE-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+	<logger name="net.zoneland.ums.gateway" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="GATEWAY-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+	<logger name="net.zoneland.gateway" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="GATEWAY-DEBUG-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<logger name="net.zoneland" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="home-DEFAULT-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</logger>
+
+	<logger name="DAL-MONITOR" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="DAL-MONITOR-APPENDER" />
+	</logger>
+	
+	<logger name="UMS-GATEWAY-MO" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="UMS-GATEWAY-MO-APPENDER" />
+	</logger>
+	
+	<appender name="STATISTIC-APPENDER"
+		class="net.zoneland.mvc.runtime.core.log4j.DailyRollingFileAppender">
+		<param name="file" value="/was/zoneland/ums/gateway/stat.log" />
+		<param name="append" value="true" />
+		<param name="encoding" value="UTF-8" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern" value="%d - %c  %-5p - %m%n" />
+		</layout>
+	</appender>
+	<logger name="STATISTIC" additivity="false">
+		<level value="INFO" />
+		<appender-ref ref="STATISTIC-APPENDER" />
+	</logger>
+
+
+	<root>
+		<level value="INFO" />
+		<appender-ref ref="DEFAULT-APPENDER" />
+		<appender-ref ref="ERROR-APPENDER" />
+	</root>
+</log4j:configuration>
+

@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>短信助手,短信群发 ,短信365,短信发送好帮手</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="免费web企业短信平台,web短信群发软件,淘宝订单导入联系人,发货短信,营销短信,电脑发短信,短信广告,短信通知,短信促销" name="keywords"/>
+<meta content="提供订单导入联系人,方便通过电脑群发短信,提供可定制化的短信发送,群发,短信通知,企业短信广告,支持cmpp2,cmpp3,sgip1.2,smgp" name="description" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/u.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ums-index.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ums-index2.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/all.css")" />
+<script src="$homeServer.getURI("/static/js/jquery.min.js")"></script>
+<script src="http://l.tbcdn.cn/apps/top/x/sdk.js?appkey=21571765"></script>
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/qq.css")" />
+<link href="$homeServer.getURI("/favico.ico")" type="image/x-icon" rel="shortcut icon">
+<link rel="stylesheet" type="text/css" href="$homeServer.getURI("/static/js/ui/themes/default/easyui.css")">
+<link rel="stylesheet" type="text/css" href="$homeServer.getURI("/static/js/ui/themes/icon.css")">
+<script type="text/javascript" src="$homeServer.getURI("/static/js/ui/jquery.easyui.min.js")"></script>
+
+<script>
+	var currenthost = "$!homeServer";
+</script>
+</head>
+ <body>
+  <script type="text/javascript">
+
+  var _gaq = _gaq || [];
+  _gaq.push(['_setAccount', 'UA-39936913-1']);
+  _gaq.push(['_trackPageview']);
+
+  (function() {
+    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+  })();
+
+</script>
+ 
+      #parse('home/layout/umsHeader2.vm')
+      $screen_content
+      #parse('home/layout/footer.vm')
+ </body>
+</html>

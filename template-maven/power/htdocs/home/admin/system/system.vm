@@ -1,0 +1,66 @@
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/system.js")"></script>
+
+<div id="bd">
+#set($sideMenuId="sys_info_side_bar")
+#set($HeadMenuId="system_header")
+#parse("/home/admin/adminSideBar.vm")
+<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+	<div class="pRight_c">
+    <div style="margin:3px 3px;float:none;_margin:3px 8px;">
+    <font  size="5" class="bold c_007">当前系统状态 </font>
+    <div>
+    	<table>
+    		<tr>
+				<td class="btn" id="system" style="float:left;">刷新</td>
+				<td style="color:red;font-size:15px;padding-left:12px;" id="timeCount"></td>
+			</tr>
+		</table>
+    </div>
+    </div>
+	<div class="form clearfix">
+		<div style="float:left;margin-left:5px;">
+			<div id="tableContainer" class="tableContainer" style="width: 100%;">
+				<div id="scrollContentContainer" class="scrollContentContainer">
+					<table class="scrollContent" cellspacing="1" cellpadding="0" width="100%">
+						<thead>
+							<tr>
+								<td title="上行表记录数" width="11%">上行表记录数</td>
+								<td title="下行表记录数" width="11%">下行表记录数</td>
+								<td title="当天接收到短信数据量" width="17%">当天接收到短信数据量</td>
+								<td title="当天发送消息量" width="13%">当天发送消息量</td>
+								<td title="当天发送成功数量" width="14%">当天发送成功数量</td>
+								<td title="当天发送成功率%" width="14%">当天发送成功率%</td>
+								<td title="当前队列中待发送短信量" width="20%">当前队列中待发送短信量</td>
+
+								</tr>
+						</thead>
+						<tbody>
+
+							<tr>
+							  <td width="11%" title="$!in_count">$!in_count 条</td>
+					          <td width="11%" title="$!Out_count">$!Out_count 条</td>
+					          <td width="17%" title="$!Recv_count">$!Recv_count 条</td>
+					          <td width="13%" title="$!Send_count">$!Send_count 条</td>
+							  <td width="14%" title="$!success_count">$!success_count 条</td>
+							  <td width="14%" title="$!percent">$!percent</td>
+					          <td width="20%" title="$!Queue_count">$!Queue_count 条</td>
+					        </tr>
+
+						    </tbody>
+					</table>
+				</div>
+			</div>
+
+
+	</div>
+</div>
+  </div>
+		 <div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+</div>
+</div>

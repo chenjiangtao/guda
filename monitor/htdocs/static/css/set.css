@@ -1,0 +1,22 @@
+.set-form{
+ width:40%;
+ margin:0 auto;
+
+}
+
+.set-form div{
+ padding:10px;
+
+}
+
+.fitem label{
+  text-align:right;
+  width:100px;
+}
+.margin-top10{
+  margin-top:10px;
+}
+.vtop{
+
+ display:block;
+}

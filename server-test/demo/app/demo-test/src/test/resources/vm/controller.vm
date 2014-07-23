@@ -1,0 +1,129 @@
+package com.foodoon.${appName}.web.action;
+
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+
+import com.foodoon.${appName}.biz.${doName}Biz;
+import com.foodoon.${appName}.dao.domain.${doName}DO;
+import com.foodoon.${appName}.web.form.${doName}EditForm;
+import com.foodoon.${appName}.web.form.${doName}Form;
+import com.foodoon.tools.web.page.BaseQuery;
+import com.foodoon.tools.web.page.BizResult;
+import com.foodoon.tools.web.util.RequestUtil;
+
+
+@Controller
+public class ${doName}Action {
+
+
+    @Autowired
+    private ${doName}Biz ${doNameLower}Biz;
+
+    @RequestMapping(value = "${doNameLower}/list.htm", method = RequestMethod.GET)
+    public String list(HttpServletRequest request, ModelMap modelMap) {
+        int pageId = RequestUtil.getInt(request, "pageNo");
+        int pageSize = RequestUtil.getInt(request, "pageSize");
+        BaseQuery baseQuery = new BaseQuery();
+        baseQuery.setPageNo(pageId);
+        baseQuery.setPageSize(pageSize);
+        BizResult bizResult = ${doNameLower}Biz.list(baseQuery);
+        if (bizResult.success) {
+            modelMap.putAll(bizResult.data);
+            return "${doNameLower}/list.vm";
+        } else {
+            return "common/error.vm";
+        }
+
+    }
+
+    @RequestMapping(value = "${doNameLower}/edit.htm", method = RequestMethod.GET)
+    public String edit(HttpServletRequest request, ModelMap modelMap, ${doName}EditForm ${doNameLower}EditForm,
+        BindingResult result, Map<String,Object> model) {
+        int id = RequestUtil.getInt(request, "id");
+        BizResult bizResult = ${doNameLower}Biz.detail(id);
+        if (bizResult.success) {
+            modelMap.putAll(bizResult.data);
+            ${doNameLower}EditForm.initForm(((${doName}DO)bizResult.data.get("${doNameLower}DO")));
+            return "${doNameLower}/edit.vm";
+        } else {
+            return "common/error.vm";
+        }
+
+    }
+
+    @RequestMapping(value = "${doNameLower}/detail.htm", method = RequestMethod.GET)
+    public String detail(HttpServletRequest request, ModelMap modelMap) {
+        int id = RequestUtil.getInt(request, "id");
+        BizResult bizResult = ${doNameLower}Biz.detail(id);
+        if (bizResult.success) {
+            modelMap.putAll(bizResult.data);
+            return "${doNameLower}/detail.vm";
+        } else {
+            return "common/error.vm";
+        }
+
+    }
+
+    @RequestMapping(value = "${doNameLower}/create.htm", method = RequestMethod.GET)
+    public String create(HttpServletRequest request, ModelMap modelMap, ${doName}Form ${doNameLower}Form,
+        BindingResult result, Map<String,Object> model) {
+        return "${doNameLower}/create.vm";
+    }
+
+    @RequestMapping(value = "${doNameLower}/doCreate.htm", method = RequestMethod.POST)
+    public String doCreate(HttpServletRequest request, ModelMap modelMap,@Valid ${doName}Form ${doNameLower}Form,
+        BindingResult result, Map<String,Object> model) {
+        if (result.hasErrors()) {
+            return "${doNameLower}/create.vm";
+        }
+        ${doName}DO ${doNameLower}DO = ${doNameLower}Form.toDO();
+        BizResult bizResult = ${doNameLower}Biz.create(${doNameLower}DO);
+        if (bizResult.success) {
+            return "redirect:/${doNameLower}/list.vm";
+        } else {
+            return "common/error.vm";
+        }
+
+    }
+
+    @RequestMapping(value = "${doNameLower}/doUpdate.htm", method = RequestMethod.POST)
+    public String doUpdate(HttpServletRequest request, HttpServletResponse response,ModelMap modelMap,@Valid ${doName}EditForm ${doNameLower}EditForm,
+        BindingResult result, Map<String,Object> model) {
+        if (result.hasErrors()) {
+            return "${doNameLower}/edit.vm";
+        }
+        ${doName}DO ${doNameLower}DO = ${doNameLower}EditForm.toDO();
+        BizResult bizResult = ${doNameLower}Biz.update(${doNameLower}DO);
+        if (bizResult.success) {
+            return "redirect:/${doNameLower}/list.vm";
+        } else {
+            return "common/error.vm";
+        }
+
+    }
+
+    @RequestMapping(value = "${doNameLower}/doDelete.htm", method = RequestMethod.POST)
+    public String doDelete(HttpServletRequest request, ModelMap modelMap) {
+        int id = RequestUtil.getInt(request, "id");
+        BizResult bizResult = ${doNameLower}Biz.delete(id);
+        if (bizResult.success) {
+            return "${doNameLower}/list.vm";
+        } else {
+            return "common/error.vm";
+        }
+
+    }
+
+
+
+}

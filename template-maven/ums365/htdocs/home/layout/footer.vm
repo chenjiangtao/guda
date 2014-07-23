@@ -1,0 +1,66 @@
+<div  class="clearfix" style="width:940px;margin:0 auto;">
+
+&nbsp;
+<hr style="color:#c5e6c7;">
+<div class="clearfix" style="padding:5px;font:12px Verdana, Geneva, sans-serif;color: #0d3015;">
+  <ul> 
+      <li>
+        <a href='http://www.ssmama.com.cn' target='_blank'>时尚妈妈网</a> |
+		<a href='http://www.10086.cn/index.htm' target='_blank'>中国移动</a> |
+		<a href='http://www.ct10000.com/' target='_blank'>中国电信</a> |
+		<a href='http://www.10010.com' target='_blank'>中国联通</a> 
+		
+      </li>
+      <li>版权所有：<a href="http://www.foodoon.com" target='_blank'>复多软件</a> www.ums365.com 浙ICP备13010944 短信群发，监控平台 ,<a href="http://www.blog.foodoon.com" target='_blank'>复多博客</a>
+      <script src="http://s20.cnzz.com/stat.php?id=5222214&web_id=5222214" language="JavaScript"></script>
+      </li>
+      <li>联系电话:15558135733,QQ:52313882</li>
+  </ul>
+</div>
+</div>
+
+
+<!--客服代码开始-->
+<div id="chat_f1">
+	<div id="chat_f1_main">
+		<div id="close"></div>
+
+		<a title="QQ咨询" target="_blank" href="http://wpa.qq.com/msgrd?V=1&Uin=52313882&Site=qq &Menu=no" class="a_kf"></a>
+		<a title="旺旺咨询" target="_blank" href="http://amos1.taobao.com/msg.ww?v=2&uid=gang_119&s=1" class="a_sh"></a>
+	</div>
+	<div class="chat_f1_expr">
+		<div class="list">
+			<div class="name">
+				<span class="arrow">&bull;</span>咨询电话		
+			</div>
+		</div>
+		<div class="list-none">
+			<div class="name">
+				15558135733
+			</div>
+		</div>
+		<div class="list">
+			<div class="name">
+				<span class="arrow">&bull;</span>咨询QQ群
+			</div>
+		</div>
+		<div class="list-none">
+			<div class="name">
+				<span class="arrow">&bull;</span>320295281
+			</div>
+		</div>
+	<div id="chat_f1_bottom"></div>
+</div>
+<div id="chat_f2" style="display:none;">我要咨询</div>
+<script language="javascript">
+  $('.chat_f1_expr').animate({height:'156px'}, 1000 );
+	$('#close').click(function(){
+		$('#chat_f1').hide();
+		$('#chat_f2').show();
+	})
+	$('#chat_f2').click(function(){
+		$(this).hide();
+		$('#chat_f1').show();
+	})
+</script>
+<!--客服代码结束-->

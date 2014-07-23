@@ -1,0 +1,130 @@
+
+<link href="$umsServer.getURI("/static/css/tempList.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/checkutil.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/temp/tempList.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/table.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/targetPage.js")"></script>
+
+<div id="bd">
+#set($sideMenuId="temp_side_bar")
+#set($HeadMenuId="app")
+#parse("/home/appAdmin/appSideBar.vm")
+#set($searchUrl = $umsServer.getURI("/appAdmin/temp/list.htm"))
+#set($param = "templateId=$!msgTemplateForm.templateId&appId=$!appId")
+<input style="width:50%;" type="hidden" id="param"  name="param" value="$param"/>
+<input style="width:50%;" type="hidden" id="searchUrl"  name="searchUrl" value="$searchUrl"/>
+
+<div id="pRight">
+	<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+	<div class="pRight_c">
+	 <div style="margin:3px 3px;"><span><a href="$umsServer.getURI("/appAdmin/temp/add.htm")" class="btn green">添加模版</a></span> </div>
+	 #if($!message)<div style="color:red;"><font id="message" class="bold fs14"> $!message</font> </div> #end
+			<form action="$umsServer.getURI("/appAdmin/temp/list.htm")" method="post" id="myAcceptMsgForm">
+                <div class="searchArea">
+					<table border="0" cellpadding="0" cellspacing="1">
+						<tr style="background:red">
+							<td width="15%" align="right"><span class="bold fs14 c_007">所属应用：</span></td>
+
+							<td width="35%">
+								<select name="appId" id="appinfo" style="width:210px;border:1px solid #cbe1eb;" onmousemove="showAppTitle(this[this.selectedIndex]);">
+        							<option value=""> 请选择 </option>
+									#foreach($app in $apps)	
+									#if($app.appId == $appId)				
+									<option selected="selected" value="$!app.appId">$!app.appName ($!app.appId)</option>
+									#else
+									<option value="$!app.appId">$!app.appName ($!app.appId)</option>
+									#end
+									#end
+								</select>
+							</td>
+							<td width="15%" align="right"><span class="bold fs14 c_007">模版ID：</span></td>
+							<td width="35%">
+								#springBind("msgTemplateForm.templateId" )
+								<input type="text" maxlength="12" name="${status.expression}" value="$!status.value"/>
+							</td>
+							
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td colspan="3">
+								<input type="submit" id="searchLog_sbtn" class="btn_green_search_form" value="查询" />
+							</td>
+						</tr>
+					</table>
+                </div>
+			
+
+        <div id="tableContainer" class="tableContainer" style="width:100%">
+			<div id="scrollContentContainer" class="scrollContentContainer">
+				<table class="scrollContent" cellspacing="1" cellpadding="0" width="100%">
+					<thead>
+						<tr>
+						  <td width="4%">序号</td>
+				          <td width="8%">模版ID</td>
+				          <td width="15%">内容</td>
+						  <td width="11%">所属应用</td>
+				          <td width="14%">开始时间</td>
+				          <td width="14%">结束时间</td>
+						  <td width="14%">有效时间</td>
+						  <td width="10%">接收人说明</td>
+				          <td width="10%">操作</td>
+						 </tr>
+			          </thead>
+					<tbody class="tb">
+					#foreach($result in $results.results)
+						<tr>
+						  <td width="4%" style="text-align:center;">$velocityCount</td>
+				          <td width="8%" title="$!result.templateId">$!result.templateId</td>
+				          <td width="15%" title="$!result.content">$!result.content</td>
+						  <td width="11%" title="$!result.appId">$!result.appId</td>					
+				          <td width="14%" title="$!date.format('yyyy-MM-dd HH:mm:ss',$!result.startTime)">$!date.format('yyyy-MM-dd HH:mm:ss',$!result.startTime)</td>
+						  <td width="14%" title="$!date.format('yyyy-MM-dd HH:mm:ss',$!result.endTime)">$!date.format('yyyy-MM-dd HH:mm:ss',$!result.endTime)</td>
+						  <td width="14%" title="$!result.validTimeScope">$!result.validTimeScope</td>
+						  <td width="10%" title="$!result.recvComments">$!result.recvComments</td>
+				          <td width="10%" style="text-align:center;">
+						  <a class="a_green_form_ddl" href="$umsServer.getURI("/appAdmin/temp/update.htm").addQueryData("id","$!result.id").addQueryData("pageId","$!results.curPage").addQueryData("appId","$!msgTemplateForm.appId").addQueryData("tempId","$!msgTemplateForm.templateId");">编辑</a>
+						   <a class="a_green_form_ddl"  href="javascript:confirmTool('/appAdmin/temp/del.htm?id=$!result.id&pageId=$!results.curPage&appName=$!msgTemplateForm.appName&appId=$!msgTemplateForm.appId','确认删除改模版？')" >
+							删除
+				          </a>
+						   </td>
+				         </tr>
+						#end
+					    </tbody>
+				</table>
+			</div>
+		</div>
+		#noRecord($results)
+		#if( $!results.totalPage > 0)
+          <div class="btnArea clearfix" >
+			<div class="page_detail">
+				#if($!results.curPage != 1)
+					<a class="a_green_form_ddl" href="$umsServer.getURI("/appAdmin/temp/list.htm").addQueryData("pageId","1").addQueryData("templateId","$!msgTemplateForm.templateId").addQueryData("appId","$!msgTemplateForm.appId")"><span>首页</span></a>
+				#end
+				#if($!results.curPage > 1)
+					#set($tempPage = $!results.curPage - 1)
+					<a class="a_green_form_ddl" href="$umsServer.getURI("/appAdmin/temp/list.htm").addQueryData("pageId","$!tempPage").addQueryData("templateId","$!msgTemplateForm.templateId").addQueryData("appId","$!msgTemplateForm.appId")"><span>上一页</span></a>
+				#end
+				#if($!results.curPage < $!results.totalPage)
+						#set($tempPage = $!results.curPage + 1)
+						<a class="a_green_form_ddl" href="$umsServer.getURI("/appAdmin/temp/list.htm").addQueryData("pageId","$!tempPage").addQueryData("templateId","$!msgTemplateForm.templateId").addQueryData("appId","$!msgTemplateForm.appId")"><span>下一页</span></a>
+				#end
+				#if($!results.curPage != $!results.totalPage && $!results.totalPage > 0)
+					<a class="a_green_form_ddl" href="$umsServer.getURI("/appAdmin/temp/list.htm").addQueryData("pageId","$!results.totalPage").addQueryData("templateId","$!msgTemplateForm.templateId").addQueryData("appId","$!msgTemplateForm.appId")"><span>尾页</span></a>
+				#end
+				<span class="pager_info">当前第 <input id="targetNum" name="pageId" class="pager_inputBox" value="$!results.curPage" autocomplete="off"/>页  </span>				   
+				<span id="targetBtn" class="a_green_form_ddl" style="cursor: pointer;">跳转</span>
+				<span>共$!results.totalPage页 共$!results.total条记录</span>
+             </div>
+          </div>
+		#end
+		</form>
+		  </div>
+		 <div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+</div>
+</div>
+

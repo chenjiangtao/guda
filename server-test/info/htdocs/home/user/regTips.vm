@@ -1,0 +1,9 @@
+#set($layout = "home/layout/regLayout.vm")
+#set($_title="用户注册")
+
+<div class="container"  style="height:350px;">
+	<div class="col-1-1">
+	  <p style="font-size:16px;font-weight:bold;">请前往您的注册邮箱$!form.email，按照提示完成注册.</p>
+	</div>
+
+</div>

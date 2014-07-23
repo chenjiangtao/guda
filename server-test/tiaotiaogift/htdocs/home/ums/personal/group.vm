@@ -1,0 +1,8 @@
+#set($HeadMenuId="a_group")
+
+
+#set($layout = "home/layout/umsLayout.vm")
+
+<div class="center-contain">
+
+</div>

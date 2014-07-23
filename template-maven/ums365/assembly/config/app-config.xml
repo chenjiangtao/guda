@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <property name="run_mode" defaultValue="prod" description="运行模式，开发还是线上" />
+	<property name="app_name" defaultValue="tiaotiaogift" description="系统名" />
+	<property name="app_root" defaultValue="D:\work-dir\sms\trunk"
+		description="系统根目录" />
+	<property name="htdocs_root" defaultValue="/" description="文档目录" />
+	<property name="log4j.home" defaultValue="/alidata/logs" description="日志目录" />
+	
+	
+	<property name="gateway.httpUrl" defaultValue="http://www.smsadmin.cn/smsmarketing/wwwroot/api"  />
+	<property name="gateway.smsUserName" defaultValue="user" />
+	<property name="gateway.smsPassword" defaultValue="pwd"  />
+	<property name="gateway.linkId" defaultValue=""  />
+	
+	<property name="jdbc.url" defaultValue=""  />
+	<property name="jdbc.userName" defaultValue=""  />
+	<property name="jdbc.password" defaultValue=""  />
+
+	
+	
+	
+	
+	
+
+</config>

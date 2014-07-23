@@ -1,0 +1,58 @@
+<div class="ums-top" id="top">
+  
+	<div class="ums-header" >
+	<div class="ums-logo">
+	  <a href="$homeServer.getURI("/u.htm")"><img width="200px" height="60px" border="0"  src="$homeServer.getURI("/static/images/umsnew/logo-n.jpg")"/></a>
+	</div>
+	<div class="ums-header_b"><span>
+		 #if( $operationContext.getOperationContext().getPrincipal().getLogonId() == 'anonymous' )
+	      <a  href="$homeServer.getURI("/login.htm")">登录</a> <b>&nbsp;|&nbsp;</b> <a  href="$homeServer.getURI("/reg.htm")">注册</a>
+	    #else
+	     $operationContext.getOperationContext().getPrincipal().getUserName()，欢迎您&nbsp;|&nbsp;<a href="$homeServer.getURI("/loginOut.htm")"> 退出</a>
+	    #end
+		 
+	      </span></div>
+	</div>
+</div>
+
+
+	
+<div class="ums-menu" id="banner2">
+	<div class="ums-menu-contain" id="banner2_href_nav">
+			<a id="a_u" class="visit" href="$homeServer.getURI("/u.htm")"><span>首页</span></a>
+			
+			<a id="a_use"  href="$homeServer.getURI("/use/use.htm")"><span>应用行业</span></a>
+			
+			<a id="a_q"  href="$homeServer.getURI("/q/q.htm")"><span>常见问题</span></a>
+			
+			<a id="a_prod"  href="$homeServer.getURI("/prod/prod.htm")"><span>产品展示</span></a>
+			
+			<a id="a_act"  href="$homeServer.getURI("/act/act.htm")"><span>功能介绍</span></a>
+			
+			<a id="a_about"  href="$homeServer.getURI("/about/about.htm")"><span>联系我们</span></a>
+			
+			<a id="a_try" style="border-right: 1px solid #fff;" href="$homeServer.getURI("/ums/index.htm")"><span>产品试用</span></a>
+	
+    </div>
+</div>
+	<div class="ums-notice" >
+		<b></b> 	
+	</div>
+<script language="javascript">
+	var oul = document.getElementById("banner2_href_nav").getElementsByTagName("a");
+	for(var i=0,len=oul.length;i<len;++i){
+	   oul[i].className="";
+	}
+	var oli = document.getElementById("$HeadMenuId");
+	if(oli){
+		oli.className="visit";
+	}
+	function initWidth(){
+
+	 if(window.screen.width<1024){
+	   $("#top").width(1024);
+	   $("#banner2").width(1024);
+	 }
+	}
+	initWidth();
+</script>

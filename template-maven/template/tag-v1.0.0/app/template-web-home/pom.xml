@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>net.zoneland.template</groupId>
+		<artifactId>app</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<groupId>net.zoneland.template.web</groupId>
+	<artifactId>template-web-home</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+
+	<name>template-web-home</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>net.zoneland.template.common.dal</groupId>
+			<artifactId>template-common-dal</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.zoneland.template.biz.common</groupId>
+			<artifactId>template-biz-common</artifactId>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>net.zoneland.template.common.util</groupId>
+			<artifactId>template-common-util</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>net.zoneland</groupId>
+			<artifactId>mvc-runtime-core</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.zoneland.ums.common.dal.UmsOutAppReplyMapper" >
+  <resultMap id="BaseResultMap" type="net.zoneland.ums.common.dal.dataobject.UmsOutReply" >
+
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="REPLY" property="reply" jdbcType="VARCHAR" />
+    <result column="REPLY_DES" property="replyDes" jdbcType="INTEGER" />
+    <result column="SEND_ID" property="sendId" jdbcType="VARCHAR" />
+    <result column="RECEIVE_ID" property="receiveId" jdbcType="VARCHAR" />
+    <result column="BATCH_NO" property="batchNo" jdbcType="VARCHAR" />
+    <result column="SERIAL_NO" property="serialNo" jdbcType="VARCHAR" />
+    <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+    <result column="SUB_APP" property="subApp" jdbcType="VARCHAR" />
+    <result column="APP_SERIAL_NO" property="appSerialNo" jdbcType="VARCHAR" />
+    <result column="ACK" property="ack" jdbcType="INTEGER" />
+    <result column="GMT_CREATED" property="gmtCreated" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+
+    ID, REPLY, REPLY_DES, SEND_ID, RECEIVE_ID, BATCH_NO, SERIAL_NO, APP_ID, SUB_APP, 
+    APP_SERIAL_NO, ACK, GMT_CREATED
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+
+    select 
+    <include refid="Base_Column_List" />
+    from UMS_OUT_APP_REPLY
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  
+   <select id="selectByReplyAppIdSubAppId" resultMap="BaseResultMap" parameterType="java.util.Map" >
+
+    select 
+    <include refid="Base_Column_List" />
+    from UMS_OUT_APP_REPLY
+    where
+    APP_ID=#{appId,jdbcType=VARCHAR}
+    <if test="subApp != null">
+    AND SUB_APP= #{subApp,jdbcType=VARCHAR}
+    </if>
+    order by GMT_CREATED desc limit 1 
+    
+  </select>
+  
+   <select id="selectByReplyNum" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from UMS_OUT_APP_REPLY
+    where REPLY_DES = #{replyDes}  order by GMT_CREATED desc limit 1 
+  </select>
+  
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from UMS_OUT_APP_REPLY
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  
+  <insert id="insert" parameterType="net.zoneland.ums.common.dal.dataobject.UmsOutAppReply" >
+
+	insert into UMS_OUT_APP_REPLY (ID, REPLY, 
+      SEND_ID, RECEIVE_ID, BATCH_NO, 
+      SERIAL_NO, APP_ID, SUB_APP, 
+      APP_SERIAL_NO, ACK, GMT_CREATED
+      )
+    values (#{id,jdbcType=CHAR}, #{reply,jdbcType=VARCHAR}, 
+      #{sendId,jdbcType=VARCHAR}, #{receiveId,jdbcType=VARCHAR}, #{batchNo,jdbcType=VARCHAR}, 
+      #{serialNo,jdbcType=VARCHAR}, #{appId,jdbcType=VARCHAR}, #{subApp,jdbcType=VARCHAR}, 
+      #{appSerialNo,jdbcType=VARCHAR}, #{ack,jdbcType=INTEGER}, #{gmtCreated,jdbcType=TIMESTAMP}
+      )
+  </insert>
+ 
+  <update id="updateByPrimaryKey" parameterType="net.zoneland.ums.common.dal.dataobject.UmsOutReply" >
+
+    update UMS_OUT_APP_REPLY
+    set REPLY = #{reply,jdbcType=VARCHAR},
+      REPLY_DES = #{replyDes,jdbcType=INTEGER},
+      SEND_ID = #{sendId,jdbcType=VARCHAR},
+      RECEIVE_ID = #{receiveId,jdbcType=VARCHAR},
+      BATCH_NO = #{batchNo,jdbcType=VARCHAR},
+      SERIAL_NO = #{serialNo,jdbcType=VARCHAR},
+      APP_ID = #{appId,jdbcType=VARCHAR},
+      SUB_APP = #{subApp,jdbcType=VARCHAR},
+      APP_SERIAL_NO = #{appSerialNo,jdbcType=VARCHAR},
+      ACK = #{ack,jdbcType=INTEGER},
+      GMT_CREATED = #{gmtCreated,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  
+  <delete id="deleteLastWeekReply" parameterType="java.util.Date" >
+   <![CDATA[
+    delete from UMS_OUT_APP_REPLY
+    where GMT_CREATED <= #{gmtCreated}
+    ]]>
+  </delete>
+  
+</mapper>

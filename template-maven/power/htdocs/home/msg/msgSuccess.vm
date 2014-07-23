@@ -1,0 +1,40 @@
+<link href="$umsServer.getURI("/static/css/msgsuccess.css")" type="text/css" rel="stylesheet" />
+<div id="bd">
+	#set($HeadMenuId="work_header") #set($sideMenuId="msg_send_side_bar")
+	#parse("/home/msg/msgSideBar.vm")
+	#set($searchUrl = $umsServer.getURI("/msg/msg.htm"))
+	<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c">
+			<div id="writeEmail" style="height:100%;background-color:#fafcfc;">
+				<div class="btnArea clearfix">
+					 &nbsp;&nbsp;<a class="fs14bold c_007" href="$searchUrl">发送消息</a><a class="fs14bold c_008">-&gt;消息发送成功</a>
+                </div>
+				<div id="messageForm_div">
+			<table cellpadding="0" cellspacing="10px" width="100%" border="0" style="line-height: 200%;margin-left:1%">
+			<tr align="left">
+				<td width="60%"><font size="4" color="green"><b>$!msgSendError</b></font></td>
+				<td></td>
+			</tr>
+			<tr align="left" style="font-size: 15px; color: green;">
+				<td>您可以点此<a href="$umsServer.getURI("/msg/msg.htm")" class="fs14bold c_007">返回继续发送消息</a></td>
+			</tr>
+			<tr align="left" style="font-size: 15px; color: green;">
+				<td>您还可以<a href="$umsServer.getURI("/msg/mysendmsg.htm")" class="fs14bold c_007">查看已经发送的消息</a></td>
+			</tr>
+			<tr align="left" style="font-size: 15px; color: green;">
+				<td>您还可以<a href="$umsServer.getURI("/msg/myacceptmsg.htm")" class="fs14bold c_007">查看接收到的消息</a></td>
+			</tr>
+		</table>
+				</div>
+			</div>
+		</div>
+		<div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>
+
+

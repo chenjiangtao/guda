@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.foodoon.info.common.dal.DetailMapper" >
+  <resultMap id="BaseResultMap" type="com.foodoon.info.common.dataobject.Detail" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="city_id" property="cityId" jdbcType="VARCHAR" />
+    <result column="price" property="price" jdbcType="REAL" />
+    <result column="sub_classify_id" property="subClassifyId" jdbcType="VARCHAR" />
+    <result column="contact_user" property="contactUser" jdbcType="VARCHAR" />
+    <result column="contact_info" property="contactInfo" jdbcType="VARCHAR" />
+    <result column="gmt_created" property="gmtCreated" jdbcType="TIMESTAMP" />
+    <result column="gmt_modify" property="gmtModify" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.foodoon.info.common.dataobject.DetailWithBLOBs" extends="BaseResultMap" >
+    <result column="title" property="title" jdbcType="LONGVARCHAR" />
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, user_id, city_id, price, sub_classify_id, contact_user, contact_info, gmt_created, 
+    gmt_modify
+  </sql>
+  <sql id="Blob_Column_List" >
+    title, content
+  </sql>
+  <select id="selectByExampleWithBLOBs" resultMap="ResultMapWithBLOBs" parameterType="com.foodoon.info.common.dataobject.DetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from info_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.foodoon.info.common.dataobject.DetailExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from info_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from info_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from info_detail
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.foodoon.info.common.dataobject.DetailExample" >
+    delete from info_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.foodoon.info.common.dataobject.DetailWithBLOBs" >
+    insert into info_detail (id, user_id, city_id, 
+      price, sub_classify_id, contact_user, 
+      contact_info, gmt_created, gmt_modify, 
+      title, content)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{cityId,jdbcType=VARCHAR}, 
+      #{price,jdbcType=REAL}, #{subClassifyId,jdbcType=VARCHAR}, #{contactUser,jdbcType=VARCHAR}, 
+      #{contactInfo,jdbcType=VARCHAR}, #{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, 
+      #{title,jdbcType=LONGVARCHAR}, #{content,jdbcType=LONGVARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.foodoon.info.common.dataobject.DetailWithBLOBs" >
+    insert into info_detail
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="cityId != null" >
+        city_id,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+      <if test="subClassifyId != null" >
+        sub_classify_id,
+      </if>
+      <if test="contactUser != null" >
+        contact_user,
+      </if>
+      <if test="contactInfo != null" >
+        contact_info,
+      </if>
+      <if test="gmtCreated != null" >
+        gmt_created,
+      </if>
+      <if test="gmtModify != null" >
+        gmt_modify,
+      </if>
+      <if test="title != null" >
+        title,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=REAL},
+      </if>
+      <if test="subClassifyId != null" >
+        #{subClassifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="contactUser != null" >
+        #{contactUser,jdbcType=VARCHAR},
+      </if>
+      <if test="contactInfo != null" >
+        #{contactInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null" >
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null" >
+        #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null" >
+        #{title,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.foodoon.info.common.dataobject.DetailExample" resultType="java.lang.Integer" >
+    select count(*) from info_detail
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update info_detail
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=VARCHAR},
+      </if>
+      <if test="record.userId != null" >
+        user_id = #{record.userId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.cityId != null" >
+        city_id = #{record.cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.price != null" >
+        price = #{record.price,jdbcType=REAL},
+      </if>
+      <if test="record.subClassifyId != null" >
+        sub_classify_id = #{record.subClassifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactUser != null" >
+        contact_user = #{record.contactUser,jdbcType=VARCHAR},
+      </if>
+      <if test="record.contactInfo != null" >
+        contact_info = #{record.contactInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtCreated != null" >
+        gmt_created = #{record.gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gmtModify != null" >
+        gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.title != null" >
+        title = #{record.title,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="record.content != null" >
+        content = #{record.content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExampleWithBLOBs" parameterType="map" >
+    update info_detail
+    set id = #{record.id,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      city_id = #{record.cityId,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=REAL},
+      sub_classify_id = #{record.subClassifyId,jdbcType=VARCHAR},
+      contact_user = #{record.contactUser,jdbcType=VARCHAR},
+      contact_info = #{record.contactInfo,jdbcType=VARCHAR},
+      gmt_created = #{record.gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP},
+      title = #{record.title,jdbcType=LONGVARCHAR},
+      content = #{record.content,jdbcType=LONGVARCHAR}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update info_detail
+    set id = #{record.id,jdbcType=VARCHAR},
+      user_id = #{record.userId,jdbcType=VARCHAR},
+      city_id = #{record.cityId,jdbcType=VARCHAR},
+      price = #{record.price,jdbcType=REAL},
+      sub_classify_id = #{record.subClassifyId,jdbcType=VARCHAR},
+      contact_user = #{record.contactUser,jdbcType=VARCHAR},
+      contact_info = #{record.contactInfo,jdbcType=VARCHAR},
+      gmt_created = #{record.gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.foodoon.info.common.dataobject.DetailWithBLOBs" >
+    update info_detail
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="cityId != null" >
+        city_id = #{cityId,jdbcType=VARCHAR},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=REAL},
+      </if>
+      <if test="subClassifyId != null" >
+        sub_classify_id = #{subClassifyId,jdbcType=VARCHAR},
+      </if>
+      <if test="contactUser != null" >
+        contact_user = #{contactUser,jdbcType=VARCHAR},
+      </if>
+      <if test="contactInfo != null" >
+        contact_info = #{contactInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null" >
+        gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null" >
+        gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+      <if test="title != null" >
+        title = #{title,jdbcType=LONGVARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.foodoon.info.common.dataobject.DetailWithBLOBs" >
+    update info_detail
+    set user_id = #{userId,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=VARCHAR},
+      price = #{price,jdbcType=REAL},
+      sub_classify_id = #{subClassifyId,jdbcType=VARCHAR},
+      contact_user = #{contactUser,jdbcType=VARCHAR},
+      contact_info = #{contactInfo,jdbcType=VARCHAR},
+      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
+      title = #{title,jdbcType=LONGVARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.foodoon.info.common.dataobject.Detail" >
+    update info_detail
+    set user_id = #{userId,jdbcType=VARCHAR},
+      city_id = #{cityId,jdbcType=VARCHAR},
+      price = #{price,jdbcType=REAL},
+      sub_classify_id = #{subClassifyId,jdbcType=VARCHAR},
+      contact_user = #{contactUser,jdbcType=VARCHAR},
+      contact_info = #{contactInfo,jdbcType=VARCHAR},
+      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      gmt_modify = #{gmtModify,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  
+  
+    <select id="search" resultMap="ResultMapWithBLOBs" >
+        select
+	    <include refid="Base_Column_List" />
+	    ,
+	    <include refid="Blob_Column_List" />
+	    from info_detail where 1=1
+	      <if test="subClassifyId !=null ">
+				and sub_classify_id = #{subClassifyId}
+		  </if>
+		   <if test="subClassifyIds !=null ">
+	        and sub_classify_id in
+				 <foreach item="item" index="index" collection="subClassifyIds" 
+                    open="(" separator="," close=")">
+                   #{item}
+            </foreach>
+		  </if>
+		  <if test="city !=null ">
+				and city = #{city}
+		  </if>
+		  <if test="userId !=null ">
+				and user_id = #{userId}
+		  </if>
+		  <if test="startPrice!=null and endPrice!=null ">
+				<![CDATA[	AND price > #{startPrice} and price < #{endPrice} ]]>
+		  </if>
+		  <if test="key !=null ">
+				and (title like CONCAT(CONCAT('%', #{key}), '%')  or content like CONCAT(CONCAT('%', #{key}), '%'))
+		  </if>
+	    order by gmt_created desc limit #{start},#{rows}
+  </select>
+  
+  
+      <select id="searchCount" resultType="java.lang.Integer" >
+        select count(*) from info_detail where 1=1
+	      <if test="subClassifyId !=null ">
+				and sub_classify_id = #{subClassifyId}
+		  </if>
+		   <if test="subClassifyIds !=null ">
+	        and sub_classify_id in
+				 <foreach item="item" index="index" collection="subClassifyIds" 
+                    open="(" separator="," close=")">
+                   #{item}
+            </foreach>
+		  </if>
+		  <if test="city !=null ">
+				and city = #{city}
+		  </if>
+		  <if test="userId !=null ">
+				and user_id = #{userId}
+		  </if>
+		  <if test="startPrice!=null and endPrice!=null ">
+				<![CDATA[	AND price > #{startPrice} and price < #{endPrice} ]]>
+		  </if>
+		  <if test="key !=null ">
+				and (title like CONCAT(CONCAT('%', #{key}), '%')  or content like CONCAT(CONCAT('%', #{key}), '%'))
+		  </if>
+	  
+  </select>
+  
+</mapper>

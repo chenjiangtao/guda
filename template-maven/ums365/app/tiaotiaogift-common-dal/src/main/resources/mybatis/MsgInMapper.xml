@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tiaotiaogift.common.dal.MsgInMapper" >
+  <resultMap id="BaseResultMap" type="com.tiaotiaogift.common.mysql.dataobject.MsgIn" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="send_id" property="sendId" jdbcType="VARCHAR" />
+    <result column="gmt_created" property="gmtCreated" jdbcType="TIMESTAMP" />
+    <result column="recv_id" property="recvId" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="ResultMapWithBLOBs" type="com.tiaotiaogift.common.mysql.dataobject.MsgIn" extends="BaseResultMap" >
+    <result column="content" property="content" jdbcType="LONGVARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, send_id, gmt_created, recv_id, status
+  </sql>
+  <sql id="Blob_Column_List" >
+    content
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from msg_in
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from msg_in
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tiaotiaogift.common.mysql.dataobject.MsgIn" >
+    insert into msg_in (id, send_id, gmt_created, 
+      recv_id, status, content
+      )
+    values (#{id,jdbcType=VARCHAR}, #{sendId,jdbcType=VARCHAR}, #{gmtCreated,jdbcType=TIMESTAMP}, 
+      #{recvId,jdbcType=VARCHAR}, #{status,jdbcType=VARCHAR}, #{content,jdbcType=LONGVARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tiaotiaogift.common.mysql.dataobject.MsgIn" >
+    insert into msg_in
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="sendId != null" >
+        send_id,
+      </if>
+      <if test="gmtCreated != null" >
+        gmt_created,
+      </if>
+      <if test="recvId != null" >
+        recv_id,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="sendId != null" >
+        #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null" >
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recvId != null" >
+        #{recvId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tiaotiaogift.common.mysql.dataobject.MsgIn" >
+    update msg_in
+    <set >
+      <if test="sendId != null" >
+        send_id = #{sendId,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null" >
+        gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="recvId != null" >
+        recv_id = #{recvId,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=VARCHAR},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=LONGVARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.tiaotiaogift.common.mysql.dataobject.MsgIn" >
+    update msg_in
+    set send_id = #{sendId,jdbcType=VARCHAR},
+      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      recv_id = #{recvId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR},
+      content = #{content,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tiaotiaogift.common.mysql.dataobject.MsgIn" >
+    update msg_in
+    set send_id = #{sendId,jdbcType=VARCHAR},
+      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      recv_id = #{recvId,jdbcType=VARCHAR},
+      status = #{status,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+  
+    <select id="selectRecv" resultMap="ResultMapWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from msg_in
+     order by gmt_created desc limit #{start},20 
+  </select>
+  
+
+  
+    
+  <select id="selectCount" resultType="java.lang.Integer">
+    select 
+    count(id)
+    from msg_in
+   
+  </select>
+  
+   <select id="selectCountByParams" resultType="java.lang.Integer" >
+    select 
+     count(id)
+    from msg_in where 1=1 
+     
+      <if test="recvId !=null">
+		and recv_id = #{recvId,jdbcType=VARCHAR}
+	  </if>
+     <if test="startTime!=null and endTime!=null">
+		<![CDATA[	AND gmt_created > #{startTime} and gmt_created < #{endTime} ]]>
+	  </if>
+  </select>
+  
+  <select id="selectByParams" resultMap="ResultMapWithBLOBs" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from msg_in where 1=1 
+     
+      <if test="recvId !=null">
+		and recv_id = #{recvId,jdbcType=VARCHAR}
+	  </if>
+     <if test="startTime!=null and endTime!=null">
+		<![CDATA[	AND gmt_created > #{startTime} and gmt_created < #{endTime} ]]>
+	    </if>
+     order by gmt_created desc limit #{start},#{rows}
+  </select>
+  
+  <select id="fetchMsgIn" resultMap="ResultMapWithBLOBs" parameterType="string">
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from msg_in where status='0' and recv_id = #{recvId,jdbcType=VARCHAR}  order by gmt_created  limit 20
+	 
+  </select>
+  
+       <update id="updateStatusBatch" parameterType="Map">  
+            update msg_in   set   
+                status=#{status}
+            where id in   
+            <foreach collection="ids" index="index" item="item" open="(" separator="," close=")" >  
+                #{item}  
+            </foreach>  
+    </update>  
+</mapper>

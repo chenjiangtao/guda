@@ -1,0 +1,4 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<p>footer 版权所有@浙江兰德纵横网络技术有限公司</p>

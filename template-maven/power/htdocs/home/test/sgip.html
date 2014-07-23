@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+</head>
+<body>
+sgip test
+<form action="" name="sgipMsg"  method="post">
+<label>gatewayId</label><input type="text" name="gatewayId" value="bafe31d0-a2c8-4d02-92f3-21285e077fee"/><label></label><br/>
+<label>SPNumber</label><input type="text" name="SPNumber" value="1065920595598"/><label></label><br/>
+<label>ChargeNumber</label><input type="text" name="ChargeNumber" value="000000000000000000000"/><label>付费号码，字符，手机号码前加“86”国别标志；当且仅当群发且对用户收费时为空；如果为空，则该条短消息产生的费用由UserNumber代表的用户支付；如果为全零字符串“000000000000000000000”，表示该条短消息产生的费用由SP支付。</label><br/>
+<label>UserNumber</label><input type="text" name="UserNumber" value="8615558135733"/><label>一个或多个接收该短消息的手机号，手机号之间用逗号(,)隔开，字符，手机号码前加“86”国别标志，如8613001125453,8613001132345</label><br/>
+
+<label>CorpId</label><input type="text" name="CorpId" value="62292"/><label>企业代码，取值范围0-99999，字符</label><br/>
+<label>ServiceType</label><input type="text" name="ServiceType" value="9999"/><label>业务代码，由SP定义，字符</label><br/>
+<label>FeeType</label><input type="text" name="FeeType" value="0"/><label>计费类型，字符0	“短消息类型”为“发送”，对“计费用户号码”不计信息费，此类话单仅用于核减SP对称的信道费
+1	对“计费用户号码”免费
+2	对“计费用户号码”按条计信息费
+3	对“计费用户号码”按包月收取信息费
+4	对“计费用户号码”的收费是由SP实现
+</label><br/>
+
+<label>FeeValue</label><input type="text" name="FeeValue" value="000005"/><label>取值范围0-99999，该条短消息的收费值，单位为分，由SP定义，字符
+对于包月制收费的用户，该值为月租费的值
+</label><br/>
+<label>GivenValue</label><input type="text" name="GivenValue" value="0"/><label>取值范围0-99999，赠送用户的话费，单位为分，由SP定义，特指由SP向用户发送广告时的赠送话费，字符</label><br/>
+<label>AgentFlag</label><input type="text" name="AgentFlag" value="1"/><label>代收费标志，0：应收；1：实收，字符</label><br/>
+
+<label>MorelatetoMTFlag</label><input type="text" name="MorelatetoMTFlag" value="2"/><label>引起MT消息的原因
+0-MO点播引起的第一条MT消息；
+1-MO点播引起的非第一条MT消息；
+2-非MO点播引起的MT消息；
+3-系统反馈引起的MT消息。
+字符
+</label><br/>
+<label>Priority</label><input type="text" name="Priority" value="3"/><label></label><br/>
+<label>ReportFlag</label><input type="text" name="ReportFlag" value="1"/><label>状态报告标记
+0-该条消息只有最后出错时要返回状态报告
+1-该条消息无论最后是否成功都要返回状态报告
+2-该条消息不需要返回状态报告
+3-该条消息仅携带包月计费信息，不下发给用户，要返回状态报告
+其它-保留
+缺省设置为0，十六进制数字
+</label><br/>
+
+<label>TP_pid</label><input type="text" name="TP_pid" value="0"/><label></label><br/>
+<label>TP_udhi</label><input type="text" name="TP_udhi" value="0"/><label></label><br/>
+<label>MessageCoding</label><input type="text" name="MessageCoding" value="8"/><label>短消息的编码格式。
+0：纯ASCII字符串
+3：写卡操作
+4：二进制编码
+8：UCS2编码
+15：GBK编码
+</label><br/>
+<label>MessageType</label><input type="text" name="MessageType" value="0"/><label>信息类型：
+0-短消息信息
+其它：待定
+</label><br/>
+<label>MessageLen</label><input type="text" name="MessageLen" value="1"/><label></label><br/>
+<label>MessageContent</label><input type="text" name="MessageContent" value="短信测试"/><label></label><br/>
+
+<label>reserve</label><input type="text" name="reserve" value=""/><label></label><br/>
+<label></label><input type="text" name="" value=""/><label></label><br/>
+<label></label><input type="text" name="" value=""/><label></label><br/>
+
+<input type="submit" value="submit"/>
+
+</form>
+</body>
+</html>

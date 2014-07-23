@@ -1,0 +1,12 @@
+<div class="ums-top" id="top">
+  
+	<div class="ums-header" >
+	<div class="ums-logo">
+	  <a href="$homeServer.getURI("/u.htm")"><img  border="0"  src="$homeServer.getURI("/static/images/umsnew/logo-n.jpg")"/></a>
+	</div>
+	<div class="ums-header_b"><span>
+
+		 
+	      </span></div>
+	</div>
+</div>

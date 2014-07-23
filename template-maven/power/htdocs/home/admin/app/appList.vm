@@ -1,0 +1,154 @@
+
+<link href="$umsServer.getURI("/static/css/applist.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/queryui/jquery.ui.all.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.core.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.widget.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.position.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.autocomplete.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/dropdown/jquery.cascadingDropDown.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/checkutil.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/appList.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/table.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/targetPage.js")"></script>
+
+<div id="bd">
+#set($sideMenuId="app_side_bar")
+#set($HeadMenuId="system_header")
+#parse("/home/admin/adminSideBar.vm")
+#set($searchUrl = $umsServer.getURI("/app/list.htm"))
+#set($param = "appName=$!appInfoForm.appName&appId=$!appInfoForm.appId")
+<input style="width:50%;" type="hidden" id="param"  name="param" value="$param"/>
+<input style="width:50%;" type="hidden" id="searchUrl"  name="searchUrl" value="$searchUrl"/>
+<div id="pRight">
+	<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+	<div class="pRight_c">
+	 <div style="margin:3px 3px;"><span><a target="_blank" href="$umsServer.getURI("/app/add.htm")" class="btn green">添加应用</a></span> </div>
+	 #if($!message)<div style="color:red;"><font id="message" class="bold fs14"> $!message</font> </div> #end
+				<!--<div class="btnArea clearfix">
+					<div style="float:left;margin-left:5px;">
+						<form action="list.htm" method="post" >
+							#springBind("appInfoForm.appName" )
+							<span class="bold fs14 c_007"> 应用名称：</span><input style="height:20px" type="text" name="${status.expression}" value="$!status.value"/>
+							#springBind("appInfoForm.appId" )
+							<span class="bold fs14 c_007">应用ID ：</span><input style="height:20px" type="text" name="${status.expression}" value="$!status.value"/>
+							<input type="submit" id="searchLog_sbtn" class="btn_green_search_form" value="查询" />
+						</form>
+					</div>
+                </div>
+				-->
+			<form action="$umsServer.getURI("/app/list.htm")" method="post" id="appInfoForm">
+                <div class="searchArea">
+					<table border="0" cellpadding="0" cellspacing="1">
+						<tr style="background:red">
+
+							<td width="15%" align="right"><span class="bold fs14 c_007">应用名称：</span></td>
+							<td width="35%">
+								#springBind("appInfoForm.appName" )
+								<input id="appName" title="请输入应用名称或应用ID可显示完整的应用名称" autocomplete="off" class="inputBox" type="text" maxlength="12" name="${status.expression}" value="$!status.value"/>
+							</td>
+							<td width="15%" align="right"><span class="bold fs14 c_007">应用ID：</span></td>
+
+							<td width="35%">
+								#springBind("appInfoForm.appId" )
+								<input title="请输入应用ID" autocomplete="off" class="inputBox" type="text" maxlength="4" name="${status.expression}" value="$!status.value"/>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td colspan="3">
+								<input type="submit" id="searchLog_sbtn" class="btn_green_search_form" value="查询" />
+							</td>
+						</tr>
+					</table>
+                </div>
+			
+
+        <div id="tableContainer" class="tableContainer" style="width:100%">
+			<div id="scrollContentContainer" class="scrollContentContainer">
+				<table class="scrollContent" cellspacing="1" cellpadding="0" width="100%">
+					<thead>
+						<tr>
+						  <td width="5%">序号</td>
+				          <td width="20%">应用名称</td>
+				          <td width="6%">应用ID</td>
+						  <td width="7%">应用状态</td>
+				          <td width="14%">IP</td>
+				          <td width="7.5%">日流量</td>
+						  <td width="7.5%">月流量</td>
+						  <td width="10%">短信签名</td>
+				          <td width="23%">操作</td>
+						 </tr>
+			          </thead>
+					<tbody class="tb">
+					#foreach($result in $results.results)
+						<tr>
+						  <td width="5%" style="text-align:center;">$velocityCount</td>
+				          <td width="20%" title="$!result.appName">$!result.appName</td>
+				          <td width="6%" title="$!result.appId">$!result.appId</td>
+						  #if($!result.status==$!enable)
+						  <td id="$!result.id" width="7%">启用</td>
+						  #else
+						  <td id="$!result.id" width="7%">禁用</td>
+						  #end
+				          <td width="14%" title="$!result.ip">$!result.ip</td>
+						  <td width="7.5%" title="$!result.flowDay">$!result.flowDay</td>
+						  <td width="7.5%" title="$!result.flowMonth">$!result.flowMonth</td>
+						  <td width="10%" title="$!result.signName">$!result.signName</td>
+				          <td width="23%" style="text-align:center;">
+						  <a class="a_green_form_ddl" target="_blank" href="$umsServer.getURI("/app/update.htm").addQueryData("id","$!result.id")">编辑</a>
+						   #if($!result.appId != $!localAppId)
+
+						   <a class="a_green_form_ddl"  href="javascript:confirmTool('/app/del.htm?id=$!result.id&pageId=$!results.curPage&appName=$!appInfoForm.appName&appId=$!appInfoForm.appId','确认删除该应用？')" >
+							删除
+				          </a>
+						   #if($!result.status==$!enable)
+						   <a id="change$!result.id" class="a_green_form_ddl" href="javascript:;" onclick="changeStatus('$!result.id')">禁用</a>
+						   #else
+						   <a id="change$!result.id"  class="a_green_form_ddl" href="javascript:;" onclick="changeStatus('$!result.id')">启用</a>
+						   #end
+
+						   #end
+						   <a class="a_green_form_ddl" target="_blank" href="$umsServer.getURI("/subApp/list.htm").addQueryData("appId","$!result.id").addQueryData("appName","$!result.appName").addQueryData("page","$!results.curPage")">子应用</a>
+						   </td>
+
+				         </tr>
+						#end
+					    </tbody>
+				</table>
+			</div>
+		</div>
+		#noRecord($results)
+		#if( $!results.totalPage > 0)
+          <div class="btnArea clearfix" >
+			<div class="page_detail">
+				#if($!results.curPage != 1)
+					<a class="a_green_form_ddl" href="$umsServer.getURI("/app/list.htm").addQueryData("pageId","1").addQueryData("appName","$!appInfoForm.appName").addQueryData("appId","$!appInfoForm.appId")"><span>首页</span></a>
+				#end
+				#if($!results.curPage > 1)
+					#set($tempPage = $!results.curPage - 1)
+					<a class="a_green_form_ddl" href="$umsServer.getURI("/app/list.htm").addQueryData("pageId","$!tempPage").addQueryData("appName","$!appInfoForm.appName").addQueryData("appId","$!appInfoForm.appId")"><span>上一页</span></a>
+				#end
+				#if($!results.curPage < $!results.totalPage)
+						#set($tempPage = $!results.curPage + 1)
+						<a class="a_green_form_ddl" href="$umsServer.getURI("/app/list.htm").addQueryData("pageId","$!tempPage").addQueryData("appName","$!appInfoForm.appName").addQueryData("appId","$!appInfoForm.appId")"><span>下一页</span></a>
+				#end
+				#if($!results.curPage != $!results.totalPage && $!results.totalPage > 0)
+					<a class="a_green_form_ddl" href="$umsServer.getURI("/app/list.htm").addQueryData("pageId","$!results.totalPage").addQueryData("appName","$!appInfoForm.appName").addQueryData("appId","$!appInfoForm.appId")"><span>尾页</span></a>
+				#end
+				<span class="pager_info">当前第 <input id="targetNum" name="pageId" class="pager_inputBox" value="$!results.curPage" autocomplete="off"/>页  </span>				   
+				<span id="targetBtn" class="a_green_form_ddl" style="cursor: pointer;">跳转</span>
+				<span>共$!results.totalPage页 共$!results.total条记录</span>
+             </div>
+          </div>
+		  #end
+		  </div>
+		  </form>
+		 <div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+</div>
+</div>
+

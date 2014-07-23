@@ -1,0 +1,8 @@
+.contain{
+ text-align:left;
+}
+.contain ul li{
+padding-left:10px;
+padding:5px;
+line-height:25px;
+}

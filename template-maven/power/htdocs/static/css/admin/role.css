@@ -1,0 +1,220 @@
+.form_div lable {
+	text-align: right;
+	width: 10%;
+}
+
+.form_div {
+	padding-left: 15px;
+	margin-top: 10px;
+}
+
+.form_div td {
+	width: 30%;
+	padding: 4px;
+	/*white-space: nowrap;*/
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.form_div tr {
+	width: 100%;
+	padding: 4px;
+}
+
+.form_div span { /*white-space: nowrap;*/
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.roleheader {
+	background-color: #f7fbfc;
+	border-top: 1px solid #daecf2;
+	border-bottom: 1px solid #daecf2;
+	padding: 0px 25px;
+	margin-top: 10px;
+}
+
+.roleheader table {
+	line-height: 400%;
+}
+
+.roleheader td {
+	padding-left: 10px;
+	white-space: nowrap;
+	overflow: hidden;
+	text-overflow: ellipsis;
+}
+
+.roletable {
+	font-size: 14px;
+	width: 62px;
+}
+
+.box_header {
+	height: 32px;
+	line-height: 32px;
+	background-color: #EEF8FB;
+	position: relative;
+	padding: 5px 20px 5px 10px;
+	margin-top: 8px;
+}
+
+.box_header_app {
+	cursor: pointer;
+	font-size: 14px;
+	font-weight: bold;
+	margin-left: 10px;
+}
+
+.item {
+	float: left;
+	width: 190px;
+	/*width: 125px;*/
+	height: 20px;
+}
+
+.item_box {
+	margin-top: 10px;
+	margin-left: 108px;
+}
+
+.float_label {
+	float: left;
+	width: 165px;
+	/*width: 100px;*/
+	height: 20px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	margin-left: 3px;
+}
+
+.botton_div {
+	padding: 0px 15px;
+	margin-top: 10px;
+}
+
+.select_all {
+	margin-left: 18px;
+}
+
+div.right {
+	width: 340px;
+}
+
+li {
+	font-size: 12px;
+}
+
+li.title {
+	list-style: none;
+}
+
+ul.list {
+	margin-left: 17px;
+}
+
+.highlight_red {
+	color: #A60000;
+}
+
+ul.log {
+	border: 1px solid #617775;
+	background: #f0f6e4;
+	width: 300px;
+	height: 170px;
+	overflow: hidden;
+}
+
+ul.log li {
+	color: #666666;
+	list-style: none;
+	padding-left: 10px;
+}
+
+ul.log li.dark {
+	background-color: #E3E3E3;
+}
+
+ul.ztree {
+	height: 342px;
+	overflow: auto;
+	/* width: 400px;*/
+}
+
+.area_names_div {
+	float: left;
+	width: 80%;
+	height: 50px;
+	overflow-x: hidden;
+}
+
+.flow_item {
+	float: left;
+	width: 100%;
+}
+
+.info_div {
+	float: left;
+	width: 133px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+.info_phone_role {
+	float: left;
+	width: 147px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+}
+
+/*分类*/
+
+/*
+#appmain {
+	background-color: #EEF8FB;
+}
+*/
+.index_header {
+	height: 32px;
+	line-height: 32px;
+	background-color: #EEF8FB;
+	position: relative;
+	padding: 5px 20px 5px 10px;
+	/*margin-top: -6px;*/
+}
+
+.index_color {
+	color: black;
+	text-decoration: none;
+}
+
+.index_color:hover {
+	color: green;
+}
+
+/*切换按拼音字母检索时的样式*/
+.off {
+	font-size: 14px;
+	/*color: #00764B;*/
+	color: green;
+	font-weight: bold;
+	background: url(../../images/roleTag.jpg) repeat;
+}
+
+/*切换按拼音字母检索时“全部应用”字体的样式*/
+.offAll {
+	font-size: 14px;
+	color: green;
+	font-weight: bold;
+	background: url(../../images/roleAllTag.jpg) repeat;
+}
+
+.index_ul {
+	float: left;
+	margin-left: 5px;
+	width: 55px;
+	height: 33px;
+}

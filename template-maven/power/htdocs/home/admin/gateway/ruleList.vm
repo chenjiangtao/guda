@@ -1,0 +1,95 @@
+
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/checkutil.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/table.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/targetPage.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/gatewayRule.js")"></script>
+<div id="bd">
+#set($sideMenuId="gate_rule_side_bar")
+#set($HeadMenuId="system_header")
+#parse("/home/admin/adminSideBar.vm")
+#set($searchUrl = $umsServer.getURI("/gatewayRule/list.htm"))
+#set($param = "")
+<input style="width:50%;" type="hidden" id="param"  name="param" value="$param"/>
+<input style="width:50%;" type="hidden" id="searchUrl"  name="searchUrl" value="$searchUrl"/>
+<div id="pRight">
+	<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+	<div class="pRight_c">
+    <div style="margin:3px 3px;"><span><a target="_blank" href="$umsServer.getURI("/gatewayRule/add.htm")" class="btn green" style="width:100px;">添加网关规则</a></span></div>
+	 #if($!message)<div style="color:red;"><font class="bold fs14"> $!message</font> </div> #end
+	 <form id="gatewayRule">
+        <div id="tableContainer" class="tableContainer" style="width: 100%;">
+			<div id="scrollContentContainer" class="scrollContentContainer">
+				<table class="scrollContent" cellspacing="1" cellpadding="0" width="100%">
+						<thead>
+							<tr>
+								<td width="5%">序号</td>
+								<td width="10%">网关名称</td>
+								<td width="10%">网关类型</td>
+								<td width="10%">号段规则</td>
+								<td width="15%">应用规则</td>
+								<td width="15%">内容规则</td>
+								<td width="15%">最近操作时间</td>
+								<td width="15%">操作</td>
+							</tr>
+						</thead>
+
+					<tbody class="tb">
+					#foreach($result in $results.results)
+						<tr>
+						  <td width="5%" style="text-align:center;">$velocityCount</td>
+				          <td width="10%" title="$!result.gatewayName">$!result.gatewayName</td>
+				          <td width="5%" title="$!result.type">$!result.type</td>
+				          <td width="15%" title="$!result.receiveRegx">$!result.receiveRegx</td>
+				          <td width="15%" title="$!result.appIdRegx">$!result.appIdRegx</td>
+						  <td width="15%" title="$!result.contentRegx">$!result.contentRegx</td>
+				          <td width="15%" title="$!date.format('yyyy-MM-dd HH:mm:ss',$!result.gmtModified)">$!date.format('yyyy-MM-dd HH:mm:ss',$!result.gmtModified)</td>
+				          <td width="15%" style="text-align:center;">
+							<a class="a_green_form_ddl" target="_blank" href="$umsServer.getURI("/gatewayRule/update.htm").addQueryData("ruleId","$!result.id")">编辑</a>
+				          <a class="a_green_form_ddl"  href="javascript:confirmTool('/gatewayRule/del.htm?id=$!result.id&&pageId=$!results.curPage','确认删除该规则？')" >
+				          删除
+				          </a>
+
+                         </td>
+				         </tr>
+						#end
+					    </tbody>
+				</table>
+			</div>
+		</div>
+		#noRecord($results)
+		#if($!results.totalPage > 0)
+          <div class="btnArea clearfix" >
+			<div class="page_detail">
+				<div class="pager">
+				#if($!results.curPage != 1)
+					<a class="a_green_form_ddl" href="$umsServer.getURI("/gatewayRule/list.htm").addQueryData("pageId","1")"><span>首页</span></a>
+				#end
+				#if($!results.curPage > 1)
+					#set($tempPage = $!results.curPage - 1)
+					<a class="a_green_form_ddl" href="$umsServer.getURI("/gatewayRule/list.htm").addQueryData("pageId","$!tempPage")"><span>上一页</span></a>
+				#end
+				#if($!results.curPage < $!results.totalPage)
+						#set($tempPage = $!results.curPage + 1)
+						<a class="a_green_form_ddl" href="$umsServer.getURI("/gatewayRule/list.htm").addQueryData("pageId","$!tempPage")"><span>下一页</span></a>
+				#end
+				#if($!results.curPage != $!results.totalPage && $!results.totalPage > 0)
+					<a class="a_green_form_ddl" href="$umsServer.getURI("/gatewayRule/list.htm").addQueryData("pageId","$!results.totalPage")"><span>尾页</span></a>
+				#end
+				<span class="pager_info">当前第 <input id="targetNum" name="pageId" class="pager_inputBox" value="$!results.curPage" autocomplete="off"/>页  </span>				   
+				<span id="targetBtn" class="a_green_form_ddl" style="cursor: pointer;">跳转</span>
+				<span>共$!results.totalPage页 共$!results.total条记录</span>
+					</div>
+             </div>
+          </div>
+		  #end
+  </div>
+  </form>
+		 <div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+</div>
+</div>
+

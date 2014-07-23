@@ -1,0 +1,114 @@
+#set($layout = "home/layout/loginLayout.vm")
+<form action="$homeServer.getURI("/login.htm")" method="post" name="loginForm">
+<table width="100%"  border="0" cellpadding="0" cellspacing="0">
+  <tr height="62">
+    <td  valign="top">
+    <table width="100%"  border="0" cellpadding="0" cellspacing="0" class="login_top_bg">
+      <tr>
+        <td width="1%" >&nbsp;</td>
+        <td >&nbsp;</td>
+        <td width="17%">&nbsp;</td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr>
+    <td valign="top"><table width="100%" height="532" border="0" cellpadding="0" cellspacing="0" class="login_bg">
+      <tr>
+        <td width="49%" align="right"><table width="91%" height="532" border="0" cellpadding="0" cellspacing="0" class="login_bg2">
+            <tr>
+              <td height="138" valign="top"><table width="89%" height="427" border="0" cellpadding="0" cellspacing="0">
+                <tr>
+                  <td height="149">&nbsp;</td>
+                </tr>
+                <tr>
+                  <td height="80" align="right" valign="top"><img src="$homeServer.getURI("/static/login/logo.png")" width="279" height="68"></td>
+                </tr>
+                <tr>
+                  <td height="198" align="right" valign="top"><table width="100%" border="0" cellpadding="0" cellspacing="0">
+                    <tr>
+                      <td width="35%">&nbsp;</td>
+                      <td height="25" colspan="2" class="left_txt"><p>1- 主机指标（负载，cpu，内存，io等）监控...</p></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td height="25" colspan="2" class="left_txt"><p>2- 数据库指标（表空间，session，死锁等）监控...</p></td>
+                    </tr>
+                    <tr>
+                      <td>&nbsp;</td>
+                      <td height="25" colspan="2" class="left_txt"><p>3- 邮件，短信告警...</p></td>
+                    </tr>
+                   
+                  </table></td>
+                </tr>
+              </table></td>
+            </tr>
+            
+        </table></td>
+        <td width="1%" >&nbsp;</td>
+        <td width="50%" valign="bottom"><table width="100%" height="59" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+              <td width="4%">&nbsp;</td>
+              <td width="96%" height="38"><span class="login_txt_bt">登陆监控平台</span></td>
+            </tr>
+            <tr>
+              <td>&nbsp;</td>
+              <td height="21"><table cellSpacing="0" cellPadding="0" width="300" border="0" id="table211" height="328">
+                  <tr>
+                    <td height="164" colspan="2" align="middle">
+                        <table cellSpacing="0" cellPadding="0" width="300" border="0" height="143" id="table212">
+                          <tr><td colspan="3"><b style="color:red;">$!{errorMsg}</b></td></tr>
+                          <tr>
+                            <td width="30%" height="38" class="top_hui_text"><span class="login_txt">用户名：&nbsp;&nbsp; </span></td>
+                            <td height="38" colspan="2" class="top_hui_text">
+                            #springBind("loginForm.userName" )
+                            <input id="userName" name="${status.expression}" value="$!status.value" style="width:200px"  class="editbox4"  size="20">    
+                            <input name="refer" style="display:none" value="$!{refer}" size="20">                            </td>
+                          </tr>
+                          <tr>
+                            <td width="30%" height="35" class="top_hui_text"><span class="login_txt"> 密 码： &nbsp;&nbsp; </span></td>
+                            <td height="35" colspan="2" class="top_hui_text">
+                            #springBind("loginForm.password" )
+                            <input id="password" class="editbox4" type="password" size="20" style="width:200px" name="${status.expression}"  >
+                              </td>
+                          </tr>
+                          
+                          <tr>
+                            <td height="35" >&nbsp;</td>
+                            <td width="30%" height="35" ><button name="Submit" type="submit" class="sexybutton sexysimple"  id="Submit" value="登 陆">登陆</button></td>
+                            <td width="70%" class="top_hui_text"><button name="cs" type="reset" class="sexybutton sexysimple"  id="cs" value="重置" >重置</button></td>
+                          </tr>
+                        </table>
+                        <br>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td width="433" height="164" align="right" valign="bottom"><img src="$homeServer.getURI("/static/login/login-wel.gif")" width="242" height="138"></td>
+                    <td width="57" align="right" valign="bottom">&nbsp;</td>
+                  </tr>
+              </table></td>
+            </tr>
+          </table>
+          </td>
+      </tr>
+    </table></td>
+  </tr>
+  <tr >
+    <td height="20"><table width="100%" border="0" cellspacing="0" cellpadding="0" class="login-buttom-bg">
+      <tr>
+        <td align="center"><span class="login-buttom-txt">Copyright &copy; 2013 foodoon</span></td>
+      </tr>
+    </table></td>
+  </tr>
+</table>
+</form>
+
+<script language="javascript">
+initFocus();
+function initFocus(){
+    if($('#userName').val()==''){
+      $('#userName').focus();
+    }else{
+      $('#password').focus();
+    }
+} 
+</script>

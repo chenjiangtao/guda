@@ -1,0 +1,21 @@
+#set($HeadMenuId="a_prod")
+#set($leftMenuId="prod_monitor")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/prod.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/q.css")" />
+<div class="center-contain">
+<div class="contain">
+  #parse("home/prod/left-nav.vm")
+  <div class="contain-right">
+	<ul>
+	  <li><b style="font-size:14px;">监控平台的功能特色:</b></li>
+	  <li style="font-size:14px;">1，主机监控：</li>
+	  <li>针对负载，磁盘IO，内存，CPU等指标进行监控，并可以对超过的指标通过短信方式告警。</li>
+	  <li style="font-size:14px;">2，数据库监控：</li>
+	  <li>针对游标个数，session个数，死锁个数，缓冲命中率等指标进行监控，并可以对超过的指标通过短信方式告警。</li>
+	  <li style="font-size:14px;">3，应用监控：</li>
+	  <li>针对端口是否可用，服务是否可用等指标进行监控，并可以对超过的指标通过短信方式告警。</li>
+
+	</ul>
+</div>
+   </div>
+</div>

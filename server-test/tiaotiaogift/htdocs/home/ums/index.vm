@@ -1,0 +1,114 @@
+#set($HeadMenuId="a_work")
+
+
+#set($layout = "home/layout/umsLayout.vm")
+<script type="text/javascript" src="$homeServer.getURI("/static/js/My97DatePicker/WdatePicker.js")"></script>
+<script type="text/javascript" src="$homeServer.getURI("/static/js/ums/msg.js")"></script>
+
+
+<form name="msgForm" action="$homeServer.getURI("/ums/index.htm")" method="post" id="send_msg_form_id">
+<div class="ums-center-contain">
+<div>
+    <ul id="crumbs">
+	    <li><a href="$homeServer.getURI("/ums/index.htm")">首页</a></li>
+	    <li>发送短信</li>
+    </ul>
+</div>
+  <div class="contain-right">
+	<ul>
+	<input style="display:none" type="text"  name="_form_token" value="$formTool.newForm($request)" />
+	  <li><span class="title">收件人:</span>
+	  #springBind("msgForm.recvId" )
+	  <input class="input_text" id="input-recvs" name="${status.expression}" value="$!status.value" type="text" />
+	  <a class="choosePerson" id="choosePerson"  href="#" title="从我的联系人选择">&nbsp;</a>
+	  </li>
+	  <li class="tips" style="font-size:12px;">提示：多个手机号以中文或者英文分号分隔</li>
+	  <li class="error-li">
+	  #foreach($error in $status.errorMessages)
+		<b class="error-tips">$error</b>
+		<br/> 
+	  #end
+	  </li>
+
+	  <li><span class="title">短信内容:</span>
+	   #springBind("msgForm.content" )
+	  <textarea style="width:430px;height:200px;"   id="msg_content" name="${status.expression}" onkeyup="javascript:var val = this.value;if(val.length>500){this.value=val.substring(0,500)}">$!status.value</textarea>
+	  <div class="title" style="width:170px;text-align:left;float:right;">
+		  <a class="do-btn" style="margin-left:0px;" id="chooseTemplate"  href="#" >短信模版</a>
+		  <br/>
+		  <a class="do-btn" style="margin-top:5px;margin-left:0px;"id="clearContent"  href="#" title="">清空短信内容</a>
+		  
+	  </div>
+	  </li>
+	  <li class="error-li" id="divShowNum"><b id="changeNum">0</b>/<b style="font:15px/20px Georgia,Tahoma,Arial;">500</b><b class="tips" style="font-size:12px;">提示：短信内容默认显示您发送的上一条短信内容</b></li>
+	  <li class="error-li">
+	  #foreach($error in $status.errorMessages)
+		<b  class="error-tips">$error</b>
+		<br/> 
+	  #end
+	  </li>
+	  <li><span class="title">定时发送:</span><input type="text" style="height:30px;" onFocus="WdatePicker({dateFmt:'yyyy-M-d H:mm:ss',isShowClear:true,readOnly:true,minDate:'%y-%M-%d %H:%m:%s'})"/></li>
+	  <li class="send_btn"><a  href="#" id="send_btn"><span >发送</span></a></li>
+	 
+	</ul>
+  </div>
+  
+</form>
+</div>
+
+
+<div id="tempDialog" style="display:none">
+  <table id="template-table"></table>
+  
+</div>
+
+<div id="personalDialog" style="display:none">
+  	   <div id="personal-search" style="padding:3px;text-align:left;">  
+		    <span>联系人姓名或手机号:</span>  
+		    <input id="contactName" style="line-height:24px;border:1px solid #ccc" onkeypress="personalSearch(event)" onkeydown="personalSearch()" >  
+		    <span>订单状态:</span>  
+		    <input id="orderStatus" style="line-height:24px;border:1px solid #ccc" onkeypress="personalSearch(event)" onkeydown="personalSearch()" >  
+		    <a href="#" class="easyui-linkbutton" plain="true" onclick="doPersonalSearch()">查询</a>  
+		</div> 
+        <table id="personal-table"></table>
+  
+</div>
+
+<div style="display:none;">
+<div id="addSmsTemplateDialog" class="easyui-dialog" style="width:600px;height:500px;padding:10px 20px"  closed="true" buttons="#dlg-buttons"> 
+
+    <div class="ftitle "></div> 
+
+    <form id="addSmsTemplateForm" method="post" > 
+     <input name="id" style="display:none"> 
+
+        <div class="fitem margin-top10"> 
+         
+            <div> 模版内容:</div><textarea name="content" style="height:300px;width:500px;"></textarea>
+        </div>
+      
+    </form> 
+
+</div> 
+</div>
+
+<div style="display:none;">
+<div id="addContactDialog" class="easyui-dialog" style="width:600px;height:300px;"  closed="true" > 
+
+    <div class="ftitle "></div> 
+
+    <form id="addContactForm" method="post" > 
+         <input name="id" style="display:none"> 
+
+         <div class="padding15 margin-left30"> 
+            <label>联系人姓名:</label> 
+            <input name="name" id="name"  class="easyui-validatebox" required="true"> 
+        </div> 
+         <div class="padding15 margin-left30"> 
+            <label>联系人电话:</label> 
+            <input name="phone" id="phone"  class="easyui-validatebox" required="true"> 
+        </div> 
+      
+    </form> 
+</div> 
+</div> 

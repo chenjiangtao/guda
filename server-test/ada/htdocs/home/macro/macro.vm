@@ -1,0 +1,30 @@
+#macro(pageBreak $result)
+	  #if($!result.curPage != 1)
+	   <a class="a_green_form_ddl" href="#" id="toFirst">首页</a>
+	   #end
+	   #if($!result.curPage > 1)
+		   <a class="a_green_form_ddl" href="#" id="up">上一页</a>
+	   #end
+	   #if($!result.curPage < $!result.totalPage)
+		  <a class="a_green_form_ddl" href="#" id="down">下一页</a>
+	   #end
+	   #if($!result.curPage != $!result.totalPage && $!result.totalPage > 0)
+	    <a class="a_green_form_ddl" href="#" id="toEnd">尾页</a>
+	 #end  
+	<span>
+	当前第
+	<input type="text" id="current_page" name="curPage" size="1" value="$!result.curPage"/>页
+	  共$!result.totalPage页 共$!result.total条记录		
+	<input type ="hidden" name="totalPage" id="tPage" value="$!result.totalPage"/>
+	</span>	
+#end
+
+#macro(noRecord $result)
+	#if(!($result && $result.results && $result.results.size() > 0))
+		#if($!result.curPage <= 1)
+		<div class="norecord">
+			没有查询到符合条件的记录
+		</div>
+		#end
+	#end
+#end

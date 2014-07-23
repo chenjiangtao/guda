@@ -1,0 +1,88 @@
+package com.foodoon.${appName}.biz.impl;
+
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import com.foodoon.${appName}.biz.${doName}Biz;
+import com.foodoon.${appName}.dao.${doName}DOMapper;
+import com.foodoon.${appName}.dao.domain.${doName}DO;
+import com.foodoon.${appName}.dao.domain.${doName}DOCriteria;
+import com.foodoon.tools.web.page.BaseQuery;
+import com.foodoon.tools.web.page.BizResult;
+
+public class ${doName}BizImpl implements ${doName}Biz{
+
+    private final static Logger logger = LoggerFactory.getLogger(${doName}BizImpl.class);
+
+    @Autowired
+    private ${doName}DOMapper ${doNameLower}DOMapper;
+
+    public BizResult detail(int id) {
+        BizResult bizResult = new BizResult();
+        try{
+            ${doName}DO ${doNameLower}DO = ${doNameLower}DOMapper.selectByPrimaryKey(id);
+            bizResult.data.put("${doNameLower}DO", ${doNameLower}DO);
+            bizResult.success = true;
+        }catch(Exception e){
+            logger.error("query ${doName} error",e);
+        }
+        return bizResult;
+}
+
+    public BizResult list(BaseQuery baseQuery) {
+        BizResult bizResult = new BizResult();
+        try {
+            ${doName}DOCriteria ${doNameLower}DOCriteria = new ${doName}DOCriteria();
+            ${doNameLower}DOCriteria.setLimitStart(baseQuery.getStartRow());
+            ${doNameLower}DOCriteria.setLimitEnd(baseQuery.getPageSize());
+            int totalCount = ${doNameLower}DOMapper.countByExample(${doNameLower}DOCriteria);
+            baseQuery.setTotalCount(totalCount);
+            List<${doName}DO> ${doNameLower}DOList = ${doNameLower}DOMapper.selectByExample(${doNameLower}DOCriteria);
+            bizResult.data.put("${doNameLower}DOList", ${doNameLower}DOList);
+            bizResult.data.put("query", baseQuery);
+            bizResult.success = true;
+        } catch (Exception e) {
+            logger.error("view ${doName} list error", e);
+        }
+            return bizResult;
+     }
+
+    public BizResult delete(int id) {
+        BizResult bizResult = new BizResult();
+        try {
+            ${doNameLower}DOMapper.deleteByPrimaryKey(id);
+            bizResult.success = true;
+        } catch (Exception e) {
+            logger.error("delete ${doNameLower} error", e);
+        }
+        return bizResult;
+    }
+
+    public BizResult create(${doName}DO ${doNameLower}DO) {
+        BizResult bizResult = new BizResult();
+        try {
+            int id = ${doNameLower}DOMapper.insert(${doNameLower}DO);
+            bizResult.data.put("id", id);
+            bizResult.success = true;
+        } catch (Exception e) {
+            logger.error("create ${doName} error", e);
+        }
+        return bizResult;
+    }
+
+    public BizResult update(${doName}DO ${doNameLower}DO) {
+        BizResult bizResult = new BizResult();
+        try {
+            int id = ${doNameLower}DOMapper.updateByPrimaryKeySelective(${doNameLower}DO);
+            bizResult.data.put("id", id);
+            bizResult.success = true;
+        } catch (Exception e) {
+            logger.error("update ${doName} error", e);
+        }
+        return bizResult;
+    }
+
+    }

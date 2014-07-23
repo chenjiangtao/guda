@@ -1,0 +1,41 @@
+#set($layout = "home/layout/umsLayout.vm")
+#set($HeadMenuId="a_account")
+
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/charge.css")" />
+<script type="text/javascript" src="$homeServer.getURI("/static/js/ums/charge.js")"></script>
+
+<div class="ums-center-contain">
+<div>
+    <ul id="crumbs">
+	    <li><a href="$homeServer.getURI("/ums/index.htm")">首页</a></li>
+	    <li><a href="$homeServer.getURI("/account/myUms.htm")">我的账户</a></li>
+	    <li>充值</li>
+    </ul>
+</div>
+
+
+  <div class="price-div">
+     <table border="1" cellspacing="0" bordercolor="#99BCFC">
+       <thead> 
+         <tr><td>套餐价格</td><td>套餐包含短信</td><td>折合单价</td></tr>
+       </thead>
+       <tbody>
+         <tr><td>5元</td><td>50条</td><td>0.1元/条</td></tr>
+         <tr><td>10元</td><td>110条</td><td>0.0909元/条</td></tr>
+         <tr><td>30元</td><td>350条</td><td>0.0857元/条</td></tr>
+         <tr><td>40元</td><td>500条</td><td>0.08元/条</td></tr>
+       </tbody>
+     </table>
+     
+  </div>
+  <div class="charge-tips">
+    <div><a class="do-btn" target="_blank" href="http://item.taobao.com/item.htm?id=18244577362">淘宝购买</a>(通过淘宝担保交易)
+	 <p>  说明: 在我们的淘宝店铺购买，付款后我们会尽快审核订单。审核通过后方能查看到余额。或者在我们店铺查看最新套餐<a href="http://lxdwz.taobao.com">http://lxdwz.taobao.com</a>
+	  </p>
+	</div>
+    <div><a class="do-btn" target="_blank" href="https://me.alipay.com/gang">支付宝购买</a>(通过支付宝收款主页购买)
+	 <p>  说明: 在收款主页中需要您输入付款的金额，付款后我们会尽快审核订单。审核通过后方能查看到余额。
+	  </p>
+	</div>
+  </div>
+</div>

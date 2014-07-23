@@ -1,0 +1,21 @@
+ #set($layout = "home/layout/publishLayout.vm")
+
+#set($_title="我的主页")
+#set($leftMenuId="home-left-pass")
+
+<div class="container">
+<div class="grid m-t-40"  style="height:350px;">
+	#parse("home/user/home/leftNav.vm")
+	
+	<div class="col-5-6" style="margin-left:20px;">
+
+   <p style="font-size:16px;font-weight:bold;">新密码设置成功.</p>
+   <p style="font-size:14px;font-weight:bold;">您可以点此<a href="$homeServer.getURI("/")">回到首页</a></p>
+
+	    
+	</div>
+</div>
+</div>
+ 
+ 
+ 

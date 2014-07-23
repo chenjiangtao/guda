@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.zoneland.ums.common.dal.UmsMsgInRuleMapper">
+	<resultMap id="BaseResultMap"
+		type="net.zoneland.ums.common.dal.dataobject.UmsMsgInRule">
+		<id column="ID" property="id" jdbcType="CHAR" />
+		<result column="WORD" property="word" jdbcType="VARCHAR" />
+		<result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+		<result column="SUB_APP_ID" property="subAppId" jdbcType="VARCHAR" />
+		<result column="GMT_CREATED" property="gmtCreated" jdbcType="TIMESTAMP" />
+		<result column="GMT_MODIFIED" property="gmtModified" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<resultMap id="BaseResultMapBo"
+		type="net.zoneland.ums.common.dal.bo.UmsMsgInRuleBo">
+		<id column="ID" property="id" jdbcType="CHAR" />
+		<result column="WORD" property="word" jdbcType="VARCHAR" />
+		<result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+		<result column="APP_NAME" property="appName" jdbcType="VARCHAR" />
+		<result column="SUB_APP_ID" property="subAppId" jdbcType="VARCHAR" />
+		<result column="GMT_CREATED" property="gmtCreated" jdbcType="TIMESTAMP" />
+		<result column="GMT_MODIFIED" property="gmtModified" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, WORD, APP_ID, SUB_APP_ID, GMT_CREATED, GMT_MODIFIED
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from UMS_MSG_IN_RULE
+		where ID = #{id,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+		delete from
+		UMS_MSG_IN_RULE
+		where ID = #{id,jdbcType=CHAR}
+	</delete>
+	
+	<delete id="deleteByAppId" parameterType="java.lang.String">
+		delete from
+		UMS_MSG_IN_RULE
+		where APP_ID = #{appId,jdbcType=VARCHAR}
+	</delete>
+	
+	<delete id="deleteBySubAppId" parameterType="java.lang.String">
+		delete from
+		UMS_MSG_IN_RULE
+		where SUB_APP_ID = #{subAppId,jdbcType=VARCHAR}
+	</delete>
+	
+	<insert id="insert" parameterType="net.zoneland.ums.common.dal.dataobject.UmsMsgInRule">
+		insert into UMS_MSG_IN_RULE
+		(ID, WORD, APP_ID,
+		SUB_APP_ID, GMT_CREATED, GMT_MODIFIED
+		)
+		values
+		(#{id,jdbcType=CHAR}, #{word,jdbcType=VARCHAR},
+		#{appId,jdbcType=VARCHAR},
+		#{subAppId,jdbcType=VARCHAR},
+		#{gmtCreated,jdbcType=TIMESTAMP}, #{gmtModified,jdbcType=TIMESTAMP}
+		)
+	</insert>
+	<insert id="insertSelective" parameterType="net.zoneland.ums.common.dal.dataobject.UmsMsgInRule">
+		insert into UMS_MSG_IN_RULE
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="word != null">
+				WORD,
+			</if>
+			<if test="appId != null">
+				APP_ID,
+			</if>
+			<if test="subAppId != null">
+				SUB_APP_ID,
+			</if>
+			<if test="gmtCreated != null">
+				GMT_CREATED,
+			</if>
+			<if test="gmtModified != null">
+				GMT_MODIFIED,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=CHAR},
+			</if>
+			<if test="word != null">
+				#{word,jdbcType=VARCHAR},
+			</if>
+			<if test="appId != null">
+				#{appId,jdbcType=VARCHAR},
+			</if>
+			<if test="subAppId != null">
+				#{subAppId,jdbcType=VARCHAR},
+			</if>
+			<if test="gmtCreated != null">
+				#{gmtCreated,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+	<update id="updateByPrimaryKeySelective" parameterType="net.zoneland.ums.common.dal.dataobject.UmsMsgInRule">
+		update UMS_MSG_IN_RULE
+		<set>
+			<if test="word != null">
+				WORD = #{word,jdbcType=VARCHAR},
+			</if>
+			<if test="appId != null">
+				APP_ID = #{appId,jdbcType=VARCHAR},
+			</if>
+			<if test="subAppId != null">
+				SUB_APP_ID = #{subAppId,jdbcType=VARCHAR},
+			</if>
+			<if test="gmtCreated != null">
+				GMT_CREATED = #{gmtCreated,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=CHAR}
+	</update>
+	<update id="updateByPrimaryKey" parameterType="net.zoneland.ums.common.dal.dataobject.UmsMsgInRule">
+		update
+		UMS_MSG_IN_RULE
+		set WORD = #{word,jdbcType=VARCHAR},
+		APP_ID =
+		#{appId,jdbcType=VARCHAR},
+		SUB_APP_ID = #{subAppId,jdbcType=VARCHAR},
+		GMT_CREATED = #{gmtCreated,jdbcType=TIMESTAMP},
+		GMT_MODIFIED =
+		#{gmtModified,jdbcType=TIMESTAMP}
+		where ID = #{id,jdbcType=CHAR}
+	</update>
+
+	<select id="searchMsgInRuleNum" resultType="java.lang.Integer">
+		SELECT count(ID)
+		FROM UMS_MSG_IN_RULE
+		<where>
+			1 = 1
+			<if test="word != null">
+				AND WORD like '%'||#{word}||'%'
+			</if>
+			<if test="appIdList!=null">
+				AND 
+				<foreach item="item" index="index" collection="appIdList"
+					open="(" separator=" OR " close=")">
+					APP_ID = #{item}
+				</foreach>
+			</if>
+			<if test="subAppIdList!=null">
+				AND 
+				<foreach item="item" index="index" collection="subAppIdList"
+					open="(" separator=" OR " close=")">
+					SUB_APP_ID = #{item}
+				</foreach>
+			</if>
+		</where>
+	</select>
+
+	<select id="searchSelectiveByPage" resultMap="BaseResultMapBo">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM UMS_MSG_IN_RULE
+		<where>
+			1 = 1
+			<if test="word != null">
+				AND WORD like '%'||#{word}||'%'
+			</if>
+			<if test="appIdList!=null">
+				AND  
+				<foreach item="item" index="index" collection="appIdList"
+					open="(" separator=" OR" close=")">
+					APP_ID = #{item}
+				</foreach>
+			</if>
+			<if test="subAppIdList!=null">
+				AND
+				<foreach item="item" index="index" collection="subAppIdList"
+					open="(" separator=" OR " close=")">
+					SUB_APP_ID = #{item}
+				</foreach>
+			</if>
+		</where>
+		order by GMT_MODIFIED desc
+		limit #{first} ,10
+	</select>
+
+	<select id="getMsgInRule" parameterType="net.zoneland.ums.common.dal.dataobject.UmsMsgInRule" resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column_List" />
+		FROM UMS_MSG_IN_RULE
+		where WORD = #{word}
+	</select>
+	
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from UMS_MSG_IN_RULE
+	</select>
+</mapper>

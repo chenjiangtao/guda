@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>短信助手,短信群发 ,短信365,短信发送好帮手</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="发货短信,营销短信,短信群发,电脑发短信,短信广告,短信通知,短信促销" name="keywords"/>
+<meta content="提供订单导入联系人,方便通过电脑群发短信,提供可定制化的短信发送,群发,短信通知,企业短信广告" name="description" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/u.css")" />
+<script src="$homeServer.getURI("/static/js/jquery.min.js")"></script>
+<script src="http://l.tbcdn.cn/apps/top/x/sdk.js?appkey=21571765"></script>
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ums-index2.css")" />
+<link href="$homeServer.getURI("/favico.ico")" type="image/x-icon" rel="shortcut icon">
+<script>
+	var currenthost = "$!homeServer";
+</script>
+</head>
+<body>
+<div class="ums-top" id="top">
+  
+	<div class="ums-header" >
+	<div class="ums-logo">
+	  <a href="$homeServer.getURI("/u.htm")"><img width="200px" height="60px" border="0"  src="$homeServer.getURI("/static/images/umsnew/logo-n.jpg")"/></a>
+	</div>
+	<div class="ums-header_b"><span>
+		 #if( $operationContext.getOperationContext().getPrincipal().getLogonId() == 'anonymous' )
+	      <a  href="$homeServer.getURI("/login.htm")">登录</a> <b>&nbsp;|&nbsp;</b> <a  href="$homeServer.getURI("/reg.htm")">注册</a>
+	    #else
+	     $operationContext.getOperationContext().getPrincipal().getUserName()，欢迎您&nbsp;|&nbsp;<a href="$homeServer.getURI("/loginOut.htm")"> 退出</a>
+	    #end
+		 
+	      </span></div>
+	</div>
+</div>
+
+	<div class="ums-notice" >
+		<b></b> 	
+	</div>
+      $screen_content
+
+    #parse('home/layout/footer.vm')
+</body>
+</html>

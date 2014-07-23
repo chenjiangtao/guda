@@ -1,0 +1,7 @@
+
+/ums/.*=ROLE_LOGIN
+/personal/.*=ROLE_LOGIN
+/account/.*=ROLE_LOGIN
+
+
+

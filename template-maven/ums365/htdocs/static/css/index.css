@@ -1,0 +1,41 @@
+
+.contain-left{
+  width:20%;
+  float:left;
+}
+.contain-right{
+width:79%;
+float:left;
+text-align:left;
+padding-left:10px;
+padding:5px;
+line-height:25px;
+}
+.contain-right ul li{
+ font-size:14px;
+}
+.left_nav_no_visited{
+ line-height:40px;
+
+ background-image: url(".../images/ums/nav.png");
+    background-repeat: repeat-x;
+    border-bottom: 1px solid #c5e6c7;
+}
+.left_nav_visited {
+
+  line-height:40px;
+ background-image: url("../images/ums/nav-link.png");
+    background-repeat: repeat-x;
+    border-bottom: 1px solid #c5e6c7;
+}
+.left-lev li  a{
+ line-height:40px;
+DISPLAY: block; 
+}
+.left-lev  a:hover{
+ line-height:40px;
+DISPLAY: block; 
+ background-image: url("../images/ums/nav-link.png");
+    background-repeat: repeat-x;
+    
+}

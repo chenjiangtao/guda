@@ -1,0 +1,63 @@
+<div class="top" id="top">
+  
+	<div class="header" >
+		 <div class="header_b"><span>
+		 #if( $operationContext.getOperationContext().getPrincipal().getLogonId() == 'anonymous' )
+	      <a href="$homeServer.getURI("/login.htm")">登录</a> | <a href="$homeServer.getURI("/reg.htm")">注册</a>
+	    #else
+	     $operationContext.getOperationContext().getPrincipal().getUserName()，欢迎您 | <a href="$homeServer.getURI("/loginOut.htm")">退出</a>
+	    #end
+		 
+	      </span></div>
+	</div>
+	
+	<div class="banner" >
+		 <div class="banner_logo"></div>
+		 <div class="banner_search">
+		 	<ul>
+		 	<a href="$homeServer.getURI("/")">
+		 	  <li>Unified Message Service Platform</li>
+		 	  <li>统一短信平台 短信群发解决方案</li></a>
+		 	</ul>
+		 	</div>
+		 	<div class="banner_phone">
+	    <ul>
+	      
+	      </ul>
+	    </div>
+	    </div>
+	    
+</div>
+<div class="banner2" id="banner2">
+	<div class="banner2_contain">
+	
+		<div class="banner_sec">
+			<div class="ums_banner2_href" id="banner2_href_nav">
+			<a id="a_u" class="banner2_href_visited" href="$homeServer.getURI("/u.htm")"><span>首页</span></a>
+			<a id="a_work"  href="$homeServer.getURI("/ums/index.htm")"><span>我的工作台</span></a>
+			<a id="a_personal"  href="$homeServer.getURI("/personal/contact.htm")"><span>个人资料</span></a>
+			<!--
+			<a id="a_stat"  href="$homeServer.getURI("/static/stat.htm")"><span>查询统计</span></a>
+		    -->
+		    </div>
+	     </div>
+    </div>
+</div>
+<script language="javascript">
+	var oul = document.getElementById("banner2_href_nav").getElementsByTagName("a");
+	for(var i=0,len=oul.length;i<len;++i){
+	   oul[i].className="";
+	}
+	var oli = document.getElementById("$HeadMenuId");
+	if(oli){
+		oli.className="banner2_href_visited";
+	}
+	function initWidth(){
+
+	 if(window.screen.width<1024){
+	   $("#top").width(1024);
+	   $("#banner2").width(1024);
+	 }
+	}
+	initWidth();
+</script>

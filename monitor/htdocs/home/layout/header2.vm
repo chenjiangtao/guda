@@ -1,0 +1,74 @@
+<div data-options="region:'north',border:false" style="height:100px;">
+ 
+
+
+<div class="container_12">
+        <div class="grid_12 header-repeat">
+            <div id="branding">
+                <div class="floatleft">
+                   <h1 style="color:#fff;"><a href="$homeServer.getURI("/indexServerChart.htm")">监控平台 Monitor</a></h1></div>
+                <div class="floatright">
+                    <div class="floatleft">
+                        <img src="$homeServer.getURI("/static/img/img-profile.jpg")" alt="Profile Pic"></div>
+                    <div class="floatleft marginleft10" style="line-height:28px;">
+                        <ul class="inline-ul floatleft">
+                            <li>当前登录帐号：$!operationContext.getOperationContext().getPrincipal().getUserName()</li>
+                            <li><a href="$homeServer.getURI("/loginOut.htm")">退出</a></li>
+                        </ul>
+                        <br>
+                       
+                    </div>
+                </div>
+                <div class="clear">
+                </div>
+            </div>
+        </div>
+        <div class="clear">
+        </div>
+        <div class="grid_12">
+            <ul class="nav main" id="banner2_href_nav">  
+                <li id="header_all" class="ic-"><a href="$homeServer.getURI("/indexAll.htm")">服务器概况</a></li>
+                <li id="header_server_detail" class=""><a href="$homeServer.getURI("/indexServerDetail.htm")">服务器详情</a>
+                <li id="header_db_detail" class=""><a href="$homeServer.getURI("/indexDbDetail.htm")">数据库详情</a>
+              
+               
+                <!--
+                    <ul>
+                        <li><a href="http://demo.5dwt.com/Demo/Admin-Template/blue-html-css3-admin-template/form-controls.html">Forms</a> </li>
+                        <li><a href="http://demo.5dwt.com/Demo/Admin-Template/blue-html-css3-admin-template/buttons.html">Buttons</a> </li>
+                        <li><a href="http://demo.5dwt.com/Demo/Admin-Template/blue-html-css3-admin-template/form-controls.html">Full Page Example</a> </li>
+                        <li><a href="http://demo.5dwt.com/Demo/Admin-Template/blue-html-css3-admin-template/table.html">Page with Sidebar Example</a> </li>
+                    </ul>
+                    -->
+                </li>
+                
+                
+				<li id="header_set" class="ic-"><a href="$homeServer.getURI("/set.htm")">&nbsp;告警设置&nbsp;</a></li>
+				<li id="header_sys" class="ic--"><a href="$homeServer.getURI("/sys.htm")">
+    	       <strong>&nbsp;系统管理&nbsp;</strong>
+
+				</a></li>
+				<li id="header_help" class="ic--"><a href="$homeServer.getURI("/help.htm")">
+    	       <strong>&nbsp;帮助中心&nbsp;</strong>
+
+				</a></li>
+                
+
+            </ul>
+        </div>
+        <div class="clear">
+        </div>
+</div>
+</div>
+
+<script language="javascript">
+	var oul = document.getElementById("banner2_href_nav").getElementsByTagName("li");
+	for(var i=0,len=oul.length;i<len;++i){
+	   oul[i].className = oul[i].className.replace(" current","");
+	}
+	var oli = document.getElementById("$headMenuId");
+	if(oli){
+		oli.className=oli.className+" current";
+	}
+	
+</script>

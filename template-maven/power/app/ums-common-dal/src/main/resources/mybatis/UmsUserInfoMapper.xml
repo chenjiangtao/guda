@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.zoneland.ums.common.dal.UmsUserInfoMapper" >
+  <resultMap id="BaseResultMap" type="net.zoneland.ums.common.dal.dataobject.UmsUserInfo" >
+    <result column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+    <result column="EMPLOYEE_ID" property="employeeId" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="PHONE_SEC" property="phoneSec" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="ORGANIZATION_ID" property="organizationId" jdbcType="VARCHAR" />
+    <result column="ORG_ADMIN" property="orgAdmin" jdbcType="CHAR" />
+    <result column="QQ" property="qq" jdbcType="INTEGER" />
+    <result column="GMT_CREATED" property="gmtCreated" jdbcType="TIMESTAMP" />
+    <result column="STATUS" property="status" jdbcType="VARCHAR" />
+    <result column="ORG_NAME" property="orgName" jdbcType="VARCHAR" />
+  </resultMap>
+
+
+  <sql id="Base_Column_List" >
+    ID, USER_ID, USER_NAME, PASSWORD, EMPLOYEE_ID, PHONE, PHONE_SEC, EMAIL, ORGANIZATION_ID,
+    ORG_ADMIN, QQ, GMT_CREATED,STATUS,ORG_NAME
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select
+    <include refid="Base_Column_List" />
+    from UMS_USER_INFO
+    where ID = #{id,jdbcType=VARCHAR} AND STATUS = '1'
+  </select>
+
+  <update id="updateByPrimaryKeySelective" parameterType="net.zoneland.ums.common.dal.dataobject.UmsUserInfo" >
+    update UMS_USER_INFO
+    <set >
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        PASSWORD = #{password,jdbcType=VARCHAR},
+      </if>
+      <if test="employeeId != null" >
+        EMPLOYEE_ID = #{employeeId,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="phoneSec != null" >
+        PHONE_SEC = #{phoneSec,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationId != null" >
+        ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR},
+      </if>
+      <if test="orgAdmin != null" >
+        ORG_ADMIN = #{orgAdmin,jdbcType=CHAR},
+      </if>
+      <if test="qq != null" >
+        QQ = #{qq,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreated != null" >
+        GMT_CREATED = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="status != null" >
+        STATUS = #{status,jdbcType=VARCHAR}
+      </if>
+      <if test="orgName != null" >
+        org_name = #{orgName,jdbcType=VARCHAR}
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.zoneland.ums.common.dal.dataobject.UmsUserInfo" >
+    update UMS_USER_INFO
+    set USER_ID = #{userId,jdbcType=VARCHAR},
+      USER_NAME = #{userName,jdbcType=VARCHAR},
+      PASSWORD = #{password,jdbcType=VARCHAR},
+      EMPLOYEE_ID = #{employeeId,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      PHONE_SEC = #{phoneSec,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      ORGANIZATION_ID = #{organizationId,jdbcType=VARCHAR},
+      ORG_ADMIN = #{orgAdmin,jdbcType=CHAR},
+      QQ = #{qq,jdbcType=INTEGER},
+      GMT_CREATED = #{gmtCreated,jdbcType=TIMESTAMP},
+      STATUS = #{status,jdbcType=VARCHAR},
+      org_name = #{orgName,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+
+  <select id="getAllUser"  resultMap="BaseResultMap" >
+  	SELECT USER_ID,USER_NAME,ORGANIZATION_ID from UMS_USER_INFO
+			<where>
+				1 = 1 AND STATUS = '1'
+				<if test="searchObj.userName != null">
+					AND USER_NAME like #{searchObj.userName}
+				</if>
+			</where>
+			<if test="searchObj.orderBy != null">
+				order by ${searchObj.orderBy}   ${searchObj.orderbyType}
+			</if>
+		 limit #{recordFirst} , 10
+  </select>
+
+  <!-- 通过用户名字模糊查找用户 只查找前50条 -->
+
+  <select id="getUsersByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from UMS_USER_INFO
+    where USER_NAME like '%'||#{userName}||'%' AND STATUS = '1'
+    limit 50 
+  </select>
+
+  <!-- 通过用户名字模糊查找用户手机号 -->
+
+  <select id="getAllUsersByUserName" resultType="java.lang.String" parameterType="java.lang.String">
+    select PHONE
+    from UMS_USER_INFO
+    where USER_NAME like '%'||#{userName}||'%' AND STATUS = '1'
+  </select>
+
+  <select id="getUserByUserId" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select
+  	<include refid="Base_Column_List" />
+  	from UMS_USER_INFO
+  	where (upper(USER_ID) = #{userId} OR USER_ID = #{userId}) AND STATUS = '1'
+  </select>
+
+  <select id="getUserName" resultType="java.lang.String">
+  	select
+  	USER_NAME
+  	from UMS_USER_INFO
+  	where ID = #{id} AND STATUS = '1'
+  </select>
+
+
+<!--自定义的根据ORGANIZATION_ID查询用户消息  -->
+  <select id="getUsersByOrgId" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from UMS_USER_INFO
+    where ORGANIZATION_ID = #{orgId,jdbcType=CHAR} AND STATUS = '1'
+    order by USER_NAME ASC
+  </select>
+<!--自定义的根据ORGANIZATION_ID查询用户ID  -->
+  <select id="getUserIdByOrgId" resultType="java.lang.String"   parameterType="java.lang.String">
+    select
+    ID
+    from UMS_USER_INFO
+    where ORGANIZATION_ID = #{orgId,jdbcType=CHAR} AND STATUS = '1'
+  </select>
+
+<!--自定义的根据ID查询用户手机号  -->
+  <select id="getPhoneById" resultType="java.lang.String"   parameterType="java.lang.String">
+    select
+    PHONE
+    from UMS_USER_INFO
+    where ID = #{id,jdbcType=CHAR} AND STATUS = '1'
+  </select>
+
+  <select id="getUsersByPhone" resultMap="BaseResultMap" parameterType="java.lang.String">
+	 select
+    <include refid="Base_Column_List" />
+     from UMS_USER_INFO
+     where Phone = #{phone,jdbcType=CHAR} AND STATUS = '1'
+  </select>
+
+  <select id="getUsersByRecvId" resultMap="BaseResultMap" parameterType="java.lang.String">
+	 select
+    <include refid="Base_Column_List" />
+     from UMS_USER_INFO
+     where Phone like '%'||#{phone}||'%' AND STATUS = '1'
+     limit 50 
+  </select>
+
+ <select id="searchSelectiveByPage"  parameterType="net.zoneland.ums.common.dal.util.PageSearch" resultMap="BaseResultMap" >
+	 SELECT
+			<include refid="Base_Column_List" />
+			from UMS_USER_INFO
+			<where>
+				1 = 1
+				AND STATUS = '1'
+				<if test="searchObj.id != null">
+					AND ID = #{searchObj.id}
+				</if>
+				<if test="searchObj.userName != null">
+					AND USER_NAME like '%'||#{searchObj.userName}||'%'
+				</if>
+				<if test="searchObj.organizationId != null">
+					AND ORGANIZATION_ID = #{searchObj.organizationId}
+				</if>
+				<if test="searchObj.phone != null">
+					AND PHONE like '%'||#{searchObj.phone}||'%'
+				</if>
+				<if test="searchObj.userId!=null">
+					AND USER_ID like '%'||#{searchObj.userId}||'%'
+				</if>
+			</where>
+			<if test="searchObj.orderBy != null">
+				order by ${searchObj.orderBy}   ${searchObj.orderbyType}
+			</if>
+		 limit #{recordFirst} , 10
+  </select>
+
+
+	<select id="getAllUserNum" parameterType="net.zoneland.ums.common.dal.dataobject.UmsUserInfo"  resultType="java.lang.Integer">
+		select count(ID)
+		from UMS_USER_INFO
+		<where>
+			1 = 1
+			    AND STATUS = '1'
+				<if test="userId != null">
+					AND USER_ID like '%'||#{userId}||'%'
+				</if>
+				<if test="userName != null">
+					AND USER_NAME like '%'||#{userName}||'%'
+				</if>
+				<if test="phone != null">
+					AND PHONE like '%'||#{phone}||'%'
+				</if>
+		</where>
+	</select>
+
+	<select id="loginCheck" resultType="java.lang.Integer">
+		select
+		count(ID)
+		from UMS_USER_INFO
+		where PASSWORD=#{password} and USER_ID=#{userId} AND STATUS = '1'
+	</select>
+
+
+	<update id="updateOrgAdmin" parameterType="java.util.Map">
+	 update UMS_USER_INFO
+   	 set
+   	  ORG_ADMIN = #{orgAdmin,jdbcType=CHAR},ORG_NAME = #{orgName,jdbcType=VARCHAR}
+      where
+       ID = #{userId,jdbcType=VARCHAR} AND STATUS = '1'
+	</update>
+
+	<!-- 通过主键Id查找是否是部门管理员字段 -->
+	<select id="getOrgAdminById" resultType="java.lang.String"   parameterType="java.lang.String">
+    select
+    ORG_ADMIN
+    from UMS_USER_INFO
+    where ID = #{id,jdbcType=CHAR} AND STATUS = '1'
+  </select>
+
+</mapper>

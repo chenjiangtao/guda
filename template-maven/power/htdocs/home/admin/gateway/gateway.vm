@@ -1,0 +1,113 @@
+
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/gateway.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/checkutil.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/table.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/targetPage.js")"></script>
+<div id="bd">
+#set($sideMenuId="gate_side_bar")
+#set($HeadMenuId="system_header")
+#parse("/home/admin/adminSideBar.vm")
+#set($searchUrl = $umsServer.getURI("/gateway/list.htm"))
+#set($param = "")
+<input style="width:50%;" type="hidden" id="param"  name="param" value="$param"/>
+<input style="width:50%;" type="hidden" id="searchUrl"  name="searchUrl" value="$searchUrl"/>
+<div id="pRight">
+
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+	<div class="pRight_c">
+
+
+    <div style="margin:3px 3px;"><span><a target="_blank" href="$umsServer.getURI("/gateway/add.htm")" class="btn green">添加网关</a></span></div>
+	 #if($!message)<div style="color:red;margin-left:1%"><font class="bold fs14"> $!message</font> </div> #end
+       <form id="gateway">
+        <div id="tableContainer" class="tableContainer" style="width: 100%;">
+			<div id="scrollContentContainer" class="scrollContentContainer">
+				<table class="scrollContent" cellspacing="1" cellpadding="0" width="100%">
+					<thead>
+						<tr>
+						  <td width="5%">序号</td>
+						  <td width="13%">网关名称</td>
+				          <td width="10%">网关类型</td>
+				          <td width="10%">SP号码</td>
+				          <td width="13%">服务器IP</td>
+						  <td width="8%">端口</td>
+						  <td width="10%">用户名</td>
+				          <td width="10%">网关状态</td>
+				          <td width="20%">操作</td>
+
+			            </tr>
+					</thead>
+					<tbody class="tb">
+					#foreach($result in $results.results)
+						<tr>
+						  <td width="5%" style="text-align:center;">$velocityCount</td>
+				          <td width="13%" title="$!result.gatewayName">$!result.gatewayName</td>
+				          <td width="10%" title="$!result.type">$!result.type</td>
+				          <td width="10%" title="$!result.spNumber">$!result.spNumber</td>
+				          <td width="15%" title="$!result.host">$!result.host</td>
+						  <td width="7%" title="$!result.port">$!result.port</td>
+						  <td width="10%" title="$!result.sourceAddr">$!result.sourceAddr</td>
+						  #if($!result.status=="1")
+				          <td  id="$!result.id" width="10%" title="启用">启用</td>
+						  #elseif($!result.status=="2")
+						  <td id="$!result.id" width="10%" title="禁用">禁用</td>
+						  #elseif($!result.status=="3")
+						  <td id="$!result.id" width="10%" title="启用异常">启用异常</td>
+						  #else
+						  <td  id="$!result.id"width="10%" title="未知">未知</td>
+						  #end
+				          <td width="10%" style="text-align:center;">
+							<a class="a_green_form_ddl" target="_blank" href="$umsServer.getURI("/gateway/update.htm").addQueryData("gatewayId","$!result.id")">编辑</a>
+				          <a class="a_green_form_ddl"  href="javascript:confirmTool('/gateway/del.htm?id=$!result.id&&pageId=$!result.curPage','确认删除网关？')" >
+							删除
+				          </a>
+						   <a id="change$!result.id" class="a_green_form_ddl" href="javascript:;" onclick="changeStatus('$!result.id','close')">禁用</a>
+						   <a id="change$!result.id"  class="a_green_form_ddl" href="javascript:;" onclick="changeStatus('$!result.id','open')">启用</a>
+                         </td>
+				         </tr>
+						#end
+					    </tbody>
+				</table>
+			</div>
+		</div>
+		#noRecord($results)
+		#if($!results.totalPage>0)
+          <div class="btnArea clearfix" >
+			<div class="page_detail">
+				<div class="pager">
+				#if($!results.curPage != 1)
+					<a class="a_green_form_ddl" href="$umsServer.getURI("/gateway/list.htm").addQueryData("pageId","1")"><span>首页</span></a>
+				#end
+				#if($!results.curPage > 1)
+					#set($tempPage = $!results.curPage - 1)
+					<a class="a_green_form_ddl" href="$umsServer.getURI("/gateway/list.htm").addQueryData("pageId","$!tempPage")"><span>上一页</span></a>
+				#end
+				#if($!results.curPage < $!results.totalPage)
+						#set($tempPage = $!results.curPage + 1)
+						<a class="a_green_form_ddl" href="$umsServer.getURI("/gateway/list.htm").addQueryData("pageId","$!tempPage")"><span>下一页</span></a>
+				#end
+				#if($!results.curPage != $!results.totalPage && $!results.totalPage > 0)
+					<a class="a_green_form_ddl" href="$umsServer.getURI("/gateway/list.htm").addQueryData("pageId","$!results.totalPage")"><span>尾页</span></a>
+				#end
+				<span class="pager_info">当前第 <input id="targetNum" name="pageId" class="pager_inputBox" value="$!results.curPage" autocomplete="off"/>页  </span>
+				<span id="targetBtn" class="a_green_form_ddl" style="cursor: pointer;">跳转</span>
+				<span>共$!results.totalPage页 共$!results.total条记录</span>
+					</div>
+             </div>
+          </div>
+		  #end
+
+
+  </div>
+ </form>
+		 <div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+
+</div>
+</div>
+
+

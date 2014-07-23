@@ -1,0 +1,48 @@
+.contain{
+  margin:0 auto;
+	width:1022px;
+	border: 1px solid #c5e6c7; 
+
+    overflow:hidden;
+}
+.contain-left{
+  width:20%;
+   margin-top:5px;
+}
+.contain-right{
+width:79%;
+}
+.prod_left_nav_no_visited{
+ line-height:40px;
+
+ background-image: url("../images/ums/nav.png");
+    background-repeat: repeat-x;
+    border-bottom: 1px solid #c5e6c7;
+}
+.prod_left_nav_visited {
+
+  line-height:40px;
+ background-image: url("../images/ums/nav-link.png");
+    background-repeat: repeat-x;
+    border-bottom: 1px solid #c5e6c7;
+}
+.left-lev  a:hover{
+ line-height:40px;
+DISPLAY: block; 
+ background-image: url("../images/ums/nav-link.png");
+    background-repeat: repeat-x;
+    
+}
+
+
+.itemimage{
+   float: left;
+   margin-top:10px;
+}
+.itemimage-img{
+ width:150px;
+ height:200px;
+}
+.more{
+  text-align:center;
+}

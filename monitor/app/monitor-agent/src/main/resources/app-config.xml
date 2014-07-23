@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <property name="run_mode" defaultValue="prod" description="运行模式，开发还是线上" />
+	
+	
+	<property name="agent.apiUrl" defaultValue="http://tiaotiaogift.com/api/gar.json" description="" />
+	
+	<property name="log4j.home" defaultValue="d:" description="" />
+	
+	<property name="logReadFileChartset" defaultValue="gbk" description="" />
+	<property name="logLine" defaultValue="1000" description="" />
+	<property name="logDir" defaultValue="/var/log" description="" />
+	
+	
+	
+	
+	
+
+</config>

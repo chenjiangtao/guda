@@ -1,0 +1,56 @@
+#set($layout = "home/layout/admin.vm")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/adminProd.css")" />
+
+<div class="contain">
+<ul class="contain-title"><li><a href="$homeServer.getURI("/admin/admin.htm")">后台管理</a>-&gt;<a href="$homeServer.getURI("/admin/adminProd.htm")">产品管理</a>-&gt;产品列表</li></ul>
+<ul class="contain-title"><li><a href="$homeServer.getURI("/admin/adminProdEdit.htm")" class="btn blue">发布新产品</a></li></ul>
+  <table border= "1 " cellspacing="0" cellpadding="0">
+    <thead><tr>
+       <td width="5%">产品名称</td>
+       <td width="5%">产品类型</td>
+       <td width="5%">产品价格</td>
+       <td width="5%">产品折扣</td>
+       <td width="70%">产品描述</td>
+       <td width="10%">操作</td>
+    </tr></thead>
+    <tbody>
+       	      #foreach($var in $res.result)
+       	      <tr><td>$!{var.name}</td>
+       	      <td>$!{var.type}</td><td>$!{var.price}</td><td>$!{var.discount}</td>
+       	      <td>$!{var.describ}</td><td><a href="$homeServer.getURI("/admin/adminProdEdit.htm").addQueryData("id","$!{var.id}")"> 编辑 </a><a href="$homeServer.getURI("/admin/adminProdDel.htm").addQueryData("id","$!{var.id}")" onClick="return delete_confirm()"> 删除</a></td></tr>
+	       
+     #end
+
+    </tbody>
+  </table>
+</div>
+	<!--分页开始-->
+
+		  <div class="btnArea clearfix" >
+    			<div class="page_detail">
+    				#if($!res.pageId != 1)
+						<a class="a_green_form_ddl" href="$homeServer.getURI("/admin/adminProd.htm").addQueryData("pageId","1")"><span>首页</span></a>
+					   #set($tempPage = $!res.pageId - 1)
+					   <a class="a_green_form_ddl" href="$homeServer.getURI("/admin/adminProd.htm").addQueryData("pageId","$!tempPage")"><span>上一页</span></a>
+				   #end
+				   #if($!res.pageId < $!res.pageCount)
+					   #set($tempPage = $!res.pageId + 1)
+					   <a class="a_green_form_ddl" href="$homeServer.getURI("/admin/adminProd.htm").addQueryData("pageId","$!tempPage")"><span>下一页</span></a>
+					   <a class="a_green_form_ddl" href="$homeServer.getURI("/admin/adminProd.htm").addQueryData("pageId","$!res.pageCount")"><span>尾页</span></a>
+				   #end
+				   <span class="pager_info">当前第$!res.pageId页  共$!res.pageCount页 共$!res.total条记录</span>
+                </div>
+            </div>
+       
+	<!--分页结束 -->
+
+<script language="javascript">
+	  function delete_confirm(){
+		 var k = window.confirm("你确定要删除该记录");
+		 if(k){
+		    return true;
+		 }else{
+		    return false;
+		 }
+}
+	</script>

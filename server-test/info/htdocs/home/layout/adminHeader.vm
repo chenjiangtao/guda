@@ -1,0 +1,20 @@
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/admin.css")"/>
+<div class="top" id="top">
+  <!--
+	<div class="header" >
+		 <div class="header_b"><span>
+		  
+		 	<a class="href_header" href="#">登录</a>|<a class="href_header"  href="#">注册</a>|<a class="href_header" href="#">网站导航</a>
+	      
+	      </span></div> 
+	</div>
+	-->
+	<div class="banner" >
+		 <div class="banner_logo"><img width="180" height="80" src="$homeServer.getURI("/static/images/ada/logo.gif")"/>
+		 </div>
+		 
+		 <div class="internal">
+		 	<a href="">中文</a> | <a href="">English</a>
+	    </div>
+	   </div>
+</div>

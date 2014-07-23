@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.zoneland.ums.common.dal.UmsAreaMapper" >
+  <resultMap id="BaseResultMap" type="net.zoneland.ums.common.dal.dataobject.UmsArea" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="AREA_CODE" property="areaCode" jdbcType="VARCHAR" />
+    <result column="AREA_NAME" property="areaName" jdbcType="VARCHAR" />
+    <result column="PARENT_ID" property="parentId" jdbcType="VARCHAR" />
+    <result column="ORDER" property="order" jdbcType="INTEGER" />
+     <result column="GMT_CREATED" property="gmtCreated" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, AREA_CODE,AREA_NAME, PARENT_ID,ORDER,GMT_CREATED
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from UMS_AREA
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from UMS_AREA
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from UMS_AREA
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="net.zoneland.ums.common.dal.dataobject.UmsArea" >
+    insert into UMS_AREA (ID, AREA_CODE,AREA_NAME, PARENT_ID,ORDER,GMT_CREATED
+      )
+    values (#{id,jdbcType=VARCHAR}, #{areaCode,jdbcType=VARCHAR},#{areaName,jdbcType=VARCHAR}, #{parentId,jdbcType=VARCHAR},
+    #{order,jdbcType=INTEGER},#{gmtCreated,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="net.zoneland.ums.common.dal.dataobject.UmsArea" >
+    insert into UMS_AREA
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="areaCode != null" >
+        AREA_CODE,
+      </if>
+      <if test="areaName != null" >
+        AREA_NAME,
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID,
+      </if>
+      <if test="order != null" >
+        ORDER,
+      </if>
+      <if test="gmtCreated != null" >
+        GMT_CREATED,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="areaCode != null" >
+        #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null" >
+        #{order,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreated != null" >
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.zoneland.ums.common.dal.dataobject.UmsArea" >
+    update UMS_AREA
+    <set >
+      <if test="areaCode != null" >
+        AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+      </if>
+      <if test="areaName != null" >
+        AREA_NAME = #{areaName,jdbcType=VARCHAR},
+      </if>
+      <if test="parentId != null" >
+        PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      </if>
+      <if test="order != null" >
+        ORDER = #{order,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreated != null" >
+        GMT_CREATED = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.zoneland.ums.common.dal.dataobject.UmsArea" >
+    update UMS_AREA
+    set AREA_CODE = #{areaCode,jdbcType=VARCHAR},
+      AREA_NAME = #{areaName,jdbcType=VARCHAR},
+      PARENT_ID = #{parentId,jdbcType=VARCHAR},
+      ORDER = #{order,jdbcType=INTEGER},
+      GMT_CREATED = #{gmtCreated,jdbcType=TIMESTAMP},
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  	<select id="selectByAreaCode" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from UMS_AREA
+		where AREA_CODE = #{areaCode,jdbcType=VARCHAR}
+	</select>
+  
+  
+  
+   <select id="selectByParentId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from UMS_AREA
+    where PARENT_ID = #{parentId,jdbcType=VARCHAR}
+  </select>
+  
+   <delete id="deleteByAreaCode" parameterType="java.lang.String" >
+    delete from UMS_AREA
+    where AREA_CODE = #{areaCode,jdbcType=VARCHAR}
+  </delete>
+  
+  
+  <update id="updateAreaNameByAreaCode" parameterType="net.zoneland.ums.common.dal.dataobject.UmsArea" >
+    update UMS_AREA
+    set
+      AREA_NAME = #{areaName,jdbcType=VARCHAR}
+    where AREA_CODE = #{areaCode,jdbcType=VARCHAR}
+  </update>
+  
+   <select id="findByAreaCode" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from UMS_AREA
+    where AREA_CODE = #{areaCode,jdbcType=VARCHAR}
+  </select>
+  
+    <select id="findByAreaNameAndParentId" resultMap="BaseResultMap" parameterType="java.util.Map" >
+    select 
+    <include refid="Base_Column_List" />
+    from UMS_AREA
+    where AREA_NAME = #{areaName,jdbcType=VARCHAR}
+    AND PARENT_ID = #{parentId,jdbcType=VARCHAR}
+  </select>
+  
+  <select id="findByAreaName" resultType="java.lang.String" parameterType="java.util.Map" >
+    select AREA_CODE
+    from UMS_AREA
+    where AREA_NAME like '%'||#{areaName,jdbcType=VARCHAR}||'%'
+  </select>
+  
+  
+</mapper>

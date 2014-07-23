@@ -1,0 +1,127 @@
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/log_search.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/checkutil.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/keyword.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/table.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/targetPage.js")"></script>
+
+<div id="bd">
+	#set($sideMenuId="keyword_side_bar") #set($HeadMenuId="system_header")
+	#parse("/home/admin/adminSideBar.vm")
+	#set($searchUrl = $umsServer.getURI("/admin/keyword/keywordlist.htm"))
+	#set($param = "keyword=$!keyWordInfoForm.keyword&appId=$!appId")
+	<input style="width:50%;" type="hidden" id="param"  name="param" value="$param"/>
+	<input style="width:50%;" type="hidden" id="searchUrl"  name="searchUrl" value="$searchUrl"/>
+	<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c">
+		<div style="margin:3px 3px;">
+			<span><a target="_blank" href="$umsServer.getURI("/admin/keyword/keywordsave.htm")" class="btn green" style="_width:100px;">新增关键字</a></span>
+		</div>
+		#if($!errorMsg)<div style="color:red;margin-left:5px;"><font class="bold fs14"> $!errorMsg</font></div>#end 
+		#if($!msg)<div style="color:red;margin-left:5px;"><font class="bold fs14"> $!msg</font></div>#end
+		<form action="$umsServer.getURI("/admin/keyword/keywordlist.htm")" method="post" name="keyWordInfoForm" id="form_book">
+			 <div class="searchArea">
+					<table border="0" cellpadding="0" cellspacing="1">
+						<tr>
+							<td width="15%" align="right"><span class="bold fs14 c_007">所属应用：</span></td>
+
+							<td width="35%">
+								<select name="appId" id="appinfo" style="width:200px;border:1px solid #cbe1eb;" onmousemove="showTitle(this[this.selectedIndex]);">
+        							<option value=""> 请选择 </option>
+        								#if(0 == $!appId)	
+        								<option value="0" selected="selected">全部应用 (0)</option>
+        								#else
+										<option value="0">全部应用 (0)</option>
+										#end
+										#foreach($!app in $!apps)
+										#if($!app.appId == $!appId)
+										<option selected="selected" value="$!app.appId">$!app.appName ($!app.appId)</option>
+										#else
+										<option value="$!app.appId">$!app.appName ($!app.appId)</option> 
+										#end 
+										#end
+								</select>
+							</td>
+							<td width="15%" align="right"><span class="bold fs14 c_007">关键字：</span></td>
+							<td width="35%">
+								#springBind("keyWordInfoForm.keyword" )
+								<input class="inputBox" type="text" maxlength="40" name="${status.expression}" value="$!status.value" onkeydown="javascript:var val = this.value;if(val.length>50){this.value=val.substring(0,50)}"/>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td colspan="3">
+								<input type="submit" id="searchLog_sbtn" class="btn_green_search_form" value="查询" />
+							</td>
+						</tr>
+					</table>
+                </div>
+           
+		<div id="tableContainer" class="tableContainer" style="width: 100%;">
+			<div id="scrollContentContainer" class="scrollContentContainer">
+				<table class="scrollContent" cellspacing="1" cellpadding="0" width="100%">
+					<thead>
+						<tr>
+							<td width="5%">序号</td>
+							<td width="15%">关键字</td>
+							<td width="35%">所属应用</td>
+							<td width="13%">应用ID</td>
+							<td width="20%">创建时间</td>
+							<td width="12%">操作</td>
+						</tr>
+					</thead>
+					<tbody class="tb">
+						#foreach($var in $result.results)
+						<tr>
+							<td width="5%" style="text-align:center;">$velocityCount</td>
+							<td width="15%" title="$!var.umsKeywordInfo.keyWord">$!var.umsKeywordInfo.keyWord</td>
+							<td width="35%" title="$!var.appName">$!var.appName</td>
+							<td width="13%" title="$!var.umsKeywordInfo.appId">$!var.umsKeywordInfo.appId</td>
+							<td width="20%" title="$!date.format('yyyy-MM-dd HH:mm:ss',$!var.umsKeywordInfo.gmtCreated)">
+								$!date.format('yyyy-MM-dd HH:mm:ss',$!var.umsKeywordInfo.gmtCreated)
+							</td>
+							<td width="12%" style="text-align:center;">
+								<a class="a_green_form_ddl" href="javascript:confirmTool('/admin/keyword/keywordDelete.htm?pageId=$!result.curPage&&id=$!var.umsKeywordInfo.id&&keyword=$!keyword&&appId=$!appId','确认删除该关键字？')" >
+								删除 
+								</a>
+							</td>
+						</tr>
+						#end
+					</tbody>
+				</table>
+			</div>
+		</div>
+        #noRecord($result)
+        #if( $!result.totalPage > 0)
+		<div class="btnArea clearfix">
+			<div class="page_detail">
+				   #if($!result.curPage != 1)
+				   <a class="a_green_form_ddl" href="$umsServer.getURI("/admin/keyword/keywordlist.htm").addQueryData("pageId","1").addQueryData("keyword","$!keyword").addQueryData("appId","$!appId")"><span>首页</span></a>
+				   #end
+				   #if($!result.curPage > 1)
+					   #set($tempPage = $!result.curPage - 1)
+					   <a class="a_green_form_ddl" href="$umsServer.getURI("/admin/keyword/keywordlist.htm").addQueryData("pageId","$!tempPage").addQueryData("keyword","$!keyword").addQueryData("appId","$!appId")"><span>上一页</span></a>
+				   #end
+				   #if($!result.curPage < $!result.totalPage)
+					   #set($tempPage = $!result.curPage + 1)
+					   <a class="a_green_form_ddl" href="$umsServer.getURI("/admin/keyword/keywordlist.htm").addQueryData("pageId","$!tempPage").addQueryData("keyword","$!keyword").addQueryData("appId","$!appId")"><span>下一页</span></a>
+				   #end
+				   #if($!result.curPage != $!result.totalPage && $!result.totalPage > 0)
+				    <a class="a_green_form_ddl" href="$umsServer.getURI("/admin/keyword/keywordlist.htm").addQueryData("pageId","$!result.totalPage").addQueryData("keyword","$!keyword").addQueryData("appId","$!appId")"><span>尾页</span></a>
+				   #end
+				 <span class="pager_info">当前第 <input id="targetNum" name="pageId" class="pager_inputBox" value="$!result.curPage" autocomplete="off"/>页  </span>				   
+				 <span id="targetBtn" class="a_green_form_ddl" style="cursor: pointer;">跳转</span>
+				 <span>共$!result.totalPage页 共$!result.total条记录</span>
+             </div>
+		</div>
+		 #end
+	</div>
+	  </form>
+	<div class="rounded_btm">
+		<span class="lt_btm"></span> <span class="rt_btm"></span>
+	</div>
+	</div>
+</div>

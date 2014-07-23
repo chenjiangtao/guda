@@ -1,0 +1,106 @@
+<link href="$umsServer.getURI("/static/css/addApp.css")" type="text/css" rel="stylesheet" />
+
+<script type="text/javascript" src="$umsServer.getURI("/static/js/app/add.js")"></script>
+
+<div id="bd">
+#set($HeadMenuId="system_header")
+#set($sideMenuId="app_side_bar")
+#parse("/home/admin/adminSideBar.vm")
+<div id="pRight">
+        <div class="rounded_top">
+            <span class="lt_top"></span>
+            <span class="rt_top"></span>
+        </div>
+        <div class="pRight_c">
+              <div id="main">
+                       <div id="writeEmail">
+				         <form action="$umsServer.getURI("/app/add.htm")" method="post" name="form_book" id="form_book">
+						 <div class="btnArea clearfix">
+							&nbsp;&nbsp;<a class="fs14bold c_007" href="$umsServer.getURI("/app/list.htm")">应用维护</a><a
+							class="fs14bold c_008">-&gt;添加应用</a>
+						 </div>
+						  #if($!message)<div style="color:red;margin-left:2%"><font class="bold fs14"> $!message</font> </div> #end
+							<table class="form" style="width:100%;">
+								<tr>
+									#springBind("appInfoForm.appName")
+									<td style="width:50%"><label class="bold fs13 c_007" id="appName_label"><span class="red">*</span>应用名称：<br/>&nbsp</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="appName" onblur="appNameCheck()" type="text"/>
+									</br><span id ="appNameMsg" class="tipMsg">不能为空，应用名称不能超过30位</span></br></td>
+									#springBind("appInfoForm.appId")
+									<td style="width:50%"><label class="bold fs13 c_007" id="appId_label"><span class="red">*</span>应用ID：<br/>&nbsp</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="appId" onblur="appIdCheck()" type="text"/>
+									</br><span id = "appIdMsg"class="tipMsg">不能为空，应用Id必须为4位数字</span></td>
+								</tr>
+								<tr>
+									#springBind("appInfoForm.ip")
+									<td><label class="bold fs13 c_007" style="float:left;">IP：<br/>&nbsp<br/>&nbsp<br/>&nbsp<br/>&nbsp<br/>&nbsp<br/>&nbsp<br/>&nbsp<br/>&nbsp</label><input class="inputBox w50"  name="${status.expression}" value="$!status.value" id="ip" onblur="ipCheck()" type="text"/>
+									<span id ="ipMsg" class="tipMsg">
+									</br>应用主机的IP地址，正则式，如接受所有IP用*代替
+									</br>例：123.234.12.24，表示接收 123.234.12.24
+									</br>例：123.234.(12|34).24，表示接收 123.234.12.24 和 123.234.34.24
+									</br>例：123.234.12.\d+，表示接收 123.234.12.0 - 123.234.12.255
+									</span>
+									</td>
+									#springBind("appInfoForm.isOutProv")
+									<td><label class="c_007">是否支持外省：</label>
+										<select name="isOutProv" class="inputBox" style = "width:162px;" id="outProv" >
+											<option value="">--请选择--</option>
+											#foreach($var in $outProv)
+												<option value="$var.value" #if($!appInfoForm.isOutProv==$var.value) selected="selected" #end>$var.description</option>
+											#end
+											</select>				
+									</td>
+
+								</tr>
+								<tr>
+								#springBind("appInfoForm.port")
+									<td><label class="bold fs13 c_007">端口 ：<br/>&nbsp</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="port" onblur="portCheck()" type="text"/>
+									</br><span id="portMsg" class="tipMsg">端口必须为1025~65535的数字</span></td>
+								</tr>
+								<tr>
+									#springBind("appInfoForm.username")
+									<td><label id="userName_label" class="bold fs13 c_007"><span class="red">*</span>用户名：<br/>&nbsp</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="userName" onblur="userNameCheck()" type="text"/>
+									</br><span id = "userNameMsg" class="tipMsg">不能为空，用户名长度不能超过16位</span></td>
+									#springBind("appInfoForm.password")
+									<td><label id="password_label" class="bold fs13 c_007"><span class="red">*</span>密码：<br/>&nbsp</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="password" onblur="passwordCheck()"type="text"/>
+									</br><span id = "passwordMsg" class="tipMsg">不能为空，密码必须为4~20位的数字或字母</span></td>
+								</tr>
+								<tr>
+									#springBind("appInfoForm.priority")
+									<td><label class="bold fs13 c_007">优先级：<br/>&nbsp</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="priority" onblur="priorityCheck()" type="text"/>
+									</br><span id = "priorityMsg" class="tipMsg">0~999的数字</span></td>
+									#springBind("appInfoForm.signName" )
+									<td><label class="bold fs13 c_007">短信签名：<br/>&nbsp</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="signName" onblur="signNameCheck()" type="text"/>
+									</br><span id = "signNameMsg" class="tipMsg">短信签名长度不能超过10位</span></td>
+								</tr>
+								<tr>
+									#springBind("appInfoForm.fee")
+									<td><label class="bold fs13 c_007">资费类别：<br/>&nbsp</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="fee" onblur="feeCheck()" type="text"/>
+									</br><span id="feeMsg" class="tipMsg">必须为0~99之间的数字</span></td>
+									#springBind("appInfoForm.feeType")
+									<td><label class="bold fs13 c_007">资费代码：<br/>&nbsp</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="feeType" onblur="feeTypeCheck()" type="text"/>
+									</br><span id="feeTypeMsg" class="tipMsg">必须为0~99之间的数字</span></td>
+								</tr>
+									<tr>
+									#springBind("appInfoForm.flowDay")
+									<td><label class="bold fs13 c_007">日流量：<br/>&nbsp</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="flowDay" onblur="flowDayCheck()"type="text"/>
+									</br><span id="flowDayMsg" class="tipMsg">只能输入0~199999999之间的数字</span></td>
+									#springBind("appInfoForm.flowMonth")
+									<td><label class="bold fs13 c_007">月流量：<br/>&nbsp</label><input class="inputBox w50" name="${status.expression}" value="$!status.value" id="flowMonth" onblur="flowMonthCheck()" type="text"/>
+									</br><span id="flowMonthMsg" class="tipMsg">0~199999999之间并>=日流量</span></td>
+								</tr>
+							</table>
+						<br/>
+                <div class="btnArea clearfix">
+					<input type="button" onclick="save()" class="btn_green" style="margin-left:40%;"value="保存">
+                </div>
+				</form>
+            </div>
+
+    </div>
+
+		<div class="rounded_btm">
+            <span class="lt_btm"></span>
+            <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>
+</div>

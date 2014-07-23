@@ -1,0 +1,236 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<title>挑挑网</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/index.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/craftyslide.css")" />
+<script src="$homeServer.getURI("/static/js/jquery.min.js")"></script>
+<script src="$homeServer.getURI("/static/js/craftyslide.js")"></script>
+
+
+<style>
+
+</style>
+</head>
+<body >
+<div width="100%">
+<div class="header">
+	 <div class="header_b"><span>
+	 	<a class="href_header" href="#">登录</a>|<a class="href_header"  href="#">注册</a>|<a class="href_header" href="#">网站导航</a></span></div>
+</div>
+<div class="banner">
+	 <div class="banner_logo"></div>
+	 <div class="banner_search">
+	 	<input type="text" class="input_search"/><span class="search_btn_span"><a href="#" class="search_btn"/>搜索</a></span>
+	 	</div>
+</div>
+<div class="banner2">
+	<div class="banner2_contain">
+	<div class="banner_first"><a href="#"/>所有商品分类</a></div>
+	<div class="banner_sec">
+		<div class="banner2_href">
+		<a href="#">品牌街</a><a href="#">女装</a><a href="#">男装</a><a href="#">热卖产品</a><a href="#">预售产品</a><a href="#">中老年服饰</a>
+		</div>
+	</div>
+  </div>
+</div>
+<div class="center">
+      <div class="center_left">
+
+      		 <ul>饰品/手表/眼镜</ul>
+      		 <ul>
+      		 	<li><a href="#">黄金</a><a href="#">钻戒</a><a href="#">足金</a><a href="#">铂金</a><a href="#">饰品</a></li>
+            <li><a href="#">手链</a><a href="#">瑞士军刀</a></li>
+      		 	</ul>
+      		 <ul class="ul_sec">女装/配件</ul>
+      		 <ul class="ul_sec">
+      		 	<li><a href="#">羽绒服</a><a href="#">大衣</a><a href="#">毛衣</a><a href="#">针织衫</a></li>
+      		 	</ul>
+      		 <ul>男装/男鞋</ul>
+      		 <ul>
+      		 	<li><a href="#">西装</a><a href="#">夹克</a><a href="#">毛衣</a><a href="#">针织衫</a></li>
+           </ul>
+           <ul class="ul_sec">化妆品/日用品</ul>
+      		 <ul class="ul_sec">
+      		 	<li><a href="#">护肤</a><a href="#">彩妆</a><a href="#">美体</a><a href="#">洗护</a></li>
+           </ul>
+           <ul>运动/户外</ul>
+      		 <ul>
+      		 	<li><a href="#">运动鞋</a><a href="#">运动服</a><a href="#">户外</a><a href="#">板鞋</a></li>
+      		 	<li><a href="#">跑步鞋</a><a href="#">篮球鞋</a><a href="#">冲锋衣</a><a href="#">跑步机</a></li>
+           </ul>
+      </div>
+      <div class="center_right clearfix">
+      	    <div id="slideshow">
+        <ul>
+          <li>
+            <img src="$homeServer.getURI("static/prod/flash1.jpg")" alt="" title="Light Trails" />
+          </li>
+          
+          <li>
+            <img src="$homeServer.getURI("static/prod/flash2.jpg")" alt="" title="Bokeh" />
+          </li>
+          
+          <li>           
+            <img src="$homeServer.getURI("static/prod/flash3.jpg")" alt="" title="Blossoms" />
+          </li>            
+        </ul>
+      </div>   
+      <div class="center_detail clearfix">
+      	<div class="floor">
+      		 <ul><strong>1F</strong> 服饰内衣 <span> <a href="#">男装</a>| <a href="#">女装</a>| <a href="#">内衣</a></span></ul>
+      	</div>
+      	<div class="itemimage-banner">
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner1.png")"></img></a></ul>
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner2.png")"></img></a></ul>
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner3.png")"></img></a></ul>
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner4.png")"></img></a></ul>
+            <ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner5.png")"></img></a></ul>
+            	<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner6.png")"></img></a></ul>
+				 	</div>
+				  	<div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p1.jpg")" alt=""  class="itemimage-img"/></a><br />
+												<p class="more"><a href="index2.html">商品描述</a></p>
+						</div>
+				    <div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p2.jpg")" alt=""  class="itemimage-img"/></a><br />
+												<p class="more"><a href="index2.html">more info</a></p>
+						</div>
+						<div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p3.jpg")" alt=""  class="itemimage-img"/></a><br />
+												<p class="more"><a href="index2.html">more info</a></p>
+						</div>
+						<div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p4.jpg")" alt=""  class="itemimage-img"/></a>
+												<p class="more"><a href="index2.html">more info</a></p>
+						</div>
+			</div>
+			 <div class="center_detail clearfix">
+			 	<div class="floor">
+      		 <ul><strong>2F</strong> 饰品 <span> <a href="#">男装</a>| <a href="#">女装</a>| <a href="#">内衣</a></span></ul>
+      	</div>
+      	<div class="itemimage-banner">
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner1.png")"></img></a></ul>
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner2.png")"></img></a></ul>
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner3.png")"></img></a></ul>
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner4.png")"></img></a></ul>
+            <ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner5.png")"></img></a></ul>
+            	<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner6.png")"></img></a></ul>
+				 	</div>
+						<div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p5.jpg")" alt=""  class="itemimage-img"/></a>
+												<p class="more"><a href="index2.html">more info</a></p>
+						</div>
+						<div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p6.jpg")" alt=""  class="itemimage-img"/></a><br />
+												<p class="more"><a href="index2.html">more info</a></p>
+						</div>
+						<div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p7.jpg")" alt=""  class="itemimage-img"/></a><br />
+												<p class="more"><a href="index2.html">more info</a></p>
+						</div>
+						<div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p8.jpg")" alt=""  class="itemimage-img"/></a><br />
+												<p class="more"><a href="index2.html">more info</a></p>
+						</div>
+				</div>
+				 <div class="center_detail clearfix">
+				 	<div class="floor">
+      		 <ul><strong>3F</strong> 测试1243 <span> <a href="#">男装</a>| <a href="#">女装</a>| <a href="#">内衣</a></span></ul>
+      	</div>
+      	<div class="itemimage-banner">
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner1.png")"></img></a></ul>
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner2.png")"></img></a></ul>
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner3.png")"></img></a></ul>
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner4.png")"></img></a></ul>
+            <ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner5.png")"></img></a></ul>
+            	<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner6.png")"></img></a></ul>
+				 	</div>
+						<div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p9.jpg")" alt="" class="itemimage-img" /></a><br />
+												<p class="more"><a href="index2.html">more info</a></p>
+						</div>
+						<div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p10.jpg")" alt="" class="itemimage-img" /></a><br />
+												<p class="more"><a href="index2.html">more info</a></p>
+						</div>
+						<div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p11.jpg")" alt="" class="itemimage-img" /></a><br />
+												<p class="more"><a href="index2.html">more info</a></p>
+						</div>
+						<div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p12.jpg")" alt=""  class="itemimage-img"/></a><br />
+												<p class="more"><a href="index2.html">more info</a></p>
+						</div>
+					</div>
+					 <div class="center_detail clearfix">
+					 	<div class="floor">
+      		 <ul><strong>4F</strong> 服饰内衣 <span> <a href="#">男装</a>| <a href="#">女装</a>| <a href="#">内衣</a></span></ul>
+      	</div>
+      	<div class="itemimage-banner">
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner1.png")"></img></a></ul>
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner2.png")"></img></a></ul>
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner3.png")"></img></a></ul>
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner4.png")"></img></a></ul>
+            <ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner5.png")"></img></a></ul>
+            	<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner6.png")"></img></a></ul>
+				 	</div>
+						<div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p13.jpg")" alt="" class="itemimage-img" /></a><br />
+												<p class="more"><a href="index2.html">more info</a></p>
+						</div>
+						<div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p14.jpg")" alt="" class="itemimage-img" /></a><br />
+												<p class="more"><a href="index2.html">more info</a></p>
+						</div>
+						<div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p15.jpg")" alt="" class="itemimage-img" /></a><br />
+												<p class="more"><a href="index2.html">more info</a></p>
+						</div>
+						<div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p16.jpg")" alt=""  class="itemimage-img"/></a><br />
+												<p class="more"><a href="index2.html">more info</a></p>
+						</div>
+					</div>
+					 <div class="center_detail clearfix">
+					 	<div class="floor">
+      		 <ul><strong>5F</strong> 服饰内衣 <span> <a href="#">男装</a>| <a href="#">女装</a>| <a href="#">内衣</a></span></ul>
+      	</div>
+      	<div class="itemimage-banner">
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner1.png")"></img></a></ul>
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner2.png")"></img></a></ul>
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner3.png")"></img></a></ul>
+				 		<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner4.png")"></img></a></ul>
+            <ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner5.png")"></img></a></ul>
+            	<ul><a href="index2.html"><img src="$homeServer.getURI("static/prod/detail-banner6.png")"></img></a></ul>
+				 	</div>
+						<div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p17.jpg")" alt="" class="itemimage-img" /></a><br />
+												<p class="more"><a href="index2.html">more info</a></p>
+						</div>
+						<div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p18.jpg")" alt="" class="itemimage-img" /></a><br />
+												<p class="more"><a href="index2.html">more info</a></p>
+						</div>
+						<div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p19.jpg")" alt="" class="itemimage-img" /></a><br />
+												<p class="more"><a href="index2.html">more info</a></p>
+						</div>
+						<div class="itemimage">
+												<a href="index2.html"><img src="$homeServer.getURI("static/prod/p20.jpg")" alt=""  class="itemimage-img"/></a><br />
+												<p class="more"><a href="index2.html">more info</a></p>
+						</div>
+						</div>
+      </div>
+      </div>
+  </div>
+</div>
+
+    
+      
+      <script>
+        $("#slideshow").craftyslide();
+      </script> 
+</body> 

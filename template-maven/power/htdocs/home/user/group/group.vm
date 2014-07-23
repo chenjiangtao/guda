@@ -1,0 +1,141 @@
+<script type="text/javascript" src="$umsServer.getURI("/static/js/group/group.js")"></script>
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/group.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/table.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/targetPage.js")"></script>
+
+<div id="bd">
+	#set($HeadMenuId="personal_header")
+	#set($sideMenuId="group_side_bar")
+	#parse("/home/user/userSideBar.vm")
+	#set($searchUrl = $umsServer.getURI("/user/mygroup.htm"))
+	#set($param = "searchName=$!groupForm.searchName")
+	<input style="width:50%;" type="hidden" id="param"  name="param" value="$param"/>
+	<input style="width:50%;" type="hidden" id="searchUrl"  name="searchUrl" value="$searchUrl"/>
+	<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c">
+			<div style="margin:0px auto 5px auto;"><span><a href="$umsServer.getURI("/user/saveGroup.htm")" class="btn green">添加群组</a></span></div>
+			#if($!successMsg)<div style="color:red;margin-left:5px"><font class="bold fs14"> $!successMsg</font></div>
+			#else
+			<div style="color:red;margin-left:5px"><font class="bold fs14">
+				$!errorMsg
+			</font></div>
+			#end
+			<form action="$searchUrl" method="post" id="myGroupForm">
+                <div class="searchArea">
+					<table border="0" cellpadding="0" cellspacing="1">
+						<tr>
+							<td width="15%" align="right"><span class="bold fs14 c_007">群组名称：</span></td>
+							<td width="15%"><input type="text" class="inputBox" size="15" name="searchName" value="$!groupForm.searchName" style="width:90%;"/></td>
+							<td><input type="submit" id="searchLog_sbtn" class="btn_green_search_form" value="查询" /></td>
+						</tr>
+					</table>
+                </div>
+			</form>
+			<div class="tableContainer">
+    			<div id="scrollContentContainer" class="scrollContentContainer">
+    				<table class="scrollContent" cellspacing="1" cellpadding="0" width="100%">
+    					<thead >
+							<tr>
+    						  <td width="5%">序号</td>
+    				          <td width="15%">群组名称</td>
+    				          <td width="40%">群组成员</td>
+    				          <td width="19%">创建时间</td>
+    				          <td width="20%">操作</td>
+    			            </tr>
+                        </thead>
+						<tbody class="tb">
+    					#foreach($var in $result.results)
+    						<tr>
+    						  <td width="5%" style="text-align:center;">$velocityCount</td>
+    				          <td width="15%" title="$!var.groupName">$!var.groupName</td>
+    				          <td width="40%" title="$!var.members">$!var.members</td>
+							  <td width="19%" title="$!date.format('yyyy-MM-dd HH:mm:ss',$!var.gmtCreated)">$!date.format('yyyy-MM-dd HH:mm:ss',$!var.gmtCreated)</td>
+    				          <td width="20%" style="text-align:center;">
+    				            <a class="a_green_form_ddl" href="$umsServer.getURI("/user/updateGroup.htm").addQueryData("id","$!var.id")&$!param&curPage=$!result.curPage">编辑</a>
+								<a class="a_green_form_ddl" href="javascript:deleteGroup('$!var.id','$!var.groupName','$!param','$!result.curPage')">删除</a>
+								<a class="a_green_form_ddl" href="javascript:exportGroup('$!var.id')">导出</a>
+								<a class="a_green_form_ddl" href="javascript:importGroup('$!var.id','$!var.groupName')">导入</a>
+							  </td>
+    				         </tr>
+    						#end
+						</tbody>
+    				</table>
+    			</div>
+    		</div>
+			#noRecord($result)
+			#if( $!result.totalPage > 0)
+    		<div class="btnArea clearfix" >
+    			<div class="page_detail">
+    				#if($!result.curPage != 1)
+						<a class="a_green_form_ddl" href="$searchUrl?$!param"><span>首页</span></a>
+					   #set($tempPage = $!result.curPage - 1)
+					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$tempPage&$!param"><span>上一页</span></a>
+				   #end
+				   #if($!result.curPage < $!result.totalPage)
+					   #set($tempPage = $!result.curPage + 1)
+					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$tempPage&$!param"><span>下一页</span></a>
+					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$!result.totalPage&$!param"><span>尾页</span></a>
+				   #end
+				    <span class="pager_info">当前第 <input id="targetNum" name="pageId" class="pager_inputBox" value="$!result.curPage" autocomplete="off"/>页  </span>
+				   <span id="targetBtn" class="a_green_form_ddl" style="cursor: pointer;">跳转</span>
+				   <span>共$!result.totalPage页 共$!result.total条记录</span>
+                </div>
+            </div>
+            #end
+
+
+		</div>
+		<div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>
+
+<div id="mask" style="display:none;"></div>
+<div id="memberContainer" style="display:none;">
+	<div class="title">导入群组</div>
+  <form  id = "fileForm" name="fileForm" action="$umsServer.getURI("/user/importGroup.htm")" method="POST" enctype="multipart/form-data">
+	 <table border="0">
+	     <tr style="display:none"><td><input type="hidden" name="groupId" class="input_text" id="groupId" /></td></tr>
+		 <tr style="display:none"><td><input type="hidden" class="input_text" id="groupId" /></td></tr>
+		 <tr>
+			<td align="right" width="20%"><span class="bold fs14 c_007">导入文件：</span></td>
+			<td width="40%"><input id='fileAdd' class="inputBox" name="fileAdd" type="file" value='选择文件'/></td>
+		 </tr>
+		 <tr>
+            <td align="right"><span class="bold fs14 c_007">群组名称：</span></td>
+			<td>
+				<label id="importGroupName"></label>
+			</td>
+		 </tr>
+		 <tr>
+            <td align="right"><span class="bold fs14 c_007">如遇重复手机号：</span></td>
+			<td>
+			  <select id="type" name="type" style="line-height: 18px; font-size:12px;height:20px;width:80px;">
+			   <option value="pass">
+									跳过
+                </option>
+			    <option value="cover">
+									覆盖
+                </option>
+			  <select>
+			</td>
+		 </tr>
+
+		 <tr style="height:36px;">
+			<td>&nbsp;</td>
+			<td colspan="2" ><input type="button" id="span_import_btn" class="btn_green" value="导入" />
+				<input type="button" id="span_importclose_btn" class="btn_green" value="取消" />
+			</td>
+		</tr>
+		</form>
+
+	  </table>
+	  <div style="margin-left:6.5%;margin-top:8px;font-size:13px;"><span>注：必须是大小小于1M且xls结果的excel文件,格式参照群组导出的excel</span></div>
+
+</div>
+

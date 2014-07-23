@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+	<!-- <bean name="blankBiz" class="net.zoneland.ums.biz.common.BlankBiz"/> -->
+
+	<bean name="resolveUserService"
+		class="net.zoneland.ums.biz.msg.process.service.impl.ResolveUserServiceImpl">
+
+	</bean>
+
+	<bean name="messageProcess"
+		class="net.zoneland.ums.biz.msg.process.impl.MessageProcessImpl">
+		<property name="msgCodecType" value="${msgCodecType}"/>
+	</bean>
+
+	<bean name="resolveMsgService"
+		class="net.zoneland.ums.biz.msg.process.service.impl.ResolveMsgServiceImpl">
+		<property name="resolveUserService" ref="resolveUserService"></property>
+	</bean>
+
+	<bean name="saveMsgService"
+		class="net.zoneland.ums.biz.msg.process.service.impl.SaveMsgServiceImpl">
+		<property name="umsMsgOutMapper" ref="umsMsgOutMapper"></property>
+	</bean>
+
+
+	<bean name="blackListProcess"
+		class="net.zoneland.ums.biz.msg.process.impl.BlackListProcessImpl">
+		<property name="umsBlackListMapper" ref="umsBlackListMapper"></property>
+	</bean>
+
+	<bean name="queueFactory" class="net.zoneland.ums.biz.msg.queue.QueueFactory" init-method="init">
+		<property name="capacity" value="${queue.capacity}"></property>
+	</bean>
+
+	<bean name="queueService" class="net.zoneland.ums.biz.msg.queue.QueueServiceImpl">
+		<property name="umsUserInfoMapper" ref="umsUserInfoMapper"></property>
+		<property name="umsMsgOutMapper" ref="umsMsgOutMapper"></property>
+		<property name="queueFactory" ref="queueFactory"></property>
+	</bean>
+
+
+	<bean name="msgDraftService" class="net.zoneland.ums.biz.msg.draft.MsgDraftServiceImpl">
+		<property name="umsMsgDraftMapper" ref="umsMsgDraftMapper"></property>
+		<property name="umsUserInfoMapper" ref="umsUserInfoMapper"></property>
+		<property name="umsGroupMapper" ref="umsGroupMapper"></property>
+		<property name="umsContactMapper" ref="umsContactMapper"></property>
+		<property name="umsOrganizationMapper" ref="umsOrganizationMapper"></property>
+		<property name="umsGroupUserRelMapper" ref="umsGroupUserRelMapper"></property>
+	</bean>
+
+	<bean name="msgSearchService"
+		class="net.zoneland.ums.biz.msg.search.service.impl.MsgSearchServiceImpl">
+		<property name="umsMsgOutMapper" ref="umsMsgOutMapper"></property>
+		<property name="umsUserInfoMapper" ref="umsUserInfoMapper"></property>
+		<property name="umsContactMapper" ref="umsContactMapper"></property>
+	</bean>
+
+	<bean name="msgInService" class="net.zoneland.ums.biz.msg.in.impl.MsgInServiceImpl"/>
+
+	<bean name="msgTempService" class="net.zoneland.ums.biz.msg.process.service.impl.MsgTempServiceImpl"/>
+
+	<bean name="msgInErrorService" class="net.zoneland.ums.biz.msg.in.impl.MsgInErrorServiceImpl"/>
+
+	<bean name="outReplyService" class="net.zoneland.ums.biz.msg.in.impl.OutReplyServiceImpl"/>
+
+	<bean name="flowControl" class="net.zoneland.ums.biz.msg.flow.FlowControlImpl"/>
+
+	<!--因为网关程序也会初始化，所以把这个bean移到了service的配置文件里了
+     <bean id="sendWaitMsgBiz" class="net.zoneland.ums.biz.msg.init.SendWaitMsgBiz" init-method="init" >
+		<property name="dealInitServer" value="${dealInitServer}" />
+	</bean>
+	-->
+
+	<bean id="smsQuartzBiz" class="net.zoneland.ums.biz.msg.quartz.SmsQuartzBiz"></bean>
+
+	<bean id="clusterMonitorBiz" class="net.zoneland.ums.biz.msg.quartz.ClusterMonitorBiz">
+		<property name="clusterHosts" value="${clusterHosts}" />
+	</bean>
+
+	<bean id="umsMsgStatBiz" class="net.zoneland.ums.biz.msg.quartz.UmsMsgStatBiz">
+	</bean>
+
+	<bean id="afterMsgSend" class="net.zoneland.ums.biz.msg.send.AfterMsgSendImpl"></bean>
+
+	<bean id="msgOutService" class="net.zoneland.ums.biz.msg.out.impl.MsgOutServiceImpl"></bean>
+
+	<bean id="keywordChecker" class="net.zoneland.ums.biz.msg.process.impl.KeywordChecker"></bean>
+
+	<bean id="dBFiling" class="net.zoneland.ums.biz.msg.filing.DBFilingImpl"></bean>
+
+	<bean id="queueStatistic" class="net.zoneland.ums.biz.msg.queue.QueueStatistic"></bean>
+
+	<bean name="lockAppService" class="net.zoneland.ums.biz.msg.in.impl.LockAppServiceImpl"/>
+	
+	<bean name="gateStatService" class="net.zoneland.ums.biz.msg.stat.impl.GateStatServiceImpl"/>
+
+</beans>

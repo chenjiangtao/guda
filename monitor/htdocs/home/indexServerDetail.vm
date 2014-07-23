@@ -1,0 +1,63 @@
+#set($headMenuId="header_server_detail")
+<iframe id="export-xls-iframe" style="display:none">
+
+</iframe>
+<div data-options="region:'west',split:true,title:'服务器信息'" style="width:250px;padding:10px;">
+	
+	<ul id="tt" class="easyui-tree" data-options="
+			url: '$homeServer.getURI("/agent.json")',
+			animate: true,
+			onContextMenu: function(e,node){
+				e.preventDefault();
+				$(this).tree('select',node.target);
+			},
+			onClick: function(node){
+				
+				refreshInit(node.id,'header_server_chart');
+			},
+			onLoadSuccess:function(node,data){
+			 initload();
+			}
+		"></ul>
+	
+</div>
+
+<div data-options="region:'center'">
+ <div style="padding:5px;border:1px solid #ddd;">
+<a id="header_server_chart" href="#" onclick="javascript:choose(this)" class="easyui-linkbutton"  data-options="plain:true">主机指标（图形展示）</a>
+<a id="header_server_grid" href="#"  onclick="javascript:choose(this)" class="easyui-linkbutton" data-options="plain:true">主机指标（表格展示）</a>
+
+</div>
+	<div class="search-form">
+	  <label>开始时间:</label><input type="text" id="startTime" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:true,readOnly:true})"/>
+	  <label>结束时间:</label><input type="text" id="endTime" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:true,readOnly:true})"/>
+	  <button  class="sexybutton" style="margin-top:-5px;" id="search_btn" value="查询"><span><span><span class="search">查询</span></span></span></button>
+	  <button  class="sexybutton" style="margin-top:-5px;" id="search_warn_btn" value="查询告警"><span><span><span class="search">查询告警</span></span></span></button>
+	  
+	</div>
+	<div id="main-contain" class="contain">
+		
+	</div>
+
+</div>
+
+<div id="background" class="background" style="display: none; "></div>
+<div id="progressBar" class="progressBar" style="display: none; ">数据加载中，请稍等...</div> 
+
+
+	<script type="text/javascript" src="$homeServer.getURI("/static/js/ui/plugins/datagrid-detailview.js")"></script>
+<script type="text/javascript" src="$homeServer.getURI("/static/js/indexDetail.js")"></script>
+
+<script language="javascript">
+function initload(){
+    var t = "$!{currentIp}";
+    if(t){
+    var tempK = t.replace(/[\s+\(\)\[\]\{\}\+\|\.\*\\\/\?\:]/g,"\\.");
+
+      var node = $('#tt').tree('find', tempK);
+      $('#tt').tree('select', node.target);
+      refreshInit(t,'header_server_chart');
+    }
+  }
+
+</script>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<tools>
+	
+
+	<toolbox scope="application">
+		<tool key="operationContext"
+			class="net.zoneland.mvc.runtime.core.security.OperationContextHolder" />
+	</toolbox>
+	
+	<toolbox scope="application">
+		<tool key="operatorHolder"
+			class="net.zoneland.ums.web.home.security.OperatorHolder" />
+	</toolbox>
+	
+	<toolbox scope="application">
+		<tool key="host"
+			class="net.zoneland.ums.common.util.Host" />
+	</toolbox>
+
+</tools>

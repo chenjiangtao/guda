@@ -1,0 +1,28 @@
+#set($layout = "home/layout/umsLayout.vm")
+#set($HeadMenuId="a_info")
+
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/charge.css")" />
+<script type="text/javascript" src="$homeServer.getURI("/static/js/ums/charge.js")"></script>
+
+<div class="ums-center-contain">
+<div>
+    <ul id="crumbs">
+	    <li><a href="$homeServer.getURI("/ums/index.htm")">首页</a></li>
+	    <li>个人资料</li>
+    </ul>
+</div>
+
+ <div style="text-align:left;height:200px;margin-top:10px;line-height:30px;border:1px solid #e9e9e9;">
+   <ul>
+     <li><label>登陆账号:</label>$userForm.userId</li>
+     <li><label>手机号:</label>$userForm.phone</li>
+     <li><label>邮箱:</label>$userForm.email</li>
+     <li><a class="do-btn" href="$homeServer.getURI("/personal/password.htm")">修改密码</a>
+     <a class="do-btn" href="$homeServer.getURI("/personal/modifyUser.htm")">修改个人资料</a></li>
+   </ul>
+   
+ </div>
+  #parse("home/ums/ask/personalAsk.vm")
+ <div style="height:400px;">
+ </div>
+</div>

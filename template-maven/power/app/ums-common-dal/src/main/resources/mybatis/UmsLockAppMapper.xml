@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.zoneland.ums.common.dal.UmsLockAppMapper" >
+  <resultMap id="BaseResultMap" type="net.zoneland.ums.common.dal.dataobject.UmsLockApp" >
+    <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+    <result column="HOST" property="host" jdbcType="VARCHAR" />
+    <result column="GMT_CREATED" property="gmtCreated" jdbcType="TIMESTAMP"/>
+  </resultMap>
+  <insert id="insert" parameterType="net.zoneland.ums.common.dal.dataobject.UmsLockApp" >
+    insert into UMS_LOCK_APP (APP_ID,HOST,GMT_CREATED)
+    values (#{appId,jdbcType=VARCHAR},#{host,jdbcType=VARCHAR},#{gmtCreated,jdbcType=TIMESTAMP})
+  </insert>
+ <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+
+		delete from UMS_LOCK_APP
+		where APP_ID = #{appId,jdbcType=VARCHAR}
+	</delete>
+	 <delete id="deleteAll" >
+
+		delete from UMS_LOCK_APP
+	</delete>
+
+	 <delete id="deleteByHost" parameterType="java.util.Map">
+		delete from UMS_LOCK_APP
+		<![CDATA[
+		where HOST = #{host,jdbcType=VARCHAR} and GMT_CREATED < #{gmtCreated,jdbcType=TIMESTAMP}
+		]]>
+	</delete>
+
+</mapper>

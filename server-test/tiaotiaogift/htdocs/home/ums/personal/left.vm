@@ -1,0 +1,22 @@
+<div class="contain-left">
+	<ul class="left-lev" id="left_nav">
+	 <li id="left_contact" class="left_nav_no_visited"><a href="$homeServer.getURI("/personal/contact.htm")"><b>我的联系人</b></a></li>
+	 <!--
+	 <li id="left_group"><a href="$homeServer.getURI("/personal/group.htm")"><b>我的群组</b></a></li>
+	 -->
+	 <li id="left_password"><a href="$homeServer.getURI("/personal/password.htm")"><b>修改密码</b></a></li>
+	</ul>
+</div>
+
+<script language="javascript">
+	var oul = document.getElementById("left_nav").getElementsByTagName("li");
+	for(var i=0,len=oul.length;i<len;++i){
+	   oul[i].className="left_nav_no_visited";
+	}
+	var oli = document.getElementById("$leftMenuId");
+
+	if(oli){
+		oli.className="left_nav_visited";
+	}
+	
+</script>

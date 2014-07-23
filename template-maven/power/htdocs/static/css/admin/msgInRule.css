@@ -1,0 +1,88 @@
+#writeEmail .form{
+	padding-right:0px;
+	background-color:#fafcfc;
+	}
+#writeEmail .form ul li{
+	float:left;
+	padding:10px 0px;
+	height: 20px;
+	}
+
+#writeEmail .form label{
+	float:left;
+	padding:5px 10px;
+	text-align:right;
+	color:#00764b;
+	width:14%
+	}
+
+#writeEmail .form select {
+    width: 25%;
+}
+
+/*表单*/
+.inputBox{
+	border:1px solid #cbe1eb;
+	padding:5px;
+	width:50%;
+	}
+
+.status{
+	border:1px solid #cbe1eb;
+	padding:5px;
+	width:18%;
+}
+.formLiErrorTips{
+	color:red;
+}
+
+.bold{
+  font-weight:bold;
+  }
+.fs13{
+  font-size:13px;
+  }
+.fs14{
+  font-size:14px;
+  }
+
+.c_007{
+	color:#00764b;
+}
+
+.w50{
+   width:50%;
+}
+   
+.h100{
+   height:100px;
+}
+
+.inputBox{
+   border:1px solid #cbe1eb;
+}
+ 
+.form_div{
+  width:70%;
+  margin-left:50px;
+  margin-top:30px;
+}
+
+.form_div label{
+  float: left;
+  width:15%;
+}
+
+.form_div select {
+  width:200px;
+  border:1px solid #e0e0e0; 
+  height:30px; 
+}
+
+.form_div option {
+  width:120px;
+}
+
+.form_div ul{
+  padding:10px;
+}

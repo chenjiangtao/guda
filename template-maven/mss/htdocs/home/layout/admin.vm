@@ -1,0 +1,19 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>ada</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<META content= 外贸,饰品,ODM name=keywords>
+<META content= 饰品 name=description>
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/index.css")"/>
+<script src="$homeServer.getURI("/static/js/jquery.min.js")"></script>
+<script>
+	var currenthost = "$!homeServer";
+</script>
+</head>
+ <body>
+      #parse('home/layout/adminHeader.vm')
+      $screen_content
+      #parse('home/layout/footer.vm')
+ </body>
+</html>

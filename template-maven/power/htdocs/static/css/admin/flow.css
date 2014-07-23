@@ -1,0 +1,25 @@
+.form_div{
+  width:85%;
+  padding-top:30px;
+  padding-left:10px;
+}
+
+.form_div ul{
+  margin:10px;
+}
+.form_div label{
+  float: left;
+  width:20%;
+  text-align: right;
+
+  padding-right: 10px;
+}
+
+.inputBox{
+   border:1px solid #cbe1eb;
+   height:30px;
+ }
+
+.readonly{
+	color:#CCC;
+}

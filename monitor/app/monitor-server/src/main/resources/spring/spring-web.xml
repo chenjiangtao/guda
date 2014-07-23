@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:cache="http://www.springframework.org/schema/cache"
+	xsi:schemaLocation="http://www.springframework.org/schema/cache 
+        http://www.springframework.org/schema/cache/spring-cache-3.1.xsd
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd
+        http://www.springframework.org/schema/mvc
+        http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+
+
+
+	<mvc:annotation-driven></mvc:annotation-driven>
+	<context:component-scan base-package="com.foodoon,net.zoneland.mvc" />
+
+<!-- war包运行 -->
+
+	<bean id="propertyConfigurer"
+		class="com.foodoon.monitor.server.config.app.DefaultPropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="false"></property>
+		<property name="fileEncoding" value="UTF-8"></property>
+	</bean>
+
+
+  <!-- 本地测试
+ 	<bean id="propertyConfigurer"
+		class="net.zoneland.mvc.runtime.core.config.DefaultPropertyPlaceholderConfigurer">
+		<property name="ignoreUnresolvablePlaceholders" value="false"></property>
+		<property name="fileEncoding" value="UTF-8"></property>
+	</bean>
+	 
+	-->
+	<bean id="messageSource"
+		class="org.springframework.context.support.ReloadableResourceBundleMessageSource"
+		p:basenames="${htdocs_root}/messages/error" p:defaultEncoding="UTF-8"
+		p:cacheSeconds="0" />
+
+	<bean id="velocityConfig"
+		class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
+		<property name="resourceLoaderPath" value="${htdocs_root}" />
+		<!-- <property name="configLocation" value="classpath*:/spring/velocity.properties" 
+			/> -->
+		<property name="velocityProperties">
+			<props>
+				<prop key="input.encoding">utf-8</prop>
+				<prop key="output.encoding">utf-8</prop>
+				<prop key="parser.pool.size">100</prop>
+				<prop key="tools.view.servlet.error.template">error.vm</prop>
+				<prop key="tools.view.servlet.layout.directory">layout/</prop>
+				<prop key="tools.view.servlet.layout.default.template">default.vm</prop>
+
+			</props>
+		</property>
+	</bean>
+
+	<bean id="welcomeFileFilter" class="com.foodoon.monitor.web.home.filter.WelcomeFileFilter">
+		<property name="welcomeFile" value="/indexAll.htm"></property>
+	</bean>
+	<bean id="threadCleanFilter" class="com.foodoon.monitor.web.home.filter.ThreadCleanFilter">
+	</bean>
+
+	<bean id="filterChainProxy" class="net.zoneland.mvc.runtime.core.filter.FilterChainProxy">
+		<property name="filterChains">
+			<list>
+				<ref bean="welcomeFileFilter" />
+				<ref bean="threadCleanFilter" />
+				<ref bean="accessFilter" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="characterEncodingFilter" class="org.springframework.web.filter.CharacterEncodingFilter">
+		<property name="encoding" value="UTF-8"></property>
+	</bean>
+
+
+	<bean id="accessFilter" class="com.foodoon.monitor.web.home.filter.AccessFilter">
+	</bean>
+
+	<bean id="javaMailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+
+		<property name="host" value="${mail.host}"></property>
+		<property name="port" value="${mail.port}"></property>
+		<property name="username" value="${mail.username}"></property>
+		<property name="password" value="${mail.password}"></property>
+		<property name="defaultEncoding" value="UTF-8"></property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.timeout">25000</prop>
+			</props>
+		</property>
+	</bean>
+	<bean id="mailService" class="com.foodoon.monitor.web.home.warn.MailService">
+	</bean>
+	<bean id="emailWarnService" class="com.foodoon.monitor.web.home.warn.EmailWarnServiceImpl">
+	</bean>
+	<bean id="smsWarnService" class="com.foodoon.monitor.web.home.warn.SmsWarnServiceImpl">
+	</bean>
+	
+	<bean id="warnFactory" class="com.foodoon.monitor.web.home.warn.WarnFactory">
+		
+	</bean>
+	
+	<bean id="modemProxy" class="com.foodoon.monitor.web.home.warn.modem.ModemProxy"
+		destroy-method="close">
+		<property name="modemId" value="${modem.modemId}"></property>
+		<property name="port" value="${modem.port}"></property>
+		<property name="baudRate" value="${modem.baudRate}"></property>
+		<property name="manufacturer" value="${modem.manufacturer}"></property>
+	</bean>
+
+
+
+</beans>

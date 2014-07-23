@@ -1,0 +1,67 @@
+
+<link href="$umsServer.getURI("/static/css/admin/gatewayGroupRule.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/gatewayGroupRule.js")"></script>
+
+<div id="bd">
+#set($sideMenuId="gatewayGroup_rule_side_bar")
+#set($HeadMenuId="system_header")
+#parse("/home/admin/adminSideBar.vm")
+    <div id="pRight">
+        <div class="rounded_top">
+            <span class="lt_top"></span>
+            <span class="rt_top"></span>
+        </div>
+        <div class="pRight_c">
+        <div id="writeEmail" style="height:100%;background-color:#fafcfc;">
+				 <div class="btnArea clearfix">
+								&nbsp;&nbsp;<a class="bold fs14 c_007" href="$umsServer.getURI("/admin/gateGroupRuleList.htm")">网关分组规则配置</a><a class="fs14bold c_008">-&gt;修改网关分组规则</a>
+				</div>
+
+            <div id="messageForm_div" >
+				<form name="ruleForm" action="$umsServer.getURI("/admin/updateGateGroupRule.htm")" id="form_book" method="post" >
+					#if($!message)<div style="color:red;margin-left:2%"><font class="bold fs14"> $!message</font> </div> #end
+						<div style="margin-left:6.5%;margin-top:8px;font-size:13px;"><span>注：所有规则设置使用正则表达式！例如：^1[0-9]{3}$表示1开头的应用ID</span></div>
+
+					#springBind("gateWayRuleForm.id")
+					<input name="${status.expression}" value="$!status.value" style="display:none;"/>
+					<ul class="form clearfix" style="padding:2%;">
+						<li><label class="bold fs14 c_007"><span class="red">*</span>选择网关分组:</label>
+							#springBind("gateWayRuleForm.gatewayId")
+							<select name="gatewayId" class="status" id="gatewayId">
+								<option value="">
+									--请选择--
+                                </option>
+								#foreach($gateway in $gateways)
+    							<option value="$gateway.id"  #if($!status.value==$gateway.id) selected="selected" #end>$gateway.gatewayGroupName</option>
+								#end
+							</select>
+							<span class="tipMsg" id="gatewayIdMsg">网关分组不能为空</span>
+						</li>
+						<li class="formLI"><label class="bold fs14 c_007">号段设置:<br/>&nbsp</label>
+							#springBind("gateWayRuleForm.receiveRegx") 
+							<input type="text" id="receiveRegx" style="ime-mode:disabled" class="inputBox" name="${status.expression}" value="$!status.value"/>
+							<!--#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end-->
+							</br><span class="tipMsg" id="receiveRegxMsg">长度不能超过100位</span>
+						</li>
+						<li><label class="bold fs14 c_007">应用设置:<br/>&nbsp</label>
+							#springBind("gateWayRuleForm.appIdRegx")
+							<input type="text" id="appIdRegx" style="ime-mode:disabled" class="inputBox" name="${status.expression}" value="$!status.value"/>
+							<!--#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13">$error</span>#end-->
+							</br><span class="tipMsg" id="appIdRegxMsg">长度不能超过500位</span>
+						</li>
+						#springBind("gateWayRuleForm.contentRegx")
+						<li class="formLI"><label class="bold fs14 c_007">内容设置:<br/>&nbsp<br/>&nbsp<br/>&nbsp</label>
+						<textarea id="contentRegx" class="inputBox w50 h100 fs13" name="${status.expression}" cols="" rows="">$!status.value</textarea>
+						</br><span class="tipMsg" id="contentRegxMsg">长度不能超过200位</span>
+						</li>						
+					</ul>
+						<div class="" style="padding-left:20%;">
+								<input type="button" id="span_send_btn" class="btn_green" value="保存" />
+						</div>
+				</form>
+
+				</div>
+        </div>
+		</div>
+    </div>
+</div>

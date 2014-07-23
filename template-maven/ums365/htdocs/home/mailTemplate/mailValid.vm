@@ -1,0 +1,60 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+     
+        <title>短信助手激活邮件</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+</head>
+<body>
+<table width="500" cellspacing="1" cellpadding="0" border="0" bgcolor="#0BA5EB" align="center">
+  <tbody><tr>
+    <td valign="top" bgcolor="#FFFFFF" align="left"><table width="100%" cellspacing="0" cellpadding="0" border="0">
+      <tbody><tr height="25px" bgcolor="#313733">
+       
+        <td width="577" style="color:#fff;font-weight:bold;"  align="left" class="font_blue14_bold">&nbsp;短信助手激活邮件</td>
+       
+      </tr>
+    </tbody></table></td>
+  </tr>
+  <tr>
+    <td valign="top" bgcolor="#FFFFFF" align="center"><table width="92%" cellspacing="0" cellpadding="0" border="0">
+      <tbody><tr>
+        <td height="12"></td>
+        </tr>
+      <tr>
+        <td valign="top" align="left"><span class="font_red12">$!userName</span>，您好：<br>
+&nbsp;&nbsp;&nbsp; 欢迎加入UMS365，请妥善保管您的登录信息：<br>
+&nbsp;&nbsp;&nbsp; 用户名：<span class="font_red12">
+$!userName </span>&nbsp;&nbsp;&nbsp; 密码：<span class="font_red12">
+你懂的</span></td>
+      </tr>
+      <tr>
+        <td valign="top" height="13" align="left"></td>
+      </tr>
+     
+      <tr>
+        <td valign="top" align="left"><span class="font_blue122_bold">点击以下激活链接，以激活您的账号：</span><br>
+           <a target="_blank" class="font_blue12" href="$!validUrl">$!validUrl</a><span class="fant_hui12"><br>
+          (如果不能点击该链接地址，请复制并粘贴到浏览器的地址输入框)</span></td>
+      </tr>
+      <tr>
+        <td valign="top" height="13" align="left"></td>
+      </tr>
+
+      <tr>
+        <td valign="top" align="left"><p> 此邮件为系统所发，请勿直接回复。&nbsp; &nbsp;            <br>
+          <a target="_blank" class="font_blue12" href="http://www.ums365.com">www.ums365.com</a>  短信助手<br>
+客服热线：15558135733 &nbsp; <br>
+QQ：52313882
+<br>
+          </p>          </td>
+        </tr>
+      <tr>
+        <td valign="top" align="left">&nbsp;</td>
+      </tr>
+    </tbody></table>
+    </td>
+  </tr>
+</tbody></table>
+</body>
+</html>

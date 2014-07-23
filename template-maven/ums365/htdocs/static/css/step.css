@@ -1,0 +1,11 @@
+.step{margin:0 auto;margin-top:10px;overflow:hidden;margin-bottom:30px;height:25px; }
+.step li{float:left;background:url(../images/i/p1.jpg) no-repeat top right #ededed;height:25px;line-height:25px;color:#999999;padding:0 86px 0 85px;font-weight:bold;}
+.step .one{background:url(../images/i/p5.jpg) no-repeat top right #bbbbbb;color:#FFF;}
+.step .one1{background:url(../images/i/p9.jpg) no-repeat top right #bbbbbb;color:#FFF;}
+.step .two{background:url(../images/i/p10.jpg) no-repeat top right #bbbbbb;color:#FFF;}
+.step .two1{background:url(../images/i/p9.jpg) no-repeat top right #bbbbbb;color:#FFF;}
+.step .three{background:url(../images/i/p5.jpg) no-repeat top right #bbbbbb;color:#FFF;}
+.step .cur{background:url(../images/i/p2.jpg) no-repeat top right #ffe6bc;color:#ff6600;}
+.step .four{background:none #ededed;}
+.step .four1{background:#ffe6bc;}
+.width80{width:75%;}

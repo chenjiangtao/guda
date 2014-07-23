@@ -1,0 +1,13 @@
+#set($layout = "home/layout/regLayout.vm")
+#set($_title="用户注册")
+
+<div class="container"  style="height:350px;">
+	<div class="col-1-1">
+	
+	  <p style="font-size:16px;font-weight:bold;color:red;">注册失败,原因：$!errorTips</p>
+	  <p style="font-size:14px;font-weight:bold;">您可以点此<a href="$homeServer.getURI("/reg.htm")">重新注册</a></p>
+	
+	
+	</div>
+
+</div>

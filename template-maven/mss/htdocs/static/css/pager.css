@@ -1,0 +1,14 @@
+.page_detail{
+  float:right;
+  width:100%;
+  text-align:right;
+  margin-top:20px;
+  margin-bottom:100px;
+  margin-right:50px;
+}
+.page_detail a{
+ color:#18191a;
+}
+.page_detail a:hover{
+text-decoration: underline;
+}

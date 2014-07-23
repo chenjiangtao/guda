@@ -1,0 +1,16 @@
+#set($layout = "home/layout/regLayout.vm")
+#set($_title="找回密码")
+
+
+
+<div class="container"  style="height:350px;">
+<div class="grid doc">
+	<div class="col-1-6">
+	&nbsp;
+	</div>
+	 <div class="col-4-6">
+	  <p style="font-size:16px;font-weight:bold;">请前往您的注册邮箱$!form.email，按照提示完成密码重置.</p>
+	 
+	 </div>
+</div>
+</div>

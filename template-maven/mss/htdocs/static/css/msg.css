@@ -1,0 +1,60 @@
+.msg-content{
+   border-bottom: 1px dashed  #cfd7f6;
+}
+
+.msg-title{
+  color: #7c7f84;
+}
+.msg-title span{
+   float:right;
+   padding-right:20px;
+}
+.reply-content{
+         color: #e8222b;
+}
+
+.msg-form{
+ float:left;
+ display:inline
+}
+.msg-form label{
+ width:100px;
+ display:inline-block;
+ vertical-align: top;
+}
+.input_text{ 
+background:url(../images/pic_6.jpg) no-repeat 0 0; 
+border:1px solid #e0e0e0;
+width:200px; 
+height:20px; 
+line-height:20px; 
+
+}
+.form-textarea{
+ margin-left:-5px;
+}
+.btn{
+  display:block;
+  line-height:30px;
+   width:90px;
+   background-color:#a90329;
+   color:#fff;
+margin-top:20px;
+  margin-left:120px;
+}
+.btn:hover{
+  display:block;
+  line-height:30px;
+   width:90px;
+       background:#d4214a;
+	color:#fff;
+ margin-left:120px;
+}
+
+.error-li{
+  margin-left:100px;
+
+}
+.error-tips{
+ color:#f90438;
+}

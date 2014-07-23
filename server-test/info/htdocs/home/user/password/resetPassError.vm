@@ -1,0 +1,16 @@
+#set($layout = "home/layout/regLayout.vm")
+#set($_title="重置密码")
+
+
+
+<div class="container"  style="height:350px;">
+<div class="grid doc" >
+	<div class="col-1-6">
+	&nbsp;
+	</div>
+	 <div class="col-4-6">
+	  <p style="font-size:16px;font-weight:bold;color:red;">对不起，找回密码错误,身份验证链接非法或者连接已经过期.</p>
+	 <p style="font-size:14px;font-weight:bold;">您可以点此<a href="$homeServer.getURI("/findPassword.htm")">重新找回您的密码</a></p>
+	 </div>
+</div>
+</div>

@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+
+<head>
+<title>农产品批发市场</title>
+<meta charset="utf-8" />
+<meta name="keywords" content="农产品批发,供应信息网,农业电子商务,三农网站,粮食,植物油,水果,蔬菜,花卉,茶叶,种植,食品,禽养,畜牧,养殖,水产,园林花草,棉麻丝,其他" />
+<meta name="description" content="农贸市场专注于农产品批发,供求信息，专业专注于农业、农民、农村发展！" />
+<meta content="IE=edge" http-equiv="X-UA-Compatible">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+<link href="$homeServer.getURI("/static/css/style.css")" rel="stylesheet" media="screen">
+
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/quick.css")">
+<script src="$homeServer.getURI("/static/js/jquery.min.js")"></script>
+<link rel="shortcut icon" href="$homeServer.getURI("/static/images/favicon.ico")"> 
+<script>
+	var currenthost = "$!homeServer";
+</script>
+
+</head>
+ <body>
+      #parse('home/layout/header.vm')
+      $screen_content
+      #parse('home/layout/footer.vm')
+ </body>
+</html>

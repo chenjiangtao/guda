@@ -1,0 +1,26 @@
+#set($layout = "home/layout/umsLayout.vm")
+
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/taobaoCall.css")" />
+<script type="text/javascript" src="$homeServer.getURI("/static/js/ums/taobaoCall.js")"></script>
+<div class="center-contain">
+<div>
+    <ul id="crumbs">
+	    <li><a href="$homeServer.getURI("/ums/index.htm")">首页</a></li>
+	    <li>服务订阅</li>
+    </ul>
+</div>
+<div style="width:100%;height:600px;">
+<table rules = "all" style="width:100%;float:left;BORDER-COLLAPSE: collapse;align=center" borderColor="#CCCCCC"  cellspacing="0" cellpadding="0"  border=1>
+  <thead>
+    <tr><th width="200px">服务名称</th><th width="100px">当前状态</th><th  width="100px">操作</th><th  >业务说明</th></tr>
+  </thead>
+  <tbody>
+  #foreach($v in $tradeVo)
+  <tr><td>$v.name</td><td  id="${v.code}-state" >#if($v.checked)开通#else关闭#end</td>
+  <td><input type="button" onclick="openService(this)" class="ibutton" id="${v.code}-oper" name="$v.code" value="#if($v.checked)关闭#else开通#end"/></td><td>$v.describe</td></tr>
+  #end
+  </tbody>
+</table>
+
+</div>
+</div>

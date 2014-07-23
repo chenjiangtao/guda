@@ -1,0 +1,84 @@
+.contain-title{  
+  text-align:left;
+  font-weight:bold;
+  font-size:14px;
+  width:100%;
+  margin-left:10px;
+  line-height:40px;
+  
+
+}
+.price-div{
+  padding-top:25px;
+}
+table {
+border-collapse: collapse;
+width: 50em;
+border: 1px solid #666;
+}
+th, td {
+padding: 0.1em 1em;
+} 
+
+.charge-tips{
+  padding-top:5px;
+  text-align:left;
+}
+
+
+.tab-contain{
+  width:430px;
+  margin:0 auto;
+  margin-top:50px;
+  height:auto!important;  
+  height:180px;  
+  min-height:180px;
+  
+}
+.tab-contain span{
+  text-align:left;
+  display:block; 
+  text-indent:1em;
+   font-size:12px;
+   color:#778779;
+}
+.tab-contain ul{
+  margin-left:20px;
+  
+  
+}
+.tab-contain li{
+  padding-top:10px;
+  
+}
+.form-btn{
+  margin-bottom:50px;
+}
+.tab-contain label{
+  display:inline-block;
+  width:100px;
+  text-align:right;
+  font-size:14px;
+  font-weight:bold;
+  margin-left:0px;
+  float:left;
+}
+.msg-contain-right{
+   width:1024px;
+   margin:0 auto;
+   margin-top:30px;
+   height:auto!important;  
+   height:600px;  
+   min-height:600px;  
+}
+.span-tips{
+  padding:30px;
+  font-size:16px;
+  font-weight:bold;
+  color:#0d3015;
+}
+.span-tips a{
+  font-size:18px;
+  font-weight:bold;
+  color:#245c32;
+}

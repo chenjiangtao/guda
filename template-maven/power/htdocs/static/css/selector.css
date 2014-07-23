@@ -1,0 +1,159 @@
+body{
+	margin:0px;
+	padding:0px;
+	height: 540px;
+	width: 760px;
+	overflow: hidden;
+}
+.font_bold_007{
+	font-weight: bold;
+	color: #00764B;
+}
+.btn_green,.btn_gray{
+  font-size:14px;
+  font-weight:bold;
+  color:#00764b;
+  width:58px;
+  height:26px;
+  line-height:26px;
+  text-align:center;
+  border:0;
+  cursor:pointer;
+  }
+.btn_green{
+  background:url(../images/pic_28.jpg) no-repeat 0 0;
+}
+.btn_gray{
+  background:url(../images/pic_30.jpg) no-repeat 0 0;
+}
+.btn_gray:hover,.btn_green:hover{
+  color:#00a86b;
+}
+.main_div {
+	height: 525px;
+	width: 760px;
+	font-size: 12px;
+	overflow: hidden;
+	background-color: #FAFCFC;
+}
+
+.main_head {
+	font-size: 14px;
+	padding-left: 15px;
+	line-height: 36px;
+	width: 100%;
+	margin: 0 auto;
+	background-color: #EEF5F7;
+}
+
+.search_div {
+	line-height: 24px;
+	margin: 0 auto;
+	width: 736px;
+	line-height: 30px;
+}
+
+.selector_div {
+	width: 742px;
+	margin: 0 auto;
+}
+
+.selector_div_sub {
+	width: 230px;
+	float: left;
+	height: 380px;
+	border: 1px solid #D0E4DD;
+}
+
+.selector_div_head {
+	height: 25px;
+	line-height: 25px;
+	background-color: #EEF5F7;
+	padding: 0 5px;
+}
+
+.selector_div_head_left {
+	float: left;
+
+}
+
+.selector_div_head_right {
+	float: right;
+}
+
+.selector_div_head_right a {
+	text-decoration: none;
+}
+
+.selector_div_head_right a:hover {
+	text-decoration: underline;
+}
+
+.selector_div_content {
+	overflow: auto;
+	height: 350px;
+	padding-top: 5px;
+	padding-left: 5px;
+	width: 225px;
+	font-size: 13px;
+	background-color: #FFFFFF;
+}
+
+
+.search_div_sub {
+	width: 480px;
+	float: left;
+	height: 380px;
+	border: 1px solid #D0E4DD;
+}
+
+.search_div_head {
+	height: 25px;
+	line-height: 25px;
+	background-color: #EEF5F7;
+	padding: 0 5px;
+}
+
+.search_div_content {
+	overflow: auto;
+	height: 350px;
+	padding-top: 5px;
+	padding-left: 5px;
+	width: 475px;
+	font-size: 13px;
+	background-color: #FFFFFF;
+}
+
+
+.button_div {
+	margin-top: 20px;
+	text-align: center;
+	line-height: 30px;
+}
+
+.clear {
+	clear: both;
+}
+
+.selector_div ul {
+	margin: 0px;
+	padding: 0px;
+}
+
+#waitul,#readyul li {
+	list-style-position: inside;
+	list-style-type: disc;
+	line-height: 18px;
+	padding-left: 1px;
+	cursor: pointer;
+}
+
+.li_mouse_over {
+	color: #990000;
+	border: 1px dotted #cccccc;
+}
+
+.li_mouse_click {
+	color: #ffffff;
+	background-color: #900d0d;
+}

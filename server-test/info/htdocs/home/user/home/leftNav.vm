@@ -1,0 +1,23 @@
+<div class="col-1-6">
+	              
+	                <nav class="menu-stacked" >
+	                    <ul id="home-left-nav">
+	                        <li id="home-left-home" class="active"><a href="$homeServer.getURI("/home/home.htm")">个人资料</a></li>
+	                        <li id="home-left-info"><a href="$homeServer.getURI("/home/myPub.htm")">我发布的信息</a></li>
+	                        <li id="home-left-pass"><a href="$homeServer.getURI("/home/setPass.htm")">修改登录密码</a></li>
+	                    </ul>
+	                </nav>
+</div>
+
+<script language="javascript">
+	var oul = document.getElementById("home-left-nav").getElementsByTagName("li");
+	for(var i=0,len=oul.length;i<len;++i){
+	   oul[i].className="";
+	}
+	var oli = document.getElementById("$leftMenuId");
+
+	if(oli){
+		oli.className="active";
+	}
+	
+</script>

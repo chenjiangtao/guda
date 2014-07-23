@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<!-- Receiver Service start -->
+	<import resource="classpath:org/codehaus/xfire/spring/xfire.xml" />
+
+
+	<bean id="baseWebService"
+		class="org.codehaus.xfire.spring.remoting.XFireClientFactoryBean"
+		abstract="true">
+		<property name="serviceFactory" ref="xfire.serviceFactory" />
+		<property name="lookupServiceOnStartup" value="true" />
+		<property name="properties">
+			<props>
+				<!-- 等待HttpConnectionManager从连接池中返回空闲连接的超时时间 -->
+				<prop key="http.connection.manager.timeout">1000</prop>
+				<!-- 等待建立连接的超时时间 -->
+				<prop key="http.connection.timeout">3000</prop>
+				<!-- 等待服务器返回数据超时时间 -->
+				<prop key="http.timeout">10000</prop>
+				<!-- 连接到单个服务器的连接数上限 -->
+				<prop key="max.connections.per.host">100</prop>
+				<!-- 连接到所有服务器的连接个数上限 -->
+				<prop key="max.total.connections">100</prop>
+				<prop key="disable-keep-alive">false</prop>
+			</props>
+		</property>
+		<property name="outHandlers">
+			<list>
+				
+				<ref bean="authHandler" />
+			</list>
+		</property>
+	</bean>
+
+	<bean id="msgServiceClient" parent="baseWebService">
+		<property name="serviceClass"
+			value="net.zoneland.ums.service.webservice.MsgService" />
+		<property name="wsdlDocumentUrl"
+			value="http://localhost:8080/ums/services/MsgService?wsdl" />
+		
+	</bean>
+	
+	<bean id="authHandler" class="net.zoneland.ums.service.webservice.test.ClientAuthenticationHandler">
+	   <constructor-arg><value>1001</value></constructor-arg>
+	   <constructor-arg><value>1111</value></constructor-arg>
+		
+	</bean>
+
+	<bean id="domOutHandler" class="org.codehaus.xfire.util.dom.DOMOutHandler" />
+
+
+
+
+
+</beans>

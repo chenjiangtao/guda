@@ -1,0 +1,14 @@
+.new-title{
+  text-align:center;
+  font-size:14px;
+  font-weight:bold;
+  line-height:50px;
+}
+.new-tip{
+  text-align:center;
+  background-color: #e0e3f0;
+}
+.new-content{
+  text-indent:2em;
+   line-height:30px;
+}

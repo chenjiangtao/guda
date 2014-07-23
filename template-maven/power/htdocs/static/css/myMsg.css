@@ -1,0 +1,15 @@
+
+.msgTable{
+	width:98%;
+	background-color:#ccc;
+	margin:15px auto 0 auto;
+}
+.msgTable tr{
+	background-color: #FFFFFF;
+	line-height: 18px;
+}
+.msgTable td{
+	padding:3px;
+}
+
+

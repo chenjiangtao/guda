@@ -1,0 +1,32 @@
+
+#set($HeadMenuId="a_prod")
+#set($leftMenuId="$!{type}")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ada.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/left-nav.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/prod.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/prodDetail.css")" />
+<div class="contain">
+  #parse("home/left-nav.vm")
+  <div class="contain-right">
+     <ul>
+        <li class="banner-mid"><img class="title-bar-img-contain" src="$homeServer.getURI("/static/images/ada/ico-3.png")"/><b>产品中心</b> <span>当前位置: <a href="$homeServer.getURI("/index.htm")">首页</a> &gt; <a href="$homeServer.getURI("/prod/prod.htm")">产品中心</a> &gt; 产品详情</span></li>
+     </ul>
+     <ul>
+     <span class="prod-img">
+       <img class="itemimage-img" src="$homeServer.getURI("upload/$!{prod.img}")" alt="" />
+     </span>
+     <span class="prod-intro">
+      
+         <li>产品名称:$!{prod.name}</li>
+         <li>产品价格: ￥$!{prod.price}</li>
+         #set($newPrice = $!{prod.price}*$!{prod.discount})
+         <li>产品促销价格: ￥$!{newPrice}</li>
+     </span>
+    </ul>
+    <ul>
+      <li class="prod-title">产品详细介绍</li>
+      <li >$!{prod.describ}</li>
+    </ul>
+  </div>
+   
+</div>

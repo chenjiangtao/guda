@@ -1,0 +1,18 @@
+
+#set($HeadMenuId="a_act")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/act.css")" />
+<div class="center-contain">
+<div class="contain">
+
+	<ul>
+	  <li><b class="font16">短信助手可以帮助淘宝卖家轻松促销，发货提醒。</b></li>
+	  <li>1.支持淘宝订单导入联系人。</li>
+	  <li>2.支持短信模版，定制发货提醒通知内容，轻松编辑短信内容。</li>
+	  <li>3.支持群发，定时发送。</li>
+	  <li>4.支持短信签名。</li>
+	  <li>等等，更多功能期待您的发现，同时您也可以向我们提宝贵的意见，我们也会不断改进，完善我们的产品。</li>
+	  <li> 联系QQ：52313882</li>
+	  <li> 联系电话：15558135733</li>
+	</ul>
+</div>
+</div>

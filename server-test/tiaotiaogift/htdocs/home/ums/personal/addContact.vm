@@ -1,0 +1,44 @@
+#set($HeadMenuId="a_personal")
+
+
+#set($layout = "home/layout/umsLayout.vm")
+<script type="text/javascript" src="$homeServer.getURI("/static/js/ums/contact.js")"></script>
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ums-addcontact.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/all.css")" />
+<div class="center-contain">
+
+
+ <div class="contain-tips-right">
+ <div class="contain-title"><a href="$homeServer.getURI("/personal/contact.htm")">我的联系人</a>-&gt;添加联系人</div>
+ <form name="contactForm" id="contactForm" method="post">
+	<table class="contain-tab" cellspacing="1" cellpadding="0" >
+	 <tr><td>联系人姓名:</td><td>
+	 #springBind("contactForm.name" )
+	 <input class="contact_input_text"  type="text" name="${status.expression}" value="$!status.value"/>
+	 </td></tr>
+	 <tr><td>&nbsp;</td><td>
+	<p class="error-span">
+	#foreach($error in $status.errorMessages)
+			<b>$error</b>
+	  #end
+	  </p>
+    </td>
+	</tr>
+	 <tr><td>联系人电话:</td><td>
+	 #springBind("contactForm.phone" )
+	 <input class="contact_input_text" type="text" name="${status.expression}" value="$!status.value"/></td></tr>
+	 <tr><td>&nbsp;</td><td>
+	<p class="error-span">
+	#foreach($error in $status.errorMessages)
+			<b>$error</b>
+	  #end
+	  </p>
+    </td>
+	</tr>
+	 <tr><td colspan="2"><a id="form-submit" class="do-btn" href="#">保存</a></td></tr>
+	 </table>
+	</form>	
+  </div>
+
+  </div>
+</div>

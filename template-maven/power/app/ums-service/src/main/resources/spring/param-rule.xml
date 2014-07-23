@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rule>
+	<request code="1001">
+	   <entry name="subType" length="2" />
+	   <entry name="appId" length="12" notNull="true"/>
+	   <entry name="password" length="20" notNull="true"/>
+	</request>
+	<request code="1003">
+	   <entry name="subType" length="2" />
+	</request>
+	<request code="1004">
+	   <entry name="subType" length="2" />
+	   <entry name="appId" length="12" notNull="true"/>
+	</request>
+	<request code="1005">
+	   <entry name="subType" length="2" />
+	   <entry name="batchNo" length="14" />
+	   <entry name="serialNo" length="8" />
+	</request>
+	<request code="3004">
+	   <entry name="subType" length="2" />
+	   <entry name="appId" length="12" notNull="true"/>
+	   <entry name="subAppId" length="3" />
+	</request>
+	<request code="3012">
+	   <entry name="subType" length="2" />
+	   <entry name="appId" length="12" notNull="true"/>
+	</request>
+	<request code="1002">
+	   <entry name="subType" length="2" />
+	   <entry name="appId" length="12" notNull="true"/>
+	   <entry name="id" length="35" />
+	   <entry name="msgType" length="3" />
+	   <entry name="umsTo" length="255" notNull="true"/>
+	   <entry name="msg" length="160" notNull="true"/>
+	   <entry name="ack" length="1" />
+	   <entry name="reply" length="30" />
+	   <entry name="priority" length="2" />
+	   <entry name="rep" length="2" />
+	</request>
+	
+	<request code="3002">
+	   <entry name="subType" length="2" />
+	   <entry name="appId" length="12" notNull="true"/>
+	   <entry name="id" length="35" />
+	   <entry name="msgType" length="3" />
+	   <entry name="umsTo" length="255" notNull="true"/>
+	   <entry name="msg" length="280" />
+	   <entry name="ack" length="1" />
+	   <entry name="reply" length="30" />
+	   <entry name="priority" length="2" />
+	   <entry name="rep" length="2" />
+	   <entry name="subAppId" length="3" />
+	</request>
+	
+	<request code="2002">
+	   <entry name="subType" length="2" />
+	   <entry name="appId" length="12" notNull="true"/>
+	   <entry name="id" length="35" />
+	   <entry name="msgType" length="3" />
+	   <entry name="umsTo" length="255" notNull="true"/>
+	   <entry name="msg" length="150" notNull="true" />
+	   <entry name="ack" length="1" />
+	   <entry name="reply" length="30" />
+	   <entry name="priority" length="2" />
+	   <entry name="rep" length="2" />
+	</request>
+	
+	<request code="3011">
+	   <entry name="subType" length="2" />
+	   <entry name="appId" length="12" notNull="true"/>
+	   <entry name="id" length="35" />
+	   <entry name="msgType" length="3" />
+	   <entry name="umsTo" length="255" notNull="true"/>
+	   <entry name="ack" length="1" />
+	   <entry name="reply" length="30" />
+	   <entry name="priority" length="2" />
+	   <entry name="rep" length="2" />
+	   <entry name="subAppId" length="3" />
+	   <entry name="checkFlag" length="2" />
+	   <entry name="msg" length="2048" notNull="true"/>
+	</request>
+</rule>

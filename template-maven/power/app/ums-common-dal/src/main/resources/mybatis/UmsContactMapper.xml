@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.zoneland.ums.common.dal.UmsContactMapper" >
+  <resultMap id="BaseResultMap" type="net.zoneland.ums.common.dal.dataobject.UmsContact" >
+    <id column="ID" property="id" jdbcType="VARCHAR" />
+    <result column="USER_NAME" property="userName" jdbcType="VARCHAR" />
+    <result column="PHONE" property="phone" jdbcType="VARCHAR" />
+    <result column="EMAIL" property="email" jdbcType="VARCHAR" />
+    <result column="GMT_CREATED" property="gmtCreated" jdbcType="TIMESTAMP" />
+    <result column="USER_ID" property="userId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    ID, USER_NAME, PHONE, EMAIL, GMT_CREATED, USER_ID
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from UMS_CONTACT
+    where ID = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from UMS_CONTACT
+    where ID = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="net.zoneland.ums.common.dal.dataobject.UmsContact" >
+    insert into UMS_CONTACT (ID, USER_NAME, PHONE, 
+      EMAIL, GMT_CREATED, USER_ID
+      )
+    values (#{id,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{gmtCreated,jdbcType=TIMESTAMP}, #{userId,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="net.zoneland.ums.common.dal.dataobject.UmsContact" >
+    insert into UMS_CONTACT
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ID,
+      </if>
+      <if test="userName != null" >
+        USER_NAME,
+      </if>
+      <if test="phone != null" >
+        PHONE,
+      </if>
+      <if test="email != null" >
+        EMAIL,
+      </if>
+      <if test="gmtCreated != null" >
+        GMT_CREATED,
+      </if>
+      <if test="userId != null" >
+        USER_ID,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null" >
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="net.zoneland.ums.common.dal.dataobject.UmsContact" >
+    update UMS_CONTACT
+    <set >
+      <if test="userName != null" >
+        USER_NAME = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        PHONE = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        EMAIL = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null" >
+        GMT_CREATED = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="userId != null" >
+        USER_ID = #{userId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.zoneland.ums.common.dal.dataobject.UmsContact" >
+    update UMS_CONTACT
+    set USER_NAME = #{userName,jdbcType=VARCHAR},
+      PHONE = #{phone,jdbcType=VARCHAR},
+      EMAIL = #{email,jdbcType=VARCHAR},
+      GMT_CREATED = #{gmtCreated,jdbcType=TIMESTAMP},
+      USER_ID = #{userId,jdbcType=VARCHAR}
+    where ID = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="searchAllNum" parameterType="net.zoneland.ums.common.dal.dataobject.UmsContact"
+	resultType="java.lang.Integer">
+	SELECT count(ID) from UMS_CONTACT
+	<where>
+		1=1
+		<if test="userId != null">
+			AND USER_ID = #{userId,jdbcType=VARCHAR}
+		</if>
+		<if test="userName != null">
+			AND USER_NAME like '%'||#{userName,jdbcType=VARCHAR}||'%'
+		</if>
+		<if test="phone != null">
+			AND PHONE like '%'||#{phone,jdbcType=VARCHAR}||'%'
+		</if>
+		<if test="email != null">
+			AND EMAIL like '%'||#{email,jdbcType=VARCHAR}||'%'
+		</if>
+	</where>
+</select>
+
+
+  <select id="searchMyContactByPage" parameterType="net.zoneland.ums.common.dal.util.PageSearch" resultMap="BaseResultMap">
+  	SELECT  <include refid="Base_Column_List"/>
+    		 from UMS_CONTACT
+			<where>
+			    1=1
+				<if test="searchObj.userId != null">
+			         AND USER_ID = #{searchObj.userId,jdbcType=VARCHAR}
+			    </if>
+				<if test="searchObj.userName != null">
+					 AND USER_NAME like '%'||#{searchObj.userName,jdbcType=VARCHAR}||'%'
+				</if>
+				<if test="searchObj.phone != null">
+					 AND PHONE like '%'||#{searchObj.phone,jdbcType=VARCHAR}||'%'
+				</if>
+				<if test="searchObj.email != null">
+					 AND EMAIL like '%'||#{searchObj.email,jdbcType=VARCHAR}||'%'
+				</if>
+	     	    <if test="searchObj.orderBy != null">
+	       			order by ${searchObj.orderBy}   ${searchObj.orderbyType}
+	      		</if>
+	       </where>
+		 limit #{recordFirst} , 10
+   </select>
+   
+   <select id="searchByUserIdAndPhone" parameterType="java.util.Map" resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column_List" />
+		FROM
+		UMS_CONTACT
+		<where>
+		1=1
+		<if test="userId != null">
+			AND USER_ID = #{userId,jdbcType=VARCHAR}
+		</if>
+		<if test="phone != null">
+			AND PHONE = #{phone,jdbcType=VARCHAR}
+		</if>
+	</where>
+   </select>
+   
+   <select id="searchByUserId" parameterType="java.lang.String" resultMap="BaseResultMap">
+		SELECT 
+		<include refid="Base_Column_List" />
+		FROM
+		UMS_CONTACT 
+		where USER_ID = #{userId}
+		order by GMT_CREATED DESC
+   </select>
+   
+   <!-- 通过联系人名字模糊查找联系人 只查找前50条 供选择收件人使用 -->
+
+  <select id="getContactsByUserName" resultMap="BaseResultMap" parameterType="java.lang.String">
+    select
+    <include refid="Base_Column_List" />
+    from UMS_CONTACT
+    where USER_NAME like '%'||#{userName}||'%'
+    AND USER_ID = #{userId,jdbcType=CHAR}
+    limit 50 
+  </select>
+  
+  <!-- 根据联系人姓名模糊查询当前用户的联系人手机号 -->
+
+  <select id="getMyContactsByUserName" resultType="java.lang.String" parameterType="java.lang.String">
+    select PHONE
+    from UMS_CONTACT
+    where USER_NAME like '%'||#{userName}||'%' AND USER_ID = #{userId,jdbcType=CHAR}
+  </select>
+</mapper>

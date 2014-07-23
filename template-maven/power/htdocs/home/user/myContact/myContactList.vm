@@ -1,0 +1,155 @@
+<script type="text/javascript" src="$umsServer.getURI("/static/js/myContact/myContact.js")"></script>
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/myContact.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/checkutil.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/table.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/targetPage.js")"></script>
+
+<div id="bd">
+	#set($HeadMenuId="personal_header")
+	#set($sideMenuId="contact_side_bar")
+	#parse("/home/user/userSideBar.vm")
+	#set($searchUrl = $umsServer.getURI("/user/myContact.htm"))
+	#set($param = "searchUserName=$!myContactForm.searchUserName&searchPhone=$!myContactForm.searchPhone&searchEmail=$!myContactForm.searchEmail")
+	<input style="width:50%;" type="hidden" id="param"  name="param" value="$param"/>
+	<input style="width:50%;" type="hidden" id="searchUrl"  name="searchUrl" value="$searchUrl"/>
+	<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c">	
+			<div style="margin:0px auto 5px auto;"><span><a id="span_add_btn" class="btn green">添加联系人</a></span></div>
+			<div style="color:red;margin-left:5px"><font class="bold fs14">
+				$!msg
+			</font></div>
+			<form action="$searchUrl" method="post" id="contactSearchForm">
+                <div class="searchArea">
+					<table border="0" cellpadding="0" cellspacing="1">
+						<tr>
+							<td width="17%" align="right">
+								<span class="bold fs14 c_007">联系人姓名：</span>
+							</td>
+							<td width="33%">
+								<input id="searchUserName" title="请输入联系人姓名" autocomplete="off" class="inputBox" maxlength="40" type="text" name="searchUserName" value="$!myContactForm.searchUserName" onkeydown="javascript:var val = this.value;if(val.length>50){this.value=val.substring(0,50)}"/>
+							</td>
+							<td width="17%" align="right">			
+								<span class="bold fs14 c_007">联系人手机号：</span>
+							</td>
+							<td width="33%">
+								<input id="searchPhone" title="请输入联系人手机号" autocomplete="off" class="inputBox" maxLength="40" type="text" name="searchPhone" value="$!myContactForm.searchPhone" onkeydown="javascript:var val = this.value;if(val.length>30){this.value=val.substring(0,30)}"/>
+							</td>
+						</tr>
+						<tr>
+							<td width="17%" align="right">
+								<span class="bold fs14 c_007">联系人邮箱：</span>
+							</td>
+							<td width="33%">
+								<input id="searchEmail" title="请输入联系人邮箱" autocomplete="off" class="inputBox" maxLength="50" type="text" name="searchEmail" value="$!myContactForm.searchEmail" onkeydown="javascript:var val = this.value;if(val.length>50){this.value=val.substring(0,50)}"/>
+							</td>
+							<td colspan="3">
+								<input type="submit" id="searchLog_sbtn" class="btn_green_search_form" value="查询" />
+							</td>
+						</tr>
+					</table>
+                </div>
+			
+			<div class="tableContainer">
+    			<div id="scrollContentContainer" class="scrollContentContainer">
+    				<table class="scrollContent" cellspacing="1" cellpadding="0" width="100%">
+    					<thead >
+							<tr>
+    						  <td width="5%">序号</td>
+    				          <td width="20%">联系人姓名</td>
+    				          <td width="20%">联系人手机号</td>
+    				          <td width="20%">联系人邮箱</td>
+    				          <td width="20%">最近操作时间</td>
+    				          <td width="15%">操作</td>
+    			            </tr>
+                        </thead>
+						<tbody class="tb">
+    					#foreach($var in $result.results)
+    						<tr>
+    						  <td width="5%" style="text-align:center;">$velocityCount</td>
+    				          <td width="20%" id="name$!var.id" title="$!var.userName">$!var.userName</td>
+    				          <td width="20%" id="phone$!var.id" title="$!var.phone">$!var.phone</td>
+    				          <td width="20%" id="email$!var.id" title="$!var.email">$!var.email</td>
+							  <td width="20%" title="$!date.format('yyyy-MM-dd HH:mm:ss',$!var.gmtCreated)">$!date.format('yyyy-MM-dd HH:mm:ss',$!var.gmtCreated)</td>
+    				          <td width="15%" style="text-align:center;">
+    				            <a class="a_green_form_ddl" href="#" onclick="updateMyContact('$!var.id')">编辑</a>
+								<a class="a_green_form_ddl" href="javascript:confirmTool('/user/delContact.htm?id=$!var.id&pageId=$!result.curPage&$!param','确认删除该联系人？')">删除</a>
+							  </td>
+    				         </tr>
+    						#end
+						</tbody>
+    				</table>
+    			</div>
+    		</div>
+			#noRecord($result)
+			#if($!result.totalPage > 0)
+    		<div class="btnArea clearfix" >
+    			<div class="page_detail">
+    				#if($!result.curPage != 1)
+						<a class="a_green_form_ddl" href="$searchUrl?$!param"><span>首页</span></a>
+					   #set($tempPage = $!result.curPage - 1)
+					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$tempPage&$!param"><span>上一页</span></a>
+				   #end
+				   #if($!result.curPage < $!result.totalPage)
+					   #set($tempPage = $!result.curPage + 1)
+					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$tempPage&$!param"><span>下一页</span></a>
+					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$!result.totalPage&$!param"><span>尾页</span></a>
+				   #end
+				    <span class="pager_info">当前第 <input id="targetNum" name="pageId" class="pager_inputBox" value="$!result.curPage" autocomplete="off"/>页  </span>				   
+				   <span id="targetBtn" class="a_green_form_ddl" style="cursor: pointer;">跳转</span>
+				   <span>共$!result.totalPage页 共$!result.total条记录</span>
+                </div>
+            </div>
+            #end
+			
+		</form>
+		</div>
+		<div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>
+
+
+<div id="mask" style="display:none;"></div>
+<div id="memberContainer" style="display:none;">
+	<div class="title"><span id="contactTitle" >添加联系人</span >&nbsp&nbsp<span id="existMessage" style="color:red;"></span></div>
+	<form id="myContactForm" name="myContactForm" action="$umsServer.getURI("/user/addOrUpdateContact.htm")" method="post">
+	<input id="id" type="hidden" name="id"/>
+	<input id="contactUserName" type="hidden" name="searchUserName"/>
+	<input id="contactPhone" type="hidden" name="searchPhone"/>
+	<input id="contactEmail" type="hidden" name="searchEmail"/>
+	<table border="0">
+		<tr>
+            <td align="right"><span class="bold fs14 c_007" width="20%">姓名：</span></td>
+			<td width="35%" >
+				<input type="text" class="inputBox_sub" id="userName" name="userName" autocomplete="off"/>
+			</td>
+			<td width="275px;"><span class="tipMsg" id="nameMsg">名称长度不能超过12位(中文占3位,其他占1位)</span></td>
+		</tr>
+		<tr id="memberDescTr">
+            <td align="right"><span class="bold fs14 c_007"><span class="red">*</span>手机号码：</span></td>
+			<td>
+				<input type="text" class="inputBox_sub" id="phone" name="phone" autocomplete="off"/>
+			</td>
+			<td width="275px;"><span class="tipMsg" id="phoneMsg">请输入正确格式的手机号</span></td>
+		</tr>
+		<tr id="memberDescTr">
+            <td align="right"><span class="bold fs14 c_007">电子邮箱：</span></td>
+			<td>
+				<input type="text" class="inputBox_sub" id="email" name="email" autocomplete="off"/>
+			</td>
+			<td width="275px;"><span class="tipMsg" id="emailMsg">请输入正确格式的电子邮箱</span></td>
+		</tr>
+		<tr style="height:45px;">
+			<td>&nbsp;</td>
+			<td colspan="2" ><input type="button" id="span_addContact_btn" class="btn_green" value="保存" />
+				<input type="button" id="span_close_btn" class="btn_green" value="取消" />
+			</td>
+		</tr>
+	</table>
+	</form>
+</div>

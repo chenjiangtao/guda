@@ -1,0 +1,9 @@
+#set($headMenuId="header_sys")
+#parse("home/sysLeftBar.vm")
+
+<div data-options="region:'center',title:'密码修改成功'"  >
+<div class="search-form">
+  <b style="color:green;"> 密码修改成功.</b>
+</div>
+
+</div>

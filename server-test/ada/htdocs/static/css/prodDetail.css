@@ -1,0 +1,13 @@
+.prod-img{
+  width:300px;
+}
+.prod-intro{
+  width:550px;
+  float:right;
+    margin-top:30px;
+    line-height:40px;
+}
+.prod-title{
+  background-color: #dee8f5;
+  font-weight:bold;
+}

@@ -1,0 +1,13 @@
+.contain{
+  margin:0 auto;
+	width:1022px;
+	border: 1px solid #c5e6c7; 
+	text-align:left;
+	padding:5px;
+}
+
+.contain-body{
+text-indent:2em;
+padding:5px;
+line-height:25px;
+}

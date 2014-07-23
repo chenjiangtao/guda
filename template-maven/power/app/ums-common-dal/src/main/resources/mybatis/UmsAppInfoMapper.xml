@@ -1,0 +1,367 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.zoneland.ums.common.dal.UmsAppInfoMapper">
+	<resultMap id="BaseResultMap"
+		type="net.zoneland.ums.common.dal.dataobject.UmsAppInfo">
+		<id column="ID" property="id" jdbcType="CHAR" />
+		<result column="APP_ID" property="appId" jdbcType="CHAR" />
+		<result column="APP_NAME" property="appName" jdbcType="CHAR" />
+		<result column="APP_CODE" property="appCode" jdbcType="CHAR" />
+		<result column="IP" property="ip" jdbcType="VARCHAR" />
+		<result column="PORT" property="port" jdbcType="VARCHAR" />
+		<result column="USERNAME" property="username" jdbcType="VARCHAR" />
+		<result column="PASSWORD" property="password" jdbcType="VARCHAR" />
+		<result column="FLOW_DAY" property="flowDay" jdbcType="INTEGER" />
+		<result column="FLOW_MONTH" property="flowMonth" jdbcType="INTEGER" />
+		<result column="PRIORITY" property="priority" jdbcType="INTEGER" />
+		<result column="FEE" property="fee" jdbcType="INTEGER" />
+		<result column="FEE_TYPE" property="feeType" jdbcType="INTEGER" />
+		<result column="SIGN_NAME" property="signName" jdbcType="VARCHAR" />
+		<result column="STATUS" property="status" jdbcType="CHAR" />
+		<result column="EMAIL_MD5" property="emailMd5" jdbcType="VARCHAR" />
+		<result column="IS_OUT_PROV" property="isOutProv" jdbcType="VARCHAR" />
+		<result column="GMT_CREATED" property="gmtCreated" jdbcType="TIMESTAMP" />
+		<result column="GMT_MODIFIED" property="gmtModified" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, APP_ID, APP_NAME, APP_CODE, IP, PORT, USERNAME, PASSWORD, FLOW_DAY,
+		FLOW_MONTH,EMAIL_MD5,
+		PRIORITY, FEE, FEE_TYPE, SIGN_NAME, STATUS, GMT_CREATED, GMT_MODIFIED,IS_OUT_PROV
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+		select
+		<include refid="Base_Column_List" />
+		from UMS_APP_INFO
+		where ID = #{id,jdbcType=CHAR}
+	</select>
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+
+		delete from UMS_APP_INFO
+		where ID = #{id,jdbcType=CHAR}
+	</delete>
+	<insert id="insert" parameterType="net.zoneland.ums.common.dal.dataobject.UmsAppInfo">
+
+		insert into UMS_APP_INFO (ID, APP_ID, APP_NAME, APP_CODE,
+		IP, PORT, USERNAME,
+		PASSWORD, FLOW_DAY, FLOW_MONTH,
+		PRIORITY, FEE, FEE_TYPE,
+		SIGN_NAME, STATUS,IS_OUT_PROV, GMT_CREATED,
+		GMT_MODIFIED)
+		values (#{id,jdbcType=CHAR}, #{appId,jdbcType=CHAR},
+		#{appName,jdbcType=CHAR}, #{appCode,jdbcType=CHAR},
+		#{ip,jdbcType=VARCHAR}, #{port,jdbcType=VARCHAR},
+		#{username,jdbcType=VARCHAR},
+		#{password,jdbcType=VARCHAR}, #{flowDay,jdbcType=INTEGER}, #{flowMonth,jdbcType=INTEGER},
+		#{priority,jdbcType=INTEGER}, #{fee,jdbcType=INTEGER},
+		#{feeType,jdbcType=INTEGER},
+		#{signName,jdbcType=VARCHAR}, #{status,jdbcType=CHAR}, #{isOutProv,jdbcType=VARCHAR},#{gmtCreated,jdbcType=TIMESTAMP},
+		#{gmtModified,jdbcType=TIMESTAMP})
+	</insert>
+
+	<update id="updateByPrimaryKeySelective" parameterType="net.zoneland.ums.common.dal.dataobject.UmsAppInfo">
+
+		update UMS_APP_INFO
+		<set>
+			<if test="appId != null">
+				APP_ID = #{appId,jdbcType=CHAR},
+			</if>
+			<if test="appName != null">
+				APP_NAME = #{appName,jdbcType=CHAR},
+			</if>
+			<if test="appCode != null">
+				APP_CODE = #{appCode,jdbcType=CHAR},
+			</if>
+			<if test="ip != null">
+				IP = #{ip,jdbcType=VARCHAR},
+			</if>
+			<if test="port != null">
+				PORT = #{port,jdbcType=VARCHAR},
+			</if>
+			<if test="username != null">
+				USERNAME = #{username,jdbcType=VARCHAR},
+			</if>
+			<if test="password != null">
+				PASSWORD = #{password,jdbcType=VARCHAR},
+			</if>
+			<if test="flowDay != null">
+				FLOW_DAY = #{flowDay,jdbcType=INTEGER},
+			</if>
+			<if test="flowMonth != null">
+				FLOW_MONTH = #{flowMonth,jdbcType=INTEGER},
+			</if>
+			<if test="priority != null">
+				PRIORITY = #{priority,jdbcType=INTEGER},
+			</if>
+			<if test="fee != null">
+				FEE = #{fee,jdbcType=INTEGER},
+			</if>
+			<if test="feeType != null">
+				FEE_TYPE = #{feeType,jdbcType=INTEGER},
+			</if>
+			<if test="signName != null">
+				SIGN_NAME = #{signName,jdbcType=VARCHAR},
+			</if>
+			<if test="status != null">
+				STATUS = #{status,jdbcType=CHAR},
+			</if>
+			<if test="isOutProv != null">
+				IS_OUT_PROV = #{isOutProv,jdbcType=CHAR},
+			</if>
+			<if test="gmtCreated != null">
+				GMT_CREATED = #{gmtCreated,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+		</set>
+		where ID = #{id,jdbcType=CHAR}
+	</update>
+
+	<update id="updateByPrimaryKey" parameterType="net.zoneland.ums.common.dal.dataobject.UmsAppInfo">
+		update UMS_APP_INFO
+		set APP_ID = #{appId,jdbcType=CHAR},
+		APP_NAME = #{appName,jdbcType=CHAR},
+		APP_CODE = #{appCode,jdbcType=CHAR},
+		IP = #{ip,jdbcType=VARCHAR},
+		PORT = #{port,jdbcType=VARCHAR},
+		USERNAME = #{username,jdbcType=VARCHAR},
+		PASSWORD = #{password,jdbcType=VARCHAR},
+		FLOW_DAY = #{flowDay,jdbcType=INTEGER},
+		FLOW_MONTH = #{flowMonth,jdbcType=INTEGER},
+		PRIORITY = #{priority,jdbcType=INTEGER},
+		FEE = #{fee,jdbcType=INTEGER},
+		FEE_TYPE = #{feeType,jdbcType=INTEGER},
+		SIGN_NAME = #{signName,jdbcType=VARCHAR},
+		GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+		IS_OUT_PROV = #{isOutProv,jdbcType=VARCHAR}
+		where ID = #{id,jdbcType=CHAR}
+	</update>
+
+	<select id="searchAllNum" parameterType="net.zoneland.ums.common.dal.dataobject.UmsAppInfo"
+		resultType="java.lang.Integer">
+		SELECT count(ID) from UMS_APP_INFO
+		<where>
+			1 = 1
+			<if test="appName != null">
+				AND APP_NAME like '%'||#{appName}||'%'
+			</if>
+			<if test="appId != null">
+				AND APP_ID = #{appId}
+			</if>
+			<if test="appCode != null">
+				AND APP_CODE like '%'||#{appCode}||'%'
+			</if>
+			<if test="status != null">
+				AND STATUS = #{status}
+			</if>
+		</where>
+	</select>
+
+	<select id="searchAllApp" resultType="java.lang.Integer">
+		SELECT count(ID) from UMS_APP_INFO
+		WHERE
+		<foreach item="item" index="index" collection="appIdList"
+			open="(" separator="OR" close=")">
+			ID = #{item}
+		</foreach>
+		<if test="appName != null">
+			AND APP_NAME like '%'||#{appName}||'%'
+		</if>
+		<if test="appId != null">
+			AND APP_ID = #{appId}
+		</if>
+		<if test="appCode != null">
+			AND APP_CODE like '%'||#{appCode}||'%'
+		</if>
+		<if test="status != null">
+			AND STATUS = #{status}
+		</if>
+	</select>
+
+	<select id="getAppNum" resultType="java.lang.Integer">
+		SELECT count(ID) from UMS_APP_INFO
+		WHERE APP_ID != '0'
+		<if test="appName != null">
+			AND APP_NAME like '%'||#{appName}||'%'
+		</if>
+		<if test="appId != null">
+			AND APP_ID like '%'||#{appId}||'%'
+		</if>
+		<if test="status != null">
+			AND STATUS = #{status}
+		</if>
+	</select>
+
+	<select id="searchSelectiveByPage" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		from UMS_APP_INFO
+		WHERE 
+		<foreach item="item" index="index" collection="appIdList"
+			open="(" separator="OR" close=")">
+			ID = #{item}
+		</foreach>
+		<if test="appName!=null">
+			AND APP_NAME like '%'||#{appName}||'%'
+		</if>
+		<if test="appId != null">
+			AND APP_ID = #{appId}
+		</if>
+		<if test="appCode!=null">
+			AND APP_CODE like '%'||#{appCode}||'%'
+		</if>
+		<if test="status!=null">
+			AND STATUS = #{status}
+		</if>
+		 <if test="orderBy != null">
+		       		order by ${orderBy} desc
+		 </if>
+		limit #{first} ,10
+	</select>
+
+	<select id="searchAppByPage" resultMap="BaseResultMap">
+		 SELECT
+		<include refid="Base_Column_List" />
+		from UMS_APP_INFO
+		WHERE APP_ID != '0'
+		<if test="appName!=null">
+			AND APP_NAME like '%'||#{appName}||'%'
+		</if>
+
+		<if test="appId!=null">
+			AND APP_ID like '%'||#{appId}||'%'
+		</if>
+		<if test="status!=null">
+			AND STATUS = #{status}
+		</if>
+		 order by GMT_MODIFIED desc
+		limit #{first} , 10
+	</select>
+
+	<select id="selectAll" resultMap="BaseResultMap">
+		select
+		ID,APP_ID,APP_NAME
+		from UMS_APP_INFO
+		order by GMT_MODIFIED desc
+	</select>
+
+	<select id="selectByAppId" resultMap="BaseResultMap" >
+		select
+		<include refid="Base_Column_List" />
+		from UMS_APP_INFO
+		WHERE ID = #{id}
+	</select>
+
+	<select id="selectWithAppIdPassword" resultType="java.lang.Integer">
+		select
+		count(*)
+		from UMS_APP_INFO
+		where APP_ID=#{appId} AND PASSWORD = #{password}
+	</select>
+	<select id="getAppNameByAppId" resultType="java.lang.String">
+		select
+		APP_NAME
+		from UMS_APP_INFO
+		where APP_ID=#{appId}
+	</select>
+	
+	<select id="getAppIdByAppName" resultType="java.lang.String">
+		select
+		APP_ID
+		from UMS_APP_INFO
+		where APP_NAME like '%'||#{appName}||'%'
+	</select>
+	<select id="selectAppLikeName" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		from UMS_APP_INFO
+		WHERE
+		APP_NAME like '%'||#{appName}||'%'
+		<if test="appIdList!=null">
+			AND 
+			<foreach item="item" index="index" collection="appIdList"
+				open="(" separator="OR" close=")">
+				ID = #{item}
+			</foreach>
+		</if>
+
+		limit 1 , 10
+	</select>
+
+	<select id="selectAppByAppId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from UMS_APP_INFO
+		WHERE APP_ID=#{appId}
+	</select>
+	
+	<select id="selectValidAppByAppId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from UMS_APP_INFO
+		WHERE APP_ID=#{appId}
+		<if test="status != null">
+				AND STATUS = #{status}
+		</if>
+	</select>
+
+	<update id="updateFlow" parameterType="net.zoneland.ums.common.dal.dataobject.UmsAppInfo">
+	update UMS_APP_INFO
+		<set>
+			FLOW_DAY = #{flowDay,jdbcType=INTEGER},
+			FLOW_MONTH = #{flowMonth,jdbcType=INTEGER},
+			GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+		</set>
+		where ID = #{id,jdbcType=CHAR}
+	</update>
+
+	<update id="updateStatus" parameterType="java.util.Map">
+		update UMS_APP_INFO
+		<set>
+			STATUS = #{status,jdbcType=INTEGER},
+			GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+		</set>
+		where ID = #{id,jdbcType=CHAR}
+		</update>
+		
+	<select id="getAppByNameAndAppId" resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from UMS_APP_INFO	
+		<where>
+		<if test="appName == null">
+			OR 1 = 1
+		</if>
+		<if test="appName != null">
+			OR APP_NAME like '%'||#{appName}||'%'
+		</if>
+		<if test="appId != null">
+			OR APP_ID like '%'||#{appId}||'%'
+		</if>
+		limit 100 
+		</where> 	
+	</select>
+	
+	<select id="getAppAdminAppsByName" resultMap="BaseResultMap">
+		select * FROM
+		(
+		select
+		<include refid="Base_Column_List" />
+		from UMS_APP_INFO
+		WHERE ID=#{id}
+		)
+		<where>
+		<if test="appName == null">
+			OR 1 = 1
+		</if>
+		<if test="appName != null">
+			OR APP_NAME like '%'||#{appName}||'%'
+		</if>
+		<if test="appId != null">
+			OR APP_ID like '%'||#{appId}||'%'
+		</if>
+		</where> 	
+	</select>
+
+</mapper>

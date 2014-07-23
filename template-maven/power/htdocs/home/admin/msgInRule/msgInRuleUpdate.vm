@@ -1,0 +1,77 @@
+<link href="$umsServer.getURI("/static/css/admin/msgInRule.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/checkutil.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/msgInRule.js")"></script>
+
+<div id="bd">
+#set($HeadMenuId="system_header")
+#set($sideMenuId="msgIn_rule_side_bar")
+#parse("/home/admin/adminSideBar.vm")
+    <div id="pRight">
+        <div class="rounded_top">
+            <span class="lt_top"></span>
+            <span class="rt_top"></span>
+        </div>
+        <div class="pRight_c">
+        <div id="writeEmail" style="height:400px;background-color:#fafcfc;">
+				 <div class="btnArea clearfix">
+								&nbsp;&nbsp;<a class="bold fs14 c_007" href="$umsServer.getURI("/admin/msgInRule/list.htm").addQueryData("ruleId","$!result.id").addQueryData("pageId","$!pageId")">上行规则维护</a><a class="fs14bold c_008">-&gt;修改上行规则</a>
+				</div>
+            <div id="messageForm_div" >
+				<form name="msgInRuleForm" action="$umsServer.getURI("/admin/msgInRule/update.htm")" id="msgIn_rule_form_id" method="post" >
+					#if($!msg)<div style="color:red;margin-left:2%"><font class="bold fs14"> $!msg</font> </div> #end
+					#if($!errorMsg)<div style="color:red;margin-left:2%"><font class="bold fs14"> $!errorMsg</font> </div> #end
+					#springBind("msgInRuleForm.id")
+					<input name="${status.expression}" value="$!status.value" style="display:none;"/>
+					<ul class="form clearfix" style="padding:2%;margin-top:20px;">
+						<li><label class="bold fs14 c_007"><span class="red">*</span>选择应用:</label>	
+								#springBind("msgInRuleForm.appId")		
+								<select name="appId" id="appInfo" class="status" style="width:290px;" onmousemove="showTitle(this[this.selectedIndex]);">
+        							<option value=""> 请选择 </option>
+									#foreach($app in $apps)	
+									#if($app.appId == $!status.value)				
+									<option selected="selected" value="$!app.appId">$!app.appName ($!app.appId)</option>
+									#else
+									<option value="$!app.appId">$!app.appName ($!app.appId)</option>
+									#end
+									#end
+								</select>
+							#foreach($error in $status.errorMessages) <span style="color:red;" class="bold">$error</span>#end
+								<span style="color:red;display:none;" class="bold" id="appInfoCheck">请选择应用</span>
+						</li>
+						<li>
+							<label class="bold fs14 c_007">选择子应用:</label>
+								#springBind("msgInRuleForm.subAppId")
+								<select name="subApp" id="subAppInfo" class="status" style="width:290px;" onmousemove="showSubTitle(this[this.selectedIndex]);">
+        							<option value=""> 请选择 </option>
+									#foreach($subApp in $subApps)	
+									#if($subApp.appSubId == $!status.value)				
+									<option selected="selected" value="$!subApp.appSubId">$!subApp.appSubName ($!subApp.appSubId)</option>
+									#else
+									<option value="$!subApp.appSubId">$!subApp.appSubName ($!subApp.appSubId)</option>
+									#end
+									#end
+								</select>
+						</li>
+						<li>
+							#springBind("msgInRuleForm.word")
+							<label class="bold fs14 c_007"><span class="red">*</span>内容关键字:</label>
+							<textarea id="word" onblur="checkWord()" style="font:13px Verdana, Geneva, sans-serif;width:280px;height:71px;" maxlength="1000" class="inputBox w50 h100 fs13" name="${status.expression}" onkeydown="javascript:var val = this.value;if(val.length>80){this.value=val.substring(0,1000)}">$!status.value</textarea>
+							#foreach($error in $status.errorMessages) <span style="color:red;" class="bold fs13" id="wordErrorTips">$error</span>#end
+							<span style="color:red;display:none;" class="bold" id="wordNotEmptyTips">内容关键字不能为空</span>
+							<span style="color:red;display:none;" class="bold" id="wordMaxLengthTips">内容关键字长度不能大于60个字符(20个汉字)</span>
+							<span style="color:red;display:none;" class="bold" id="wordErrorMsg">$!errorMsg</span>
+						</li>
+						<li>
+							<span style="margin-left:17%;">注：内容关键字长度不能大于60个字符(20个汉字，其中1个汉字占3个字符)</span>
+						</li>
+					</ul>
+						<div class="" style="padding-left:18%;">
+								<input type="button" onclick="save()" id="span_send_btn" class="btn_green" value="保存" />
+						</div>
+				</form>
+
+				</div>
+        </div>
+		</div>
+    </div>
+</div>

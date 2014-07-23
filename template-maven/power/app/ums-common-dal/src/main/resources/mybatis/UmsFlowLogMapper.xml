@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.zoneland.ums.common.dal.UmsFlowLogMapper" >
+  <resultMap id="BaseResultMap" type="net.zoneland.ums.common.dal.dataobject.UmsFlowLog" >
+
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+    <result column="FLOW_MON_TOTAL" property="flowMonTotal" jdbcType="INTEGER" />
+    <result column="FLOW_TODAY" property="flowToday" jdbcType="INTEGER" />
+    <result column="GMT_CREATED" property="gmtCreated" jdbcType="DATE" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+
+    ID, APP_ID, FLOW_MON_TOTAL, FLOW_TODAY, GMT_CREATED
+  </sql>
+
+
+  <insert id="insert" parameterType="net.zoneland.ums.common.dal.dataobject.UmsFlowLog" >
+
+    insert into UMS_FLOW_LOG (ID, APP_ID, FLOW_MON_TOTAL,
+      FLOW_TODAY, GMT_CREATED)
+    values (#{id,jdbcType=CHAR}, #{appId,jdbcType=VARCHAR}, #{flowMonTotal,jdbcType=INTEGER},
+      #{flowToday,jdbcType=INTEGER}, #{gmtCreated,jdbcType=DATE})
+  </insert>
+
+
+    <select id="selectByAppId" resultMap="BaseResultMap" >
+
+    select
+    <include refid="Base_Column_List" />
+    from UMS_FLOW_LOG
+    where APP_ID = #{appId} and GMT_CREATED = #{gmtCreated,jdbcType=DATE}
+  </select>
+
+  <select id="selectByAppIdWithTime" resultMap="BaseResultMap" >
+
+    select
+    <include refid="Base_Column_List" />
+    from UMS_FLOW_LOG
+    where APP_ID = #{appId} and
+    <![CDATA[
+		 GMT_CREATED>=#{startTime} and GMT_CREATED<=#{endTime}
+	]]>
+    order by GMT_CREATED DESC
+  </select>
+
+
+    <update id="updateFlow" parameterType="java.util.Map" >
+
+    update UMS_FLOW_LOG
+    set
+      FLOW_MON_TOTAL = #{flowMonTotal,jdbcType=INTEGER},
+      FLOW_TODAY = #{flowToday,jdbcType=INTEGER}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+
+   <delete id="deleteByAppId" parameterType="java.lang.String" >
+    delete from UMS_FLOW_LOG
+    where APP_ID = #{appId,jdbcType=CHAR}
+  </delete>
+
+</mapper>

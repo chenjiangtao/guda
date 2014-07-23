@@ -1,0 +1,10 @@
+#set($layout = "home/layout/adminLayout.vm")
+
+<script type="text/javascript" src="$homeServer.getURI("/static/js/admin/adminUser.js")"></script>
+<div class="container">
+<div col="1-1-1">
+ <div>
+    <table id="admin-user-table"></table>
+ </div>
+ </div>
+</div>

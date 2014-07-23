@@ -1,0 +1,15 @@
+#set($layout = "home/layout/errorLayout.vm")
+
+<div style="height:100%;padding-top:80px;padding-left:200px;padding-bottom:200px;line-height:30px;text-align:left;background-color:#e2f2ec;">
+<ul>
+<li>
+<font size="4" color="red"><b>对不起，您的账号在短信平台不存在，所以无法登陆。您可以尝试以下解决办法：</b></font><br></li>
+<div style="text-align:left;margin-left:10px;">
+                          <li><b>1.如果您使用的是门户系统账号登陆，可能您的手机号不完整，因此无法登陆短信平台，建议您在门户系统中补充您的手机号即可。</b><br></li>
+                          <li><b>2.如果您使用的是非门户系统账号，您需要在门户系统或者短信平台申请账号后才能使用。</b><br></li>
+                          <li style="padding:5px;"><span style="font-size:18px;">您可以<a href="$umsServer.getURI("/login.htm")" >点此回到短信平台用户系统登陆首页</a>重新登陆</span></li>
+
+</div>
+</ul>
+</div>
+

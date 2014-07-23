@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD//EN" "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping package="com.foodoon.news.entity.main">
+	<class name="ActionVedio" table="j_action_vedio" dynamic-update="true">
+		<meta attribute="sync-DAO">false</meta>
+		<cache usage="read-write"/>
+		<id name="id" type="string" column="id"></id>
+		<property name="userName" column="user_name" type="string" not-null="true"/>
+		<property name="action" column="action" type="string" not-null="true" />
+		<property name="comment" column="comment" type="string" not-null="false" />
+		<property name="fromIp" column="from_ip" type="string" not-null="true" />
+		<property name="gmtCreate" column="gmt_create" type="date" not-null="true"/>
+		
+	</class>
+</hibernate-mapping>

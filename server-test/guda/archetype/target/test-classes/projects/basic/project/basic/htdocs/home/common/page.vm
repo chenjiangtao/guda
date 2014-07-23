@@ -1,0 +1,8 @@
+<div class="pagination pagination-centered">
+    <ul>
+                    <li><a href="$homeServer("?pageNo=1")">首页</a></li>
+                            <li><a href="$homeServer(?pageNo=$query.pre)" class="active">«</a></li>
+                                    <li><a href="$homeServer(?pageNo=$query.next)">下一页</a></li>
+                            <li><a href="$homeServer(?pageNo=$query.totalPage)">末页</a></li>
+            </ul>
+</div>

@@ -1,0 +1,134 @@
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/queryui/jquery.ui.all.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.core.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.widget.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.position.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.ui.autocomplete.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/My97DatePicker/WdatePicker.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/doselect.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/checkutil.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/msg/mySendMsg.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/table.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/targetPage.js")"></script>
+<div id="bd">
+	#set($HeadMenuId="work_header")
+	#set($sideMenuId="msg_send_list_side_bar")
+	#parse("/home/msg/msgSideBar.vm")
+	#set($searchUrl = $umsServer.getURI("/msg/mysendmsg.htm"))
+	#set($param = "startTime=$!msg.startTime&endTime=$!msg.endTime&recvName=$!msg.recvName&recvId=$!msg.recvId&status=$!msg.status&recipient=$!msg.recipient")
+	<input style="width:50%;" type="hidden" id="param"  name="param" value="$param"/>
+	<input style="width:50%;" type="hidden" id="searchUrl"  name="searchUrl" value="$searchUrl"/>
+	<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c">
+			<form action="$umsServer.getURI("/msg/mysendmsg.htm")" method="post" id="mySendMsgForm">
+                <div class="searchArea">
+					<table border="0" cellpadding="0" cellspacing="1">
+						<tr>
+							<td width="15%" align="right"><span class="bold fs14 c_007">时间段：</span></td>
+							<td width="35%">
+								<input type="text" id="d4311" class="Wdate" name="startTime" value="$!msg.startTime" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true,readOnly:true,maxDate:'#F{$dp.$D(\'d4312\')}'})" style="width:100px;"/>
+        						--
+        						<input type="text" id="d4312" class="Wdate" name="endTime" value="$!msg.endTime" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true,readOnly:true,minDate:'#F{$dp.$D(\'d4311\')}'})" style="width:100px;"/>
+							</td>
+							<td width="15%" align="right"><span class="bold fs14 c_007">状态：</span></td>
+							<td width="45%" >
+								<select  name="status" id="msgStatus" style="width:155px;">
+                    				<option value="">--请选择--</option>
+            							#foreach($status in $statusMap.entrySet())
+            								#if($status.key == $!msg.status)
+            									<option selected="selected" value="$status.key">$status.value</option>
+            								#else
+            									<option value="$status.key">$status.value</option>
+            								#end
+            							#end
+            					</select>
+							</td>
+						</tr>
+						<tr>
+							<td width="15%" align="right"><span class="bold fs14 c_007">接收方手机号:</span></td>
+							<td ><input type="text" class="inputBox" size="15" name="recvName" value="$!msg.recvName" id="recvName" title="请输入手机号，输入3位以上接收方手机号可显示内部人员完整手机号" autocomplete="off" style="width:50%;_width:51%;"/><input style="width:50%;" type="hidden" class="inputBox" size="15" name="recvId" value="$!msg.recvId" id="recvId" /></td>
+							<td width="15%" align="right"><span class="bold fs14 c_007">接收方姓名:</span></td>
+							<td ><input type="text" class="inputBox" size="15" name="recipient" value="$!msg.recipient" id="recipient" title="请输入接收方姓名" autocomplete="off" style="width:50%;"/></td>
+						</tr>
+						<tr>
+							<td >		
+							</td>
+							<td colspan="3">
+								<input type="button" id="searchLog_sbtn" class="btn_green_search_form" value="查询" />
+							</td>
+						</tr>
+					</table>
+                </div>
+			
+			<div class="tableContainer">
+    			<div id="scrollContentContainer" class="scrollContentContainer">
+    				<table class="scrollContent" cellspacing="1" cellpadding="0" width="100%">
+    					<thead >
+                            <tr>
+								<td width="5%">序号</td>
+        				        <td width="15%">接收方手机号</td>
+        				        <td width="13%">接收方姓名</td>
+        				        <td width="15%">内容</td>
+        				        <td width="10%">状态</td>
+        				        <td width="17%">所属应用</td>
+        				        <td width="15%">最近操作时间</td>
+								<!--<td width="15%">创建时间</td>-->
+        				        <td width="10%">操作</td>
+							</tr>
+                        </thead>
+						<tbody class="tb">
+    					#foreach($var in $result.results)
+							#if($!var.msgSendDate)
+								#set($sendDate=$!var.msgSendDate)
+							#else
+								#set($sendDate=$!var.gmtModified)
+							#end
+    						<tr>
+    						  <td style="text-align:center;">$velocityCount</td>
+    				          <td title="$!var.recvId">$!var.recvId</td>
+    				          <td title="$!var.recvName">$!var.recvName</td>
+    				          <td title="$!var.content">$!var.content</td>
+    				          <td title="$!var.status">$!var.status</td>
+    				          <td title="$!var.app.appName">$!var.app.appName</td>
+    				          <td title="$!date.format('yyyy-MM-dd HH:mm:ss',$!sendDate)">$!date.format('yyyy-MM-dd HH:mm:ss',$!sendDate)</td>
+							  <!--<td title="$!date.format('yyyy-MM-dd HH:mm:ss',$!var.gmtCreated)">$!date.format('yyyy-MM-dd HH:mm:ss',$!var.gmtCreated)</td>-->
+    				          <td style="text-align:center;">
+    				            <a class="a_green_form_ddl" target="_blank" href="$umsServer.getURI("/msg/sendInfoDetail.htm").addQueryData("id","$!var.id")&$!param&curPage=$!result.curPage">详细</a>
+                             </td>
+    				         </tr>
+    						#end
+						</tbody>
+    				</table>
+    			</div>
+    		</div>
+			#noRecord($result)
+			#if($!result.totalPage>0)
+    		<div class="btnArea clearfix" >
+    			<div class="page_detail">
+    				#if($!result.curPage != 1)
+						<a class="a_green_form_ddl" href="$searchUrl?$!param"><span>首页</span></a>
+					   #set($tempPage = $!result.curPage - 1)
+					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$tempPage&$!param"><span>上一页</span></a>
+				   #end
+				   #if($!result.curPage < $!result.totalPage)
+					   #set($tempPage = $!result.curPage + 1)
+					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$tempPage&$!param"><span>下一页</span></a>
+					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$!result.totalPage&$!param"><span>尾页</span></a>
+				   #end
+				   <span class="pager_info">当前第 <input id="targetNum" name="pageId" class="pager_inputBox" value="$!result.curPage" autocomplete="off"/>页  </span>				   
+				   <span id="targetBtn" class="a_green_form_ddl" style="cursor: pointer;">跳转</span>
+				   <span>共$!result.totalPage页 共$!result.total条记录</span>
+                </div>
+            </div>
+			#end
+			</form>
+		</div>
+		
+		<div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>

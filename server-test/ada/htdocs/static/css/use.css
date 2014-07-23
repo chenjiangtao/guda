@@ -1,0 +1,33 @@
+.contain{
+  margin:0 auto;
+	width:1022px;
+	border: 1px solid #c5e6c7; 
+
+    overflow:hidden;
+}
+.contain-left{
+width:30%;
+float:left;
+ height:200px;
+ align:center;
+  border-bottom: 1px solid #c5e6c7;
+   margin-top:5px;
+}
+.contain-left img{
+padding-top:20px;
+}
+.font16{
+ font-size:16px;
+}
+.contain-right{
+width:70%;
+float:left;
+ height:200px;
+ text-align:left;
+  border-bottom: 1px solid #c5e6c7;
+}
+.contain-right li{
+text-indent:2em;
+padding:3px;
+line-height:20px;
+}

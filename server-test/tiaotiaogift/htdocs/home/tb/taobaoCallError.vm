@@ -1,0 +1,10 @@
+
+
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/info.css")" />
+<div class="center-contain">
+<div class="info-contain">
+抱歉，系统发生错误，$!{tips}。<br/>
+您可以尝试联系系统管理员:电话:15558135733
+
+</div>
+</div>

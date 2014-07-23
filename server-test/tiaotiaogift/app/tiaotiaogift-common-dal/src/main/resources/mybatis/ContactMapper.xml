@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tiaotiaogift.common.dal.ContactMapper" >
+  <resultMap id="BaseResultMap" type="com.tiaotiaogift.common.mysql.dataobject.Contact" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="email" property="email" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="taobao_name" property="taobaoName" jdbcType="VARCHAR" />
+    <result column="taobao_id" property="taobaoId" jdbcType="VARCHAR" />
+    <result column="taobao_order_status" property="taobaoOrderStatus" jdbcType="VARCHAR" />
+    <result column="paipai_id" property="paipaiId" jdbcType="VARCHAR" />
+    <result column="paipai_name" property="paipaiName" jdbcType="VARCHAR" />
+    <result column="paipai_order_status" property="paipaiOrderStatus" jdbcType="VARCHAR" />
+    <result column="delivery_no" property="deliveryNo" jdbcType="VARCHAR" />
+    <result column="delivery_name" property="deliveryName" jdbcType="VARCHAR" />
+    <result column="gmt_created" property="gmtCreated" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, name, phone, email, user_id, address, taobao_name, taobao_id, taobao_order_status, 
+    paipai_id, paipai_name, paipai_order_status, delivery_no, delivery_name, gmt_created
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from contact
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from contact
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tiaotiaogift.common.mysql.dataobject.Contact" >
+    insert into contact (id, name, phone, 
+      email, user_id, address, 
+      taobao_name, taobao_id, taobao_order_status, 
+      paipai_id, paipai_name, paipai_order_status, 
+      delivery_no, delivery_name, gmt_created
+      )
+    values (#{id,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, 
+      #{email,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{taobaoName,jdbcType=VARCHAR}, #{taobaoId,jdbcType=VARCHAR}, #{taobaoOrderStatus,jdbcType=VARCHAR}, 
+      #{paipaiId,jdbcType=VARCHAR}, #{paipaiName,jdbcType=VARCHAR}, #{paipaiOrderStatus,jdbcType=VARCHAR}, 
+      #{deliveryNo,jdbcType=VARCHAR}, #{deliveryName,jdbcType=VARCHAR}, #{gmtCreated,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.tiaotiaogift.common.mysql.dataobject.Contact" >
+    insert into contact
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="email != null" >
+        email,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="taobaoName != null" >
+        taobao_name,
+      </if>
+      <if test="taobaoId != null" >
+        taobao_id,
+      </if>
+      <if test="taobaoOrderStatus != null" >
+        taobao_order_status,
+      </if>
+      <if test="paipaiId != null" >
+        paipai_id,
+      </if>
+      <if test="paipaiName != null" >
+        paipai_name,
+      </if>
+      <if test="paipaiOrderStatus != null" >
+        paipai_order_status,
+      </if>
+      <if test="deliveryNo != null" >
+        delivery_no,
+      </if>
+      <if test="deliveryName != null" >
+        delivery_name,
+      </if>
+      <if test="gmtCreated != null" >
+        gmt_created,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="taobaoName != null" >
+        #{taobaoName,jdbcType=VARCHAR},
+      </if>
+      <if test="taobaoId != null" >
+        #{taobaoId,jdbcType=VARCHAR},
+      </if>
+      <if test="taobaoOrderStatus != null" >
+        #{taobaoOrderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="paipaiId != null" >
+        #{paipaiId,jdbcType=VARCHAR},
+      </if>
+      <if test="paipaiName != null" >
+        #{paipaiName,jdbcType=VARCHAR},
+      </if>
+      <if test="paipaiOrderStatus != null" >
+        #{paipaiOrderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryNo != null" >
+        #{deliveryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryName != null" >
+        #{deliveryName,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null" >
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tiaotiaogift.common.mysql.dataobject.Contact" >
+    update contact
+    <set >
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="email != null" >
+        email = #{email,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="taobaoName != null" >
+        taobao_name = #{taobaoName,jdbcType=VARCHAR},
+      </if>
+      <if test="taobaoId != null" >
+        taobao_id = #{taobaoId,jdbcType=VARCHAR},
+      </if>
+      <if test="taobaoOrderStatus != null" >
+        taobao_order_status = #{taobaoOrderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="paipaiId != null" >
+        paipai_id = #{paipaiId,jdbcType=VARCHAR},
+      </if>
+      <if test="paipaiName != null" >
+        paipai_name = #{paipaiName,jdbcType=VARCHAR},
+      </if>
+      <if test="paipaiOrderStatus != null" >
+        paipai_order_status = #{paipaiOrderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryNo != null" >
+        delivery_no = #{deliveryNo,jdbcType=VARCHAR},
+      </if>
+      <if test="deliveryName != null" >
+        delivery_name = #{deliveryName,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null" >
+        gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tiaotiaogift.common.mysql.dataobject.Contact" >
+    update contact
+    set name = #{name,jdbcType=VARCHAR},
+      phone = #{phone,jdbcType=VARCHAR},
+      email = #{email,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      taobao_name = #{taobaoName,jdbcType=VARCHAR},
+      taobao_id = #{taobaoId,jdbcType=VARCHAR},
+      taobao_order_status = #{taobaoOrderStatus,jdbcType=VARCHAR},
+      paipai_id = #{paipaiId,jdbcType=VARCHAR},
+      paipai_name = #{paipaiName,jdbcType=VARCHAR},
+      paipai_order_status = #{paipaiOrderStatus,jdbcType=VARCHAR},
+      delivery_no = #{deliveryNo,jdbcType=VARCHAR},
+      delivery_name = #{deliveryName,jdbcType=VARCHAR},
+      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+
+
+
+  
+    <select id="selectByUserId" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from contact
+    where user_id = #{userId,jdbcType=VARCHAR} 
+    <if test="name!=null">
+			AND name like CONCAT('%',#{name},'%')
+	</if>
+	<if test="phone!=null">
+			AND phone like CONCAT('%',#{phone},'%')
+	</if>
+    limit #{start},20 
+  </select>
+  
+    <select id="selectCountByUserId" resultType="java.lang.Integer" >
+    select count(id) from contact
+    where user_id = #{userId,jdbcType=VARCHAR} 
+    <if test="name!=null">
+			AND name like CONCAT('%',#{name},'%')
+	</if>
+	<if test="phone!=null">
+			AND phone like CONCAT('%',#{phone},'%')
+	</if>
+  </select>
+  
+    <select id="searchByParams" resultMap="BaseResultMap" >
+    select 
+    <include refid="Base_Column_List" />
+    from contact
+    where user_id = #{userId,jdbcType=VARCHAR} 
+    <if test="contactName!=null">
+			AND (name like CONCAT('%',#{contactName},'%') or phone like CONCAT('%',#{contactName},'%'))
+	</if>     
+	<if test="orderStatus!=null">
+			AND taobao_order_status like CONCAT('%',#{orderStatus},'%') 
+	</if>
+			
+    limit #{start},#{limit}
+  </select>
+  
+    <select id="searchCountByParams" resultType="java.lang.Integer" >
+	    select count(id) from contact
+	    where user_id = #{userId,jdbcType=VARCHAR} 
+	    <if test="contactName!=null">
+			AND (name like CONCAT('%',#{contactName},'%') or phone like CONCAT('%',#{contactName},'%'))
+		</if>
+		<if test="orderStatus!=null">
+			and	taobao_order_status like CONCAT('%',#{orderStatus},'%') 
+		</if>
+   </select>
+   	 <insert id="insertBatch"  >
+    insert into contact (id, name, phone, email,
+      user_id, address, taobao_name, 
+      taobao_id, taobao_order_status, paipai_id, 
+      paipai_name, paipai_order_status, delivery_no, delivery_name, gmt_created
+      )
+    values 
+    <foreach collection="list" item="item" index="index" separator=",">
+    (#{item.id,jdbcType=VARCHAR}, #{item.name,jdbcType=VARCHAR}, #{item.phone,jdbcType=VARCHAR}, #{item.email,jdbcType=VARCHAR}, 
+      #{item.userId,jdbcType=VARCHAR}, #{item.address,jdbcType=VARCHAR}, #{item.taobaoName,jdbcType=VARCHAR}, 
+      #{item.taobaoId,jdbcType=VARCHAR}, #{item.taobaoOrderStatus,jdbcType=VARCHAR}, #{item.paipaiId,jdbcType=VARCHAR}, 
+      #{item.paipaiName,jdbcType=VARCHAR}, #{item.paipaiOrderStatus,jdbcType=VARCHAR}, #{item.deliveryNo,jdbcType=VARCHAR}, 
+      #{item.deliveryName,jdbcType=VARCHAR}, #{item.gmtCreated,jdbcType=TIMESTAMP}
+      )
+     </foreach>
+  </insert>
+  
+  
+  
+   <select id="selectByPhone" resultMap="BaseResultMap">
+    select  <include refid="Base_Column_List" />
+     from contact
+    where user_id = #{userId,jdbcType=VARCHAR} 
+	AND phone = #{phone,jdbcType=VARCHAR} 
+   </select>
+   
+   <delete id="delByPhone" >
+   delete from contact
+    where user_id = #{userId,jdbcType=VARCHAR} 
+	AND phone = #{phone,jdbcType=VARCHAR} 
+   </delete>
+</mapper>

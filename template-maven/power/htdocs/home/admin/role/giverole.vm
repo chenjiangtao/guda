@@ -1,0 +1,270 @@
+<link rel="stylesheet" href="$umsServer.getURI("/static/js/easyui/themes/default/easyui.css")" type="text/css" media="screen" />
+<link rel="stylesheet" href="$umsServer.getURI("/static/js/easyui/themes/icon.css")" type="text/css" media="screen" />
+<link rel="stylesheet" href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" />
+<link rel="stylesheet" href="$umsServer.getURI("/static/css/admin/role.css")" type="text/css" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/easyui/jquery.easyui.min.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/jqueryPlugin/jquery.form.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/log_search.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/role/role_config.js")"></script>
+<div id="bd">
+	#set($sideMenuId="role_side_bar") #set($HeadMenuId="system_header")
+	#parse("/home/admin/adminSideBar.vm")
+	<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c">
+			<div id="writeEmail">
+				<div class="btnArea clearfix">
+					&nbsp;&nbsp;<a class="fs14bold c_007" href="$umsServer.getURI("/admin/role/roleconfig.htm")">权限配置</a>
+					<a class="fs14bold c_008">-&gt;分配角色</a>
+				</div>
+				<div style="width:98%;margin:0 auto;">
+					<fieldset style="border:solid 1px #CBE1EB;">
+						<legend style="margin-left:25px"><a class="fs14bold c_008">用户信息：</a></legend>
+						<div class="form_div">
+							<input type="hidden" id="userId" value="$!umsUserInfo.id" /> 
+							<input type="hidden" id="curRoleName" value="$!curRoleName" /> 
+							<input type="hidden" id="orgAdmin" value="$!umsUserInfo.orgAdmin" />
+							<table style="width:98%;padding:5px">
+								<tr>
+									<td>
+										<div class="flow_item">
+											<label style="float:left;" class="bold fs14 c_007">员工工号：</label> 	
+											<div class="info_div">
+												<span title="$!umsUserInfo.userId">$!umsUserInfo.userId</span>
+											</div>
+										</div>
+									</td>
+									<td>
+										<div class="flow_item">
+											<label style="float:left;" class="bold fs14 c_007">员工姓名：</label> 	
+											<div class="info_div">
+												<span title="$!umsUserInfo.userName"> $!umsUserInfo.userName</span>
+											</div>
+										</div>	
+									</td>
+									<td>
+										<div class="flow_item">
+											<label style="float:left;" class="bold fs14 c_007">手机号：</label> 	
+											<div class="info_phone_role">
+												<span title="$!umsUserInfo.phone"> $!umsUserInfo.phone</span>
+											</div>
+										</div>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div class="flow_item">
+											<label style="float:left;" class="bold fs14 c_007">邮箱地址：</label> 	
+											<div class="info_div">
+												<span title="$!umsUserInfo.email"> $!umsUserInfo.email</span>
+											</div>
+										</div>
+									</td>
+									<td>
+										<div class="flow_item">
+											<label style="float:left;" class="bold fs14 c_007">所属组织：</label> 	
+											<div class="info_div">
+												<span title="$!orgName"> $!orgName</span>
+											</div>
+										</div>
+									</td>
+									<td>
+										<div class="flow_item">
+											<label style="float:left;" class="bold fs14 c_007">角色名：</label> 	
+											<div class="info_phone_role">
+												<span id="cur_role_name" title="#if($curRoleName == "ROLE_ADMIN") 系统管理员 #elseif($curRoleName == "ROLE_APP") 应用管理员 #elseif($curRoleName == "ROLE_QUERY") 短信查询 #else 普通员工 #end  #if($umsUserInfo.orgAdmin == "0")(非部门管理员)#else(部门管理员)#end"> 
+														#if($curRoleName == "ROLE_ADMIN") 系统管理员 #elseif($curRoleName == "ROLE_APP") 应用管理员 #elseif($curRoleName == "ROLE_QUERY") 短信查询 #else 普通员工 #end
+													     #if($umsUserInfo.orgAdmin == "0")(非部门管理员)#else (部门管理员)#end</span>
+											</div>
+										</div>
+									</td>
+								</tr>
+							</table>
+						</div>
+					</fieldset>
+					<fieldset style="border:solid 1px #CBE1EB;margin-top:5px;">
+						<legend style="margin-left:25px"><a class="fs14bold c_008">分配角色操作：</a></legend>
+						<div class="botton_div">
+							<input type="button" id="save_btn" class="btn_green_search_form" title="单击保存可分配角色" value="保存" /> 
+							<input type="button" id="back_btn" class="btn_green_search_form" title="返回" value="返回" onclick="selectCurPageId('$!pageId')" /> 	
+							<label class="bold fs14" style="color:red;margin-left:20px;display:none;" id="giveRoleError"></label>
+						</div>
+						<div style="margin-top:10px;">		
+							<input style="margin-left:24px;margin-top:10px" type="checkbox" value="$!umsUserInfo.orgAdmin" name="org_admin" id="org_admin"  #if($!umsUserInfo.orgAdmin==1) checked="checked" #end /> 
+							<label for="org_admin">部门管理员</label> 
+							#if($!umsUserInfo.orgAdmin==1)  
+							<span id="customOrgNameSpan" style="margin-left:30px;"><label>部门名称:</label><input size="25" type="text" name="customOrgName" id="customOrgName" value="$!customOrgName"/><label>(发短信时用于部门签名)</label></span><br/>
+							#else
+							 <span id="customOrgNameSpan" style="display:none;margin-left:30px;"><label>部门名称:</label><input size="25" type="text" name="customOrgName" id="customOrgName" value="$!customOrgName"/><label>(发短信时用于部门签名)</label></span><br/>
+							#end
+							<label style="margin-left:42px;_margin-left:50px;">注：请选择所需分配的角色以及是否需要分配部门管理员并点击上方的保存按钮</label>
+						</div>
+						<div class="roleheader" id="roleDiv">
+							<table width="500px" border="0" cellspacing="0" cellpadding="0">
+								<tr>
+									<td class="fs14bold c_007">角色</td>
+									<td>
+										<table width="100%" border="0" cellspacing="0" cellpadding="0">
+											<tr>
+												<td>
+												 #foreach($key in $roleNames.keySet())
+													<div style="float:left;margin-left:10px;">
+														<input type="radio" id="role_$key" value="role$velocityCount" name="roleselect" onclick="javascript:roletoggle('$key');" />&nbsp; 
+														<label for="role_$key" title="$!roleNames.get($key)">$!roleNames.get($key)</label>
+													</div> 
+													#end
+													<div class="clear"></div>
+												</td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+							</table>
+						</div>
+						<div class="main" id="appmain" style="display:none">
+							#set($index = 0)
+							<div class="box" style="margin-top:20px;">
+								<div class="box_header" id="appboxheader$index">
+									<span class="lt"></span><span class="rt"></span>
+									<table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top:5px;_margin-top:12px;" class="bold fs14 c_007">
+										<tr>
+											<td>
+												<div>
+												<label class="box_header_app" onClick="toggle('$index','app')">应用选择</label> 
+												<input style="margin-left:25px" type="checkbox" id="allapp$index" onClick="allOnClick()" class="select_all" />&nbsp;
+												<label for="allapp$index">全选</label>
+												</div>
+											</td>
+										</tr>
+									</table>
+								</div>
+								<div id="toggleIndex">
+								<div class="index_header" id="appboxheader0">
+									<span class="lt"></span><span class="rt"></span>
+									<table width="100%" border="0" cellspacing="0" cellpadding="0" class="fs14 c_007">					
+										<tr>
+											<td>	
+												<div class="pinyin_menu" style="float:left;">			
+												<div style="float:left;width:80px;"><label class="box_header_app" onClick="toggle('$index','app')">拼音索引</label></div>														
+												<div class="index_ul" style="padding-left:8px;"><ul><li id="one1" style="text-align:center;" class="index_color" onclick="setTab('one',1)" onmouseover="setTab('one',1)">ABCD</li></ul></div>
+												<ul class="index_ul"><li id="one2" style="text-align:center;" class="index_color" onclick="setTab('one',2)" onmouseover="setTab('one',2)">EFGH</li></ul>
+												<ul class="index_ul"><li id="one3" style="text-align:center;" class="index_color" onclick="setTab('one',3)" onmouseover="setTab('one',3)">IJK</li></ul>
+												<ul class="index_ul"><li id="one4" style="text-align:center;" class="index_color" onclick="setTab('one',4)" onmouseover="setTab('one',4)">LMN</li></ul>
+												<ul class="index_ul"><li id="one5" style="text-align:center;" class="index_color" onclick="setTab('one',5)" onmouseover="setTab('one',5)">OPQR</li></ul>
+												<ul class="index_ul"><li id="one6" style="text-align:center;" class="index_color" onclick="setTab('one',6)" onmouseover="setTab('one',6)">STUV</li></ul>
+												<ul class="index_ul"><li id="one7" style="text-align:center;" class="index_color" onclick="setTab('one',7)" onmouseover="setTab('one',7)">WXYZ</li></ul>
+												<ul class="index_ul"><li id="one8" style="text-align:center;" class="index_color" onclick="setTab('one',8)" onmouseover="setTab('one',8)">其他</li></ul>
+												<ul class="index_ul" style="width:75px"><li id="one0"style="text-align:center;" class="index_color" onclick="setTab('one',0)" onmouseover="setTab('one',0)">全部应用</li></ul>							
+												</div>
+											</td>
+										</tr>		
+									</table>
+								</div>		
+								<input type="hidden" value="$umsAppInfoSizes" id="app_info_size"/>
+								<input type="hidden" value="$selectappIdSizes" id="select_apps_size"/>
+								<div class="menudiv" id="appitembox$index" >
+							   <div id="con_one_1" class="item_box" style="display:none;">
+							   	    #foreach($app in $appStartWithABCD)
+									<div class="item">
+										<input style="float:left;" type="checkbox" value="$!app.id" name="app$index" id="appCheckABCD$!app.id" onClick="comparedABCDCheckBox('$app.id')" #foreach($value in $selectappIds) #if($app.id==$value) checked="checked" #end #end />
+										<div class="float_label">
+											<label for="app.ABCDappId$index" title="$!app.appName">$!app.appName</label>
+										</div>
+									</div>
+									#end
+							   </div>
+   							   <div id="con_one_2" class="item_box" style="display:none;">
+   							   	    #foreach($app in $appStartWithEFGH)
+									<div class="item">
+										<input style="float:left;" type="checkbox" value="$!app.id" name="app$index" id="appCheckEFGH$!app.id" onClick="comparedEFGHCheckBox('$app.id')" #foreach($value in $selectappIds) #if($app.id==$value) checked="checked" #end #end />
+										<div class="float_label">
+											<label for="app.EFGHappId$index" title="$!app.appName">$!app.appName</label>
+										</div>
+									</div>
+									#end
+   							   </div>
+    						   <div id="con_one_3" class="item_box" style="display:none;">
+    						   	    #foreach($app in $appStartWithIJK)
+									<div class="item">
+										<input style="float:left;" type="checkbox" value="$!app.id" name="app$index" id="appCheckIJK$!app.id" onClick="comparedIJKCheckBox('$app.id')" #foreach($value in $selectappIds) #if($app.id==$value) checked="checked" #end #end />
+										<div class="float_label">
+											<label for="app.IJKappId$index" title="$!app.appName">$!app.appName</label>
+										</div>
+									</div>
+									#end
+    						   </div>
+    						   <div id="con_one_4" class="item_box" style="display:none;">
+    						   	    #foreach($app in $appStartWithLMN)
+									<div class="item">
+										<input style="float:left;" type="checkbox" value="$!app.id" name="app$index" id="appCheckLMN$!app.id" onClick="comparedLMNCheckBox('$app.id')" #foreach($value in $selectappIds) #if($app.id==$value) checked="checked" #end #end />
+										<div class="float_label">
+											<label for="app.LMNappId$index" title="$!app.appName">$!app.appName</label>
+										</div>
+									</div>
+									#end
+    						   </div>
+    						   <div id="con_one_5" class="item_box" style="display:none;">
+    						   	    #foreach($app in $appStartWithOPQR)
+									<div class="item">
+										<input style="float:left;" type="checkbox" value="$!app.id" name="app$index" id="appCheckOPQR$!app.id" onClick="comparedOPQRCheckBox('$app.id')" #foreach($value in $selectappIds) #if($app.id==$value) checked="checked" #end #end />
+										<div class="float_label">
+											<label for="app.OPQRappId$index" title="$!app.appName">$!app.appName</label>
+										</div>
+									</div>
+									#end
+    						   </div>
+    						   <div id="con_one_6" class="item_box" style="display:none;">
+    						   	    #foreach($app in $appStartWithSTUV)
+									<div class="item">
+										<input style="float:left;" type="checkbox" value="$!app.id" name="app$index" id="appCheckSTUV$!app.id" onClick="comparedSTUVCheckBox('$app.id')" #foreach($value in $selectappIds) #if($app.id==$value) checked="checked" #end #end />
+										<div class="float_label">
+											<label for="app.STUVappId$index" title="$!app.appName">$!app.appName</label>
+										</div>
+									</div>
+									#end
+    						   </div>
+    						   <div id="con_one_7" class="item_box" style="display:none;">
+    						   	    #foreach($app in $appStartWithWXYZ)
+									<div class="item">
+										<input style="float:left;" type="checkbox" value="$!app.id" name="app$index" id="appCheckWXYZ$!app.id" onClick="comparedWXYZCheckBox('$app.id')" #foreach($value in $selectappIds) #if($app.id==$value) checked="checked" #end #end />
+										<div class="float_label">
+											<label for="app.WXYZappId$index" title="$!app.appName">$!app.appName</label>
+										</div>
+									</div>
+									#end
+    						   </div>
+    						   <div id="con_one_8" class="item_box" style="display:none;">
+    						   	    #foreach($app in $appStartWithOthers)
+									<div class="item">
+										<input style="float:left;" type="checkbox" value="$!app.id" name="app$index" id="appCheckOthers$!app.id" onClick="comparedOthersCheckBox('$app.id')" #foreach($value in $selectappIds) #if($app.id==$value) checked="checked" #end #end />
+										<div class="float_label">
+											<label for="app.OthersappId$index" title="$!app.appName">$!app.appName</label>
+										</div>
+									</div>
+									#end
+    						   </div>
+    						   <div id="con_one_0" class="item_box" class="item_box">
+									#foreach($app in $umsAppInfos)
+									<div class="item">
+										<input style="float:left;" type="checkbox" value="$!app.id" name="app$index" id="appCheckAll$!app.id" onClick="comparedAllCheckBox('$app.id')" #foreach($value in $selectappIds) #if($app.id==$value) checked="checked" #end #end />
+										<div class="float_label">
+											<label for="app.appId$index" title="$!app.appName">$!app.appName</label>
+										</div>
+									</div>
+									#end
+								</div>
+								</div>
+								</div>
+							</div>
+						</div>
+					</fieldset>
+				</div>
+			</div>
+		</div>
+		<div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>

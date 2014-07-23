@@ -1,0 +1,26 @@
+#set($HeadMenuId="a_try")
+#set($leftMenuId="try_ums")
+
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ums-reg.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/step.css")" />
+<div class="ums-center-contain">
+<div>
+    <ul id="crumbs">
+	    <li><a href="$homeServer.getURI("/ums/index.htm")">首页</a></li>
+	    <li><a href="$homeServer.getURI("/reg.htm")">注册</a></li>
+	    <li>注册结果</li>
+    </ul>
+</div>
+<div class="step width80">
+            <ul>
+               <li class="one1">填写注册信息</li>
+               <li class="three">验证邮箱</li>
+               <li class="four1 cur">完成</li>
+            </ul>
+        </div>
+ <div class="contain-tips">
+  <p style="font-size:16px;font-weight:bold;">注册成功,请记住您的用户和密码.</p>
+  <p style="font-size:14px;font-weight:bold;">您可以点此<a href="$homeServer.getURI("/ums/index.htm")">发送短信</a></p>
+ </div>
+
+</div>

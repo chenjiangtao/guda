@@ -1,0 +1,48 @@
+.img_box{
+  width:94px;
+  float:left;
+  position: relative;
+  top: -1px;
+  display:inline;
+  padding:6px;
+}
+.img_box a{
+  display: block;
+height: 14px;
+overflow: hidden;
+position: absolute;
+right: 0px;
+text-indent: -9999px;
+top: 0px;
+width: 14px;
+background: url('http://pic2.58.com/ui7/post/img/image_upload.png') no-repeat scroll 0 0 rgba(0, 0, 0, 0);
+background-position: -100px -182px;
+}
+.a_close{
+  
+
+}
+a.a_close:hover{
+   background-position: -100px -200px;
+}
+.span_box{
+  background-color: #F6F6F6;
+border: 1px solid #D3D3D3;
+display: block;
+height: 60px;
+padding: 6px;
+width: 80px;
+}
+
+.span_box img{
+  display:block;float:left;
+  width:80px;
+  height:60px;
+}
+#image:after{
+  clear: both;
+content: ".";
+display: block;
+height: 0;
+visibility: hidden;
+}

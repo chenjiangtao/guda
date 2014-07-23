@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.zoneland.ums.common.dal.UmsKeywordInfoMapper">
+	<resultMap id="BaseResultMap"
+		type="net.zoneland.ums.common.dal.dataobject.UmsKeywordInfo">
+		<id column="ID" property="id" jdbcType="CHAR" />
+		<result column="KEY_WORD" property="keyWord" jdbcType="VARCHAR" />
+		<result column="APP_ID" property="appId" jdbcType="CHAR" />
+		<result column="GMT_CREATED" property="gmtCreated" jdbcType="TIMESTAMP" />
+		<result column="GMT_MODIFIED" property="gmtModified" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, KEY_WORD, APP_ID,GMT_CREATED, GMT_MODIFIED
+	</sql>
+	<select id="selectByPrimaryKey" resultMap="BaseResultMap"
+		parameterType="java.lang.String">
+
+		select
+		<include refid="Base_Column_List" />
+		from UMS_KEYWORD_INFO
+		where ID = #{id,jdbcType=CHAR}
+	</select>
+
+
+	<delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+
+		delete from UMS_KEYWORD_INFO
+		where ID = #{id,jdbcType=CHAR}
+	</delete>
+
+	<delete id="deleteKeywordByAppId" parameterType="java.lang.String">
+
+		delete from UMS_KEYWORD_INFO
+		where APP_ID = #{appId,jdbcType=CHAR}
+	</delete>
+	<insert id="insert"
+		parameterType="net.zoneland.ums.common.dal.dataobject.UmsKeywordInfo">
+
+		insert into UMS_KEYWORD_INFO (ID, KEY_WORD, GMT_CREATED,APP_ID,
+		GMT_MODIFIED)
+		values (#{id,jdbcType=CHAR},
+		#{keyWord,jdbcType=VARCHAR},#{appId,jdbcType=CHAR},
+		#{gmtCreated,jdbcType=TIMESTAMP},
+		#{gmtModified,jdbcType=TIMESTAMP})
+	</insert>
+	<insert id="insertSelective"
+		parameterType="net.zoneland.ums.common.dal.dataobject.UmsKeywordInfo">
+
+		insert into UMS_KEYWORD_INFO
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				ID,
+			</if>
+			<if test="keyWord != null">
+				KEY_WORD,
+			</if>
+			<if test="appId != null">
+				APP_ID,
+			</if>
+			<if test="gmtCreated != null">
+				GMT_CREATED,
+			</if>
+			<if test="gmtModified != null">
+				GMT_MODIFIED,
+			</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null">
+				#{id,jdbcType=CHAR},
+			</if>
+			<if test="keyWord != null">
+				#{keyWord,jdbcType=VARCHAR},
+			</if>
+			<if test="appId != null">
+				#{appId,jdbcType=CHAR},
+			</if>
+			<if test="gmtCreated != null">
+				#{gmtCreated,jdbcType=TIMESTAMP},
+			</if>
+			<if test="gmtModified != null">
+				#{gmtModified,jdbcType=TIMESTAMP},
+			</if>
+		</trim>
+	</insert>
+
+	<select id="searchKeywordByPage" resultMap="BaseResultMap">
+		SELECT
+		<include refid="Base_Column_List" />
+		FROM UMS_KEYWORD_INFO
+		<where>
+			1 = 1
+			<if test="keyWord != null">
+				AND KEY_WORD like '%'||#{keyWord}||'%'
+			</if>
+			<if test="appId != null">
+				AND APP_ID = #{appId}
+			</if>
+		</where>
+
+		order by GMT_MODIFIED desc
+
+		limit #{first} , 10
+	</select>
+
+	<select id="searchAllNum" resultType="java.lang.Integer">
+		SELECT count(ID)
+		from UMS_KEYWORD_INFO
+		<where>
+			1 = 1
+			<if test="keyWord != null">
+				AND KEY_WORD like '%'||#{keyWord}||'%'
+			</if>
+			<if test="appId != null">
+				AND APP_ID = #{appId}
+			</if>
+		</where>
+	</select>
+	<select id="getKeyword"
+		parameterType="net.zoneland.ums.common.dal.dataobject.UmsKeywordInfo"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from UMS_KEYWORD_INFO
+		where KEY_WORD = #{keyWord}
+	</select>
+
+	<select id="getKeywordInfo"
+		parameterType="net.zoneland.ums.common.dal.dataobject.UmsKeywordInfo"
+		resultMap="BaseResultMap">
+		select
+		<include refid="Base_Column_List" />
+		from UMS_KEYWORD_INFO
+		where KEY_WORD = #{keyWord} and APP_ID = #{appId}
+	</select>
+
+	<select id="selectByAppId" resultType="java.lang.String">
+		select
+		KEY_WORD
+		from UMS_KEYWORD_INFO
+		where APP_ID = #{appId}
+	</select>
+
+
+	<delete id="deleteByKeyWord" parameterType="java.lang.String">
+
+		delete from UMS_KEYWORD_INFO
+		where KEY_WORD = #{keyWord,jdbcType=VARCHAR}
+	</delete>
+</mapper>

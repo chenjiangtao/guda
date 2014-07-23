@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.tiaotiaogift.tiaotiaogift</groupId>
+		<artifactId>app</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<groupId>com.tiaotiaogift.tiaotiaogift.biz.common</groupId>
+	<artifactId>tiaotiaogift-biz-common</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+
+	<name>tiaotiaogift-biz-common</name>
+	<url>http://maven.apache.org</url>
+
+
+
+	<dependencies>
+		<dependency>
+			<groupId>com.tiaotiaogift.tiaotiaogift.common.dal</groupId>
+			<artifactId>tiaotiaogift-common-dal</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>com.tiaotiaogift.tiaotiaogift.common.util</groupId>
+			<artifactId>tiaotiaogift-common-util</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.zoneland</groupId>
+			<artifactId>mvc-runtime-core</artifactId>
+		</dependency>
+		
+		<dependency>
+			  <groupId>smslib</groupId>
+			  <artifactId>smslib</artifactId>
+			  <version>3.5.2</version>
+			  <classifier>pduutils</classifier>
+			</dependency>
+			<dependency>
+			  <groupId>smslib</groupId>
+			  <artifactId>smslib</artifactId>
+			  <version>3.5.2</version>
+			</dependency>
+			<dependency>
+			  <groupId>smslib</groupId>
+			  <artifactId>smslib</artifactId>
+			  <version>3.5.2</version>
+			  <classifier>sun-comm2</classifier>
+			</dependency>
+
+	</dependencies>
+</project>

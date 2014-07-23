@@ -1,0 +1,64 @@
+
+img {
+	border: none;
+}
+
+
+
+
+/* Content div */
+#content {
+	margin:0 auto;
+	width: 785px;
+	height:400px;
+	margin:100px;
+}
+.img-div{
+  width: 400px;
+  float: left;
+
+}
+
+#text {
+
+	width: 330px;
+	margin:100px 0 0 0;
+	/* IE margin fix */
+	display: inline;
+}
+
+/* The info text P */
+#text p {
+	margin-top: 30px;
+	font-size: 16px;
+	line-height: 20px;
+	color: #292929;
+}
+
+/* The links list */
+#text ul {
+	margin-top: 10px;
+	margin-left: 0px;
+	list-style: none inside;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+/* The list items */
+#text li {
+	padding: 5px 0px;
+	margin: 0;
+}
+
+/* The links */
+#text a {
+	color: #292929;
+	text-decoration: none;
+}
+
+/* Link hover */
+#text a:hover {
+	text-decoration: none;
+}
+
+

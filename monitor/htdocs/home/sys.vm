@@ -1,0 +1,22 @@
+#set($headMenuId="header_sys")
+#parse("home/sysLeftBar.vm")
+
+<div data-options="region:'center',title:'删除历史数据'" >
+<div class="search-form">
+ <ul>  删除<input type="text" id="time" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:true,readOnly:true})"/>
+   以前的数据<button id="del_date_btn" class="sexybutton" style="margin-top:-5px;"  value="删除"><span><span><span class="delete">删除</span></span></span></button>
+   </ul>
+ <ul>  删除
+  <select name="ip" id="ip" class="inputBox" style="width:160px;" >
+			<option value="">请选择服务器</option>
+			#foreach($ag in $agent)	
+			<option value="$!ag">$!ag</option>
+			#end
+	</select>
+   <button  id="del_agent_btn" class="sexybutton" style="margin-top:-5px;" value="删除" ><span><span><span class="delete">删除</span></span></span></button>
+   </ul>
+</div>
+
+</div>
+
+<script type="text/javascript" src="$homeServer.getURI("/static/js/sys.js")"></script>

@@ -1,0 +1,130 @@
+
+
+.contain-tips-right{
+ width:1024px;
+ margin:0 auto;
+text-align:left;
+line-height:25px;
+margin-top:30px;
+
+
+}
+.contain-title{  
+  text-align:left;
+  font-weight:bold;
+  font-size:14px;
+  width:100%;
+  margin-left:0px;
+  margin-top:10px;
+
+  line-height:30px;
+
+}
+.contain-title a{  
+  margin-left:10px;
+
+}
+.contain-tips{
+
+  padding:50px;
+  
+  font-size:16px;
+  font-weight:bold;
+  color:#07aa21;
+  text-align:left;
+}
+.contain-tips p{
+
+
+  text-align:left;
+}
+
+.contain-tips a:hover{
+  text-decoration: underline;
+}
+.contain-title a:hover{
+   text-decoration: underline;
+}
+.contain a{
+  font-weight:bold;
+}
+.error-span{
+ margin-left:150px;
+ text-align:left;
+ color:red;
+}
+.reg_input_text{ 
+
+	background:url(../images/pic_6.jpg) no-repeat 0 0; 
+	border:1px solid #e0e0e0;
+	width:250px; 
+	height:25px; 
+	line-height:30px;
+    left:0px;
+
+    float:left;
+
+}
+.reg-contain{
+  width:630px;
+  margin:0 auto;
+  margin-top:50px;
+    height:auto!important;  
+    height:600px;  
+    min-height:600px;
+  
+}
+.reg-contain span{
+  text-align:left;
+  display:block; 
+  text-indent:1em;
+   font-size:12px;
+   color:#778779;
+}
+.reg-contain ul{
+  margin-left:20px;
+  
+  
+}
+.reg-contain li{
+  padding-top:15px;
+  
+}
+.form-btn{
+  margin-bottom:50px;
+}
+.reg-contain label{
+  display:inline-block;
+  width:150px;
+  text-align:right;
+  font-size:14px;
+  font-weight:bold;
+  margin-left:0px;
+  float:left;
+}
+.form-input{
+  float:left;
+}
+
+
+
+
+.w100{
+ width:100px;
+}
+.button{
+  display:inline-block;
+  line-height:25px;
+   background:#6fbf4c;
+   color:#fff;
+  text-align:center;
+  margin-left:120px;
+}
+.button:hover{
+  display:inline-block;
+  line-height:25px;
+background:#61ad3f;
+	color:#fff;
+  text-align:center; 
+
+}

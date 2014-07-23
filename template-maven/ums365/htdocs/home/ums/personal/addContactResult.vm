@@ -1,0 +1,18 @@
+#set($HeadMenuId="a_personal")
+
+
+#set($layout = "home/layout/umsLayout.vm")
+<script type="text/javascript" src="$homeServer.getURI("/static/js/ums/contact.js")"></script>
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ums-addcontact.css")" />
+<div class="center-contain">
+
+
+ <div class="contain-tips-right">
+ <div class="contain-title"><a href="$homeServer.getURI("/personal/contact.htm")">我的联系人</a>->添加联系人结果</div>
+          <div class="contain-tips">
+  <p style="font-size:16px;font-weight:bold;">添加联系人成功.</p>
+  <p style="font-size:14px;font-weight:bold;">您可以点此<a href="$homeServer.getURI("/personal/addContact.htm")">继续添加联系人</a></p>
+ </div>
+
+  </div>
+</div>

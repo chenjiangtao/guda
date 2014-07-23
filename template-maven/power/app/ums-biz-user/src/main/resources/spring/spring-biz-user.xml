@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+
+	<!-- <bean name="blankBiz" class="net.zoneland.ums.biz.common.BlankBiz"/> -->
+
+	<bean name="umsOrganizationBiz" class="net.zoneland.ums.biz.user.impl.UmsOrganizationBizImpl">
+		<property name="umsOrganizationMapper" ref="umsOrganizationMapper"></property>
+	</bean>
+	<bean name="umsUserInfoBiz" class="net.zoneland.ums.biz.user.impl.UmsUserInfoBizImpl">
+	</bean>
+	<bean name="umsGroupBiz" class="net.zoneland.ums.biz.user.impl.UmsGroupBizImpl">
+		<property name="umsGroupMapper" ref="umsGroupMapper"></property>
+		<property name="umsGroupUserRelMapper" ref="umsGroupUserRelMapper"></property>
+		<property name="umsUserInfoMapper" ref="umsUserInfoMapper"></property>
+		<property name="umsContactMapper" ref="umsContactMapper"></property>
+	</bean>
+
+	<bean name="mainTainGroupService"
+		class="net.zoneland.ums.biz.group.impl.MainTainGroupServiceImpl">
+	</bean>
+
+	<bean name="umsContactBiz"
+		class="net.zoneland.ums.biz.user.impl.UmsContactBizImpl">
+	</bean>
+	
+</beans>

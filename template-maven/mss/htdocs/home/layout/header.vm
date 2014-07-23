@@ -1,0 +1,63 @@
+<script src="$homeServer.getURI("/static/js/jquery.cycle.all.js")" type="text/javascript"></script>
+<div class="top" id="top">
+   <div class="top-contain">
+   <div class="top-logo">
+     <div><img width="200" height="60" src="$homeServer.getURI("/static/images/logo-4.png")"/>
+		 </div>
+   </div>
+   <div class="top-info">
+    <li>
+      <div class="top-login">
+        <div class="top-login-link">
+          <a class="href_header" href="#">登录</a>|<a class="href_header"  href="#">注册</a>
+        </div>
+       </div>
+    </li>
+    <li>
+    <!--
+      <div class="search-div">
+		   <input class="search_input_text" type="text" size=""/><a class="default-btn" href="#">搜 索</a>
+	   </div>
+	   -->
+    </li>
+   </div>
+
+	
+
+	 </div>
+</div>
+<div class="banner2" id="banner2">
+	
+	
+		<div class="banner2_sec" id="banner2_href_nav">
+
+			<ul>
+			<li><a class="current" id="a_index" class="banner2_href_visited" href="$homeServer.getURI("/index.htm")"><span>首页</span></a></li>
+			<li><a id="a_ada"  href="$homeServer.getURI("/ada/ada.htm")"><span>魔术师</span></a></li>
+			<li><a id="a_news"  href="$homeServer.getURI("/news/news.htm")"><span>舞蹈</span></a></li>
+			<li><a id="a_prod"  href="$homeServer.getURI("/prod/prod.htm")"><span>模特</span></a></li>
+			<li><a id="a_odm"  href="$homeServer.getURI("/odm/odm.htm")"><span>主持人</span></a></li>
+			<li><a id="a_meet"  href="$homeServer.getURI("/meet/meet.htm")"><span>其他艺人</span></a></li>
+			<li><a id="a_msg"  href="$homeServer.getURI("/msg/msg.htm")"><span>资讯</span></a></li>
+			<li><a id="a_contact"  href="$homeServer.getURI("/contact/contact.htm")"><span>联系我们</span></a></li>
+
+			</ul>
+
+		 </div>
+   
+</div>
+
+
+
+<script language="javascript">
+	var oul = document.getElementById("banner2_href_nav").getElementsByTagName("a");
+	for(var i=0,len=oul.length;i<len;++i){
+	   oul[i].className="";
+	}
+	var oli = document.getElementById("$HeadMenuId");
+	if(oli){
+		oli.className="current";
+	}
+	
+
+</script>

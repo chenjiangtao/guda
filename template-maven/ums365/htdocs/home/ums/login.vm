@@ -1,0 +1,72 @@
+#set($layout = "home/layout/loginLayout.vm")
+
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ums-login.css")" />
+<script type="text/javascript" src="$homeServer.getURI("/static/js/ums/login.js")"></script>
+<div class="login-contain">
+<div class="login-form">
+<div class="input-form">
+<div class="contain-left-form">
+  <img width="400px" height="310px" id="login-img" src="$homeServer.getURI("/static/images/umsnew/login-1.jpg")"/>
+  
+</div>
+<div class="contain-form" >
+<h3>登录UMS365</h3>
+<form method="post" action="$homeServer.getURI("/login.htm")" id="loginForm" name="loginForm">
+<div class="login-div">
+<input style="display:none" type="text"  name="_form_token" value="$formTool.newForm($request)" />
+	 <input style="display:none"  type="text" name="refer" value="$!refer" />
+	<li ><label>用户名:</label>
+	#springBind("loginForm.userName" )
+	 <input class="login_input_text" id="userName" type="text" name="${status.expression}" value="$!status.value" />
+	 </li>
+	 <li class="line-height15">
+	<p class="error-span">
+	#foreach($error in $status.errorMessages)
+			<b>$error</b>
+	  #end
+	  </p>
+ </li>
+	<li><label>密码:</label>
+	#springBind("loginForm.password" )
+	<input class="login_input_text" id="password" type="password" name="${status.expression}" value="$!status.value" /></li>
+	
+	<li class="line-height10">
+	<p class="error-span">
+        #foreach($error in $status.errorMessages)
+		<b>$error</b>
+         #end
+     </p>
+    </li>
+  #if( $needCheckCode == '1' )
+    <li><label>验证码:</label>
+	#springBind("loginForm.checkCode" )
+	<input class="checkcode_input_text"  type="text" name="checkCode" /><img width="70px;" height="30px" id="kaptchaImg" src="$homeServer.getURI("/kaptcha.htm")" title="看不清，点击换一张"
+onclick="updateImg(this)" /> </li>
+	<li class="line-height10 clearfix">
+	<p class="error-span">
+        #foreach($error in $status.errorMessages)
+		<b>$error</b>
+         #end
+     </p>
+    </li>
+  #end
+  <li class="clearfix left-a"><a href="$homeServer.getURI("/findPassword.htm")" >找回密码</a></li>
+	<li class="clearfix btn-a"><a  class="margin-left40" href="#" id="login_btn">登录</a><a class="margin-left40" href="$homeServer.getURI("/reg.htm")" >注册</a></li>
+   </div>
+ </form>
+</div>
+</div>
+</div>
+<script language="javascript">
+  function updateImg(obj) {
+    var src = currenthost+"/kaptcha.htm?" + new Date();
+	obj.src = src;
+	
+  }
+  function setImg(){
+     var d  = new Date();
+     var url = currenthost+'/static/images/login/'+d.getDay()+'.jpg';
+     jQuery("#login-img").attr('src',url);
+  } 
+  setImg();
+</script>

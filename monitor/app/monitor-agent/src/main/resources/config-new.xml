@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+
+ <sysInfo>
+	  <sys key="cpu" comments="cpu使用率(百分比)"  interval="30">
+	  </sys>
+	  <sys key="mem" comments="内存(单位:MB)"  interval="30">
+	  </sys>
+	  <sys key="net-in" comments="入网(单位:KB)"  interval="30">
+	  </sys>
+	  <sys key="net-out" comments="出网(单位:KB)"  interval="30">
+	  </sys>
+	  <sys key="file-read" comments="读磁盘(单位:KB)"  interval="30">
+	  </sys>
+	  <sys key="file-write" comments="写磁盘(单位:KB)"  interval="30">
+	  </sys>
+	  <sys key="dev-used" comments="磁盘使用率(百分比)"  interval="30">
+	  </sys>
+	  <sys key="processInfo" comments="进程信息"  interval="30">
+	  </sys>
+	  <sys key="log" comments="系统日志"  interval="30">
+	  </sys>
+	  <sys key="runTime" comments="运行时间"  interval="30">
+	  </sys>
+	  <!--  
+	  <sys key="load" comments="负载" monitor="true" interval="30">
+	  </sys>
+	  -->
+  </sysInfo>
+ 
+  <dbInfo>
+
+	  <db  driverClass="oracle.jdbc.driver.OracleDriver">
+	     <sqlUrl>jdbc:oracle:thin:@172.16.67.105:1521:portaldb</sqlUrl>
+	     <sqlUserName>sys as sysdba</sqlUserName>
+	     <sqlPassword>oracle</sqlPassword>
+	     
+	     <sql interval="30" key="实例状态" resultType="string">
+		     <query>select instance_name,status from gv$instance </query>
+		     <map column="instance_name" showName="实例名"></map>
+		     <map column="status" showName="实例状态"></map>
+	     </sql>
+	     
+	     <sql interval="30" key="MTS使用率" resultType="float">
+		     <query>select busy/(busy+idle)  from v$dispatcher</query>
+		     <map column="0" showName="MTS使用率"></map>
+	     </sql>
+	     
+	     <sql interval="30" key="字典缓冲区(lib cache)" resultType="float">
+		     <query>Select (SUM(PINS - RELOADS)) / SUM(PINS) "LIB" FROM V$LIBRARYCACHE</query>
+		     <map column="0" showName="字典缓冲区(lib cache)"></map>
+	     </sql>
+	     <sql interval="30" key="字典缓冲区(row cache)" resultType="float">
+		     <query>Select (SUM(GETS - GETMISSES - USAGE - FIXED)) / SUM(GETS) "ROW" FROM V$ROWCACHE</query>
+		     <map column="0" showName="字典缓冲区(row cache)"></map>
+	     </sql>
+	     <sql interval="30" key="字典缓冲区(cache misses)" resultType="float">
+		     <query>select SUM(PINS) "EXECUTIONS", SUM(RELOADS) "CACHE MISSES WHILE EXECUTING" FROM V$LIBRARYCACHE</query>
+		     <map column="0" showName="字典缓冲区(cache misses)"></map>
+	     </sql>
+	     
+	      <sql interval="30" key="磁盘排序率" resultType="int">
+		     <query>
+		     <![CDATA[
+		      SELECT value FROM v$sysstat t WHERE NAME='sorts (disk)'
+		     ]]>
+		     </query>
+		     <map column="value" showName="磁盘排序率"></map>
+		    
+	     </sql>
+	     <sql interval="30" key="表空间IO信息" resultType="string"  >
+		     <query>
+		     <![CDATA[
+            select df.tablespace_name name,df.file_name "file",f.phyrds pyr,f.phyblkrd pbr,f.phywrts pyw,f.phyblkwrt pbw from v$filestat f,dba_data_files df where f.file#=df.file_id
+
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	     <sql interval="30" key="文件系统IO信息" resultType="string" >
+		     <query>
+		     <![CDATA[
+            select substr(a.file#,1,2) "#", substr(a.name,1,30) "Name", a.status, a.bytes, b.phyrds, b.phywrts from v$datafile a, v$filestat b where a.file# = b.file#
+
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	     <sql interval="30" key="SGA命中率" resultType="float" >
+		     <query>
+		     <![CDATA[
+              select ((a.value+b.value)-c.value) / (a.value+b.value) "RATIO" from v$sysstat a, v$sysstat b, v$sysstat c where a.statistic# = 38 and b.statistic# = 39 and c.statistic# = 40
+
+		     ]]>
+		     </query>
+		     <map column="0" showName="SGA命中率"></map>
+	     </sql>
+	     <sql interval="30" key="SGA字典缓冲区命中率" resultType="string" >
+		     <query>
+		     <![CDATA[
+              select parameter, gets,Getmisses , getmisses/(gets+getmisses)*100 "miss ratio",(1-(sum(getmisses)/ (sum(gets)+sum(getmisses))))*100 "Hit ratio"from v$rowcache where gets+getmisses <>0group by parameter, gets, getmisses
+
+		     ]]>
+		     </query>
+	     </sql>
+	     
+	     <sql interval="30" key="SGA共享缓冲区命中率" resultType="float" >
+		     <query>
+		     <![CDATA[
+              select sum(pinhits-reloads)/sum(pins) "hit radio" from v$librarycache
+
+		     ]]>
+		     </query>
+		     <map column="0" showName="SGA共享缓冲区命中率"></map>
+	     </sql>
+	      <sql interval="30" key="用户回滚数" resultType="int">
+		     <query>
+		     <![CDATA[
+		     select value from v$sysstat where name='user rollbacks'
+		     ]]>
+		     </query>
+		     <map column="value" showName="用户回滚数"></map>
+		    
+	     </sql>
+	     
+	     <sql interval="30" key="日志缓冲" resultType="string">
+		     <query>
+		     <![CDATA[
+		     SELECT name, gets, misses, immediate_gets, immediate_misses, Decode(gets,0,0,misses/gets*100) ratio1, Decode(immediate_gets+immediate_misses,0,0, immediate_misses/(immediate_gets+immediate_misses)*100) ratio2 FROM v$latch WHERE name IN ('redo allocation', 'redo copy')
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	     <sql interval="30" key="表空间使用率" resultType="multi-value"  suffixColumn="TABLESPACE_NAME" valueColumn="USED_RATE">
+		     <query>
+		     <![CDATA[
+		       SELECT D.TABLESPACE_NAME,  
+			         SPACE || 'M' "SUM_SPACE(M)",  
+			         BLOCKS "SUM_BLOCKS",  
+			         SPACE - NVL (FREE_SPACE, 0) || 'M' "USED_SPACE(M)",  
+			         ROUND ( (1 - NVL (FREE_SPACE, 0) / SPACE) * 100, 2)  
+			            "USED_RATE",  
+			         FREE_SPACE || 'M' "FREE_SPACE(M)"  
+			    FROM (  SELECT TABLESPACE_NAME,  
+			                   ROUND (SUM (BYTES) / (1024 * 1024), 2) SPACE,  
+			                   SUM (BLOCKS) BLOCKS  
+			              FROM DBA_DATA_FILES  
+			          GROUP BY TABLESPACE_NAME) D,  
+			         (  SELECT TABLESPACE_NAME,  
+			                   ROUND (SUM (BYTES) / (1024 * 1024), 2) FREE_SPACE  
+			              FROM DBA_FREE_SPACE  
+			          GROUP BY TABLESPACE_NAME) F  
+			   WHERE D.TABLESPACE_NAME = F.TABLESPACE_NAME(+)  
+			  UNION ALL                                                         
+			  SELECT D.TABLESPACE_NAME,  
+			         SPACE || 'M' "SUM_SPACE(M)",  
+			         BLOCKS SUM_BLOCKS,  
+			         USED_SPACE || 'M' "USED_SPACE(M)",  
+			         ROUND (NVL (USED_SPACE, 0) / SPACE * 100, 2)  "USED_RATE",  
+			         NVL (FREE_SPACE, 0) || 'M' "FREE_SPACE(M)"  
+			    FROM (  SELECT TABLESPACE_NAME,  
+			                   ROUND (SUM (BYTES) / (1024 * 1024), 2) SPACE,  
+			                   SUM (BLOCKS) BLOCKS  
+			              FROM DBA_TEMP_FILES  
+			          GROUP BY TABLESPACE_NAME) D,  
+			         (  SELECT TABLESPACE_NAME,  
+			                   ROUND (SUM (BYTES_USED) / (1024 * 1024), 2) USED_SPACE,  
+			                   ROUND (SUM (BYTES_FREE) / (1024 * 1024), 2) FREE_SPACE  
+			              FROM V$TEMP_SPACE_HEADER  
+			          GROUP BY TABLESPACE_NAME) F  
+			   WHERE D.TABLESPACE_NAME = F.TABLESPACE_NAME(+)  
+			  ORDER BY 1
+
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	     <sql interval="30" key="数据文件信息" resultType="string">
+		     <query>
+		     <![CDATA[
+		   select b.file_name 物理文件名,b.tablespace_name 表空间,b.bytes/1024/1024 大小M,(b.bytes-sum(nvl(a.bytes,0)))/1024/1024 已使用M,((b.bytes-sum(nvl(a.bytes,0)))/(b.bytes)) 利用率 
+from dba_free_space a,dba_data_files b where a.file_id=b.file_id group by b.tablespace_name,b.file_name,b.bytes order by b.tablespace_name
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	     
+	     <sql interval="30" key="登录用户" resultType="string">
+		     <query>
+		     <![CDATA[
+		  Select client_info,machine from v$session
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	     
+	     
+	     
+	     
+          <sql interval="30" key="用户session使用cpu" resultType="string">
+		     <query>
+		     <![CDATA[
+		     select a.sid,spid,status,substr(a.program,1,40) prog,a.terminal,osuser,value/60/100 value   
+		     from v$session a,v$process b,v$sesstat c    where c.statistic#=12   
+		       and c.sid=a.sid      and a.paddr=b.addr    order by value desc
+		     ]]>
+		     </query>
+		    
+	     </sql>
+	    
+	     
+	     
+	      
+	     
+
+
+	    
+	  </db>
+	 
+  </dbInfo>
+</root>

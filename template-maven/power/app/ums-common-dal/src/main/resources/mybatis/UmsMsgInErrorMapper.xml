@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.zoneland.ums.common.dal.UmsMsgInErrorMapper">
+	<resultMap id="BaseResultMap"
+		type="net.zoneland.ums.common.dal.dataobject.UmsMsgInError">
+		<id column="ID" property="id" jdbcType="CHAR" />
+		<result column="SEND_ID" property="sendId" jdbcType="VARCHAR" />
+		<result column="RECV_ID" property="recvId" jdbcType="VARCHAR" />
+		<result column="CONTENT" property="content" jdbcType="VARCHAR" />
+		<result column="MSG_TYPE" property="msgType" jdbcType="INTEGER" />
+		<result column="APP_ID" property="appId" jdbcType="VARCHAR" />
+		<result column="SUB_APP" property="subApp" jdbcType="VARCHAR" />
+		<result column="APP_SERIAL_NO" property="appSerialNo" jdbcType="VARCHAR" />
+		<result column="MEDIA_ID" property="mediaId" jdbcType="VARCHAR" />
+		<result column="RET_CODE" property="retCode" jdbcType="VARCHAR" />
+		<result column="ERROR_MSG" property="errorMsg" jdbcType="VARCHAR" />
+		<result column="ACK" property="ack" jdbcType="INTEGER" />
+		<result column="REPLY" property="reply" jdbcType="VARCHAR" />
+		<result column="GMT_CREATED" property="gmtCreated" jdbcType="TIMESTAMP" />
+	</resultMap>
+	<sql id="Base_Column_List">
+		ID, SEND_ID, RECV_ID, CONTENT, MSG_TYPE, APP_ID, SUB_APP, APP_SERIAL_NO,
+		MEDIA_ID,
+		RET_CODE, ERROR_MSG, ACK, REPLY, GMT_CREATED
+	</sql>
+
+	<insert id="insert"
+		parameterType="net.zoneland.ums.common.dal.dataobject.UmsMsgInError">
+		insert into UMS_MSG_IN_ERROR (ID, SEND_ID, RECV_ID,
+		CONTENT, MSG_TYPE, APP_ID,
+		SUB_APP, APP_SERIAL_NO, MEDIA_ID,
+		RET_CODE, ERROR_MSG, ACK,
+		REPLY, GMT_CREATED)
+		values (#{id,jdbcType=CHAR}, #{sendId,jdbcType=VARCHAR},
+		#{recvId,jdbcType=VARCHAR},
+		#{content,jdbcType=VARCHAR}, #{msgType,jdbcType=INTEGER}, #{appId,jdbcType=VARCHAR},
+		#{subApp,jdbcType=VARCHAR}, #{appSerialNo,jdbcType=VARCHAR},
+		#{mediaId,jdbcType=VARCHAR},
+		#{retCode,jdbcType=VARCHAR}, #{errorMsg,jdbcType=VARCHAR}, #{ack,jdbcType=INTEGER},
+		#{reply,jdbcType=VARCHAR}, #{gmtCreated,jdbcType=TIMESTAMP})
+	</insert>
+
+	<!-- 分页查询上行错误信息 -->
+	<select id="searchMsgInErrorByPage" resultMap="BaseResultMap" parameterType="java.util.Map">
+		SELECT
+		<include refid="Base_Column_List" />
+		from UMS_MSG_IN_ERROR
+		WHERE 1=1
+		<if test="appIdList!=null">
+			AND
+			<foreach item="item" index="index" collection="appIdList"
+				open="(" separator=" OR " close=")">
+				APP_ID = #{item}
+			</foreach>
+		</if>
+		<if test="recvId!= null">
+			AND RECV_ID like '%'||#{recvId}||'%'
+		</if>
+		<if test="sendId!= null">
+			AND SEND_ID like '%'||#{sendId}||'%'
+		</if>
+		<if test="content!= null">
+			AND CONTENT like '%'||#{content}||'%'
+		</if>
+		order by GMT_CREATED desc
+		limit #{start} , 10
+	</select>
+
+
+	<!-- 获得错误个数 -->
+	<select id="searchMsgInErrorNum" resultType="java.lang.Integer">
+		select count(ID)
+		from UMS_MSG_IN_ERROR
+		WHERE 1=1
+		<if test="appIdList!=null">
+			AND
+			<foreach item="item" index="index" collection="appIdList"
+				open="(" separator=" OR " close=")">
+				APP_ID = #{item}
+			</foreach>
+		</if>
+		<if test="recvId!= null">
+			AND RECV_ID like '%'||#{recvId}||'%'
+		</if>
+		<if test="sendId!= null">
+			AND SEND_ID like '%'||#{sendId}||'%'
+		</if>
+		<if test="content!= null">
+			AND CONTENT like '%'||#{content}||'%'
+		</if>
+	</select>
+</mapper>

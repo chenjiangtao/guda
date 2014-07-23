@@ -1,0 +1,33 @@
+
+
+
+.contain-right li{
+  line-height:25px;
+
+}
+
+.prod_left_nav_no_visited{
+ line-height:40px;
+
+ background-image: url("../images/ums/send-btn.png");
+    background-repeat: repeat-x;
+    border-bottom: 1px solid #c5e6c7;
+}
+.prod_left_nav_visited {
+
+  line-height:40px;
+ background-image: url("../images/ums/send-btn-hover.png");
+    background-repeat: repeat-x;
+    border-bottom: 1px solid #c5e6c7;
+}
+.left-lev li  a{
+ line-height:40px;
+DISPLAY: block; 
+}
+.left-lev  a:hover{
+ line-height:40px;
+DISPLAY: block; 
+ background-image: url("../images/ums/send-btn-hover.png");
+    background-repeat: repeat-x;
+    
+}

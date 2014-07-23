@@ -1,0 +1,62 @@
+<link href="$umsServer.getURI("/static/css/user.css")" rel="stylesheet"type="text/css" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/checkutil.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/user/user.js")"></script>
+<div id="bd">
+	#set($HeadMenuId="personal_header")
+	#set($sideMenuId="personal_side_bar")
+	#parse("/home/user/userSideBar.vm")
+	<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c">
+            <div id="writeEmail">
+                <div class="btnArea clearfix">
+					 &nbsp;&nbsp;<a class="fs14bold c_007" href="$umsServer.getURI("/user/user.htm")">个人资料</a><a class="fs14bold c_008">-&gt;我的个人资料</a>
+                </div>
+				#if($!successMsg)
+				<div class="success" id="errorMsg">
+					$!successMsg
+				</div>
+				#else
+				<div class="error" id="errorMsg">
+					$!errorMsg
+				</div>
+				#end
+				<div class="userinfo">
+				
+						<input type="hidden" id="userId" name="id" value="$!userInfo.id" />
+						<table border="0" cellspacing="10px">
+							<tr>
+								<td align="right" width="15%"><span class="bold fs14 c_007">员工号：</span></td>
+								<td width="15%">$!userInfo.employeeId<input type="hidden" class="input_text readonly" name="employeeId" value="$!userInfo.employeeId" readonly="true"/></td>
+								<td align="right" width="15%"><span class="bold fs14 c_007">姓名：</span></td>
+								<td width="20%">$!userInfo.userName<input type="hidden" class="input_text readonly" name="userName" value="$!userInfo.userName" readonly="true"/></td>
+								<td>&nbsp;</td>
+							</tr>
+							<tr>
+    							<td align="right"><span class="bold fs14 c_007">部门：</span></td>
+    							<td >$!orgName<input type="hidden" class="input_text readonly" id="orgName" name="orgName" value="$!orgName" readonly="true"/></td>
+    							<td align="right"><span class="bold fs14 c_007">手机：</span></td>
+    							<td>$!userInfo.phone<input class="input_text readonly" name="phone" value="$!userInfo.phone" id="phone" type="hidden"  readonly="true"/></td>
+								<!--
+								<td><input type="button" id="span_submit_btn" class="btn_green" value="保存" /></td>
+								-->
+							</tr>
+							<tr>
+                                <td align="right"><span class="bold fs14 c_007">QQ：</span></td>
+    							<td>$!userInfo.qq<input type="hidden" class="input_text readonly" name="qq" value="$!userInfo.qq" readonly="true"/></td>
+    							<td align="right"><span class="bold fs14 c_007">邮箱：</span></td> 
+    							<td>$!userInfo.email<input type="hidden" class="input_text readonly" name="email" value="$!userInfo.email" readonly="true"/></td>
+								<td>&nbsp;</td>
+							</tr>
+						</table>
+					
+				</div>
+			</div>
+		</div>
+		<div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>

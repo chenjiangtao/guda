@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd"
+	default-lazy-init="true">
+	
+	<bean id="dynamicAct" class="com.foodoon.news.action.front.DynamicPageAct"/>
+	<bean id="tagAct" class="com.foodoon.news.action.front.TagAct"/>
+	<bean id="topicAct" class="com.foodoon.news.action.front.TopicAct"/>
+	<bean id="searchAct" class="com.foodoon.news.action.front.SearchAct"/>
+	<bean id="voteAct" class="com.foodoon.news.action.front.VoteAct"/>
+	<bean id="friendlinkAct" class="com.foodoon.news.action.front.FriendlinkAct"/>
+	
+	<bean id="contentCountAct" class="com.foodoon.news.action.front.ContentCountAct"/>
+	<bean id="attachmentAct" class="com.foodoon.news.action.front.AttachmentAct"/>
+	<bean id="commentAct" class="com.foodoon.news.action.front.CommentAct"/>
+	<bean id="guestbookAct" class="com.foodoon.news.action.front.GuestbookAct"/>
+	<bean id="rssAct" class="com.foodoon.news.action.front.RssAct"/>
+	<bean id="csiCustomAct" class="com.foodoon.news.action.front.CsiCustomAct"/>
+	<bean id="advertisingAct" class="com.foodoon.news.action.front.AdvertisingAct"/>
+	
+	<bean id="actionVedioAct" class="com.foodoon.news.action.front.ActionVedioAct"/>
+	
+	<bean id="casLoginAct" class="com.foodoon.news.action.member.CasLoginAct"/>
+	<bean id="loginAct" class="com.foodoon.news.action.member.LoginAct"/>
+	<bean id="memberAct" class="com.foodoon.news.action.member.MemberAct"/>
+	<bean id="contributeAct" class="com.foodoon.news.action.member.ContributeAct"/>
+	<bean id="fckAct" class="com.foodoon.news.action.member.FckAct"/>
+	<bean id="registerAct" class="com.foodoon.news.action.member.RegisterAct"/>
+	<bean id="forgotPasswordAct" class="com.foodoon.news.action.member.ForgotPasswordAct"/>
+	<bean id="imageCutAct" class="com.foodoon.news.action.member.ImageCutAct"/>
+	<bean id="imageUploadAct" class="com.foodoon.news.action.member.ImageUploadAct"/>
+	<bean id="commentMemberAct" class="com.foodoon.news.action.member.CommentMemberAct"/>
+	<bean id="guestbookMemberAct" class="com.foodoon.news.action.member.GuestbookMemberAct"/>
+	<bean id="collectionMemberAct" class="com.foodoon.news.action.member.CollectionMemberAct"/>
+	<bean id="messageAct" class="com.foodoon.news.action.member.MessageAct"/>
+	<bean id="siteFlowAct" class="com.foodoon.news.action.front.CmsSiteFlowAct"/>
+	<bean id="resumeAct" class="com.foodoon.news.action.member.ResumeAct"/>
+</beans>

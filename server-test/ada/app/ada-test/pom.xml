@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>com.tiaotiaogift.ada</groupId>
+		<artifactId>app</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<groupId>com.tiaotiaogift.ada.test</groupId>
+	<artifactId>ada-test</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+
+	<name>ada-test</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>com.tiaotiaogift.ada.web</groupId>
+			<artifactId>ada-web-home</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.tiaotiaogift.ada.common.dal</groupId>
+			<artifactId>ada-common-dal</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>com.tiaotiaogift.ada.biz.common</groupId>
+			<artifactId>ada-biz-common</artifactId>
+		</dependency>
+
+
+		<dependency>
+			<groupId>com.tiaotiaogift.ada.common.util</groupId>
+			<artifactId>ada-common-util</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>net.zoneland</groupId>
+			<artifactId>mvc-runtime-core</artifactId>
+		</dependency>
+
+       			<dependency>
+			  <groupId>org.eclipse.jetty.aggregate</groupId>
+			  <artifactId>jetty-all</artifactId>
+	
+			</dependency>
+
+	
+	</dependencies>
+</project>

@@ -1,0 +1,22 @@
+
+#set($HeadMenuId="a_prod")
+#set($leftMenuId="prod_ums")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/prod.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/q.css")" />
+<div class="center-contain">
+<div class="contain">
+  #parse("home/prod/left-nav.vm")
+  <div class="contain-right">
+	<ul>
+	  <li><b class="font16">短信平台的功能特色:</b></li>
+	  <li>1，支持群组创建，维护，支持短信群发，支持名片导入。</li>
+	  <li>2，长短信自动拆分，接收方过多自动拆分。</li>
+	  <li>3，支持移动，联通，电信网关。</li>
+	  <li>4，网关可配置，可动态启用，停止，并实时监控网关状态，并自动重连，告警等。</li>
+	  <li>5，支持发送记录，接收记录查询。</li>
+	  <li>6，由于网关速率限制，通过缓冲方式保证系统稳定性。</li>
+	  <li>7，可以灵活OEM。可定制开发。</li>
+	</ul>
+  </div>
+   </div>
+</div>

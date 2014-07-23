@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.zoneland.ums.common.dal.UmsActionLogMapper" >
+  <resultMap id="BaseResultMap" type="net.zoneland.ums.common.dal.dataobject.UmsActionLog" >
+
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="OPERATOR_NAME" property="operatorName" jdbcType="VARCHAR" />
+    <result column="OPERATOR_TYPE" property="operatorType" jdbcType="VARCHAR" />
+    <result column="OPERATOR_ID" property="operatorId" jdbcType="VARCHAR" />
+    <result column="OPERATOR_IP" property="operatorIp" jdbcType="VARCHAR" />
+    <result column="OPERATOR_MENU" property="operatorMenu" jdbcType="VARCHAR" />
+    <result column="COMMENT" property="comment" jdbcType="VARCHAR" />
+    <result column="GMT_CREATED" property="gmtCreated" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+
+    ID, OPERATOR_NAME, OPERATOR_TYPE, OPERATOR_ID,OPERATOR_MENU, OPERATOR_IP, COMMENT, GMT_CREATED
+  </sql>
+
+  
+  <insert id="insert" parameterType="net.zoneland.ums.common.dal.dataobject.UmsActionLog" >
+
+    insert into UMS_ACTION_LOG (ID, OPERATOR_NAME, OPERATOR_TYPE, 
+      OPERATOR_ID, OPERATOR_IP,OPERATOR_MENU, COMMENT, 
+      GMT_CREATED)
+    values (#{id,jdbcType=CHAR}, #{operatorName,jdbcType=VARCHAR}, #{operatorType,jdbcType=VARCHAR}, 
+      #{operatorId,jdbcType=VARCHAR}, #{operatorIp,jdbcType=VARCHAR},#{operatorMenu,jdbcType=VARCHAR}, #{comment,jdbcType=VARCHAR}, 
+      #{gmtCreated,jdbcType=TIMESTAMP})
+  </insert>
+
+	<select id="searchAllNum" parameterType="net.zoneland.ums.common.dal.bo.UmsActionLogBo" resultType="java.lang.Integer">
+   		 SELECT count(ID) from UMS_ACTION_LOG
+			<where>
+			     1 = 1
+			     <if test="operatorId != null">  
+			         AND OPERATOR_ID = #{operatorId}  
+			     </if>
+			     <if test="operatorType != null">  
+			         AND OPERATOR_TYPE = #{operatorType}  
+			     </if>
+			     <if test="operatorName != null">  
+			         AND OPERATOR_NAME like '%'||#{operatorName}||'%'
+			     </if>  
+			     <if test="operatorMenu != null">  
+			         AND OPERATOR_MENU like  '%'||#{operatorMenu}||'%' 
+			     </if>
+			     <if test="operatorIp != null">  
+			         AND OPERATOR_IP like  '%'||#{operatorIp}||'%' 
+			     </if>
+			     <if test="comment != null">  
+			         AND COMMENT like '%'||#{comment}||'%' 
+			     </if>
+			     <if test="startTime != null">
+			     	<if test="endTime != null">
+			     		<![CDATA[
+				          AND GMT_CREATED>=#{startTime}
+			              AND GMT_CREATED<=#{endTime}
+				         ]]>
+			     	</if>
+			     	<if test="endTime == null">
+			     		<![CDATA[
+				          AND GMT_CREATED>=#{startTime}
+				         ]]>
+			     	</if>
+			     </if>
+			     <if test="startTime == null">
+			     	<if test="endTime != null">
+			     		<![CDATA[
+			              AND GMT_CREATED<=#{endTime}
+				         ]]>
+			     	</if>
+			     </if> 
+		       </where> 
+   </select>
+  <select id="searchSelectiveByPage" parameterType="net.zoneland.ums.common.dal.util.PageSearch" resultMap="BaseResultMap">
+  	  SELECT <include refid="Base_Column_List" /> from UMS_ACTION_LOG
+			<where>
+			     1 = 1  
+			     <if test="searchObj.operatorId != null">  
+			         AND OPERATOR_ID = #{searchObj.operatorId}  
+			     </if>
+			     <if test="searchObj.operatorType != null">  
+			         AND OPERATOR_TYPE = #{searchObj.operatorType}  
+			     </if>
+			     <if test="searchObj.operatorName != null">  
+			         AND OPERATOR_NAME like '%'||#{searchObj.operatorName}||'%'  
+			     </if>  
+			     <if test="searchObj.operatorIp != null">  
+			         AND OPERATOR_IP like  '%'||#{searchObj.operatorIp}||'%' 
+			     </if>
+			     <if test="searchObj.operatorMenu != null">  
+			         AND OPERATOR_MENU like  '%'||#{searchObj.operatorMenu}||'%' 
+			     </if>
+			     <if test="searchObj.comment != null">  
+			         AND COMMENT like '%'||#{searchObj.comment}||'%' 
+			     </if>
+			     <if test="searchObj.startTime != null">
+			     	<if test="searchObj.endTime != null">
+			     		<![CDATA[
+				          AND GMT_CREATED>=#{searchObj.startTime}
+			              AND GMT_CREATED<=#{searchObj.endTime}
+				         ]]>
+			     	</if>
+			     	<if test="searchObj.endTime == null">
+			     		<![CDATA[
+				          AND GMT_CREATED>=#{searchObj.startTime}
+				         ]]>
+			     	</if>
+			     </if>
+			     <if test="searchObj.startTime == null">
+			     	<if test="searchObj.endTime != null">
+			     		<![CDATA[
+			              AND GMT_CREATED<=#{searchObj.endTime}
+				         ]]>
+			     	</if>
+			     </if> 
+		       </where>  
+		        <if test="searchObj.orderBy != null">  
+		       		order by ${searchObj.orderBy}   ${searchObj.orderbyType} 
+		       </if>
+		 limit #{recordFirst} 10 
+  </select>
+</mapper>

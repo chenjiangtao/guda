@@ -1,0 +1,16 @@
+#set($layout = "home/layout/regLayout.vm")
+#set($_title="重置密码")
+
+
+
+<div class="container"  style="height:350px;">
+<div class="grid doc" >
+	<div class="col-1-6">
+	&nbsp;
+	</div>
+	 <div class="col-4-6">
+     <p style="font-size:16px;font-weight:bold;">新密码设置成功.</p>
+     <p style="font-size:14px;font-weight:bold;">您可以点此<a href="$homeServer.getURI("/user/login.htm")">登录</a></p>
+     </div>
+</div>
+</div>

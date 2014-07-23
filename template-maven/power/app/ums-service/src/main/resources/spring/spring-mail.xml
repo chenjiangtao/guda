@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<bean id="mailProcess" class="net.zoneland.ums.service.mail.process.MailProcessImpl">
+	</bean>
+	<bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host">
+			<value>${mail.sender.host}</value>
+		</property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.timeout">25000</prop>
+			</props>
+		</property>
+		<property name="username">
+			<value>${mail.username}</value>
+		</property>
+		<property name="password">
+			<value>${mail.password}</value>
+		</property>
+		<property name="defaultEncoding">
+			<value>GBK</value>
+		</property>
+	</bean>
+	
+	<bean id="mailReceiveHelper" class="net.zoneland.ums.service.mail.MailReceiveHelper">
+		<property name="host">
+			<value>${mail.receive.host}</value>
+		</property>
+		<property name="username">
+			<value>${mail.username}</value>
+		</property>
+		<property name="password">
+			<value>${mail.password}</value>
+		</property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.timeout">25000</prop>
+			</props>
+		</property>
+	</bean>
+	
+	<bean id="mailSenderHelper" class="net.zoneland.ums.service.mail.MailSenderHelper">
+		<property name="umsEmail">
+			<value>${mail.name}</value>
+		</property>
+		<property name="mailSender">
+			<ref bean="mailSender"/>
+		</property>
+		
+	</bean>
+	<!--  --> 
+	<bean id="mailServer" class="net.zoneland.ums.service.mail.MailServer" init-method="startup">
+		<property name="dealInitServer" value="${dealInitServer}" />
+	</bean>
+
+</beans>

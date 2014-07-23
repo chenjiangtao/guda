@@ -1,0 +1,8 @@
+
+/prod/publish.htm=ROLE_LOGIN
+/admin/.*=ROLE_LOGIN
+/home/.*=ROLE_LOGIN
+
+
+
+

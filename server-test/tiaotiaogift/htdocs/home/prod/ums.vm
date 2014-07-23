@@ -1,0 +1,10 @@
+#set($HeadMenuId="a_prod")
+
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/prod.css")" />
+<div class="contain">
+  #parse("home/prod/left-nav.vm")
+  <div class="contain-right">
+	
+  </div>
+   
+</div>

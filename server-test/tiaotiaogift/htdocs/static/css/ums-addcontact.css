@@ -1,0 +1,97 @@
+.contain-title{  
+  text-align:left;
+  font-weight:bold;
+  font-size:14px;
+  width:100%;
+  margin-left:0px;
+   background-image: url("../images/nav-h2.png");
+    background-repeat: repeat-x;
+
+  line-height:40px;
+
+}
+.contain-tips{
+
+  margin-top:50px;
+  margin-left:200px;
+  font-size:16px;
+  font-weight:bold;
+  margin-bottom:100px;
+  color:#07aa21;
+}
+.contain-tips-right{
+ width:1022px;
+ margin:0 auto;
+text-align:left;
+line-height:25px;
+margin-top:30px;
+border:1px solid #c5e6c7;
+    height:auto!important;  
+    height:600px;  
+    min-height:600px;
+   
+}
+.contain-title a{  
+  margin-left:10px;
+
+}
+.contact_input_text{ 
+background:url(../images/pic_6.jpg) no-repeat 0 0; 
+border:1px solid #e0e0e0;
+width:150px; 
+height:25px; line-height:30px; 
+
+}
+.msg-contain-right{
+width:1024px;
+ margin:0 auto;
+ margin-top:30px;
+ height:auto!important;  
+    height:600px;  
+    min-height:600px;  
+}
+.contain-tab{
+   padding-top:50px;
+   table-layout:fixed;
+     width:430px;
+  margin:0 auto;
+
+}
+.contain-tab tr{
+   padding: 3px;
+   height: 20px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.contain-tab td{
+white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.contain-tab thead td {
+  	background: #98cda5;
+    text-align: right;
+       
+}
+.contain-tab tbody td {
+   text-align: center;
+    
+}
+.error-span{
+
+ color:red;
+}
+.span-tips{
+  padding:30px;
+  font-size:16px;
+  font-weight:bold;
+  color:#0d3015;
+}
+.span-tips a{
+  font-size:18px;
+  font-weight:bold;
+  color:#245c32;
+}

@@ -1,0 +1,31 @@
+#set($layout = "home/layout/publishLayout.vm")
+
+#set($_title="我的主页")
+#set($leftMenuId="home-left-home")
+
+<div class="container">
+<div class="grid m-t-40"  style="height:350px;">
+	#parse("home/user/home/leftNav.vm")
+	
+	<div class="col-1-2 col-offset-1-12">
+	   <table class="table table-cleanline">
+                  
+                   
+                    <tbody>
+                        <tr>
+                            <td>用户名:</td>
+                            <td> $operationContext.getOperationContext().getPrincipal().getUserName()</td>
+                           
+                        </tr>
+                         <tr>
+                            <td>注册邮箱:</td>
+                            <td> $operationContext.getOperationContext().getPrincipal().getEmail()<a style="margin-left:10px;" href="">修改邮箱</a></td>
+                            <td></td>
+                            <td></td>
+                        </tr>
+                       
+                    </tbody>
+                </table>         
+	</div>
+</div>
+</div>

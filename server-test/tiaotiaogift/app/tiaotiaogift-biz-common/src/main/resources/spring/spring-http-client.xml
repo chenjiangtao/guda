@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans 
+        http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+        http://www.springframework.org/schema/context 
+        http://www.springframework.org/schema/context/spring-context-3.0.xsd">
+
+	<bean id="httpClient" class="org.apache.commons.httpclient.HttpClient">
+		<property name="connectionTimeout" value="2000" />
+		<property name="timeout" value="8000" />
+		<property name="httpConnectionManager">
+			<ref bean="multiThreadedHttpConnectionManager" />
+		</property>
+	</bean>
+
+	<bean id="multiThreadedHttpConnectionManager"
+		class="org.apache.commons.httpclient.MultiThreadedHttpConnectionManager">
+		<property name="params">
+			<bean
+				class="org.apache.commons.httpclient.params.HttpConnectionManagerParams">
+				<property name="maxTotalConnections" value="1000" />
+				<property name="defaultMaxConnectionsPerHost" value="1000" />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="smsService"
+		class="com.tiaotiaogift.biz.common.gateway.impl.SmsServiceHttpImpl">
+		<property name="httpUrl" value="${gateway.httpUrl}" />
+		<property name="smsUserName" value="${gateway.smsUserName}" />
+		<property name="smsPassword" value="${gateway.smsPassword}" />
+
+
+	</bean>
+
+</beans>

@@ -1,0 +1,56 @@
+
+
+<div class="container"  >
+	<div class="col-1-1" style="padding-top:15px;">
+			<div class="grid doc" style="border:1px solid #dddddd;">
+					<div class="col-1-1 search-form">
+					<label>类别:</label>
+                      #foreach($item in $subClassify)
+                        #if($form.subId == $item.id)
+                         #set($tempStyle="class='search-current'")
+                        #else
+                         #set($tempStyle="")
+                        #end
+                        <a $!tempStyle href="$homeServer.getURI("/list.htm")?subId=$item.id&id=$form.id">$item.name</a>
+                      #end
+					</div>
+					
+					
+			</div>
+	</div>
+</div>
+
+
+
+<div class="container">
+	<div class="col-1-1"  style="padding-top:15px;border-bottom:1px solid #dddddd;">
+	<table class="table">
+	 <tbody>
+	 #foreach($item in $details)
+	   <tr>
+	         <td><a href="$homeServer.getURI("/prod/detail.htm")?id=$item.detail.id"><img src="$item.imgPath" width="80" height="60"/></a></td>
+	        <td><a href="$homeServer.getURI("/prod/detail.htm")?id=$item.detail.id">$stringHelper.subStr($item.detail.title,10)</a></td>
+	        <td><a href="$homeServer.getURI("/prod/detail.htm")?id=$item.detail.id">$stringHelper.subStr($item.detail.content,20)</a></td>
+	        <td>$item.detail.price元</td>
+	        <td>$date.format('yyyy-MM-dd HH:mm:ss', $item.detail.gmtModify)</td>
+	    </tr>
+	 #end
+                       
+      </tbody>
+	</table>
+	  
+			
+	</div>
+</div>
+<div class="container">
+          <div class="col-9-10">&nbsp;
+          </div>
+          <div class="col-1-10">
+               <div class="pagination pagination-green mg-t-10">
+                   
+                    <a href="#">上一页</a>
+                    <a href="#">下一页</a>
+                    
+                </div>
+            </div>
+  </div>

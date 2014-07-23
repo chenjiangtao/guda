@@ -1,0 +1,118 @@
+.btn { 
+  font-size:14px;
+  font-weight:bold;
+  color:#00764b;
+  width:80px; 
+  height:20px; 
+  line-height:20px; 
+  text-align:center;
+  display: block;  
+  background: #aaa; 
+  padding: 5px; 
+  color: #fff; 
+  text-decoration: none; 
+  cursor: pointer; }
+.btn * { 
+  font-style: normal; 
+  background-image: url(../images/btn2.png); 
+  background-repeat: no-repeat; 
+  display: block; 
+  position: relative; }
+.btn i { background-position: top left; position: absolute; margin-bottom: -5px;  top: 0; left: 0; width: 5px; height: 5px; }
+
+.do-btn{
+   display:inline-block;
+  line-height:30px;
+  width:100px;
+   background:#6fbf4c;
+	color:#fff;
+  text-align:center;
+
+  margin-left:10px;
+}
+
+.do-btn-small{
+   display:inline-block;
+  line-height:20px;
+  width:100px;
+   background:#6fbf4c;
+	color:#fff;
+  text-align:center;
+
+  margin:3px;
+}
+.do-btn-small:hover{
+   display:inline-block;
+  line-height:20px;
+  width:100px;
+   background:#61ad3f;
+	color:#fff;
+  text-align:center;
+
+  margin:3px;
+}
+
+.do-btn:hover{
+
+   background:#61ad3f;
+
+
+}
+
+
+.btn.green { background: #9d4; }
+.btn:hover { background-color: #7CCD7C; }
+.btn:active { background-color: #444; }
+.btn[class] {  background-image: url(../images/shade.png); background-position: bottom; }
+
+* html .btn { border: 3px double #aaa; }
+* html .btn.green { border-color: #9d4; }
+* html .btn:hover { border-color: #7CCD7C; }
+
+.padding15{
+  padding:15px;
+}
+.margin-left30{
+  margin-left:30px;
+}
+.padding-left30{
+  padding-left:30px;
+}
+.margin-left50{
+  margin-left:50px;
+}
+.margin-left120{
+  margin-left:120px;
+}
+.margin-left200{
+  margin-left:200px;
+}
+
+
+
+#crumbs {
+    border:1px solid #dedede;
+    height:2.3em;
+}
+
+#crumbs li {
+    float:left;
+    line-height:2.3em;
+    padding-left:.75em;
+    color:#777;
+}
+#crumbs li a {
+    display:block;
+    padding:0 15px 0 0;
+    background:url(../images/crumbs.gif) no-repeat right center;
+}
+    
+#crumbs li a:link, #crumbs li a:visited {
+    text-decoration:none;
+    color:#777;
+}
+    
+#crumbs li a:hover, #crumbs li a:focus {
+    color:#dd2c0d;
+}
+

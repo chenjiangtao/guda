@@ -1,0 +1,25 @@
+#set($HeadMenuId="app_header")
+<div id="lt_nav">
+		<div class="lt_nav_hd"><span>应用管理</span></div>
+        <div id="lt_nav_menu" class="lt_nav_menu">
+            <a class="select" id="app_side_bar" href="$umsServer.getURI("/appAdmin/appList.htm")">查询应用状态</a>
+            <a id="app_msg_side_bar" href="$umsServer.getURI("/appAdmin/appMsgInit.htm")">查询应用用户短信</a>
+            <a id="app_datamsg_side_bar" href="$umsServer.getURI("/appAdmin/appDataMsgInit.htm")">查询应用数据短信</a>
+            <a id="app_msgIn_side_bar" href="$umsServer.getURI("/appAdmin/appMsgInInit.htm")">查询应用上行短信</a>
+            <a id="temp_side_bar" href="$umsServer.getURI("/appAdmin/temp/list.htm")">短信模版维护</a>
+        </div>
+        <div class="rounded_btm">
+            <span class="lt_btm"></span>
+            <span class="rt_btm"></span>
+        </div>
+ </div>
+<script language="javascript">
+	var oul = document.getElementById("lt_nav_menu").getElementsByTagName("a");
+	for(var i=0,len=oul.length;i<len;++i){
+	   oul[i].className="";
+	}
+	var oli = document.getElementById("$sideMenuId");
+	if(oli){
+		oli.className="select";
+	}
+</script>

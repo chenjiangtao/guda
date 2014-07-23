@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<parent>
+		<groupId>net.zoneland.ums</groupId>
+		<artifactId>app</artifactId>
+		<version>1.0.0</version>
+	</parent>
+	<groupId>net.zoneland.ums.web</groupId>
+	<artifactId>ums-web-home</artifactId>
+	<version>1.0.0</version>
+	<packaging>jar</packaging>
+
+	<name>ums-web-home</name>
+	<url>http://maven.apache.org</url>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	</properties>
+
+	<dependencies>
+
+		<dependency>
+			<groupId>net.zoneland.ums.common.dal</groupId>
+			<artifactId>ums-common-dal</artifactId>
+		</dependency>
+    <dependency>
+			<groupId>net.zoneland.ums.biz.msg</groupId>
+			<artifactId>ums-biz-msg</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.zoneland.ums.biz.user</groupId>
+			<artifactId>ums-biz-user</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.zoneland.ums.biz.config</groupId>
+			<artifactId>ums-biz-config</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>net.zoneland.ums.service</groupId>
+			<artifactId>ums-service</artifactId>
+		</dependency>
+		<dependency>
+			  <groupId>gson</groupId>
+			  <artifactId>gson</artifactId>
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>net.zoneland.ums.common.util</groupId>
+			<artifactId>ums-common-util</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>net.zoneland</groupId>
+			<artifactId>mvc-runtime-core</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+		</dependency>
+
+	</dependencies>
+</project>

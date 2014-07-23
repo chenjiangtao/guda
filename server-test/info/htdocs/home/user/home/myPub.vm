@@ -1,0 +1,14 @@
+#set($layout = "home/layout/publishLayout.vm")
+<script type="text/javascript" src="$homeServer.getURI("/static/js/home/myPub.js")"></script>
+#set($_title="我的主页")
+#set($leftMenuId="home-left-info")
+
+<div class="container">
+<div class="grid m-t-40"  style="height:350px;">
+	#parse("home/user/home/leftNav.vm")
+	
+	<div class="col-5-6">
+	  <table id="my-pub-table"></table>
+	</div>
+</div>
+</div>

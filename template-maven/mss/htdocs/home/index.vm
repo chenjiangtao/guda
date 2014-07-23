@@ -1,0 +1,76 @@
+#set($HeadMenuId="a_index")
+<div id="img_banner">
+	  <img src="$homeServer.getURI("/static/images/ada/a1.jpg")"  width="1024" height="260" />
+	  <img src="$homeServer.getURI("/static/images/ada/a2.jpg")" width="1024" height="260" />
+</div>
+
+<!--img_banner end -->
+
+<div class="clearfix mid-banner">
+ <div class="mid-banner-b">
+  <label>职业:</label>
+  <SELECT> <OPTION value=1 selected>--请选择--</OPTION>
+           <OPTION value=2>魔术师</OPTION> 
+           <OPTION value=2>舞蹈</OPTION> 
+           <OPTION value=2>模特</OPTION> 
+           <OPTION value=2>主持人</OPTION> 
+           <OPTION value=2>其他艺人</OPTION> 
+  </SELECT> 
+    <label>城市:</label>
+    <SELECT> <OPTION value=1 selected>--请选择--</OPTION>
+           <OPTION value=2>浙江</OPTION> 
+           <OPTION value=2>湖北</OPTION> 
+           <OPTION value=2>模特</OPTION> 
+           <OPTION value=2>主持人</OPTION> 
+           <OPTION value=2>其他艺人</OPTION> 
+    </SELECT> 
+    <label>性别:</label>
+    <SELECT> <OPTION value=1 selected>--请选择--</OPTION>
+           <OPTION value=2>男</OPTION> 
+           <OPTION value=2>女</OPTION> 
+    </SELECT> 
+    <a class="default-btn" href="#">搜 索</a>
+ </div>
+</div>
+
+<div class="clearfix bottom-box">
+   <div class="left-box">
+    <ul><li><span class="box-title">视频中心</span></li></ul>
+    <ul>
+
+      <div>
+      
+
+ <embed style="margin-top:20px;margin-left:5px;" width="328" height="200" src="$homeServer.getURI("/upload/intro.swf")" type="application/x-shockwave-flash" quality="high" pluginspage="http://www.macromedia.com/go/getflashplayer"></embed>
+      </div>
+    </ul>
+   </div>
+   <div class="center-box">
+    <ul><li><span class="box-title">新闻中心</span></li></ul>
+    <ul class="center-box-ul">
+    #foreach($var in $news)
+       <li><a href="$homeServer.getURI("/news/news.htm").addQueryData("pageId","$!velocityCount")">$!{var.title}</a></li>
+     #end
+    </ul>
+   </div>
+   <div class="right-box">
+     <ul><li><span class="box-title">最新产品</span></li></ul>
+     <ul>
+        #foreach($var in $prod)
+	        <div class="index-itemimage">
+				<a href="$homeServer.getURI("prod/prodDetail.htm").addQueryData("id","$!{var.id}")"><img src="$homeServer.getURI("upload/$!{var.img}")" alt="$!{var.name}"  title="$!{var.name}"  class="index-itemimage-img"/></a><br />
+				<p class="index-more"><a href="$homeServer.getURI("prod/prodDetail.htm").addQueryData("id","$!{var.id}")">$!{var.name}</a></p>
+		</div>
+	      #end
+    </ul>
+   </div>
+</div>
+
+
+<script language="javascript">
+$('#img_banner').cycle({ 
+    fx:     'curtainY', 
+    next:   '#next2', 
+    prev:   '#prev2' 
+});
+</script>

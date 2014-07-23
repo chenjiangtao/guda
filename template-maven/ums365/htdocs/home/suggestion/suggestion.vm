@@ -1,0 +1,45 @@
+#set($HeadMenuId="a_suggestion")
+
+
+#set($layout = "home/layout/umsLayout.vm")
+
+
+
+<form name="suggestionForm" action="$homeServer.getURI("/suggestion.htm")" method="post" id="send_msg_form_id">
+<div class="ums-center-contain">
+<div>
+    <ul id="crumbs">
+	    <li><a href="$homeServer.getURI("/ums/index.htm")">首页</a></li>
+	    <li>提点建议</li>
+    </ul>
+</div>
+  <div class="contain-right">
+	<ul>
+	<input style="display:none" type="text"  name="_form_token" value="$formTool.newForm($request)" />
+	  <li><div class="tips margin-left50" style="font-size:12px;">您对我们的产品或者服务有什么想说的，希望您能留下宝贵的建议，我们一定会不断努力改进，完善.</div>
+
+	  </li>
+
+	  <li><span class="title">建议内容:</span>
+	   #springBind("suggestionForm.content" )
+	  <textarea style="width:430px;height:200px;"   id="msg_content" name="${status.expression}" onkeyup="javascript:var val = this.value;if(val.length>500){this.value=val.substring(0,500)}">$!status.value</textarea>
+	  
+	  </li>
+	   <li class="error-li">
+	  #foreach($error in $status.errorMessages)
+		<b class="error-tips">$error</b>
+		<br/> 
+	  #end
+	  </li>
+	  <li class="send_btn"><button type="submit" class="do-btn margin-left120">提交</button></li>
+	 
+	</ul>
+  </div>
+  
+</form>
+</div>
+
+
+
+
+</div> 

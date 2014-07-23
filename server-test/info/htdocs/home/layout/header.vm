@@ -1,0 +1,65 @@
+<div class="container">
+         <div class="grid doc">
+            <div class="col-2-12">
+            <div class="block">
+               <a href="$homeServer.getURI("/index.htm")"><img width="200" height="60" src="$homeServer.getURI("/static/images/logo-4.png")"/>
+               </a>
+              </div>
+            </div>
+            <div class="col-7-12">
+              <div class="block">
+                <form class="form" action="$homeServer.getURI("/search.htm")" style="text-align:center;">
+                  
+                        <input class="x3-large" style="margin:0 0 8 0;" type="text" name="k" placeholder="请输入关键词" />
+                        <button type="submit" class="button-green">搜索</button>
+                  
+                </form>
+               </div>
+            </div>
+             <div class="col-3-12" style="text-align:center;">
+                #if( $operationContext.getOperationContext().getPrincipal().getLogonId() == 'anonymous' )
+			      <a  href="$homeServer.getURI("/user/login.htm")">登录</a> <b>&nbsp;|&nbsp;</b> <a  href="$homeServer.getURI("/user/reg.htm")">注册</a>
+			    #else
+			     $operationContext.getOperationContext().getPrincipal().getUserName()，欢迎您&nbsp;&nbsp;<a href="$homeServer.getURI("/loginOut.htm")"> 退出</a>
+			     &nbsp;&nbsp;<a href="$homeServer.getURI("/home/home.htm")"> 我的主页</a>
+			    #end
+             
+                
+                 <br>
+                  <a href="$homeServer.getURI("/prod/publish.htm")" class="button button-green">发布信息</a>
+            </div>
+        </div>
+</div>
+
+   
+
+      <div class="container">
+
+        <div class="col-1-1 menu-horizontal">
+          <ul id="banner2_href_nav" class="grid" style="font-size:16px;border-bottom:1px solid #93d090;">
+            <li id="li-index"><a  href="$homeServer.getURI("/index.htm")">首页</a></li>
+            #foreach($item in $classify)
+             <li id="li-$item.id"><a  href="$homeServer.getURI("/list.htm")?id=$item.id">$item.name</a></li>
+            #end
+           
+          </ul>
+          
+        </div><!--/.nav-collapse -->
+      </div>
+
+    
+
+
+
+<script language="javascript">
+	var oul = document.getElementById("banner2_href_nav").getElementsByTagName("li");
+	for(var i=0,len=oul.length;i<len;++i){
+	   oul[i].className="";
+	}
+	var oli = document.getElementById("li-$menuId");
+	if(oli){
+		oli.className="active";
+	}
+	
+
+</script>

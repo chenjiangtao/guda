@@ -1,0 +1,38 @@
+详情
+  <table>
+                <tr>
+              <td>id</td>
+              <td>
+                  $!orgDO.id
+              </td>
+          </tr>
+
+                <tr>
+              <td>orgName</td>
+              <td>
+                  $!orgDO.orgName
+              </td>
+          </tr>
+
+                <tr>
+              <td>code</td>
+              <td>
+                  $!orgDO.code
+              </td>
+          </tr>
+
+                <tr>
+              <td>gmtCreate</td>
+              <td>
+                  $!orgDO.gmtCreate
+              </td>
+          </tr>
+
+                <tr>
+              <td>gmtModify</td>
+              <td>
+                  $!orgDO.gmtModify
+              </td>
+          </tr>
+
+        </table>

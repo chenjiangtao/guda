@@ -1,0 +1,71 @@
+<link href="$umsServer.getURI("/static/css/zTreeStyle.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/area.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+
+<script type="text/javascript" src="$umsServer.getURI("/static/js/area.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/zTree/jquery.ztree.core-3.4.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/zTree/jquery.ztree.exedit-3.4.js")"></script>
+<div id="bd">
+#set($HeadMenuId="system_header")
+#set($sideMenuId="org_side_bar")
+#parse("/home/admin/adminSideBar.vm")
+<div id="pRight">
+        <div class="rounded_top">
+            <span class="lt_top"></span>
+            <span class="rt_top"></span>
+        </div>
+        <div class="pRight_c" id="pRight_c">
+			<div class="content">
+              	<div class="zTreeDemoBackground left" id="zTreeDemoBackground">
+					<ul id="treeDemo" class="ztree"></ul>
+				</div>
+				<div id="tableContainer" class="tableContainer" style="width:60%">
+					<div id="scrollContentContainer" class="scrollContentContainer" style="overflow:auto">
+						<table class="scrollContent" cellspacing="1" cellpadding="0" width="100%">
+							<thead>
+								<tr>
+									<td width="40%">单位号</td>
+									<td width="60%">单位名称</td>
+								</tr>
+							</thead>
+								<tbody class="tb" id="areaList">
+								
+								</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="rounded_btm">
+            <span class="lt_btm"></span>
+            <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>
+
+<div id="memberContainer" style="display:none;">
+	<div id="areaTitle" class="title">添加单位<span id="message" style="padding-left:10px;color:red;font-size:13px;"></span></div>
+	<table border="0">
+		<tr>
+            <td align="right"><span class="bold fs14 c_007" width="20%"><span class="red">*</span>单位号：</span></td>
+			<td width="35%" >
+				<input type="text" class="inputBox" id="areaCode" name="areaCode" onblur="areaCodeCheck()"/>
+			</td>
+			<td width="45%"><span class="tipMsg" id="areaCodeMsg">不能超过36位的数字</span></td>
+		</tr>
+		<tr>
+            <td align="right"><span class="red">*</span><span class="bold fs14 c_007">单位名称：</span></td>
+			<td>
+				<input type="text" class="inputBox" id="areaName" name="areaName" onblur="areaNameCheck()"/>
+			</td>
+			<td><span class="tipMsg" id="areaNameMsg">不能超过12个字</span></td>
+		</tr>
+		<tr style="height:36px;">
+			<td>&nbsp;</td>
+			<td colspan="2" ><input type="button" id="span_addMember_btn" class="btn_green" value="保存" />
+				<input type="button" id="span_close_btn" class="btn_green" value="取消" />
+			</td>
+		</tr>
+	</table>
+	</form>
+</div>

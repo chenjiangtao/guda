@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN" "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+
+		<settings>
+	                <!-- 查询时，关闭关联对象即时加载以提高性能 -->
+	        <setting name="lazyLoadingEnabled" value="true" />
+	                <!-- 设置关联对象加载的形态，此处为按需加载字段(加载字段由SQL指定)，不会加载关联表的所有字段，以提高性能 -->
+	        <setting name="aggressiveLazyLoading" value="false" />
+	     </settings>
+
+	<mappers >
+		<mapper resource="mybatis/UmsActionLogMapper.xml"/>
+		<mapper resource="mybatis/UmsAppInfoMapper.xml"/>
+		<mapper resource="mybatis/UmsAppSubMapper.xml"/>
+		<mapper resource="mybatis/UmsBlackListMapper.xml"/>
+		<mapper resource="mybatis/UmsFlowLogMapper.xml"/>
+		<mapper resource="mybatis/UmsGroupMapper.xml"/>
+		<mapper resource="mybatis/UmsGateWayInfoMapper.xml"/>
+		<mapper resource="mybatis/UmsGroupUserRelMapper.xml"/>
+		<mapper resource="mybatis/UmsKeywordInfoMapper.xml"/>
+		<mapper resource="mybatis/UmsMsgInMapper.xml"/>
+
+		<mapper resource="mybatis/UmsMsgInErrorMapper.xml"/>
+
+		<mapper resource="mybatis/UmsMsgOutMapper.xml"/>
+		<mapper resource="mybatis/UmsOrganizationMapper.xml"/>
+		<mapper resource="mybatis/UmsOutReplyMapper.xml"/>
+
+		<mapper resource="mybatis/UmsUserRoleRelMapper.xml"/>
+		<mapper resource="mybatis/UmsUserInfoMapper.xml"/>
+		<mapper resource="mybatis/UmsUserRoleAppRelMapper.xml"/>
+		<mapper resource="mybatis/UmsMsgDraftMapper.xml"/>
+
+		<mapper resource="mybatis/UmsTelDescribeMapper.xml"/>
+
+		<mapper resource="mybatis/UmsGatewayRuleMapper.xml"/>
+
+		<mapper resource="mybatis/UmsMsgInRuleMapper.xml"/>
+		<mapper resource="mybatis/UmsMsgTemplateMapper.xml"/>
+		<mapper resource="mybatis/UmsMsgOutUcsMapper.xml"/>
+
+		<mapper resource="mybatis/UmsUserAreaRelMapper.xml"/>
+		<mapper resource="mybatis/UmsAreaMapper.xml"/>
+	    <mapper resource="mybatis/UmsOutAppReplyMapper.xml"/>
+
+	    <mapper resource="mybatis/UmsLockAppMapper.xml"/>
+		<mapper resource="mybatis/UmsGatewayGroupMapper.xml"/>
+		<mapper resource="mybatis/UmsGatewayGroupRelMapper.xml"/>
+		<mapper resource="mybatis/UmsStatMapper.xml"/>
+		
+		<mapper resource="mybatis/UmsContactMapper.xml"/>
+	</mappers>
+</configuration>

@@ -1,0 +1,15 @@
+.userinfo{
+	
+}
+
+.userinfo table{
+	width:98%;
+	margin: 0 auto;	
+}
+.userinfo .input_text{
+	/*width:90%;*/
+}
+
+.userinfo .readonly{
+	color:#CCC;	
+}

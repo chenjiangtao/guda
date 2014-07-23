@@ -1,0 +1,76 @@
+<script type="text/javascript" src="$umsServer.getURI("/static/js/log_search.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/checkutil.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/blacklist.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/doselect.js")"></script>
+<link href="$umsServer.getURI("/static/css/main.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/admin/blacklist.css")" type="text/css" rel="stylesheet" />
+<div id="bd">
+	#set($sideMenuId="black_list_side_bar")
+	#set($HeadMenuId="system_header") #parse("/home/admin/adminSideBar.vm")
+	<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c">
+			<div id="writeEmail" style="_height:450px;">
+				<div class="btnArea clearfix">
+					&nbsp;&nbsp;
+					<a class="fs14bold c_007" href="$umsServer.getURI("/admin/blacklist/blacklist.htm")">黑名单维护</a>
+					<a class="fs14bold c_008">-&gt;新增黑名单</a>
+				</div>
+				<form action="$umsServer.getURI("/admin/blacklist/addlist.htm")" method="post" name="blackListForm" id="form_book">
+					<div class="form_div">
+						#if($!errorMsg)
+						<div style="color:red;margin-left:10px;">
+							<font class="bold fs14"> $!errorMsg</font>
+						</div>
+						#end
+						<ul>
+							<label class="bold fs14 c_007" style="width:100%;">请输入要选择加入黑名单的手机号</label>
+							<br />
+						</ul>
+						<ul>
+							#springBind("blackListForm.userId")
+							<label class="bold fs14 c_007"><span class="red">*</span>手机号:</label>
+							<textarea maxlength="400" class="inputBox w50 h100"
+								style="font:13px Verdana, Geneva, sans-serif;width:270px;height:110px;"
+								name="${status.expression}" id="$!status.value"
+								onkeydown="javascript:var val = this.value;if(val.length>400){this.value=val.substring(0,400)}">$!status.value</textarea>
+							<br />
+						</ul>
+						<ul>
+							<label>&nbsp;</label>注:多个手机号以英文逗号","分隔(输入的手机号必须为11位数字)
+						</ul>
+						<ul>
+						</ul>
+						<ul>
+							<label class="bold fs14 c_007"><span class="red">*</span>所屏蔽应用:</label>
+							<select name="appId" id="appinfo" onmousemove="showTitle(this[this.selectedIndex]);">
+								<option value="">请选择</option>
+								#if(0 == $appId)	
+        						<option value="0" selected="selected">全部应用 (0)</option>
+        						#else
+								<option value="0">全部应用 (0)</option>
+								#end
+								#foreach($app in $apps)
+								#if($app.appId == $appId)
+								<option selected="selected" value="$!app.appId">$!app.appName ($!app.appId)</option>
+								#else
+								<option value="$!app.appId">$!app.appName ($!app.appId)</option> 
+								#end 
+								#end
+							</select>
+						</ul>
+						<ul>
+							<label>&nbsp;</label>
+							<input type="submit" class="btn_green_search_form" value="保存" />
+						</ul>
+					</div>
+				</form>
+			</div>
+		</div>
+		<div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>

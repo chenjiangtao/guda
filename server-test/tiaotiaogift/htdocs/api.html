@@ -1,0 +1,74 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>短信365,短信助手,短信群发 - 短信发送好帮手</title>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta content="短信助手,短信群发,电脑发短信,短信广告,短信通知,短信监控,短信告警,短信促销,短信通道,企业短信,短信验证,短信平台,会员短信,行业短信" name="keywords"/>
+<meta content="提供可定制化的短信发送,群发短信解决方案,机房告警短信通知,企业短信广告" name="description" />
+<link rel="stylesheet" href="http://www.ums365.com/static/css/u.css" />
+<script src="http://www.ums365.com/static/js/jquery.min.js"></script>
+<link rel="stylesheet" href="http://www.ums365.com/static/css/ums-index2.css" />
+
+<style>
+ table{
+            border-collapse: collapse;
+            border: none;
+            width: 600px;
+        }
+ td{
+            border: solid #d3d3d3 1px;
+        }
+ul{
+ height:30px;
+ line-height:30px;
+ 
+}
+</style>
+
+</head>
+ <body>
+ <div class="center" style="margin-top:100px;text-align:left;height:800px;">
+ <div>
+<ul>1,http接口 </ul>
+  <ul>发送短信接口</ul>
+  <ul>接口地址:http://www.ums365.com/api/sms/send.htm 支持get，post请求</ul>
+  参数说明:
+  <table>
+   <tr><td>参数名</td><td>说明</td></tr>
+   <tr><td>userName</td><td>用户名，接入时分配</td></tr>
+   <tr><td>password</td><td>密码，接入时分配</td></tr>
+   <tr><td>mobile</td><td>手机号，多个手机号以英文";"分隔，支持最多1000</td></tr>
+   <tr><td>content</td><td>短信内容</td></tr>
+   <tr><td>token</td><td>校验码，用于验证授权，生成方式需要联系管理员</td></tr>
+   <tr><td>linkId</td><td>整数，流水号，用户获取回复短信</td></tr>
+  </table>
+  <ul>返回json字符串 {"code":"1","msg":"success"}</ul>
+<ul>获取短信接口</ul>
+<ul>接口地址:http://www.ums365.com/api/sms/recv.htm 支持get，post请求</ul>
+  参数:
+  <table>
+   <tr><td>参数名</td><td>说明</td></tr>
+   <tr><td>userName</td><td>用户名，接入时分配</td></tr>
+   <tr><td>password</td><td>密码，接入时分配</td></tr>
+   <tr><td>token</td><td>校验码，用于验证授权，生成方式需要联系管理员</td></tr>
+  </table>
+  <ul>
+  返回json字符串[{"mobile":"13512341234","content":"测试短信1","gmtCreated":"May 23, 2013 2:40:16 PM"},{"mobile":"13812341234","content":"测试短信221","gmtCreated":"May 23, 2013 2:40:16 PM"}]
+  </ul>
+  
+
+  <ul style="margin-top:30px;">发送短信返回码说明</ul>
+  <table>
+   <tr><td>返回码</td><td>说明</td></tr>
+   <tr><td>2</td><td>参数缺失</td></tr>
+   <tr><td>3</td><td>用户名或者密码错</td></tr>
+   <tr><td>4</td><td>超过最大接收手机号，单次最多1000个</td></tr>
+   <tr><td>5</td><td>账户余额不足</td></tr>
+   <tr><td>9</td><td>运营商返回错误</td></tr>
+    <tr><td>11</td><td>token验证失败</td></tr>
+  </table>
+  </div>
+  </div>
+</div>
+ </body>
+</html>

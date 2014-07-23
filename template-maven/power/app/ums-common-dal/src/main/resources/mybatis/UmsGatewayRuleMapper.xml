@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="net.zoneland.ums.common.dal.UmsGatewayRuleMapper" >
+  <resultMap id="BaseResultMap" type="net.zoneland.ums.common.dal.dataobject.UmsGatewayRule" >
+
+    <id column="ID" property="id" jdbcType="CHAR" />
+    <result column="GATEWAY_ID" property="gatewayId" jdbcType="VARCHAR" />
+    <result column="RECEIVE_REGX" property="receiveRegx" jdbcType="VARCHAR" />
+    <result column="APP_ID_REGX" property="appIdRegx" jdbcType="VARCHAR" />
+    <result column="CONTENT_REGX" property="contentRegx" jdbcType="VARCHAR" />
+    <result column="GMT_CREATED" property="gmtCreated" jdbcType="TIMESTAMP" />
+    <result column="GMT_MODIFIED" property="gmtModified" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+
+    ID, GATEWAY_ID, RECEIVE_REGX, APP_ID_REGX, CONTENT_REGX, GMT_CREATED, GMT_MODIFIED
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+
+    select
+    <include refid="Base_Column_List" />
+    from UMS_GATEWAY_RULE
+    where ID = #{id,jdbcType=CHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+
+    delete from UMS_GATEWAY_RULE
+    where ID = #{id,jdbcType=CHAR}
+  </delete>
+  <insert id="insert" parameterType="net.zoneland.ums.common.dal.dataobject.UmsGatewayRule" >
+
+    insert into UMS_GATEWAY_RULE (ID, GATEWAY_ID, RECEIVE_REGX,
+      APP_ID_REGX, CONTENT_REGX, GMT_CREATED,
+      GMT_MODIFIED)
+    values (#{id,jdbcType=CHAR}, #{gatewayId,jdbcType=VARCHAR}, #{receiveRegx,jdbcType=VARCHAR},
+      #{appIdRegx,jdbcType=VARCHAR}, #{contentRegx,jdbcType=VARCHAR}, #{gmtCreated,jdbcType=TIMESTAMP},
+      #{gmtModified,jdbcType=TIMESTAMP})
+  </insert>
+
+  <update id="updateByPrimaryKeySelective" parameterType="net.zoneland.ums.common.dal.dataobject.UmsGatewayRule" >
+
+    update UMS_GATEWAY_RULE
+    <set >
+      <if test="gatewayId != null" >
+        GATEWAY_ID = #{gatewayId,jdbcType=VARCHAR},
+      </if>
+      <if test="receiveRegx != null" >
+        RECEIVE_REGX = #{receiveRegx,jdbcType=VARCHAR},
+      </if>
+      <if test="appIdRegx != null" >
+        APP_ID_REGX = #{appIdRegx,jdbcType=VARCHAR},
+      </if>
+      <if test="contentRegx != null" >
+        CONTENT_REGX = #{contentRegx,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreated != null" >
+        GMT_CREATED = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModified != null" >
+        GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="net.zoneland.ums.common.dal.dataobject.UmsGatewayRule" >
+
+    update UMS_GATEWAY_RULE
+    set GATEWAY_ID = #{gatewayId,jdbcType=VARCHAR},
+      RECEIVE_REGX = #{receiveRegx,jdbcType=VARCHAR},
+      APP_ID_REGX = #{appIdRegx,jdbcType=VARCHAR},
+      CONTENT_REGX = #{contentRegx,jdbcType=VARCHAR},
+      GMT_CREATED = #{gmtCreated,jdbcType=TIMESTAMP},
+      GMT_MODIFIED = #{gmtModified,jdbcType=TIMESTAMP}
+    where ID = #{id,jdbcType=CHAR}
+  </update>
+
+
+   <select id="exitGatewayRule" resultType="java.lang.Integer" parameterType="java.lang.String" >
+    select
+    count(ID)
+    from UMS_GATEWAY_RULE
+    where GATEWAY_ID = #{gatewayI d,jdbcType=CHAR}
+  </select>
+
+
+    <select id="pageAll" resultMap="BaseResultMap" parameterType="java.util.Map">
+      SELECT <include refid="Base_Column_List" />  from UMS_GATEWAY_RULE
+			 order by GMT_MODIFIED desc
+		 limit #{start} , 10
+  </select>
+
+ <!-- 获得网关规则个数 -->
+  <select id="selectCount" resultType="java.lang.Integer">
+    select count(ID)
+    from UMS_GATEWAY_RULE
+  </select>
+
+   <select id="selectAll" resultMap="BaseResultMap" >
+    select
+    <include refid="Base_Column_List" />
+    from UMS_GATEWAY_RULE
+
+  </select>
+
+	<delete id="deleteByGatewayId" parameterType="java.lang.String" >
+    delete from UMS_GATEWAY_RULE
+    where GATEWAY_ID = #{gatewayId,jdbcType=CHAR}
+  </delete>
+
+</mapper>

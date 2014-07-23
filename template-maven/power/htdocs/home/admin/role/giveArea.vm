@@ -1,0 +1,133 @@
+<link href="$umsServer.getURI("/static/css/zTreeStyle.css")" type="text/css" rel="stylesheet" />
+<link rel="stylesheet" href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" />
+<link rel="stylesheet" href="$umsServer.getURI("/static/css/admin/role.css")" type="text/css" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/giveArea.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/zTree/jquery.ztree.core-3.4.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/zTree/jquery.ztree.excheck-3.4.js")"></script>
+
+<div id="bd">
+	#set($sideMenuId="role_side_bar") #set($HeadMenuId="system_header")
+	#parse("/home/admin/adminSideBar.vm")
+	<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c">
+			<div id="writeEmail">
+				<div class="btnArea clearfix">
+					&nbsp;&nbsp;<a class="fs14bold c_007" href="$umsServer.getURI("/admin/role/roleconfig.htm")">权限配置</a>
+					<a class="fs14bold c_008">-&gt;分配单位</a>
+				</div>
+				<div style="width:98%;margin:0 auto;">
+					<fieldset style="border:solid 1px #CBE1EB;">
+						<legend style="margin-left:25px"><a class="fs14bold c_008">用户信息：</a></legend>
+						<div class="form_div">
+							<input type="hidden" id="userId" value="$!umsUserInfo.id" /> 
+							<input type="hidden" id="curRoleName" value="$!curRoleName" /> 
+							<input type="hidden" id="orgAdmin" value="$!umsUserInfo.orgAdmin" />
+							<table style="width:98%;padding:5px">
+								<tr>
+									<td>
+										<div class="flow_item">
+											<label style="float:left;" class="bold fs14 c_007">员工工号：</label> 	
+											<div class="info_div">
+												<span title="$!umsUserInfo.userId">$!umsUserInfo.userId</span>
+											</div>
+										</div>
+									</td>
+									<td>
+										<div class="flow_item">
+											<label style="float:left;" class="bold fs14 c_007">员工姓名：</label> 	
+											<div class="info_div">
+												<span id="userName" title="$!umsUserInfo.userName"> $!umsUserInfo.userName</span>
+											</div>
+										</div>								
+									</td>
+									<td>
+										<div class="flow_item">
+											<label style="float:left;" class="bold fs14 c_007">手机号：</label> 	
+											<div class="info_phone_role">
+												<span title="$!umsUserInfo.phone"> $!umsUserInfo.phone</span>
+											</div>
+										</div>	
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<div class="flow_item">
+											<label style="float:left;" class="bold fs14 c_007">邮箱地址：</label> 	
+											<div class="info_div">
+												<span title="$!umsUserInfo.email"> $!umsUserInfo.email</span>
+											</div>
+										</div>			
+									</td>
+									<td>	
+										<div class="flow_item">
+											<label style="float:left;" class="bold fs14 c_007">所属组织：</label> 	
+											<div class="info_div">
+												<span title="$!orgName"> $!orgName</span>
+											</div>
+										</div>
+									</td>
+									<td>	
+										<div class="flow_item">
+											<label style="float:left;" class="bold fs14 c_007">角色名：</label> 	
+											<div class="info_phone_role">
+												<span title="$!curRoleName #if($umsUserInfo.orgAdmin == "0")(非部门管理员)#else(部门管理员)#end "> $!curRoleName #if($umsUserInfo.orgAdmin == "0")(非部门管理员)#else(部门管理员)#end </span>								
+											</div>
+										</div>
+									</td>	
+								</tr>
+							</table>
+						</div>
+					</fieldset>
+					<fieldset style="border:solid 1px #CBE1EB;margin-top:5px;">
+						<legend style="margin-left:25px"><a class="fs14bold c_008">分配单位操作：</a></legend>
+						<div class="botton_div" style="margin-left:10px;">
+							<input type="button" id="save_btn" class="btn_green_search_form" title="单击保存可分配单位" value="保存" /> 
+							<input type="button" id="back_btn" class="btn_green_search_form" title="返回" value="返回" onclick="selectCurPageId('$!pageId')" /> 	
+							<label class="bold fs14" style="color:red;margin-left:20px;display:none;" id="giveAreaError"></label>
+						</div>
+						<div style="margin-top:10px;">
+                            <label style="margin-left:30px;_margin-left:38px;">注：请选择用户所需要分配的单位并点击上方的保存按钮</label></br>
+							<label style="margin-left:30px;_margin-left:38px;">(用户可获得所勾选的单位及其下属所有子单位的查询统计短信的权限)</label>
+						</div>
+						<div style="padding-left:10px;margin-top:10px;">
+							<input style="margin-left:24px" type="checkbox" id="selectAll" onClick="allOnClick()" class="select_all" />&nbsp;
+							<label class="bold fs14 c_007" for="selectAll">全选</label>
+                        </div>
+						<div class="content_wrap" style="padding-left:25px;margin-top:5px;margin-right:15px">
+							<table>
+								<td style="width:50%">
+									<div class="zTreeDemoBackground left" style="width:100%">
+										<ul id="treeDemo" class="ztree"></ul>
+									</div>	
+								</td>
+								<td>
+									<div id="tableContainer" class="tableContainer" style="height:342px;width:100%">
+									<div id="scrollContentContainer" class="scrollContentContainer" style="margin-left:45px;width:340px;height:342px;overflow:auto">
+										<table class="scrollContent" cellspacing="1" cellpadding="0" width="95%">
+										    <thead>
+											    <tr>
+													<td width="40%">单位号</td>
+													<td width="60%">单位名称</td>
+												</tr>
+											</thead>
+											<tbody class="tb" id="areaList">
+								
+											</tbody>
+											</table>
+										</div>
+									</div>
+								</td>
+							</table>
+                        </div>				
+					</fieldset>
+				</div>
+			</div>
+		</div>
+		<div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>

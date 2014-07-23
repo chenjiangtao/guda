@@ -1,0 +1,90 @@
+.groupinfo table{
+	width:98%;
+	margin: 0 auto;	
+}
+.groupinfo .input_text{
+	width:92%;
+}
+.groupinfo .memberBox{
+	width:94%;
+	height:168px;
+	border: 1px solid #ccc;
+}
+
+.groupinfo .member_item {
+	height: 18px;
+	line-height:18px;
+	margin: 3px;
+	padding: 0px 3px;
+	background-color: #EFF2F7;
+	color: black;
+	cursor: default;
+	border: 1px solid #CCD5E4;
+	font-size: 11px;
+	border-radius: 5px;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	float: left;
+	white-space: nowrap;
+}
+.groupinfo .member_item p {
+	display: inline;
+	padding: 0;
+	margin: 0;
+}
+.groupinfo .member_item span {
+	color: #A6B3CF;
+	margin-left: 5px;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+#memberContainer{
+	width:580px;
+	top:35%;
+	left:30%;
+	z-index: 999;
+	position: absolute;
+	border:1px solid #CCCCCC;
+	background-color: #FFFFFF;
+	border:1px solid #296181;
+	border-radius:3px 3px 3px 3px;
+	box-shadow:0 0 5px #969696;
+}
+#memberContainer .title{
+	height:36px;
+	line-height:36px;
+	color: #00764B;
+	font-size: 14px;
+	font-weight: bold;
+	background-color: #EEF5F7;
+	padding-left:10px;
+	border-bottom:1px solid #D1DDD8;
+	background:url("../images/brightBlue_gradient.gif") repeat-x scroll 0 0 transparent;
+}
+#memberContainer table{
+	width:98%;
+	margin: 20px auto;
+	
+}
+
+#memberContainer table td{
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+#memberContainer .input_text{
+	width:94%;
+}
+
+#mask{
+	position: absolute;
+	height:100%;
+	width:100%;
+	background-color:#C7EDCC;
+	top:0px;
+	z-index:998;
+	filter: Alpha(Opacity=60);
+    opacity: 0.6; 
+}
+

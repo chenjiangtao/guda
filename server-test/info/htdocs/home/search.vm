@@ -1,0 +1,42 @@
+#set($layout = "home/layout/detailLayout.vm")
+
+
+<div class="container">
+<div class="grid doc">
+    <ul id="crumbs">
+	    <li>关键词"$form.k"的搜索结果:</li>
+    </ul>
+</div>
+</div>
+
+<div class="container">
+	<div class="col-1-1"  style="padding-top:15px;border-bottom:1px solid #dddddd;">
+	<table class="table">
+	 <tbody>
+	 #foreach($item in $details)
+	   <tr>
+	        <td><a href="$homeServer.getURI("/prod/detail.htm")?id=$item.id">$item.title</a></td>
+	        <td><a href="$homeServer.getURI("/prod/detail.htm")?id=$item.id">$item.content</a></td>
+	        <td>$item.price元</td>
+	        <td>$date.format('yyyy-MM-dd HH:mm:ss', $item.gmtModify)</td>
+	    </tr>
+	 #end
+                       
+      </tbody>
+	</table>
+	  
+			
+	</div>
+</div>
+<div class="container">
+          <div class="col-9-10">&nbsp;
+          </div>
+          <div class="col-1-10">
+               <div class="pagination pagination-green mg-t-10">
+                   
+                    <a href="#">上一页</a>
+                    <a href="#">下一页</a>
+                    
+                </div>
+            </div>
+  </div>

@@ -1,0 +1,27 @@
+<div css="panel-body panel-body-noborder layout-body" data-options="region:'west',split:true,title:'系统管理'" style="width:250px;padding:10px;">
+	
+	<ul class="easyui-tree tree">  
+       
+                <li>  
+
+                      <a href="$homeServer.getURI("/sys.htm")">删除历史数据</a>
+   
+                </li>  
+                <li>  
+                
+                    <a href="$homeServer.getURI("/sysPass.htm")">修改登录密码</a>
+                </li>  
+               #if('admin'==$!operationContext.getOperationContext().getPrincipal().getUserName())
+                <li>  
+                 
+                    <a href="$homeServer.getURI("/key.htm")">生成key</a>
+                </li>  
+                #end
+                 <li>  
+                
+                    <a href="$homeServer.getURI("/sysVersion.htm")">版本信息</a>
+                </li>  
+      </ul>  
+        
+	
+</div>

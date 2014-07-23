@@ -1,0 +1,20 @@
+
+#set($HeadMenuId="a_ada")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ada.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/left-nav.css")" />
+<div class="contain">
+  #parse("home/left-nav.vm")
+  <div class="contain-right">
+     <ul>
+        <li class="banner-mid"><img class="title-bar-img-contain" src="$homeServer.getURI("/static/images/ada/ico-3.png")"/><b>关于爱塔</b> <span>当前位置: <a href="$homeServer.getURI("/index.htm")">首页</a> &gt; 关于爱塔</span></li>
+     </ul>
+	<ul>
+	 #foreach($var in $contents)
+       <li >$!{var.body}</li>
+
+      #end
+	  
+	</ul>
+  </div>
+   
+</div>

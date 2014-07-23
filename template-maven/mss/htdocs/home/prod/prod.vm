@@ -1,0 +1,47 @@
+
+#set($HeadMenuId="a_prod")
+#set($leftMenuId="$!{type}")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/ada.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/left-nav.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/prod.css")" />
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/pager.css")" />
+<div class="contain">
+  #parse("home/left-nav.vm")
+  <div class="contain-right">
+     <ul>
+        <li class="banner-mid"><img class="title-bar-img-contain" src="$homeServer.getURI("/static/images/ada/ico-3.png")"/><b>产品中心</b> <span>当前位置: <a href="$homeServer.getURI("/index.htm")">首页</a> &gt; 产品中心</span></li>
+    
+    </ul>
+    #if($!res.total == 0)
+       <ul >对不起,没有找到相关记录</ul>
+    #else
+	      #foreach($var in $res.result)
+	        <div class="itemimage">
+				<a href="$homeServer.getURI("prod/prodDetail.htm").addQueryData("id","$!{var.id}")"><img src="$homeServer.getURI("upload/$!{var.img}")" alt="$!{var.name}"  title="$!{var.name}"  class="itemimage-img"/></a><br />
+				<p class="more"><a href="$homeServer.getURI("prod/prodDetail.htm").addQueryData("id","$!{var.id}")">$!{var.name}</a></p>
+		</div>
+	      #end
+     #end
+	<!--分页开始-->
+
+		  <div class="btnArea clearfix" >
+    			<div class="page_detail">
+    				#if($!res.pageId != 1)
+						<a class="a_green_form_ddl" href="$homeServer.getURI("/prod/prod.htm").addQueryData("pageId","1")"><span>首页</span></a>
+					   #set($tempPage = $!res.pageId - 1)
+					   <a class="a_green_form_ddl" href="$homeServer.getURI("/prod/prod.htm").addQueryData("pageId","$!tempPage")"><span>上一页</span></a>
+				   #end
+				   #if($!res.pageId < $!res.pageCount)
+					   #set($tempPage = $!res.pageId + 1)
+					   <a class="a_green_form_ddl" href="$homeServer.getURI("/prod/prod.htm").addQueryData("pageId","$!tempPage")"><span>下一页</span></a>
+					   <a class="a_green_form_ddl" href="$homeServer.getURI("/prod/prod.htm").addQueryData("pageId","$!res.pageCount")"><span>尾页</span></a>
+				   #end
+				   <span class="pager_info">当前第$!res.pageId页  共$!res.pageCount页 共$!res.total条记录</span>
+                </div>
+            </div>
+       
+	<!--分页结束 -->
+
+  </div>
+   
+</div>

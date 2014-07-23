@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.tiaotiaogift.common.dal.AccountLogMapper" >
+  <resultMap id="BaseResultMap" type="com.tiaotiaogift.common.mysql.dataobject.AccountLog" >
+    <id column="id" property="id" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="amount_before" property="amountBefore" jdbcType="INTEGER" />
+    <result column="sum" property="sum" jdbcType="INTEGER" />
+    <result column="action" property="action" jdbcType="VARCHAR" />
+    <result column="amount_after" property="amountAfter" jdbcType="INTEGER" />
+    <result column="gmt_created" property="gmtCreated" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, user_id, amount_before, sum, action, amount_after, gmt_created
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from u_account_log
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from u_account_log
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.tiaotiaogift.common.mysql.dataobject.AccountLog" >
+    insert into u_account_log (id, user_id, amount_before, 
+      sum, action, amount_after, 
+      gmt_created)
+    values (#{id,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{amountBefore,jdbcType=INTEGER}, 
+      #{sum,jdbcType=INTEGER}, #{action,jdbcType=VARCHAR}, #{amountAfter,jdbcType=INTEGER}, 
+      #{gmtCreated,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.tiaotiaogift.common.mysql.dataobject.AccountLog" >
+    insert into u_account_log
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="amountBefore != null" >
+        amount_before,
+      </if>
+      <if test="sum != null" >
+        sum,
+      </if>
+      <if test="action != null" >
+        action,
+      </if>
+      <if test="amountAfter != null" >
+        amount_after,
+      </if>
+      <if test="gmtCreated != null" >
+        gmt_created,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="amountBefore != null" >
+        #{amountBefore,jdbcType=INTEGER},
+      </if>
+      <if test="sum != null" >
+        #{sum,jdbcType=INTEGER},
+      </if>
+      <if test="action != null" >
+        #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="amountAfter != null" >
+        #{amountAfter,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreated != null" >
+        #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.tiaotiaogift.common.mysql.dataobject.AccountLog" >
+    update u_account_log
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="amountBefore != null" >
+        amount_before = #{amountBefore,jdbcType=INTEGER},
+      </if>
+      <if test="sum != null" >
+        sum = #{sum,jdbcType=INTEGER},
+      </if>
+      <if test="action != null" >
+        action = #{action,jdbcType=VARCHAR},
+      </if>
+      <if test="amountAfter != null" >
+        amount_after = #{amountAfter,jdbcType=INTEGER},
+      </if>
+      <if test="gmtCreated != null" >
+        gmt_created = #{gmtCreated,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.tiaotiaogift.common.mysql.dataobject.AccountLog" >
+    update u_account_log
+    set user_id = #{userId,jdbcType=VARCHAR},
+      amount_before = #{amountBefore,jdbcType=INTEGER},
+      sum = #{sum,jdbcType=INTEGER},
+      action = #{action,jdbcType=VARCHAR},
+      amount_after = #{amountAfter,jdbcType=INTEGER},
+      gmt_created = #{gmtCreated,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  
+  
+    <select id="selectByParam" resultMap="BaseResultMap"  >
+    select 
+    <include refid="Base_Column_List" />
+    from u_account_log
+     
+        where user_id = #{userId,jdbcType=VARCHAR}
+        <if test="startTime!=null and endTime!=null">
+		<![CDATA[	AND gmt_created > #{startTime} and gmt_created < #{endTime} ]]>
+	    </if>
+	    order by gmt_created desc limit #{start},#{rows}
+  </select>
+  
+  <select id="selectCountByParam" resultType="int"  >
+    select 
+    count(*)
+    from u_account_log
+        where user_id = #{userId,jdbcType=VARCHAR}
+    <if test="startTime!=null and endTime!=null">
+		<![CDATA[	AND gmt_created > #{startTime} and gmt_created < #{endTime} ]]>
+	    </if>
+         order by gmt_created desc
+  </select>
+</mapper>

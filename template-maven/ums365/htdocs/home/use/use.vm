@@ -1,0 +1,58 @@
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/use.css")" />
+#set($HeadMenuId="a_use")
+<div class="center-contain">
+<div class="contain">
+	<div class="contain-left">
+	  <img width="220px" height="150px" src="$homeServer.getURI("/static/images/ums/wuliu.jpg")"/>
+	</div>
+	<div class="contain-right">
+	  <ul>
+	     <li><b class="font16">物流行业</b></li>
+	     <li>一，发货通知<br/>
+	     </li>
+	     <li>物流通知在发货后以短信的方式通知客户，让客户放心。
+	     </li>
+	     <li>二，物流调度，定位<br/>
+	     </li>
+	     <li>运营车辆与人员安全的需求--实时监控、及时报警。
+	     </li>
+	  </ul>
+	</div>
+	<div class="contain-left">
+	  <img width="220px" height="150px" src="$homeServer.getURI("/static/images/ums/huiyuan.jpg")"/>
+	</div>
+	<div class="contain-right">
+	  <li><b class="font16">会员营销</b></li>
+	     <li>一，优惠，打折信息推送<br/>
+	     </li>
+	     <li>商家以短信群发的方式将优惠，打折信息推送到客户，及时，可靠，成本低廉。
+	     </li>
+	     <li>二，商家互动<br/>
+	     </li>
+	     <li>例如商家以短信的方式将活动信息发送给客户，客户可以回复短信报名参加。还有一些简单的问卷调查等
+	     也可以选择短信的方式。
+	     </li>
+	</div>
+	<div class="contain-left">
+	  <img width="220px" height="150px" src="$homeServer.getURI("/static/images/ums/jifang.jpg")"/>
+	</div>
+	<div class="contain-right">
+	  <li><b class="font16">监控告警</b></li>
+
+	     <li>随着业务的发展，企业投入使用的服务器越来越多，因此纯粹的人工监控将导致企业的人力成本
+	     越来越大，而通过平台监控主机的磁盘，CPU，负载，应用的服务是否可用，数据库锁表，缓存命中等指标。
+	     对于超过指标的可以通过短信的方式通知到处理负责人，做到及时响应，减少客户投诉。
+	     </li>
+	     
+	</div>
+	<div class="contain-left">
+	  <img width="220px" height="150px" src="$homeServer.getURI("/static/images/ums/zhengquan.jpg")"/>
+	</div>
+	<div class="contain-right">
+	  <li><b class="font16">证券行业</b></li>
+
+	     <li>证券行业短信群发可用于股市行情传达给客户，公司内部的会议通知等信息公布。
+	     </li>
+	</div>
+</div>
+</div>

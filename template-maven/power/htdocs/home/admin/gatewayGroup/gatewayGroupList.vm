@@ -1,0 +1,127 @@
+<link href="$umsServer.getURI("/static/css/zTreeStyle.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/admin/gatewayGroup.css")" type="text/css" rel="stylesheet" />
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/gatewayGroup.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/zTree/jquery.ztree.core-3.4.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/zTree/jquery.ztree.exedit-3.4.js")"></script>
+<div id="bd">
+	#set($sideMenuId="gateway_group_side_bar")
+	#set($HeadMenuId="system_header") #parse("/home/admin/adminSideBar.vm")
+	#set($searchUrl = $umsServer.getURI("/admin/gateGroupList.htm"))
+	#set($param = "")
+	<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c" id="pRight_c" style="min-height:431px;">
+			<div style="margin:3px 7px;">
+				<span>
+					<a id="addParent" title="新增网关分组" onclick="return false;" class="btn green" style="width:100px;">新增网关分组</a>
+				</span>
+			</div>
+			<div class="content" style="margin-top:5px;">
+				<div class="zTreeDemoBackground left" id="zTreeDemoBackground">
+					<ul id="treeDemo" class="ztree"></ul>
+				</div>
+				<div id="tableContainer" class="tableContainer" style="width:90%;*width:65%;_width:65%;">
+					<div id="scrollContentContainer" class="scrollContentContainer" style="overflow:auto;height:350px;">
+						<table class="scrollContent" cellspacing="1" cellpadding="0" width="100%">
+							<thead>
+								<tr>
+									<td width="15%">网关分组名称</td>
+									<td width="15%">网关名称</td>
+									<td width="10%">网关类型</td>
+									<td width="10%">SP号码</td>
+									<td width="20%">服务器IP</td>
+									<td width="10%">端口</td>
+									<td width="10%">用户名</td>
+								</tr>
+							</thead>
+							<tbody class="tb" id="areaList">
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>
+<div id="mask" style="height: 121.5%;_height: 950px; width: 100%; display:none;"></div>
+<div id="memberContainer" style="float:left;width:58%;display:none;">
+	<div class="title">添加网关分组<span id="gatewayGroupName"></span> 成员</div>
+	<input type="hidden" value="$gatewayInfoSize" id="gatewayInfoSize" />
+	<!--
+	<div style="margin:10px 0px 0px 22px;*margin-left:33px;">
+		<span class="bold fs14 c_007">网关分组</span>
+	</div>
+	-->
+	<div style="margin:0px 0px 0px 10px">
+					<table style="margin:0px 0px;*margin-left:12px;">
+						<tr style="height:36px;">
+							<td>&nbsp;</td>
+								<td colspan="2" width="120px;">
+									<input type="button" id="span_addMember_btn" class="btn_green" value="保存" /> 
+									<input type="button" id="span_close_btn" class="btn_green" value="取消" />
+								</td>
+							<td>
+								<div>
+									<span>注:请在下方勾选要加入网关分组的网关，并点击保存按钮</span>
+								</div>
+							</td>
+						</tr>
+					</table>
+			</div>
+	<form id="gateway">
+		<div id="tableContainer" class="tableContainer" style="width: 100%;*width:96%;_width:96%;">
+			<div id="scrollContentContainer" class="scrollContentContainer">
+			  <div style="overflow:auto;height:300px;margin-left: 20px;">
+				<table class="scrollContent" cellspacing="1" cellpadding="0" style="width:95%; margin-left: 0px;margin-top:0px;">
+					<thead>
+						<tr>
+							<td width="5%">序号</td>
+							<td width="10%">
+							<div>
+								<table style="margin:0px 0px;">
+								<tr>
+									<td>全选</td>
+									<td><input type="checkbox" id="selectAll" onClick="allOnClick()" /></td>
+								</tr>
+								</table>
+							</div>
+							</td>
+							<td width="20%">网关名称</td>
+							<td width="12%">网关类型</td>
+							<td width="15%">SP号码</td>
+							<td width="15%">服务器IP</td>
+							<td width="10%">端口</td>
+							<td width="13%">用户名</td>
+						</tr>
+					</thead>
+					<tbody class="tb">
+						#foreach($result in $results)
+						<tr>
+							<td width="5%" style="text-align:center;">$velocityCount</td>
+							<td width="10%" style="text-align:center;">
+								<div>
+									<input type="checkbox" id="gatewayGroup$!result.id" value="$!result.id" onClick="selectedCheckBox()" />
+								</div>
+							</td>
+							<td width="13%" title="$!result.gatewayName">$!result.gatewayName</td>
+							<td width="10%" title="$!result.type">$!result.type</td>
+							<td width="10%" title="$!result.spNumber">$!result.spNumber</td>
+							<td width="15%" title="$!result.host">$!result.host</td>
+							<td width="7%" title="$!result.port">$!result.port</td>
+							<td width="10%" title="$!result.sourceAddr">$!result.sourceAddr</td>
+						</tr>
+						#end
+					</tbody>
+				</table>
+				</div>
+			</div>
+		</div>
+		</form>
+</div>

@@ -1,0 +1,33 @@
+#set($layout = "home/layout/umsLayout.vm")
+#set($HeadMenuId="a_account")
+<link rel="stylesheet" href="$homeServer.getURI("/static/css/myUms.css")" />
+<script type="text/javascript" src="$homeServer.getURI("/static/js/ums/myUms.js")"></script>
+<script type="text/javascript" src="$homeServer.getURI("/static/js/My97DatePicker/WdatePicker.js")"></script>
+<div class="ums-center-contain">
+<div>
+    <ul id="crumbs">
+	    <li><a href="$homeServer.getURI("/ums/index.htm")">首页</a></li>
+	    <li>我的账户</li>
+    </ul>
+</div>
+
+
+<div class="account-info">
+  <li><label>我的账户名:</label><span>$operationContext.getOperationContext().getPrincipal().getLogonId()</span></li>
+  <li><label>注册邮箱:</label><span>$operationContext.getOperationContext().getPrincipal().getEmail()</span></li>
+  <li><label>账户剩余短信条数:<span>$!account.balance</span><span>条</span></label>
+  <label>冻结短信条数:<span>$!account.balanceLock</span><span>条</span></label></li>
+  <li><label><a class="do-btn" href="$homeServer.getURI("/account/charge.htm")">充值</a></label></li>
+</div>
+
+<div class="charge-info">
+    <div id="tb" style="padding:3px;text-align:left;">  
+		    <span>开始时间:</span>  
+		    <input id="startTime" style="line-height:24px;border:1px solid #ccc" onkeypress="personalSearch(event)" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:true,readOnly:true,maxDate:'%y-%M-#{%d}'})">  
+		    <span>结束时间:</span>  
+		    <input id="endTime" style="line-height:24px;border:1px solid #ccc" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss',isShowClear:true,readOnly:true,maxDate:'%y-%M-#{%d}'})">  
+		    <a href="#" class="easyui-linkbutton" plain="true" onclick="doSearch()">查询</a>  
+		</div> 
+    <table id="account-log-table"></table>
+</div>
+</div>

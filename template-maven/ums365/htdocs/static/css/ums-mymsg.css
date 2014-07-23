@@ -1,0 +1,136 @@
+.input_text{ 
+background:url(../images/pic_6.jpg) no-repeat 0 0; 
+border:1px solid #e0e0e0;
+width:420px; 
+height:30px; line-height:30px; 
+padding-left:10px;}
+
+.contain-left{
+  width:20%;
+  float:left;
+}
+.contain-right{
+width:79%;
+float:left;
+text-align:left;
+padding-left:10px;
+padding:5px;
+line-height:25px;
+
+}
+
+.left_nav_no_visited{
+ line-height:40px;
+
+ background-image: url("../images/ums/nav.png");
+    background-repeat: repeat-x;
+    border-bottom: 1px solid #c5e6c7;
+    border-right: 1px solid #c5e6c7;
+}
+.left_nav_visited {
+
+  line-height:40px;
+ background-image: url("../images/ums/nav-link.png");
+    background-repeat: repeat-x;
+    border-bottom: 1px solid #c5e6c7;
+border-right: 1px solid #c5e6c7;
+}
+.left-lev li  a{
+ line-height:40px;
+DISPLAY: block; 
+}
+.left-lev  a:hover{
+ line-height:40px;
+DISPLAY: block; 
+ background-image: url("../images/ums/nav-link.png");
+    background-repeat: repeat-x;
+    
+}
+.msg-contain-right{
+width:1024px;
+ margin:0 auto;
+ margin-top:30px;
+ height:auto!important;  
+    height:600px;  
+    min-height:600px;  
+}
+.ums-menu2{
+  width:1022px;
+
+ height:30px;
+
+}
+.ums-menu2 p{
+ float:left;
+
+}
+.contain-tab{
+   width:100%;
+   margin-top:20px;
+   table-layout:fixed;
+   border-left: 1px solid #808080;
+}
+.contain-tab tr{
+   padding: 3px;
+   height: 30px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.contain-tab td{
+white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+
+.contain-tab thead td {
+  	background: #e0e0e0;
+  	color:#000;
+    text-align: center;
+        border-right: 1px solid #808080;
+    border-bottom: 1px solid #808080;
+}
+.contain-tab tbody td {
+    text-align: center;
+    border-right: 1px solid #808080;
+    border-bottom: 1px solid #808080;
+}
+
+input, textarea, select{
+	border:1px solid #dad5d5;
+	font-family:inherit;
+	font-size:inherit;
+	padding:4px;
+
+}
+input[type="submit"], input[type="reset"] {
+	cursor:pointer;
+	width:auto !important;
+}
+.search-form{
+  width:100%;
+  margin-top:20px;
+}
+.grid {
+	display: inline;
+	margin-left: 10px;
+	margin-right: 10px;
+	float:left;
+	
+}
+
+.contain-div{
+  width:1024px;
+  
+}
+.search-button{
+	background:#6fbf4c;
+	color:#fff;
+	width:100;
+}
+.search-button:hover{
+	background:#61ad3f;
+	color:#fff;
+	width:100px;
+}

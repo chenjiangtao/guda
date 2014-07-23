@@ -1,0 +1,103 @@
+<link href="$umsServer.getURI("/static/css/table_scroll.css")" type="text/css" rel="stylesheet" />
+<script type="text/javascript" src="$umsServer.getURI("/static/js/log.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/table.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/My97DatePicker/WdatePicker.js")"></script>
+<script type="text/javascript" src="$umsServer.getURI("/static/js/targetPage.js")"></script>
+
+<div id="bd">
+	#set($sideMenuId="log_side_bar")
+    #set($HeadMenuId="system_header")
+    #parse("/home/admin/adminSideBar.vm")
+	#set($searchUrl = $umsServer.getURI("/log/log.htm"))
+	#set($param = "startTime=$!log.startTime&endTime=$!log.endTime&operatorName=$!log.operatorName&operatorMenu=$!log.operatorMenu")
+	<input style="width:50%;" type="hidden" id="param"  name="param" value="$param"/>
+	<input style="width:50%;" type="hidden" id="searchUrl"  name="searchUrl" value="$searchUrl"/>
+	<div id="pRight">
+		<div class="rounded_top">
+			<span class="lt_top"></span> <span class="rt_top"></span>
+		</div>
+		<div class="pRight_c">
+			<form action="$searchUrl" method="post" id="mySendMsgForm">
+                <div class="searchArea">
+					<table border="0" cellpadding="0" cellspacing="1">
+						<tr>
+							<td width="10%" align="right"><span class="bold fs14 c_007">时间段：</span></td>
+							<td width="35%">
+								<input type="text" id="d4311" class="Wdate" name="startTime" value="$!log.startTime" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true,readOnly:true,maxDate:'#F{$dp.$D(\'d4312\')}'})" style="width:100px;"/>
+        						--
+        						<input type="text" id="d4312" class="Wdate" name="endTime" value="$!log.endTime" onFocus="WdatePicker({dateFmt:'yyyy-MM-dd',isShowClear:true,readOnly:true,minDate:'#F{$dp.$D(\'d4311\')}'})"  style="width:100px;"/>
+							</td>
+							<td width="10%" align="right"><span class="bold fs14 c_007">操作员：</span></td>
+							<td width="15%"><input type="text" class="inputBox" size="15" name="operatorName" value="$!log.operatorName" id="operatorName" style="width:100px;"/></td>
+							<td width="15%" align="right"><span class="bold fs14 c_007">操作模块：</span></td>
+							<td width="15%">
+								<input type="text" class="inputBox" id="operatorMenu" name="operatorMenu" value="$!log.operatorMenu" style="width:100px;"/>
+							</td>
+						</tr>
+						<tr>
+							<td>&nbsp;</td>
+							<td colspan="5">
+								<input type="button" id="searchLog_sbtn" class="btn_green_search_form" value="查询" />
+							</td>
+						</tr>
+					</table>
+                </div>
+			
+			<div class="tableContainer">
+    			<div id="scrollContentContainer" class="scrollContentContainer">
+    				<table class="scrollContent" cellspacing="1" cellpadding="0" width="100%">
+							<thead>
+    						<tr>
+    						  <td width="5%">序号</td>
+    				          <td width="15%">操作模块</td>
+    				          <td width="15%">操作类型</td>
+    				          <td width="15%">操作员</td>
+    				          <td width="15%">操作员IP</td>
+    				          <td width="15%">备注</td>
+    				          <td width="20%">操作时间</td>
+    			            </tr>
+    					</thead>
+    					<tbody class="tb">
+    					#foreach($var in $result.results)
+    						<tr>
+    						  <td width="5%" style="text-align:center;">$velocityCount</td>
+    				          <td width="15%" title="$!var.operatorMenu">$!var.operatorMenu</td>
+    				          <td width="15%" title="$!var.operatorType">$!var.operatorType</td>
+    				          <td width="15%" title="$!var.operatorName">$!var.operatorName</td>
+    				          <td width="15%" title="$!var.operatorIp">$!var.operatorIp</td>
+    				          <td width="15%" title="$!var.comment">$!var.comment</td>
+							  <td width="20%" title="$!date.format('yyyy-MM-dd HH:mm:ss',$!var.gmtCreated)">$!date.format('yyyy-MM-dd HH:mm:ss',$!var.gmtCreated)</td>
+    				         </tr>
+    						#end
+						</tbody>
+    				</table>
+    			</div>
+    		</div>
+			#noRecord($result)
+			#if($!result.totalPage>0)
+    		<div class="btnArea clearfix" >
+    			<div class="page_detail">
+    				#if($!result.curPage != 1)
+						<a class="a_green_form_ddl" href="$searchUrl?$!param"><span>首页</span></a>
+					   #set($tempPage = $!result.curPage - 1)
+					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$tempPage&$!param"><span>上一页</span></a>
+				   #end
+				   #if($!result.curPage < $!result.totalPage)
+					   #set($tempPage = $!result.curPage + 1)
+					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$tempPage&$!param"><span>下一页</span></a>
+					   <a class="a_green_form_ddl" href="$searchUrl?pageId=$!result.totalPage&$!param"><span>尾页</span></a>
+				   #end
+				   <span class="pager_info">当前第<input id="targetNum" name="pageId" class="pager_inputBox" value="$!result.curPage" autocomplete="off"/>页 </span>
+				   <span id="targetBtn" class="a_green_form_ddl" style="cursor: pointer;">跳转</span>
+				   <span>共$!result.totalPage页 共$!result.total条记录</span>
+                </div>
+            </div>
+			#end
+		</div>
+		</form>
+		<div class="rounded_btm">
+			<span class="lt_btm"></span> <span class="rt_btm"></span>
+		</div>
+	</div>
+</div>
+
