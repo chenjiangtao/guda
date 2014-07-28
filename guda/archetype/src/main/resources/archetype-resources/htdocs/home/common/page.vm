@@ -1,0 +1,34 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<div >
+    <ul class="pager">
+        ${symbol_pound}if(${symbol_dollar}query.pageNo == 1)
+            <li class="disabled"><a>首页</a></li>
+        ${symbol_pound}else
+            <li><a href="${symbol_dollar}homeServer.getURI("${symbol_dollar}!{path}?pageNo=1")${symbol_dollar}!query">首页</a></li>
+        ${symbol_pound}end
+        ${symbol_pound}if(${symbol_dollar}query.pageNo == 1)
+            <li class="disabled"><a>上一页</a></li>
+        ${symbol_pound}else
+            <li><a href="${symbol_dollar}homeServer.getURI("${symbol_dollar}!{path}?pageNo=${symbol_dollar}query.getPrePage()")${symbol_dollar}!query" class="active">上一页</a></li>
+        ${symbol_pound}end
+        ${symbol_pound}foreach(${symbol_dollar}p in ${symbol_dollar}query.pages)
+            ${symbol_pound}if(${symbol_dollar}p==${symbol_dollar}query.pageNo)
+                <li class="disabled"><a>${symbol_dollar}p</a></li>
+            ${symbol_pound}else
+                <li><a href="${symbol_dollar}homeServer.getURI("${symbol_dollar}!{path}?pageNo=${symbol_dollar}p")${symbol_dollar}!query">${symbol_dollar}p</a></li>
+            ${symbol_pound}end
+        ${symbol_pound}end
+        ${symbol_pound}if(${symbol_dollar}query.pageNo == ${symbol_dollar}query.totalPage)
+            <li class="disabled"><a>下一页</a></li>
+        ${symbol_pound}else
+            <li><a href="${symbol_dollar}homeServer.getURI("${symbol_dollar}!{path}?pageNo=${symbol_dollar}query.getNextPage()")${symbol_dollar}!query">下一页</a></li>
+        ${symbol_pound}end
+        ${symbol_pound}if(${symbol_dollar}query.pageNo == ${symbol_dollar}query.totalPage)
+            <li class="disabled"><a>末页</a></li>
+        ${symbol_pound}else
+            <li><a href="${symbol_dollar}homeServer.getURI("${symbol_dollar}!{path}?pageNo=${symbol_dollar}query.getMaxPage()")${symbol_dollar}!query">末页</a></li>
+        ${symbol_pound}end
+    </ul>
+</div>

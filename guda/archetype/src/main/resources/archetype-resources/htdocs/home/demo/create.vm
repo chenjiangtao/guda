@@ -1,0 +1,54 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+新增
+
+<form name="demoForm"  action="${symbol_dollar}!homeServer.getURI("demo/doCreate.htm")" method="post">
+  <table>
+    ${symbol_pound}springBind("demoForm.id")
+    <tr>
+        <td>id</td>
+        <td>
+            <input class="form-control" type="text" name="${symbol_dollar}{status.expression}" value="${symbol_dollar}!status.value" />
+            ${symbol_pound}foreach(${symbol_dollar}error in ${symbol_dollar}status.errorMessages) <b>${symbol_dollar}error</b>  ${symbol_pound}end
+        </td>
+    </tr>
+    ${symbol_pound}springBind("demoForm.name")
+    <tr>
+        <td>name</td>
+        <td>
+            <input class="form-control" type="text" name="${symbol_dollar}{status.expression}" value="${symbol_dollar}!status.value" />
+            ${symbol_pound}foreach(${symbol_dollar}error in ${symbol_dollar}status.errorMessages) <b>${symbol_dollar}error</b>  ${symbol_pound}end
+        </td>
+    </tr>
+    ${symbol_pound}springBind("demoForm.password")
+    <tr>
+        <td>password</td>
+        <td>
+            <input class="form-control" type="text" name="${symbol_dollar}{status.expression}" value="${symbol_dollar}!status.value" />
+            ${symbol_pound}foreach(${symbol_dollar}error in ${symbol_dollar}status.errorMessages) <b>${symbol_dollar}error</b>  ${symbol_pound}end
+        </td>
+    </tr>
+    ${symbol_pound}springBind("demoForm.gmtCreate")
+    <tr>
+        <td>gmtCreate</td>
+        <td>
+            <input class="form-control" type="text" name="${symbol_dollar}{status.expression}" value="${symbol_dollar}!status.value" />
+            ${symbol_pound}foreach(${symbol_dollar}error in ${symbol_dollar}status.errorMessages) <b>${symbol_dollar}error</b>  ${symbol_pound}end
+        </td>
+    </tr>
+    ${symbol_pound}springBind("demoForm.amount")
+    <tr>
+        <td>amount</td>
+        <td>
+            <input class="form-control" type="text" name="${symbol_dollar}{status.expression}" value="${symbol_dollar}!status.value" />
+            ${symbol_pound}foreach(${symbol_dollar}error in ${symbol_dollar}status.errorMessages) <b>${symbol_dollar}error</b>  ${symbol_pound}end
+        </td>
+    </tr>
+
+	  <tr>
+	  <td colspan="2">
+	  <input type="submit" class="btn" value="提交"/></td>
+	  </tr>
+  </table>
+</form>

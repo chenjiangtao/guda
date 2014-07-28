@@ -1,0 +1,41 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+详情
+  <table>
+                <tr>
+              <td>id</td>
+              <td>
+                  ${symbol_dollar}!staffDO.id
+              </td>
+          </tr>
+
+                <tr>
+              <td>name</td>
+              <td>
+                  ${symbol_dollar}!staffDO.name
+              </td>
+          </tr>
+
+                <tr>
+              <td>password</td>
+              <td>
+                  ${symbol_dollar}!staffDO.password
+              </td>
+          </tr>
+
+                <tr>
+              <td>gmtCreate</td>
+              <td>
+                  ${symbol_dollar}!staffDO.gmtCreate
+              </td>
+          </tr>
+
+                <tr>
+              <td>amount</td>
+              <td>
+                  ${symbol_dollar}!staffDO.amount
+              </td>
+          </tr>
+
+        </table>

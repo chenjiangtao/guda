@@ -1,0 +1,55 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+编辑
+
+<form name="staffEditForm" action="${symbol_dollar}!homeServer.getURI("staff/doUpdate.htm")" method="post">
+  <table>
+  ${symbol_pound}springBind("staffEditForm.id")
+  <input type="hidden" name="${symbol_dollar}{status.expression}" value="${symbol_dollar}!status.value" />
+                ${symbol_pound}springBind("staffEditForm.id")
+          <tr>
+              <td>id</td>
+              <td>
+                  <input type="text" name="${symbol_dollar}{status.expression}" value="${symbol_dollar}!status.value" />
+                  ${symbol_pound}foreach(${symbol_dollar}error in ${symbol_dollar}status.errorMessages) <b>${symbol_dollar}error</b>  ${symbol_pound}end
+              </td>
+          </tr>
+                ${symbol_pound}springBind("staffEditForm.name")
+          <tr>
+              <td>name</td>
+              <td>
+                  <input type="text" name="${symbol_dollar}{status.expression}" value="${symbol_dollar}!status.value" />
+                  ${symbol_pound}foreach(${symbol_dollar}error in ${symbol_dollar}status.errorMessages) <b>${symbol_dollar}error</b>  ${symbol_pound}end
+              </td>
+          </tr>
+                ${symbol_pound}springBind("staffEditForm.password")
+          <tr>
+              <td>password</td>
+              <td>
+                  <input type="text" name="${symbol_dollar}{status.expression}" value="${symbol_dollar}!status.value" />
+                  ${symbol_pound}foreach(${symbol_dollar}error in ${symbol_dollar}status.errorMessages) <b>${symbol_dollar}error</b>  ${symbol_pound}end
+              </td>
+          </tr>
+                ${symbol_pound}springBind("staffEditForm.gmtCreate")
+          <tr>
+              <td>gmtCreate</td>
+              <td>
+                  <input type="text" name="${symbol_dollar}{status.expression}" value="${symbol_dollar}!status.value" />
+                  ${symbol_pound}foreach(${symbol_dollar}error in ${symbol_dollar}status.errorMessages) <b>${symbol_dollar}error</b>  ${symbol_pound}end
+              </td>
+          </tr>
+                ${symbol_pound}springBind("staffEditForm.amount")
+          <tr>
+              <td>amount</td>
+              <td>
+                  <input type="text" name="${symbol_dollar}{status.expression}" value="${symbol_dollar}!status.value" />
+                  ${symbol_pound}foreach(${symbol_dollar}error in ${symbol_dollar}status.errorMessages) <b>${symbol_dollar}error</b>  ${symbol_pound}end
+              </td>
+          </tr>
+      	  <tr>
+	  <td colspan="2">
+	  <input type="submit" value="提交"/></td>
+	  </tr>
+  </table>
+</form>

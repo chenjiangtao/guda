@@ -1,0 +1,148 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE m${parentArtifactId}er PUBLIC "-//mybatis.org//DTD M${parentArtifactId}er 3.0//EN" "http://mybatis.org/dtd/mybatis-3-m${parentArtifactId}er.dtd" >
+<m${parentArtifactId}er namespace="${package}.dao.DemoDOM${parentArtifactId}er" >
+  <resultMap id="BaseResultMap" type="${package}.dao.domain.DemoDO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="gmt_create" property="gmtCreate" jdbcType="TIMESTAMP" />
+    <result column="amount" property="amount" jdbcType="BIGINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${symbol_dollar}{criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${symbol_dollar}{criterion.condition} ${symbol_pound}{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${symbol_dollar}{criterion.condition} ${symbol_pound}{criterion.value} and ${symbol_pound}{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${symbol_dollar}{criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    ${symbol_pound}{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, name, password, gmt_create, amount
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="${package}.dao.domain.DemoDOCriteria" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from demo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${symbol_dollar}{orderByClause}
+    </if>
+    <if test="startRow >= 0" >
+      limit ${symbol_dollar}{startRow} , ${symbol_dollar}{pageSize}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from demo
+    where id = ${symbol_pound}{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from demo
+    where id = ${symbol_pound}{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="${package}.dao.domain.DemoDO" >
+    insert into demo (id, name, password, 
+      gmt_create, amount)
+    values (${symbol_pound}{id,jdbcType=INTEGER}, ${symbol_pound}{name,jdbcType=VARCHAR}, ${symbol_pound}{password,jdbcType=VARCHAR}, 
+      ${symbol_pound}{gmtCreate,jdbcType=TIMESTAMP}, ${symbol_pound}{amount,jdbcType=BIGINT})
+  </insert>
+  <insert id="insertSelective" parameterType="${package}.dao.domain.DemoDO" >
+    insert into demo
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="password != null" >
+        password,
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        ${symbol_pound}{id,jdbcType=INTEGER},
+      </if>
+      <if test="name != null" >
+        ${symbol_pound}{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        ${symbol_pound}{password,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        ${symbol_pound}{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amount != null" >
+        ${symbol_pound}{amount,jdbcType=BIGINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="${package}.dao.domain.DemoDOCriteria" resultType="java.lang.Integer" >
+    select count(*) from demo
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByPrimaryKeySelective" parameterType="${package}.dao.domain.DemoDO" >
+    update demo
+    <set >
+      <if test="name != null" >
+        name = ${symbol_pound}{name,jdbcType=VARCHAR},
+      </if>
+      <if test="password != null" >
+        password = ${symbol_pound}{password,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null" >
+        gmt_create = ${symbol_pound}{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="amount != null" >
+        amount = ${symbol_pound}{amount,jdbcType=BIGINT},
+      </if>
+    </set>
+    where id = ${symbol_pound}{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="${package}.dao.domain.DemoDO" >
+    update demo
+    set name = ${symbol_pound}{name,jdbcType=VARCHAR},
+      password = ${symbol_pound}{password,jdbcType=VARCHAR},
+      gmt_create = ${symbol_pound}{gmtCreate,jdbcType=TIMESTAMP},
+      amount = ${symbol_pound}{amount,jdbcType=BIGINT}
+    where id = ${symbol_pound}{id,jdbcType=INTEGER}
+  </update>
+</m${parentArtifactId}er>

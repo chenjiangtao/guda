@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<archetype-descriptor xsi:schemaLocation="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0 http://maven.apache.org/xsd/archetype-descriptor-1.0.0.xsd" name="well"
+    xmlns="http://maven.apache.org/plugins/maven-archetype-plugin/archetype-descriptor/1.0.0"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <fileSets>
+    <fileSet filtered="true" encoding="UTF-8">
+      <directory>htdocs/home</directory>
+      <includes>
+        <include>**/*.vm</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>htdocs/static</directory>
+      <includes>
+        <include>**/*.jpg</include>
+        <include>**/*.eot</include>
+        <include>**/*.jpeg</include>
+        <include>**/*.woff</include>
+        <include>**/*.svg</include>
+        <include>**/*.png</include>
+        <include>**/*.ttf</include>
+        <include>**/*.js</include>
+        <include>**/*.map</include>
+        <include>**/*.gif</include>
+        <include>**/*.css</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>htdocs/home</directory>
+      <includes>
+        <include>**/*.htm</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory>deploy</directory>
+      <includes>
+        <include>**/*.sh</include>
+      </includes>
+    </fileSet>
+    <fileSet encoding="UTF-8">
+      <directory></directory>
+      <includes>
+        <include>create-template.bat</include>
+        <include>generate.bat</include>
+      </includes>
+    </fileSet>
+  </fileSets>
+  <modules>
+    <module id="app" dir="app" name="app">
+      <modules>
+        <module id="${rootArtifactId}-biz" dir="__rootArtifactId__-biz" name="${rootArtifactId}-biz">
+          <fileSets>
+            <fileSet filtered="true" packaged="true" encoding="UTF-8">
+              <directory>src/main/java</directory>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+            </fileSet>
+            <fileSet filtered="true" encoding="UTF-8">
+              <directory>src/main/resources</directory>
+              <includes>
+                <include>**/*.xml</include>
+              </includes>
+            </fileSet>
+          </fileSets>
+        </module>
+        <module id="${rootArtifactId}-dao" dir="__rootArtifactId__-dao" name="${rootArtifactId}-dao">
+          <fileSets>
+            <fileSet filtered="true" packaged="true" encoding="UTF-8">
+              <directory>src/main/java</directory>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+            </fileSet>
+            <fileSet filtered="true" encoding="UTF-8">
+              <directory>src/main/resources</directory>
+              <includes>
+                <include>**/*.xml</include>
+              </includes>
+            </fileSet>
+          </fileSets>
+        </module>
+        <module id="${rootArtifactId}-test" dir="__rootArtifactId__-test" name="${rootArtifactId}-test">
+          <fileSets>
+            <fileSet filtered="true" packaged="true" encoding="UTF-8">
+              <directory>src/test/java</directory>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+            </fileSet>
+            <fileSet filtered="true" encoding="UTF-8">
+              <directory>src/test/resources</directory>
+              <includes>
+                <include>**/*.xml</include>
+                <include>**/*.properties</include>
+              </includes>
+            </fileSet>
+          </fileSets>
+        </module>
+        <module id="${rootArtifactId}-web" dir="__rootArtifactId__-web" name="${rootArtifactId}-web">
+          <fileSets>
+            <fileSet filtered="true" packaged="true" encoding="UTF-8">
+              <directory>src/main/java</directory>
+              <includes>
+                <include>**/*.java</include>
+              </includes>
+            </fileSet>
+            <fileSet filtered="true" encoding="UTF-8">
+              <directory>src/main/resources</directory>
+              <includes>
+                <include>**/*.xml</include>
+              </includes>
+            </fileSet>
+          </fileSets>
+        </module>
+        <module id="${rootArtifactId}-util" dir="__rootArtifactId__-util" name="${rootArtifactId}-util" />
+      </modules>
+    </module>
+    <module id="${rootArtifactId}-assembly" dir="assembly" name="${rootArtifactId}-assembly">
+      <fileSets>
+        <fileSet filtered="true" encoding="UTF-8">
+          <directory>config</directory>
+          <includes>
+            <include>**/*.xml</include>
+          </includes>
+        </fileSet>
+        <fileSet encoding="UTF-8">
+          <directory>sql</directory>
+          <includes>
+            <include>**/*.sql</include>
+          </includes>
+        </fileSet>
+      </fileSets>
+    </module>
+  </modules>
+</archetype-descriptor>

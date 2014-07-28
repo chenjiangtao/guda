@@ -1,0 +1,29 @@
+#set( $symbol_pound = '#' )
+#set( $symbol_dollar = '$' )
+#set( $symbol_escape = '\' )
+<a href="${symbol_dollar}!homeServer.getURI("staff/create.htm")" >新建</a>
+
+<table>
+ <tr>
+              id
+              name
+              password
+              gmtCreate
+              amount
+          <td>操作</td>
+ </tr>
+${symbol_pound}foreach(${symbol_dollar}f in ${symbol_dollar}staffDOList)
+  <tr>
+               <td> ${symbol_dollar}!f.id</td>
+               <td> ${symbol_dollar}!f.name</td>
+               <td> ${symbol_dollar}!f.password</td>
+               <td> ${symbol_dollar}!f.gmtCreate</td>
+               <td> ${symbol_dollar}!f.amount</td>
+          <td><a href="${symbol_dollar}!homeServer.getURI("staff/edit.htm").addQueryData('id',"${symbol_dollar}!f.id")" >编辑</a></td>
+    <td><a href="${symbol_dollar}!homeServer.getURI("staff/detail.htm").addQueryData('id',"${symbol_dollar}!f.id")" >查看详情</a></td>
+      <td><a href="${symbol_dollar}!homeServer.getURI("staff/doDelete.htm").addQueryData('id',"${symbol_dollar}!f.id")" onclick="return confirm('确定删除吗?')">删除</a></td>
+ </tr>
+${symbol_pound}end
+</table>
+
+${symbol_dollar}tile.load('home/common/page.vm').param('path','staff/list.htm').param('query',${symbol_dollar}query)
