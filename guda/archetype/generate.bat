@@ -1,1 +1,0 @@
-mvn archetype:generate -DarchetypeCatalog=local
