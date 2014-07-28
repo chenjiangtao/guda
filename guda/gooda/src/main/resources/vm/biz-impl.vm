@@ -36,8 +36,8 @@ public class ${doName}BizImpl implements ${doName}Biz{
         BizResult bizResult = new BizResult();
         try {
             ${doName}DOCriteria ${doNameLower}DOCriteria = new ${doName}DOCriteria();
-            ${doNameLower}DOCriteria.setLimitStart(baseQuery.getStartRow());
-            ${doNameLower}DOCriteria.setLimitEnd(baseQuery.getPageSize());
+            ${doNameLower}DOCriteria.setStartRow(baseQuery.getStartRow());
+            ${doNameLower}DOCriteria.setPageSize(baseQuery.getPageSize());
             int totalCount = ${doNameLower}DOMapper.countByExample(${doNameLower}DOCriteria);
             baseQuery.setTotalCount(totalCount);
             List<${doName}DO> ${doNameLower}DOList = ${doNameLower}DOMapper.selectByExample(${doNameLower}DOCriteria);

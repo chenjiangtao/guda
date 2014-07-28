@@ -13,6 +13,10 @@ import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
 
+import com.foodoon.mvc.runtime.core.spring.GudaPropertyConfigurer;
+import com.foodoon.mvc.runtime.core.spring.SpringBeanFactoryTool;
+import org.springframework.beans.factory.config.PropertyPlaceholderConfigurer;
+import org.springframework.web.context.support.WebApplicationContextUtils;
 import org.w3c.dom.Document;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
@@ -80,9 +84,10 @@ public class URIBoxManager {
     }
 
     public String resolveVal(String strKey) {
+        GudaPropertyConfigurer p = (GudaPropertyConfigurer)  SpringBeanFactoryTool.getBeanFactory().getBean("gudaPropertyConfigurer");
         if (strKey.startsWith(PropertiesReplace.DEFAULT_PLACEHOLDER_PREFIX)) {
             String key = PropertiesReplace.resolveStringKey(strKey);
-            return String.valueOf(AppConfigurer.getAppProperties().get(key));
+            return String.valueOf(p.getAppProperties().get(key));
         }
         return strKey;
     }

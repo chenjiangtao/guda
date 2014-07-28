@@ -1,5 +1,5 @@
-详情
-  <table>
+_!${doNameLower}详情
+  <table class="table">
       #foreach($v in $doFieldList)
           <tr>
               <td>$v.cnName</td>

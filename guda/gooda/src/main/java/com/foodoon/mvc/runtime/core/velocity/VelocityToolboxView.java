@@ -11,6 +11,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.apache.velocity.app.VelocityEngine;
 import org.apache.velocity.context.Context;
 import org.apache.velocity.tools.Scope;
 import org.apache.velocity.tools.ToolManager;
@@ -24,7 +25,7 @@ import com.foodoon.mvc.runtime.core.uribox.URIBox;
 import com.foodoon.mvc.runtime.core.uribox.URIBoxManager;
 
 /**
- * 
+ *
  * @author ypz
  * @version $Id: VelocityToolboxView.java, v 0.1 2012-5-17 下午04:08:08 ypz Exp $
  */
@@ -68,12 +69,12 @@ public class VelocityToolboxView extends VelocityLayoutView {
         return ctx;
     }
 
-    /** 
+    /**
      * @see org.springframework.web.servlet.view.velocity.VelocityView#exposeHelpers(org.apache.velocity.context.Context, javax.servlet.http.HttpServletRequest)
      */
     @Override
     protected void exposeHelpers(Context velocityContext, HttpServletRequest request)
-                                                                                     throws Exception {
+            throws Exception {
         super.exposeHelpers(velocityContext, request);
         URIBoxManager uriBoxManager = new URIBoxManager();
         Map<String, URIBox> box = uriBoxManager.loadURIBox();
@@ -88,6 +89,8 @@ public class VelocityToolboxView extends VelocityLayoutView {
                 velocityContext.put(key, uri);
             }
         }
+        VelocityEngine velocityEngine = super.getVelocityEngine();
+        velocityContext.put("tile",new Tile(velocityEngine,velocityContext));
 
     }
 
@@ -103,12 +106,12 @@ public class VelocityToolboxView extends VelocityLayoutView {
         }
         return defaultBox;
     }
-    
+
     public static String getFullContextURL(HttpServletRequest request) {
         String url = request.getRequestURL().toString();
         String path = request.getServletPath();
         return url.substring(0, url.indexOf(path));
-       
-}
+
+    }
 
 }

@@ -1,6 +1,6 @@
-<a href="_!homeServer.getURI("${doNameLower}/create.htm")" >新建</a>
+<a  class="btn btn-default"  href="_!homeServer.getURI("${doNameLower}/create.htm")" >新建</a>
 
-<table>
+<table  class="table">
  <tr>
      #foreach($v in $doFieldList)
          $v.cnName
